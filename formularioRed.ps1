@@ -582,11 +582,15 @@ function ejecutarTareas{
         
    
       $habilitarProxy={
-          Param($Computer,$serverProxy,$excepcion1,$excepcion2,$excepcion3,$excepcion4,$excepcion5,$excepcion6,$excepcion7,$movistarMask)    
+          Param($Computer,$serverProxy,$excepcion1,$excepcion2,$excepcion3,$excepcion4,$excepcion5,$excepcion6,$excepcion7)    
+
+          echo $excepcion1 >> C:\probando.txt
 
         $arregloNuevo=$Computer.Split(".");
         $arregloFinal=$arregloNuevo[2]
-
+        [int]$arregloModificado1=$arregloNuevo[3]
+        #Mascara25
+        $movistarMask1=($arregloModificado1 -ge 0 -and $arregloModificado1 -le 127)
 
 
 
@@ -608,12 +612,15 @@ function ejecutarTareas{
      New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyServer -Value "$serverProxy";
      New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyEnable -PropertyType DWord -Value 1;
 if($arregloFinal -eq '64' ){
-    if($movistarMask){
+    if($movistarMask1){
         New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion5;$excepcion6;$excepcion7;$excepcion4";
     }
     else{
         New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion4"; 
     }
+}
+else{
+    New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion4"; 
 }
    
      
@@ -621,12 +628,15 @@ if($arregloFinal -eq '64' ){
      New-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyServer -Value "$serverProxy";
      New-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyEnable -PropertyType DWord -Value 1;
      if($arregloFinal -eq '64' ){
-        if($movistarMask){
+        if($movistarMask1){
             New-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings"-Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion5;$excepcion6;$excepcion7;$excepcion4";
         }
         else{
             New-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion4"; 
         }
+    }
+    else{
+         New-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion4"; 
     }
 
 
@@ -640,10 +650,10 @@ if($arregloFinal -eq '64' ){
     $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
     $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
         $Session = New-PSSession -ComputerName $Computer -Credential $Cred
-        #Write-Host " $Computer ..." -ForegroundColor GREEN -Background BLACK
+        Write-Host " $Computer ..." -ForegroundColor GREEN -Background BLACK
         
          #Invocando comandos
-         $Job = Invoke-Command -Session $Session  -ScriptBlock $habilitarProxy -ArgumentList ($Computer,$serverProxy,$excepcion1,$excepcion2,$excepcion3,$excepcion4,$excepcion5,$excepcion6,$excepcion7,$movistarMask) -AsJob 
+         $Job = Invoke-Command -Session $Session  -ScriptBlock $habilitarProxy -ArgumentList ($Computer,$serverProxy,$excepcion1,$excepcion2,$excepcion3,$excepcion4,$excepcion5,$excepcion6,$excepcion7) -AsJob 
          $Null = Wait-Job -Job $Job
         Remove-PSSession -Session $Session
      
