@@ -14,6 +14,7 @@ $comboBox3 = New-Object 'system.Windows.Forms.ComboBox'
 $Button1 = New-Object 'System.Windows.Forms.Button'
 $Button2 = New-Object 'System.Windows.Forms.Button'
 $Button3 = New-Object 'System.Windows.Forms.Button'
+$Button4 = New-Object 'System.Windows.Forms.Button'
 $textbox11 = New-Object 'System.Windows.Forms.TextBox'
 $textbox12 = New-Object 'System.Windows.Forms.TextBox'
 $textbox13 = New-Object 'System.Windows.Forms.TextBox'
@@ -544,6 +545,55 @@ $Form1.Controls.Add($Button11)
 
 
 }
+function deshabilitarRutas{
+
+	$Username = "Administrador"
+    $Password = "R3c542016C4ll"
+
+    $Computer=$textbox1.Text; 
+    
+    
+        
+   
+    $deshabilitarProxy={
+          Param($Computer)    
+
+            Remove-ItemProperty -Path "Registry::HKLM\SOFTWARE\Policies\Microsoft\Internet Explorer\Control Panel" -Name Proxy;
+            Remove-Item -Path "Registry::HKLM\SOFTWARE\Policies\Microsoft\Internet Explorer" -Name "Control Panel";
+            Remove-Item -Path "Registry::HKLM\SOFTWARE\Policies\Microsoft" -Name "Internet Explorer";
+            Remove-ItemProperty -Path "Registry::HKLM\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxySettingsPerUser;
+        
+        #Deshabilitar el proxy
+     
+            #Deshabilitando Proxy
+            Remove-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyServer;
+            Remove-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyEnable;
+            Remove-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride;
+            #Lanzamos ie para que actualize la config proxy
+            #& `"C:\Archivos de programa\Internet Explorer\iexplore.exe`"
+            Remove-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyEnable;
+            Remove-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyServer;
+            Remove-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride;
+     
+     #Lanzamos ie para que actualize la config proxy
+     #& `"C:\Archivos de programa\Internet Explorer\iexplore.exe`"
+    
+    
+
+    }  
+    $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+    $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+        $Session = New-PSSession -ComputerName $Computer -Credential $Cred
+     
+        
+         #Invocando comandos
+         $Job = Invoke-Command -Session $Session  -ScriptBlock  $deshabilitarProxy -ArgumentList ($Computer) -AsJob 
+         $Null = Wait-Job -Job $Job
+        Remove-PSSession -Session $Session
+    
+
+}
+
 
 function Validacion{
     $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
@@ -582,11 +632,15 @@ function ejecutarTareas{
         
    
       $habilitarProxy={
-          Param($Computer,$serverProxy,$excepcion1,$excepcion2,$excepcion3,$excepcion4,$excepcion5,$excepcion6,$excepcion7,$movistarMask)    
+          Param($Computer,$serverProxy,$excepcion1,$excepcion2,$excepcion3,$excepcion4,$excepcion5,$excepcion6,$excepcion7)    
+
+       
 
         $arregloNuevo=$Computer.Split(".");
         $arregloFinal=$arregloNuevo[2]
-
+        [int]$arregloModificado1=$arregloNuevo[3]
+        #Mascara25
+        $movistarMask1=($arregloModificado1 -ge 0 -and $arregloModificado1 -le 127)
 
 
 
@@ -608,12 +662,15 @@ function ejecutarTareas{
      New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyServer -Value "$serverProxy";
      New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyEnable -PropertyType DWord -Value 1;
 if($arregloFinal -eq '64' ){
-    if($movistarMask){
+    if($movistarMask1){
         New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion5;$excepcion6;$excepcion7;$excepcion4";
     }
     else{
         New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion4"; 
     }
+}
+else{
+    New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion4"; 
 }
    
      
@@ -621,12 +678,15 @@ if($arregloFinal -eq '64' ){
      New-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyServer -Value "$serverProxy";
      New-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyEnable -PropertyType DWord -Value 1;
      if($arregloFinal -eq '64' ){
-        if($movistarMask){
+        if($movistarMask1){
             New-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings"-Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion5;$excepcion6;$excepcion7;$excepcion4";
         }
         else{
             New-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion4"; 
         }
+    }
+    else{
+         New-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion4"; 
     }
 
 
@@ -640,51 +700,14 @@ if($arregloFinal -eq '64' ){
     $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
     $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
         $Session = New-PSSession -ComputerName $Computer -Credential $Cred
-        #Write-Host " $Computer ..." -ForegroundColor GREEN -Background BLACK
+     
         
          #Invocando comandos
-         $Job = Invoke-Command -Session $Session  -ScriptBlock $habilitarProxy -ArgumentList ($Computer,$serverProxy,$excepcion1,$excepcion2,$excepcion3,$excepcion4,$excepcion5,$excepcion6,$excepcion7,$movistarMask) -AsJob 
+         $Job = Invoke-Command -Session $Session  -ScriptBlock $habilitarProxy -ArgumentList ($Computer,$serverProxy,$excepcion1,$excepcion2,$excepcion3,$excepcion4,$excepcion5,$excepcion6,$excepcion7) -AsJob 
          $Null = Wait-Job -Job $Job
         Remove-PSSession -Session $Session
      
-          
-        
-        
-        
-     
-         
-  
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ###############################
 
@@ -743,10 +766,6 @@ $comboBox1.add_SelectedIndexChanged({
             $Button3.BackColor = [System.Drawing.Color]::LightBlue
             $Button3.Add_Click( { ejecutarTareas }) 
 
-
-
-
-
 #######################################
 $Groupbox1.height                = 190
 $Groupbox1.width                 = 1000
@@ -768,6 +787,7 @@ foreach($computer1 in $datos)
 $comboBox2.add_SelectedIndexChanged({
     if($comboBox2.SelectedItem -eq 'HABILITAR PROXY'){
         $Groupbox1.Controls.Add($comboBox3)
+        $Groupbox1.Controls.Remove($Button4)
         $datos1 = @('Predeterminado', 'Personalizado')
         $comboBox3.Font = 'Segoe UI, 12pt'
         $comboBox3.Location = New-Object System.Drawing.Point(300,40)
@@ -790,7 +810,15 @@ $comboBox3.add_SelectedIndexChanged({
     }
     else{
         if($comboBox2.SelectedItem -eq 'DESHABILITAR PROXY'){
-
+            $Groupbox1.Controls.Remove($Button1)
+            $Groupbox1.Controls.Remove($comboBox3)	
+            $Button4.Location = New-Object System.Drawing.Size(520,40) 
+    $Button4.Size = New-Object System.Drawing.Size(150,50) 
+    $Button4.Text = "DESHABILITAR AHORA" 
+    $Button4.UseVisualStyleBackColor = $True
+    $Button4.BackColor = [System.Drawing.Color]::LightBlue
+    $Button4.Add_Click({deshabilitarRutas}) 
+    $Groupbox1.Controls.Add($Button4)	
         }
     }
 
