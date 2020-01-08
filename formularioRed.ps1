@@ -12,6 +12,7 @@ $Groupbox1 = New-Object 'system.Windows.Forms.Groupbox'
 $Groupbox2 = New-Object 'system.Windows.Forms.Groupbox'
 $comboBox2 = New-Object 'system.Windows.Forms.ComboBox'
 $comboBox3 = New-Object 'system.Windows.Forms.ComboBox'
+$comboBox4=New-Object 'system.Windows.Forms.ComboBox'
 $Button1 = New-Object 'System.Windows.Forms.Button'
 $Button2 = New-Object 'System.Windows.Forms.Button'
 $Button3 = New-Object 'System.Windows.Forms.Button'
@@ -740,6 +741,7 @@ $comboBox1.add_SelectedIndexChanged({
         $Form.Controls.Add($Groupbox1)
         $Form.Controls.Add($Groupbox2)
         $Groupbox1.Controls.Add($comboBox2)
+        $Groupbox2.Controls.Add($comboBox4)
         $Form.Controls.Remove($label2)
         $Form.Controls.Remove($label3)
         $textbox1.Font = 'Comic Sans MS,10'
@@ -782,6 +784,20 @@ $Groupbox2.text                  = "Rutas"
 $Groupbox2.location              = New-Object System.Drawing.Point(20,280)
 
 ######################################
+
+$datos2=@('AGREGAR RUTA','BLOQUEAR RUTA','ELIMINAR RUTA')
+$comboBox4.Font = 'Segoe UI, 12pt'
+$comboBox4.Location = New-Object System.Drawing.Point(20,40)
+$comboBox4.Size = New-Object System.Drawing.Size(200, 40)
+foreach($computer2 in $datos2)
+{
+  $comboBox4.Items.add($computer2)
+
+}
+
+
+
+
 
 $datos = @('HABILITAR PROXY', 'DESHABILITAR PROXY')
 $comboBox2.Font = 'Segoe UI, 12pt'
