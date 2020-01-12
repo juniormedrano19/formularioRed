@@ -25,6 +25,97 @@ $textbox13 = New-Object 'System.Windows.Forms.TextBox'
 $textbox14 = New-Object 'System.Windows.Forms.TextBox'
 $textbox15= New-Object 'System.Windows.Forms.TextBox'
 
+
+$Label100=New-Object 'system.Windows.Forms.Label'
+$Label102=New-Object 'system.Windows.Forms.Label'
+$Label103=New-Object 'system.Windows.Forms.Label'
+$Label104=New-Object 'system.Windows.Forms.Label'
+$Label150=New-Object 'system.Windows.Forms.Label'
+$Label160=New-Object 'system.Windows.Forms.Label'
+$Label170=New-Object 'system.Windows.Forms.Label'
+$Label180=New-Object 'system.Windows.Forms.Label'
+$Label190=New-Object 'system.Windows.Forms.Label'
+$Label110=New-Object 'system.Windows.Forms.Label'
+$Label111=New-Object 'system.Windows.Forms.Label'
+$Label112=New-Object 'system.Windows.Forms.Label'
+$Label113=New-Object 'system.Windows.Forms.Label'
+$Label114=New-Object 'system.Windows.Forms.Label'
+$Label115=New-Object 'system.Windows.Forms.Label'
+$Label116=New-Object 'system.Windows.Forms.Label'
+$Label117=New-Object 'system.Windows.Forms.Label'
+$Label118=New-Object 'system.Windows.Forms.Label'
+$Label119=New-Object 'system.Windows.Forms.Label'
+$Label120=New-Object 'system.Windows.Forms.Label'
+$Label121=New-Object 'system.Windows.Forms.Label'
+$Label122=New-Object 'system.Windows.Forms.Label'
+$Label123=New-Object 'system.Windows.Forms.Label'
+$Label124=New-Object 'system.Windows.Forms.Label'
+$Label125=New-Object 'system.Windows.Forms.Label'
+$Label126=New-Object 'system.Windows.Forms.Label'
+$Label127=New-Object 'system.Windows.Forms.Label'
+$Label128=New-Object 'system.Windows.Forms.Label'
+$Label129=New-Object 'system.Windows.Forms.Label'
+$Label130=New-Object 'system.Windows.Forms.Label'
+$Label131=New-Object 'system.Windows.Forms.Label'
+$Label132=New-Object 'system.Windows.Forms.Label'
+$Label133=New-Object 'system.Windows.Forms.Label'
+$Label134=New-Object 'system.Windows.Forms.Label'
+$Label135=New-Object 'system.Windows.Forms.Label'
+$Label136=New-Object 'system.Windows.Forms.Label'
+$Label137=New-Object 'system.Windows.Forms.Label'
+$Label138=New-Object 'system.Windows.Forms.Label'
+$Label139=New-Object 'system.Windows.Forms.Label'
+$Label140=New-Object 'system.Windows.Forms.Label'
+$Label141=New-Object 'system.Windows.Forms.Label'
+$Label142=New-Object 'system.Windows.Forms.Label'
+$Label143=New-Object 'system.Windows.Forms.Label'
+$Label144=New-Object 'system.Windows.Forms.Label'
+$Label145=New-Object 'system.Windows.Forms.Label'
+$Label146=New-Object 'system.Windows.Forms.Label'
+$Label147=New-Object 'system.Windows.Forms.Label'
+$Label148=New-Object 'system.Windows.Forms.Label'
+$TextBox100=New-Object 'system.Windows.Forms.TextBox'
+$TextBox102=New-Object 'system.Windows.Forms.TextBox'
+$TextBox103=New-Object 'system.Windows.Forms.TextBox'
+$TextBox104=New-Object 'system.Windows.Forms.TextBox'
+$TextBox150=New-Object 'system.Windows.Forms.TextBox'
+$TextBox160=New-Object 'system.Windows.Forms.TextBox'
+$TextBox170=New-Object 'system.Windows.Forms.TextBox'
+$TextBox180=New-Object 'system.Windows.Forms.TextBox'
+$TextBox190=New-Object 'system.Windows.Forms.TextBox'
+$TextBox110=New-Object 'system.Windows.Forms.TextBox'
+$TextBox111=New-Object 'system.Windows.Forms.TextBox'
+$TextBox112=New-Object 'system.Windows.Forms.TextBox'
+$TextBox113=New-Object 'system.Windows.Forms.TextBox'
+$TextBox114=New-Object 'system.Windows.Forms.TextBox'
+$TextBox115=New-Object 'system.Windows.Forms.TextBox'
+$TextBox116=New-Object 'system.Windows.Forms.TextBox'
+$TextBox117=New-Object 'system.Windows.Forms.TextBox'
+$TextBox118=New-Object 'system.Windows.Forms.TextBox'
+$TextBox119=New-Object 'system.Windows.Forms.TextBox'
+$TextBox120=New-Object 'system.Windows.Forms.TextBox'
+$TextBox121=New-Object 'system.Windows.Forms.TextBox'
+$TextBox122=New-Object 'system.Windows.Forms.TextBox'
+$TextBox123=New-Object 'system.Windows.Forms.TextBox'
+$TextBox124=New-Object 'system.Windows.Forms.TextBox'
+$TextBox125=New-Object 'system.Windows.Forms.TextBox'
+$TextBox126=New-Object 'system.Windows.Forms.TextBox'
+$TextBox127=New-Object 'system.Windows.Forms.TextBox'
+$TextBox128=New-Object 'system.Windows.Forms.TextBox'
+$TextBox129=New-Object 'system.Windows.Forms.TextBox'
+$TextBox130=New-Object 'system.Windows.Forms.TextBox'
+$TextBox131=New-Object 'system.Windows.Forms.TextBox'
+$TextBox132=New-Object 'system.Windows.Forms.TextBox'
+$ComboBox110=New-Object 'system.Windows.Forms.ComboBox'
+$ComboBox120=New-Object 'system.Windows.Forms.ComboBox'
+$ComboBox130=New-Object 'system.Windows.Forms.ComboBox'
+$ComboBox140=New-Object 'system.Windows.Forms.ComboBox'
+$ComboBox150=New-Object 'system.Windows.Forms.ComboBox'
+$ComboBox160=New-Object 'system.Windows.Forms.ComboBox'
+$ComboBox170=New-Object 'system.Windows.Forms.ComboBox'
+$ComboBox180=New-Object 'system.Windows.Forms.ComboBox'
+$Button110=New-Object 'system.Windows.Forms.Button'
+
 $Form = New-Object System.Windows.Forms.Form 
 
 
@@ -163,98 +254,8 @@ $totalRegistros=$acumulador+$acumulador2+$acumulador3+$acumulador4+$acumulador5+
 function routesForm{
     [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
     [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")  
-    $Label1=New-Object 'system.Windows.Forms.Label'
-    $Label2=New-Object 'system.Windows.Forms.Label'
-    $Label3=New-Object 'system.Windows.Forms.Label'
-    $Label4=New-Object 'system.Windows.Forms.Label'
-    $Label5=New-Object 'system.Windows.Forms.Label'
-    $Label6=New-Object 'system.Windows.Forms.Label'
-    $Label7=New-Object 'system.Windows.Forms.Label'
-    $Label8=New-Object 'system.Windows.Forms.Label'
-    $Label9=New-Object 'system.Windows.Forms.Label'
-    $Label10=New-Object 'system.Windows.Forms.Label'
-    $Label11=New-Object 'system.Windows.Forms.Label'
-    $Label12=New-Object 'system.Windows.Forms.Label'
-    $Label13=New-Object 'system.Windows.Forms.Label'
-    $Label14=New-Object 'system.Windows.Forms.Label'
-    $Label15=New-Object 'system.Windows.Forms.Label'
-    $Label16=New-Object 'system.Windows.Forms.Label'
-    $Label17=New-Object 'system.Windows.Forms.Label'
-    $Label18=New-Object 'system.Windows.Forms.Label'
-    $Label19=New-Object 'system.Windows.Forms.Label'
-    $Label20=New-Object 'system.Windows.Forms.Label'
-    $Label21=New-Object 'system.Windows.Forms.Label'
-    $Label22=New-Object 'system.Windows.Forms.Label'
-    $Label23=New-Object 'system.Windows.Forms.Label'
-    $Label24=New-Object 'system.Windows.Forms.Label'
-    $Label25=New-Object 'system.Windows.Forms.Label'
-    $Label26=New-Object 'system.Windows.Forms.Label'
-    $Label27=New-Object 'system.Windows.Forms.Label'
-    $Label28=New-Object 'system.Windows.Forms.Label'
-    $Label29=New-Object 'system.Windows.Forms.Label'
-    $Label30=New-Object 'system.Windows.Forms.Label'
-    $Label31=New-Object 'system.Windows.Forms.Label'
-    $Label32=New-Object 'system.Windows.Forms.Label'
-    $Label33=New-Object 'system.Windows.Forms.Label'
-    $Label34=New-Object 'system.Windows.Forms.Label'
-    $Label35=New-Object 'system.Windows.Forms.Label'
-    $Label36=New-Object 'system.Windows.Forms.Label'
-    $Label37=New-Object 'system.Windows.Forms.Label'
-    $Label38=New-Object 'system.Windows.Forms.Label'
-    $Label39=New-Object 'system.Windows.Forms.Label'
-    $Label40=New-Object 'system.Windows.Forms.Label'
-    $Label41=New-Object 'system.Windows.Forms.Label'
-    $Label42=New-Object 'system.Windows.Forms.Label'
-    $Label43=New-Object 'system.Windows.Forms.Label'
-    $Label44=New-Object 'system.Windows.Forms.Label'
-    $Label45=New-Object 'system.Windows.Forms.Label'
-    $Label46=New-Object 'system.Windows.Forms.Label'
-    $Label47=New-Object 'system.Windows.Forms.Label'
-    $Label48=New-Object 'system.Windows.Forms.Label'
-   $TextBox1=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox2=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox3=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox4=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox5=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox6=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox7=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox8=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox9=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox10=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox11=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox12=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox13=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox14=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox15=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox16=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox17=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox18=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox19=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox20=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox21=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox22=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox23=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox24=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox25=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox26=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox27=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox28=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox29=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox30=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox31=New-Object 'system.Windows.Forms.TextBox'
-   $TextBox32=New-Object 'system.Windows.Forms.TextBox'
-   $ComboBox1=New-Object 'system.Windows.Forms.ComboBox'
-   $ComboBox2=New-Object 'system.Windows.Forms.ComboBox'
-   $ComboBox3=New-Object 'system.Windows.Forms.ComboBox'
-   $ComboBox4=New-Object 'system.Windows.Forms.ComboBox'
-   $ComboBox5=New-Object 'system.Windows.Forms.ComboBox'
-   $ComboBox6=New-Object 'system.Windows.Forms.ComboBox'
-   $ComboBox7=New-Object 'system.Windows.Forms.ComboBox'
-   $ComboBox8=New-Object 'system.Windows.Forms.ComboBox'
-   $Button1=New-Object 'system.Windows.Forms.Button'
    
-
-
+    
     ############### CREACION DEL ELEMENTO ############
     $Form2 = New-Object System.Windows.Forms.Form 
     $Form2.Size = New-Object System.Drawing.Size(1100,750)  
@@ -262,789 +263,802 @@ function routesForm{
     $Form2.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::Sizable
     $Form2.MaximizeBox = $false
     $Form2.Text = "ROUTES" 
-
-    if($ComboBox5.SelectedItem -eq '1'){
-        $Form2.Controls.Add($Label1)
-        $Form2.Controls.Add($Label2)
-        $Form2.Controls.Add($Label3)
-        $Form2.Controls.Add($Label4)
-        $Form2.Controls.Add($Label5)
-        $Form2.Controls.Add($Label6)
-        $Form2.Controls.Add($TextBox2)
-        $Form2.Controls.Add($TextBox3)
-        $Form2.Controls.Add($TextBox4)
-        $Form2.Controls.Remove($Label7)
-$Form2.Controls.Remove($Label8)
-$Form2.Controls.Remove($Label9)
-$Form2.Controls.Remove($Label10)
-$Form2.Controls.Remove($Label11)
-$Form2.Controls.Remove($Label12)
-$Form2.Controls.Remove($Label13)
-$Form2.Controls.Remove($Label14)
-$Form2.Controls.Remove($Label15)
-$Form2.Controls.Remove($Label16)
-$Form2.Controls.Remove($Label17)
-$Form2.Controls.Remove($Label18)
-$Form2.Controls.Remove($Label19)
-$Form2.Controls.Remove($Label20)
-$Form2.Controls.Remove($Label21)
-$Form2.Controls.Remove($Label22)
-$Form2.Controls.Remove($Label23)
-$Form2.Controls.Remove($Label24)
-$Form2.Controls.Remove($Label25)
-$Form2.Controls.Remove($Label26)
-$Form2.Controls.Remove($Label27)
-$Form2.Controls.Remove($Label28)
-$Form2.Controls.Remove($Label29)
-$Form2.Controls.Remove($Label30)
-$Form2.Controls.Remove($Label31)
-$Form2.Controls.Remove($Label32)
-$Form2.Controls.Remove($Label33)
-$Form2.Controls.Remove($Label34)
-$Form2.Controls.Remove($Label35)
-$Form2.Controls.Remove($Label36)
-$Form2.Controls.Remove($Label37)
-$Form2.Controls.Remove($Label38)
-$Form2.Controls.Remove($Label39)
-$Form2.Controls.Remove($Label40)
-$Form2.Controls.Remove($Label41)
-$Form2.Controls.Remove($Label42)
-$Form2.Controls.Remove($Label43)
-$Form2.Controls.Remove($Label44)
-$Form2.Controls.Remove($Label45)
-$Form2.Controls.Remove($Label46)
-$Form2.Controls.Remove($Label47)
-$Form2.Controls.Remove($Label48)
-$Form2.Controls.Remove($TextBox5)
-$Form2.Controls.Remove($TextBox6)
-$Form2.Controls.Remove($TextBox7)
-$Form2.Controls.Remove($TextBox8)
-$Form2.Controls.Remove($TextBox9)
-$Form2.Controls.Remove($TextBox10)
-$Form2.Controls.Remove($TextBox11)
-$Form2.Controls.Remove($TextBox12)
-$Form2.Controls.Remove($TextBox13)
-$Form2.Controls.Remove($TextBox14)
-$Form2.Controls.Remove($TextBox15)
-$Form2.Controls.Remove($TextBox16)
-$Form2.Controls.Remove($TextBox17)
-$Form2.Controls.Remove($TextBox18)
-$Form2.Controls.Remove($TextBox19)
-$Form2.Controls.Remove($TextBox20)
-$Form2.Controls.Remove($TextBox21)
-$Form2.Controls.Remove($TextBox22)
-$Form2.Controls.Remove($TextBox23)
-$Form2.Controls.Remove($TextBox24)
-$Form2.Controls.Remove($TextBox25)
-$Form2.Controls.Remove($TextBox26)
-$Form2.Controls.Remove($TextBox27)
-$Form2.Controls.Remove($TextBox28)
-$Form2.Controls.Remove($TextBox29)
-$Form2.Controls.Remove($TextBox30)
-$Form2.Controls.Remove($TextBox31)
-$Form2.Controls.Remove($TextBox32)
-
+    
+    if($ComboBox150.SelectedItem -eq '1'){
+        $Form2.Controls.Add($Label100)
+        $Form2.Controls.Add($Label102)
+        $Form2.Controls.Add($Label103)
+        $Form2.Controls.Add($Label104)
+        $Form2.Controls.Add($Label150)
+        $Form2.Controls.Add($Label160)
+        $Form2.Controls.Add($TextBox100)
+        $Form2.Controls.Add($TextBox102)
+        $Form2.Controls.Add($TextBox103)
+        $Form2.Controls.Add($TextBox104)
+        $Form2.Controls.Remove($Label170)
+    $Form2.Controls.Remove($Label180)
+    $Form2.Controls.Remove($Label190)
+    $Form2.Controls.Remove($Label110)
+    $Form2.Controls.Remove($Label111)
+    $Form2.Controls.Remove($Label112)
+    $Form2.Controls.Remove($Label113)
+    $Form2.Controls.Remove($Label114)
+    $Form2.Controls.Remove($Label115)
+    $Form2.Controls.Remove($Label116)
+    $Form2.Controls.Remove($Label117)
+    $Form2.Controls.Remove($Label118)
+    $Form2.Controls.Remove($Label119)
+    $Form2.Controls.Remove($Label120)
+    $Form2.Controls.Remove($Label121)
+    $Form2.Controls.Remove($Label122)
+    $Form2.Controls.Remove($Label123)
+    $Form2.Controls.Remove($Label124)
+    $Form2.Controls.Remove($Label125)
+    $Form2.Controls.Remove($Label126)
+    $Form2.Controls.Remove($Label127)
+    $Form2.Controls.Remove($Label128)
+    $Form2.Controls.Remove($Label129)
+    $Form2.Controls.Remove($Label130)
+    $Form2.Controls.Remove($Label131)
+    $Form2.Controls.Remove($Label132)
+    $Form2.Controls.Remove($Label133)
+    $Form2.Controls.Remove($Label134)
+    $Form2.Controls.Remove($Label135)
+    $Form2.Controls.Remove($Label136)
+    $Form2.Controls.Remove($Label137)
+    $Form2.Controls.Remove($Label138)
+    $Form2.Controls.Remove($Label139)
+    $Form2.Controls.Remove($Label140)
+    $Form2.Controls.Remove($Label141)
+    $Form2.Controls.Remove($Label142)
+    $Form2.Controls.Remove($Label143)
+    $Form2.Controls.Remove($Label144)
+    $Form2.Controls.Remove($Label145)
+    $Form2.Controls.Remove($Label146)
+    $Form2.Controls.Remove($Label147)
+    $Form2.Controls.Remove($Label148)
+    $Form2.Controls.Remove($TextBox150)
+    $Form2.Controls.Remove($TextBox160)
+    $Form2.Controls.Remove($TextBox170)
+    $Form2.Controls.Remove($TextBox180)
+    $Form2.Controls.Remove($TextBox190)
+    $Form2.Controls.Remove($TextBox110)
+    $Form2.Controls.Remove($TextBox111)
+    $Form2.Controls.Remove($TextBox112)
+    $Form2.Controls.Remove($TextBox113)
+    $Form2.Controls.Remove($TextBox114)
+    $Form2.Controls.Remove($TextBox115)
+    $Form2.Controls.Remove($TextBox116)
+    $Form2.Controls.Remove($TextBox117)
+    $Form2.Controls.Remove($TextBox118)
+    $Form2.Controls.Remove($TextBox119)
+    $Form2.Controls.Remove($TextBox120)
+    $Form2.Controls.Remove($TextBox121)
+    $Form2.Controls.Remove($TextBox122)
+    $Form2.Controls.Remove($TextBox123)
+    $Form2.Controls.Remove($TextBox124)
+    $Form2.Controls.Remove($TextBox125)
+    $Form2.Controls.Remove($TextBox126)
+    $Form2.Controls.Remove($TextBox127)
+    $Form2.Controls.Remove($TextBox128)
+    $Form2.Controls.Remove($TextBox129)
+    $Form2.Controls.Remove($TextBox130)
+    $Form2.Controls.Remove($TextBox131)
+    $Form2.Controls.Remove($TextBox132)
+    
     }
     else{
-        $Form2.Controls.Remove($Label1)
+        $Form2.Controls.Remove($Label11)
     }
-
-
-
-   
-    $Label1.text                     = "RUTA 1:"
-    $Label1.AutoSize                 = $true
-    $Label1.width                    = 25
-    $Label1.height                   = 10
-    $Label1.location                 = New-Object System.Drawing.Point(24,46)
-    $Label1.Font                     = 'Microsoft Sans Serif,10,style=Bold'
-    $Label1.ForeColor                = "#000000"
-    $Form2.Controls.Add($Label1)
     
-
-    $TextBox1.multiline              = $true
-    $TextBox1.width                  = 180
-    $TextBox1.height                 = 30
-    $TextBox1.location               = New-Object System.Drawing.Point(114,454)
-    $TextBox1.Font                   = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($TextBox1)
     
-  
-    $Label2.text                     = "DIRECCION IP"
-    $Label2.AutoSize                 = $true
-    $Label2.width                    = 25
-    $Label2.height                   = 10
-    $Label2.location                 = New-Object System.Drawing.Point(152,441)
-    $Label2.Font                     = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($Label2)
     
-    $Label3.text                     = "/"
-    $Label3.AutoSize                 = $true
-    $Label3.width                    = 25
-    $Label3.height                   = 10
-    $Label3.location                 = New-Object System.Drawing.Point(297,458)
-    $Label3.Font                     = 'Microsoft Sans Serif,14'
-    $Form2.Controls.Add($Label3)
     
-    $TextBox2.multiline              = $false
-    $TextBox2.width                  = 0
-    $TextBox2.height                 = 30
-    $TextBox2.location               = New-Object System.Drawing.Point(307,455)
-    $TextBox2.Font                   = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($TextBox1)
- 
-    $ComboBox1.text                  = "comboBox"
-    $ComboBox1.width                 = 55
-    $ComboBox1.height                = 74
-    $ComboBox1.location              = New-Object System.Drawing.Point(306,456)
-    $ComboBox1.Font                  = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($ComboBox1)
+    $Label100.text                     = "RUTA 1:"
+    $Label100.AutoSize                 = $true
+    $Label100.width                    = 25
+    $Label100.height                   = 10
+    $Label100.location                 = New-Object System.Drawing.Point(24,46)
+    $Label100.Font                     = 'Microsoft Sans Serif,10,style=Bold'
+    $Label100.ForeColor                = "#000000"
+    $Form2.Controls.Add($Label100)
     
-    $Label4.text                     = "Prefijo"
-    $Label4.AutoSize                 = $true
-    $Label4.width                    = 25
-    $Label4.height                   = 10
-    $Label4.location                 = New-Object System.Drawing.Point(313,444)
-    $Label4.Font                     = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($Label4)
     
-    $TextBox3.multiline              = $true
-    $TextBox3.width                  = 180
-    $TextBox3.height                 = 30
-    $TextBox3.enabled                = $false
-    $TextBox3.location               = New-Object System.Drawing.Point(413,452)
-    $TextBox3.Font                   = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($TextBox3)
-   
-    $Label5.text                     = "MASCARA DE RED"
-    $Label5.AutoSize                 = $true
-    $Label5.width                    = 25
-    $Label5.height                   = 10
-    $Label5.location                 = New-Object System.Drawing.Point(438,438)
-    $Label5.Font                     = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($Label5)
-
-    $TextBox4.multiline              = $true
-    $TextBox4.width                  = 180
-    $TextBox4.height                 = 30
-    $TextBox4.location               = New-Object System.Drawing.Point(659,450)
-    $TextBox4.Font                   = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($TextBox4)
- 
-    $Label6.text                     = "GATEWAY"
-    $Label6.AutoSize                 = $true
-    $Label6.width                    = 25
-    $Label6.height                   = 10
-    $Label6.location                 = New-Object System.Drawing.Point(713,438)
-    $Label6.Font                     = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($Label6)
-   
-    $Label7.text                     = "RUTA 8:"
-    $Label7.AutoSize                 = $true
-    $Label7.width                    = 25
-    $Label7.height                   = 10
-    $Label7.location                 = New-Object System.Drawing.Point(24,449)
-    $Label7.Font                     = 'Microsoft Sans Serif,10,style=Bold'
-    $Label7.ForeColor                = "#000000"
-    $Form2.Controls.Add($Label7)
+    $TextBox100.multiline              = $true
+    $TextBox100.width                  = 180
+    $TextBox100.height                 = 30
+    $TextBox100.location               = New-Object System.Drawing.Point(114,454)
+    $TextBox100.Font                   = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox100)
     
-    $TextBox5.multiline              = $true
-    $TextBox5.width                  = 180
-    $TextBox5.height                 = 30
-    $TextBox5.location               = New-Object System.Drawing.Point(114,394)
-    $TextBox5.Font                   = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($TextBox5)
-  
-    $Label8.text                     = "DIRECCION IP"
-    $Label8.AutoSize                 = $true
-    $Label8.width                    = 25
-    $Label8.height                   = 10
-    $Label8.location                 = New-Object System.Drawing.Point(152,381)
-    $Label8.Font                     = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($Label8)
-   
-    $Label9.text                     = "/"
-    $Label9.AutoSize                 = $true
-    $Label9.width                    = 25
-    $Label9.height                   = 10
-    $Label9.location                 = New-Object System.Drawing.Point(297,398)
-    $Label9.Font                     = 'Microsoft Sans Serif,14'
-    $Form2.Controls.Add($Label9)
-   
-    $TextBox6.multiline              = $false
-    $TextBox6.width                  = 0
-    $TextBox6.height                 = 30
-    $TextBox6.location               = New-Object System.Drawing.Point(307,395)
-    $TextBox6.Font                   = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($TextBox6)
-  
-    $ComboBox2.text                  = "comboBox"
-    $ComboBox2.width                 = 55
-    $ComboBox2.height                = 74
-    $ComboBox2.location              = New-Object System.Drawing.Point(306,396)
-    $ComboBox2.Font                  = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($ComboBox2)
- 
-    $Label10.text                    = "Prefijo"
-    $Label10.AutoSize                = $true
-    $Label10.width                   = 25
-    $Label10.height                  = 10
-    $Label10.location                = New-Object System.Drawing.Point(313,384)
-    $Label10.Font                    = 'Microsoft Sans Serif,10'
+    
+    $Label102.text                     = "DIRECCION IP"
+    $Label102.AutoSize                 = $true
+    $Label102.width                    = 25
+    $Label102.height                   = 10
+    $Label102.location                 = New-Object System.Drawing.Point(152,441)
+    $Label102.Font                     = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label102)
+    
+    $Label103.text                     = "/"
+    $Label103.AutoSize                 = $true
+    $Label103.width                    = 25
+    $Label103.height                   = 10
+    $Label103.location                 = New-Object System.Drawing.Point(297,458)
+    $Label103.Font                     = 'Microsoft Sans Serif,14'
+    $Form2.Controls.Add($Label103)
+    
+    $TextBox102.multiline              = $false
+    $TextBox102.width                  = 0
+    $TextBox102.height                 = 30
+    $TextBox102.location               = New-Object System.Drawing.Point(307,455)
+    $TextBox102.Font                   = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox102)
+    
+    $ComboBox110.text                  = "comboBox"
+    $ComboBox110.width                 = 55
+    $ComboBox110.height                = 74
+    $ComboBox110.location              = New-Object System.Drawing.Point(306,456)
+    $ComboBox110.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($ComboBox110)
+    
+    $Label104.text                     = "Prefijo"
+    $Label104.AutoSize                 = $true
+    $Label104.width                    = 25
+    $Label104.height                   = 10
+    $Label104.location                 = New-Object System.Drawing.Point(313,444)
+    $Label104.Font                     = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label104)
+    
+    $TextBox103.multiline              = $true
+    $TextBox103.width                  = 180
+    $TextBox103.height                 = 30
+    $TextBox103.enabled                = $false
+    $TextBox103.location               = New-Object System.Drawing.Point(413,452)
+    $TextBox103.Font                   = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox103)
+    
+    $Label150.text                     = "MASCARA DE RED"
+    $Label150.AutoSize                 = $true
+    $Label150.width                    = 25
+    $Label150.height                   = 10
+    $Label150.location                 = New-Object System.Drawing.Point(438,438)
+    $Label150.Font                     = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label150)
+    
+    $TextBox104.multiline              = $true
+    $TextBox104.width                  = 180
+    $TextBox104.height                 = 30
+    $TextBox104.location               = New-Object System.Drawing.Point(659,450)
+    $TextBox104.Font                   = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox104)
+    
+    $Label160.text                     = "GATEWAY"
+    $Label160.AutoSize                 = $true
+    $Label160.width                    = 25
+    $Label160.height                   = 10
+    $Label160.location                 = New-Object System.Drawing.Point(713,438)
+    $Label160.Font                     = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label160)
+    
+    $Label170.text                     = "RUTA 8:"
+    $Label170.AutoSize                 = $true
+    $Label170.width                    = 25
+    $Label170.height                   = 10
+    $Label170.location                 = New-Object System.Drawing.Point(24,449)
+    $Label170.Font                     = 'Microsoft Sans Serif,10,style=Bold'
+    $Label170.ForeColor                = "#000000"
+    $Form2.Controls.Add($Label170)
+    
+    $TextBox150.multiline              = $true
+    $TextBox150.width                  = 180
+    $TextBox150.height                 = 30
+    $TextBox150.location               = New-Object System.Drawing.Point(114,394)
+    $TextBox150.Font                   = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox150)
+    
+    $Label180.text                     = "DIRECCION IP"
+    $Label180.AutoSize                 = $true
+    $Label180.width                    = 25
+    $Label180.height                   = 10
+    $Label180.location                 = New-Object System.Drawing.Point(152,381)
+    $Label180.Font                     = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label180)
+    
+    $Label190.text                     = "/"
+    $Label190.AutoSize                 = $true
+    $Label190.width                    = 25
+    $Label190.height                   = 10
+    $Label190.location                 = New-Object System.Drawing.Point(297,398)
+    $Label190.Font                     = 'Microsoft Sans Serif,14'
+    $Form2.Controls.Add($Label190)
+    
+    $TextBox160.multiline              = $false
+    $TextBox160.width                  = 0
+    $TextBox160.height                 = 30
+    $TextBox160.location               = New-Object System.Drawing.Point(307,395)
+    $TextBox160.Font                   = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox160)
+    
+    $ComboBox120.text                  = "comboBox"
+    $ComboBox120.width                 = 55
+    $ComboBox120.height                = 74
+    $ComboBox120.location              = New-Object System.Drawing.Point(306,396)
+    $ComboBox120.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($ComboBox120)
+    
+    $Label110.text                    = "Prefijo"
+    $Label110.AutoSize                = $true
+    $Label110.width                   = 25
+    $Label110.height                  = 10
+    $Label110.location                = New-Object System.Drawing.Point(313,384)
+    $Label110.Font                    = 'Microsoft Sans Serif,10'
     $Form2.Controls.Add($Label0)
-  
-    $TextBox7.multiline              = $true
-    $TextBox7.width                  = 180
-    $TextBox7.height                 = 30
-    $TextBox7.enabled                = $false
-    $TextBox7.location               = New-Object System.Drawing.Point(413,392)
-    $TextBox7.Font                   = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($TextBox7)
-    
-    $Label11.text                    = "MASCARA DE RED"
-    $Label11.AutoSize                = $true
-    $Label11.width                   = 25
-    $Label11.height                  = 10
-    $Label11.location                = New-Object System.Drawing.Point(438,378)
-    $Label11.Font                    = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($Label11)
-    
-    $TextBox8.multiline              = $true
-    $TextBox8.width                  = 180
-    $TextBox8.height                 = 30
-    $TextBox8.location               = New-Object System.Drawing.Point(659,390)
-    $TextBox8.Font                   = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($TextBox8)
-   
-    $Label12.text                    = "GATEWAY"
-    $Label12.AutoSize                = $true
-    $Label12.width                   = 25
-    $Label12.height                  = 10
-    $Label12.location                = New-Object System.Drawing.Point(713,378)
-    $Label12.Font                    = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($Label12)
-
-    $Label13.text                    = "RUTA 7:"
-    $Label13.AutoSize                = $true
-    $Label13.width                   = 25
-    $Label13.height                  = 10
-    $Label13.location                = New-Object System.Drawing.Point(22,390)
-    $Label13.Font                    = 'Microsoft Sans Serif,10,style=Bold'
-    $Label13.ForeColor               = "#000000"
-    $Form2.Controls.Add($Label13)
-    
-    $TextBox9.multiline              = $true
-    $TextBox9.width                  = 180
-    $TextBox9.height                 = 30
-    $TextBox9.location               = New-Object System.Drawing.Point(113,338)
-    $TextBox9.Font                   = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($TextBox9)
-
-    $Label14.text                    = "DIRECCION IP"
-    $Label14.AutoSize                = $true
-    $Label14.width                   = 25
-    $Label14.height                  = 10
-    $Label14.location                = New-Object System.Drawing.Point(151,325)
-    $Label14.Font                    = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($Label14)
-   
-    $Label15.text                    = "/"
-    $Label15.AutoSize                = $true
-    $Label15.width                   = 25
-    $Label15.height                  = 10
-    $Label15.location                = New-Object System.Drawing.Point(296,342)
-    $Label15.Font                    = 'Microsoft Sans Serif,14'
-    $Form2.Controls.Add($Label15)
-  
-    $TextBox10.multiline             = $false
-    $TextBox10.width                 = 0
-    $TextBox10.height                = 30
-    $TextBox10.location              = New-Object System.Drawing.Point(306,339)
-    $TextBox10.Font                  = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($TextBox10)
-
-
-
-    
-    $ComboBox3.text                  = "comboBox"
-    $ComboBox3.width                 = 55
-    $ComboBox3.height                = 74
-    $ComboBox3.location              = New-Object System.Drawing.Point(305,340)
-    $ComboBox3.Font                  = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($ComboBox3)
-   
-    $Label16.text                    = "Prefijo"
-    $Label16.AutoSize                = $true
-    $Label16.width                   = 25
-    $Label16.height                  = 10
-    $Label16.location                = New-Object System.Drawing.Point(312,328)
-    $Label16.Font                    = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($Label16)
-    
-    $TextBox11.multiline             = $true
-    $TextBox11.width                 = 180
-    $TextBox11.height                = 30
-    $TextBox11.enabled               = $false
-    $TextBox11.location              = New-Object System.Drawing.Point(412,336)
-    $TextBox11.Font                  = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($TextBox11)
-    
-    $Label17.text                    = "MASCARA DE RED"
-    $Label17.AutoSize                = $true
-    $Label17.width                   = 25
-    $Label17.height                  = 10
-    $Label17.location                = New-Object System.Drawing.Point(437,322)
-    $Label17.Font                    = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($Label17)
-   
-    $TextBox12.multiline             = $true
-    $TextBox12.width                 = 180
-    $TextBox12.height                = 30
-    $TextBox12.location              = New-Object System.Drawing.Point(658,334)
-    $TextBox12.Font                  = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($TextBox12)
-
-    $Label18.text                    = "GATEWAY"
-    $Label18.AutoSize                = $true
-    $Label18.width                   = 25
-    $Label18.height                  = 10
-    $Label18.location                = New-Object System.Drawing.Point(712,322)
-    $Label18.Font                    = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($Label18)
-   
-    $Label19.text                    = "RUTA 6:"
-    $Label19.AutoSize                = $true
-    $Label19.width                   = 25
-    $Label19.height                  = 10
-    $Label19.location                = New-Object System.Drawing.Point(24,339)
-    $Label19.Font                    = 'Microsoft Sans Serif,10,style=Bold'
-    $Label19.ForeColor               = "#000000"
-    $Form2.Controls.Add($Label19)
-    
-    $TextBox13.multiline             = $true
-    $TextBox13.width                 = 180
-    $TextBox13.height                = 30
-    $TextBox13.location              = New-Object System.Drawing.Point(114,275)
-    $TextBox13.Font                  = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($TextBox13)
-   
-    $Label20.text                    = "DIRECCION IP"
-    $Label20.AutoSize                = $true
-    $Label20.width                   = 25
-    $Label20.height                  = 10
-    $Label20.location                = New-Object System.Drawing.Point(152,262)
-    $Label20.Font                    = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($Label20)
-   
-    $Label21.text                    = "/"
-    $Label21.AutoSize                = $true
-    $Label21.width                   = 25
-    $Label21.height                  = 10
-    $Label21.location                = New-Object System.Drawing.Point(297,279)
-    $Label21.Font                    = 'Microsoft Sans Serif,14'
-    $Form2.Controls.Add($Label21)
-   
-    $TextBox14.multiline             = $false
-    $TextBox14.width                 = 0
-    $TextBox14.height                = 30
-    $TextBox14.location              = New-Object System.Drawing.Point(307,276)
-    $TextBox14.Font                  = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($TextBox14)
-   
-    $ComboBox4.text                  = "comboBox"
-    $ComboBox4.width                 = 55
-    $ComboBox4.height                = 74
-    $ComboBox4.location              = New-Object System.Drawing.Point(306,277)
-    $ComboBox4.Font                  = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($ComboBox4)
-    
-    $Label22.text                    = "Prefijo"
-    $Label22.AutoSize                = $true
-    $Label22.width                   = 25
-    $Label22.height                  = 10
-    $Label22.location                = New-Object System.Drawing.Point(313,265)
-    $Label22.Font                    = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($Label22)
-    
-    $TextBox15.multiline             = $true
-    $TextBox15.width                 = 180
-    $TextBox15.height                = 30
-    $TextBox15.enabled               = $false
-    $TextBox15.location              = New-Object System.Drawing.Point(413,273)
-    $TextBox15.Font                  = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($TextBox15)
-    
-    $Label23.text                    = "MASCARA DE RED"
-    $Label23.AutoSize                = $true
-    $Label23.width                   = 25
-    $Label23.height                  = 10
-    $Label23.location                = New-Object System.Drawing.Point(438,259)
-    $Label23.Font                    = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($Label23)
-    
-    $TextBox16.multiline             = $true
-    $TextBox16.width                 = 180
-    $TextBox16.height                = 30
-    $TextBox16.location              = New-Object System.Drawing.Point(659,271)
-    $TextBox16.Font                  = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($TextBox16)
-    
-    $Label24.text                    = "GATEWAY"
-    $Label24.AutoSize                = $true
-    $Label24.width                   = 25
-    $Label24.height                  = 10
-    $Label24.location                = New-Object System.Drawing.Point(713,259)
-    $Label24.Font                    = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($Label24)
-    
-    $Label25.text                    = "RUTA 5:"
-    $Label25.AutoSize                = $true
-    $Label25.width                   = 25
-    $Label25.height                  = 10
-    $Label25.location                = New-Object System.Drawing.Point(24,276)
-    $Label25.Font                    = 'Microsoft Sans Serif,10,style=Bold'
-    $Label25.ForeColor               = "#000000"
-    $Form2.Controls.Add($Label25)
-   
-    $TextBox17.multiline             = $true
-    $TextBox17.width                 = 180
-    $TextBox17.height                = 30
-    $TextBox17.location              = New-Object System.Drawing.Point(114,214)
-    $TextBox17.Font                  = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($TextBox17)
-    
-    $Label26.text                    = "DIRECCION IP"
-    $Label26.AutoSize                = $true
-    $Label26.width                   = 25
-    $Label26.height                  = 10
-    $Label26.location                = New-Object System.Drawing.Point(152,201)
-    $Label26.Font                    = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($Label26)
-   
-    $Label27.text                    = "/"
-    $Label27.AutoSize                = $true
-    $Label27.width                   = 25
-    $Label27.height                  = 10
-    $Label27.location                = New-Object System.Drawing.Point(297,218)
-    $Label27.Font                    = 'Microsoft Sans Serif,14'
-    $Form2.Controls.Add($Label27)
-   
-    $TextBox18.multiline             = $false
-    $TextBox18.width                 = 0
-    $TextBox18.height                = 30
-    $TextBox18.location              = New-Object System.Drawing.Point(307,215)
-    $TextBox18.Font                  = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($TextBox18)
-    
-    $ComboBox5.text                  = "comboBox"
-    $ComboBox5.width                 = 55
-    $ComboBox5.height                = 74
-    $ComboBox5.location              = New-Object System.Drawing.Point(306,216)
-    $ComboBox5.Font                  = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($ComboBox5)
-    
-    $Label28.text                    = "Prefijo"
-    $Label28.AutoSize                = $true
-    $Label28.width                   = 25
-    $Label28.height                  = 10
-    $Label28.location                = New-Object System.Drawing.Point(313,204)
-    $Label28.Font                    = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($Label28)
-   
-    $TextBox19.multiline             = $true
-    $TextBox19.width                 = 180
-    $TextBox19.height                = 30
-    $TextBox19.enabled               = $false
-    $TextBox19.location              = New-Object System.Drawing.Point(413,212)
-    $TextBox19.Font                  = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($TextBox19)
-  
-    $Label29.text                    = "MASCARA DE RED"
-    $Label29.AutoSize                = $true
-    $Label29.width                   = 25
-    $Label29.height                  = 10
-    $Label29.location                = New-Object System.Drawing.Point(438,198)
-    $Label29.Font                    = 'Microsoft Sans Serif,10'
-    $Form2.Controls.Add($Label29)
-   
-    $TextBox20.multiline             = $true
-    $TextBox20.width                 = 180
-    $TextBox20.height                = 30
-    $TextBox20.location              = New-Object System.Drawing.Point(659,210)
-    $TextBox20.Font                  = 'Microsoft Sans Serif,10'
-    
-    
-    $Label30.text                    = "GATEWAY"
-    $Label30.AutoSize                = $true
-    $Label30.width                   = 25
-    $Label30.height                  = 10
-    $Label30.location                = New-Object System.Drawing.Point(713,198)
-    $Label30.Font                    = 'Microsoft Sans Serif,10'
-    
-    
-    $Label31.text                    = "RUTA 4:"
-    $Label31.AutoSize                = $true
-    $Label31.width                   = 25
-    $Label31.height                  = 10
-    $Label31.location                = New-Object System.Drawing.Point(24,215)
-    $Label31.Font                    = 'Microsoft Sans Serif,10,style=Bold'
-    $Label31.ForeColor               = "#000000"
-    
-    
-    $TextBox21.multiline             = $true
-    $TextBox21.width                 = 180
-    $TextBox21.height                = 30
-    $TextBox21.location              = New-Object System.Drawing.Point(113,154)
-    $TextBox21.Font                  = 'Microsoft Sans Serif,10'
-    
-   
-    $Label32.text                    = "DIRECCION IP"
-    $Label32.AutoSize                = $true
-    $Label32.width                   = 25
-    $Label32.height                  = 10
-    $Label32.location                = New-Object System.Drawing.Point(151,141)
-    $Label32.Font                    = 'Microsoft Sans Serif,10'
-    
-    
-    $Label33.text                    = "/"
-    $Label33.AutoSize                = $true
-    $Label33.width                   = 25
-    $Label33.height                  = 10
-    $Label33.location                = New-Object System.Drawing.Point(296,158)
-    $Label33.Font                    = 'Microsoft Sans Serif,14'
-    
-   
-    $TextBox22.multiline             = $false
-    $TextBox22.width                 = 0
-    $TextBox22.height                = 30
-    $TextBox22.location              = New-Object System.Drawing.Point(306,155)
-    $TextBox22.Font                  = 'Microsoft Sans Serif,10'
-    
-    
-    $ComboBox6.text                  = "comboBox"
-    $ComboBox6.width                 = 55
-    $ComboBox6.height                = 74
-    $ComboBox6.location              = New-Object System.Drawing.Point(305,156)
-    $ComboBox6.Font                  = 'Microsoft Sans Serif,10'
-    
-    
-    $Label34.text                    = "Prefijo"
-    $Label34.AutoSize                = $true
-    $Label34.width                   = 25
-    $Label34.height                  = 10
-    $Label34.location                = New-Object System.Drawing.Point(312,144)
-    $Label34.Font                    = 'Microsoft Sans Serif,10'
-    
-    
-    $TextBox23.multiline             = $true
-    $TextBox23.width                 = 180
-    $TextBox23.height                = 30
-    $TextBox23.enabled               = $false
-    $TextBox23.location              = New-Object System.Drawing.Point(412,152)
-    $TextBox23.Font                  = 'Microsoft Sans Serif,10'
-    
-    
-    $Label35.text                    = "MASCARA DE RED"
-    $Label35.AutoSize                = $true
-    $Label35.width                   = 25
-    $Label35.height                  = 10
-    $Label35.location                = New-Object System.Drawing.Point(437,138)
-    $Label35.Font                    = 'Microsoft Sans Serif,10'
-    
-    
-    $TextBox24.multiline             = $true
-    $TextBox24.width                 = 180
-    $TextBox24.height                = 30
-    $TextBox24.location              = New-Object System.Drawing.Point(658,150)
-    $TextBox24.Font                  = 'Microsoft Sans Serif,10'
-    
-    
-    $Label36.text                    = "GATEWAY"
-    $Label36.AutoSize                = $true
-    $Label36.width                   = 25
-    $Label36.height                  = 10
-    $Label36.location                = New-Object System.Drawing.Point(712,138)
-    $Label36.Font                    = 'Microsoft Sans Serif,10'
-    
-    
-    $Label37.text                    = "RUTA 3:"
-    $Label37.AutoSize                = $true
-    $Label37.width                   = 25
-    $Label37.height                  = 10
-    $Label37.location                = New-Object System.Drawing.Point(24,156)
-    $Label37.Font                    = 'Microsoft Sans Serif,10,style=Bold'
-    $Label37.ForeColor               = "#000000"
-    
-    
-    $TextBox25.multiline             = $true
-    $TextBox25.width                 = 180
-    $TextBox25.height                = 30
-    $TextBox25.location              = New-Object System.Drawing.Point(113,98)
-    $TextBox25.Font                  = 'Microsoft Sans Serif,10'
-    
-    
-    $Label38.text                    = "DIRECCION IP"
-    $Label38.AutoSize                = $true
-    $Label38.width                   = 25
-    $Label38.height                  = 10
-    $Label38.location                = New-Object System.Drawing.Point(151,85)
-    $Label38.Font                    = 'Microsoft Sans Serif,10'
-    
-    
-    $Label39.text                    = "/"
-    $Label39.AutoSize                = $true
-    $Label39.width                   = 25
-    $Label39.height                  = 10
-    $Label39.location                = New-Object System.Drawing.Point(296,102)
-    $Label39.Font                    = 'Microsoft Sans Serif,14'
-    
-    
-    $TextBox26.multiline             = $false
-    $TextBox26.width                 = 0
-    $TextBox26.height                = 30
-    $TextBox26.location              = New-Object System.Drawing.Point(306,99)
-    $TextBox26.Font                  = 'Microsoft Sans Serif,10'
-    
-    
-    $ComboBox7.text                  = "comboBox"
-    $ComboBox7.width                 = 55
-    $ComboBox7.height                = 74
-    $ComboBox7.location              = New-Object System.Drawing.Point(305,100)
-    $ComboBox7.Font                  = 'Microsoft Sans Serif,10'
-    
-    
-    $Label40.text                    = "Prefijo"
-    $Label40.AutoSize                = $true
-    $Label40.width                   = 25
-    $Label40.height                  = 10
-    $Label40.location                = New-Object System.Drawing.Point(312,88)
-    $Label40.Font                    = 'Microsoft Sans Serif,10'
-    
-    
-    $TextBox27.multiline             = $true
-    $TextBox27.width                 = 180
-    $TextBox27.height                = 30
-    $TextBox27.enabled               = $false
-    $TextBox27.location              = New-Object System.Drawing.Point(412,96)
-    $TextBox27.Font                  = 'Microsoft Sans Serif,10'
-    
-    
-    $Label41.text                    = "MASCARA DE RED"
-    $Label41.AutoSize                = $true
-    $Label41.width                   = 25
-    $Label41.height                  = 10
-    $Label41.location                = New-Object System.Drawing.Point(437,82)
-    $Label41.Font                    = 'Microsoft Sans Serif,10'
-    
-    
-    $TextBox28.multiline             = $true
-    $TextBox28.width                 = 180
-    $TextBox28.height                = 30
-    $TextBox28.location              = New-Object System.Drawing.Point(658,94)
-    $TextBox28.Font                  = 'Microsoft Sans Serif,10'
-    
-    
-    $Label42.text                    = "GATEWAY"
-    $Label42.AutoSize                = $true
-    $Label42.width                   = 25
-    $Label42.height                  = 10
-    $Label42.location                = New-Object System.Drawing.Point(712,82)
-    $Label42.Font                    = 'Microsoft Sans Serif,10'
-    
-    
-    $Label43.text                    = "RUTA 2:"
-    $Label43.AutoSize                = $true
-    $Label43.width                   = 25
-    $Label43.height                  = 10
-    $Label43.location                = New-Object System.Drawing.Point(24,101)
-    $Label43.Font                    = 'Microsoft Sans Serif,10,style=Bold'
-    $Label43.ForeColor               = "#000000"
-    
-   
-    $TextBox29.multiline             = $true
-    $TextBox29.width                 = 180
-    $TextBox29.height                = 30
-    $TextBox29.location              = New-Object System.Drawing.Point(114,35)
-    $TextBox29.Font                  = 'Microsoft Sans Serif,10'
-    
-   
-    $Label44.text                    = "DIRECCION IP"
-    $Label44.AutoSize                = $true
-    $Label44.width                   = 25
-    $Label44.height                  = 10
-    $Label44.location                = New-Object System.Drawing.Point(152,22)
-    $Label44.Font                    = 'Microsoft Sans Serif,10'
-    
-    
-    $Label45.text                    = "/"
-    $Label45.AutoSize                = $true
-    $Label45.width                   = 25
-    $Label45.height                  = 10
-    $Label45.location                = New-Object System.Drawing.Point(297,39)
-    $Label45.Font                    = 'Microsoft Sans Serif,14'
-    
-    
-    $TextBox30.multiline             = $false
-    $TextBox30.width                 = 0
-    $TextBox30.height                = 30
-    $TextBox30.location              = New-Object System.Drawing.Point(307,36)
-    $TextBox30.Font                  = 'Microsoft Sans Serif,10'
-    
-   
-    $ComboBox8.text                  = "comboBox"
-    $ComboBox8.width                 = 55
-    $ComboBox8.height                = 74
-    $ComboBox8.location              = New-Object System.Drawing.Point(306,37)
-    $ComboBox8.Font                  = 'Microsoft Sans Serif,10'
-    
-   
-    $Label46.text                    = "Prefijo"
-    $Label46.AutoSize                = $true
-    $Label46.width                   = 25
-    $Label46.height                  = 10
-    $Label46.location                = New-Object System.Drawing.Point(313,25)
-    $Label46.Font                    = 'Microsoft Sans Serif,10'
-    
-    
-    $TextBox31.multiline             = $true
-    $TextBox31.width                 = 180
-    $TextBox31.height                = 30
-    $TextBox31.enabled               = $false
-    $TextBox31.location              = New-Object System.Drawing.Point(413,33)
-    $TextBox31.Font                  = 'Microsoft Sans Serif,10'
-    
-    
-    $Label47.text                    = "MASCARA DE RED"
-    $Label47.AutoSize                = $true
-    $Label47.width                   = 25
-    $Label47.height                  = 10
-    $Label47.location                = New-Object System.Drawing.Point(438,19)
-    $Label47.Font                    = 'Microsoft Sans Serif,10'
-    
-    
-    $TextBox32.multiline             = $true
-    $TextBox32.width                 = 180
-    $TextBox32.height                = 30
-    $TextBox32.location              = New-Object System.Drawing.Point(659,31)
-    $TextBox32.Font                  = 'Microsoft Sans Serif,10'
-    
-    
-    $Label48.text                    = "GATEWAY"
-    $Label48.AutoSize                = $true
-    $Label48.width                   = 25
-    $Label48.height                  = 10
-    $Label48.location                = New-Object System.Drawing.Point(713,19)
-    $Label48.Font                    = 'Microsoft Sans Serif,10'
-    
-    
-    $Button1.BackColor               = "#acc9f8"
-    $Button1.text                    = "ACEPTAR"
-    $Button1.width                   = 150
-    $Button1.height                  = 40
-    $Button1.location                = New-Object System.Drawing.Point(747,593)
-    $Button1.Font                    = 'Microsoft Sans Serif,10'
-    
-   
+    
+    $TextBox170.multiline              = $true
+    $TextBox170.width                  = 180
+    $TextBox170.height                 = 30
+    $TextBox170.enabled                = $false
+    $TextBox170.location               = New-Object System.Drawing.Point(413,392)
+    $TextBox170.Font                   = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox170)
+    
+    $Label111.text                    = "MASCARA DE RED"
+    $Label111.AutoSize                = $true
+    $Label111.width                   = 25
+    $Label111.height                  = 10
+    $Label111.location                = New-Object System.Drawing.Point(438,378)
+    $Label111.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label111)
+    
+    $TextBox180.multiline              = $true
+    $TextBox180.width                  = 180
+    $TextBox180.height                 = 30
+    $TextBox180.location               = New-Object System.Drawing.Point(659,390)
+    $TextBox180.Font                   = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox180)
+    
+    $Label112.text                    = "GATEWAY"
+    $Label112.AutoSize                = $true
+    $Label112.width                   = 25
+    $Label112.height                  = 10
+    $Label112.location                = New-Object System.Drawing.Point(713,378)
+    $Label112.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label112)
+    
+    $Label113.text                    = "RUTA 7:"
+    $Label113.AutoSize                = $true
+    $Label113.width                   = 25
+    $Label113.height                  = 10
+    $Label113.location                = New-Object System.Drawing.Point(22,390)
+    $Label113.Font                    = 'Microsoft Sans Serif,10,style=Bold'
+    $Label113.ForeColor               = "#000000"
+    $Form2.Controls.Add($Label113)
+    
+    $TextBox190.multiline              = $true
+    $TextBox190.width                  = 180
+    $TextBox190.height                 = 30
+    $TextBox190.location               = New-Object System.Drawing.Point(113,338)
+    $TextBox190.Font                   = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox190)
+    
+    $Label114.text                    = "DIRECCION IP"
+    $Label114.AutoSize                = $true
+    $Label114.width                   = 25
+    $Label114.height                  = 10
+    $Label114.location                = New-Object System.Drawing.Point(151,325)
+    $Label114.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label114)
+    
+    $Label115.text                    = "/"
+    $Label115.AutoSize                = $true
+    $Label115.width                   = 25
+    $Label115.height                  = 10
+    $Label115.location                = New-Object System.Drawing.Point(296,342)
+    $Label115.Font                    = 'Microsoft Sans Serif,14'
+    $Form2.Controls.Add($Label115)
+    
+    $TextBox110.multiline             = $false
+    $TextBox110.width                 = 0
+    $TextBox110.height                = 30
+    $TextBox110.location              = New-Object System.Drawing.Point(306,339)
+    $TextBox110.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox110)
+    
+    
+    
+    
+    $ComboBox130.text                  = "comboBox"
+    $ComboBox130.width                 = 55
+    $ComboBox130.height                = 74
+    $ComboBox130.location              = New-Object System.Drawing.Point(305,340)
+    $ComboBox130.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($ComboBox130)
+    
+    $Label116.text                    = "Prefijo"
+    $Label116.AutoSize                = $true
+    $Label116.width                   = 25
+    $Label116.height                  = 10
+    $Label116.location                = New-Object System.Drawing.Point(312,328)
+    $Label116.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label116)
+    
+    $TextBox111.multiline             = $true
+    $TextBox111.width                 = 180
+    $TextBox111.height                = 30
+    $TextBox111.enabled               = $false
+    $TextBox111.location              = New-Object System.Drawing.Point(412,336)
+    $TextBox111.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox111)
+    
+    $Label117.text                    = "MASCARA DE RED"
+    $Label117.AutoSize                = $true
+    $Label117.width                   = 25
+    $Label117.height                  = 10
+    $Label117.location                = New-Object System.Drawing.Point(437,322)
+    $Label117.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label117)
+    
+    $TextBox112.multiline             = $true
+    $TextBox112.width                 = 180
+    $TextBox112.height                = 30
+    $TextBox112.location              = New-Object System.Drawing.Point(658,334)
+    $TextBox112.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox112)
+    
+    $Label118.text                    = "GATEWAY"
+    $Label118.AutoSize                = $true
+    $Label118.width                   = 25
+    $Label118.height                  = 10
+    $Label118.location                = New-Object System.Drawing.Point(712,322)
+    $Label118.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label118)
+    
+    $Label119.text                    = "RUTA 6:"
+    $Label119.AutoSize                = $true
+    $Label119.width                   = 25
+    $Label119.height                  = 10
+    $Label119.location                = New-Object System.Drawing.Point(24,339)
+    $Label119.Font                    = 'Microsoft Sans Serif,10,style=Bold'
+    $Label119.ForeColor               = "#000000"
+    $Form2.Controls.Add($Label119)
+    
+    $TextBox113.multiline             = $true
+    $TextBox113.width                 = 180
+    $TextBox113.height                = 30
+    $TextBox113.location              = New-Object System.Drawing.Point(114,275)
+    $TextBox113.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox113)
+    
+    $Label120.text                    = "DIRECCION IP"
+    $Label120.AutoSize                = $true
+    $Label120.width                   = 25
+    $Label120.height                  = 10
+    $Label120.location                = New-Object System.Drawing.Point(152,262)
+    $Label120.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label120)
+    
+    $Label121.text                    = "/"
+    $Label121.AutoSize                = $true
+    $Label121.width                   = 25
+    $Label121.height                  = 10
+    $Label121.location                = New-Object System.Drawing.Point(297,279)
+    $Label121.Font                    = 'Microsoft Sans Serif,14'
+    $Form2.Controls.Add($Label121)
+    
+    $TextBox114.multiline             = $false
+    $TextBox114.width                 = 0
+    $TextBox114.height                = 30
+    $TextBox114.location              = New-Object System.Drawing.Point(307,276)
+    $TextBox114.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox114)
+    
+    $ComboBox140.text                  = "comboBox"
+    $ComboBox140.width                 = 55
+    $ComboBox140.height                = 74
+    $ComboBox140.location              = New-Object System.Drawing.Point(306,277)
+    $ComboBox140.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($ComboBox140)
+    
+    $Label122.text                    = "Prefijo"
+    $Label122.AutoSize                = $true
+    $Label122.width                   = 25
+    $Label122.height                  = 10
+    $Label122.location                = New-Object System.Drawing.Point(313,265)
+    $Label122.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label122)
+    
+    $TextBox115.multiline             = $true
+    $TextBox115.width                 = 180
+    $TextBox115.height                = 30
+    $TextBox115.enabled               = $false
+    $TextBox115.location              = New-Object System.Drawing.Point(413,273)
+    $TextBox115.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox115)
+    
+    $Label123.text                    = "MASCARA DE RED"
+    $Label123.AutoSize                = $true
+    $Label123.width                   = 25
+    $Label123.height                  = 10
+    $Label123.location                = New-Object System.Drawing.Point(438,259)
+    $Label123.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label123)
+    
+    $TextBox116.multiline             = $true
+    $TextBox116.width                 = 180
+    $TextBox116.height                = 30
+    $TextBox116.location              = New-Object System.Drawing.Point(659,271)
+    $TextBox116.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox116)
+    
+    $Label124.text                    = "GATEWAY"
+    $Label124.AutoSize                = $true
+    $Label124.width                   = 25
+    $Label124.height                  = 10
+    $Label124.location                = New-Object System.Drawing.Point(713,259)
+    $Label124.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label124)
+    
+    $Label125.text                    = "RUTA 5:"
+    $Label125.AutoSize                = $true
+    $Label125.width                   = 25
+    $Label125.height                  = 10
+    $Label125.location                = New-Object System.Drawing.Point(24,276)
+    $Label125.Font                    = 'Microsoft Sans Serif,10,style=Bold'
+    $Label125.ForeColor               = "#000000"
+    $Form2.Controls.Add($Label125)
+    
+    $TextBox117.multiline             = $true
+    $TextBox117.width                 = 180
+    $TextBox117.height                = 30
+    $TextBox117.location              = New-Object System.Drawing.Point(114,214)
+    $TextBox117.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox117)
+    
+    $Label126.text                    = "DIRECCION IP"
+    $Label126.AutoSize                = $true
+    $Label126.width                   = 25
+    $Label126.height                  = 10
+    $Label126.location                = New-Object System.Drawing.Point(152,201)
+    $Label126.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label126)
+    
+    $Label127.text                    = "/"
+    $Label127.AutoSize                = $true
+    $Label127.width                   = 25
+    $Label127.height                  = 10
+    $Label127.location                = New-Object System.Drawing.Point(297,218)
+    $Label127.Font                    = 'Microsoft Sans Serif,14'
+    $Form2.Controls.Add($Label127)
+    
+    $TextBox118.multiline             = $false
+    $TextBox118.width                 = 0
+    $TextBox118.height                = 30
+    $TextBox118.location              = New-Object System.Drawing.Point(307,215)
+    $TextBox118.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox118)
+    
+    $ComboBox150.text                  = "comboBox"
+    $ComboBox150.width                 = 55
+    $ComboBox150.height                = 74
+    $ComboBox150.location              = New-Object System.Drawing.Point(306,216)
+    $ComboBox150.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($ComboBox150)
+    
+    $Label128.text                    = "Prefijo"
+    $Label128.AutoSize                = $true
+    $Label128.width                   = 25
+    $Label128.height                  = 10
+    $Label128.location                = New-Object System.Drawing.Point(313,204)
+    $Label128.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label128)
+    
+    $TextBox119.multiline             = $true
+    $TextBox119.width                 = 180
+    $TextBox119.height                = 30
+    $TextBox119.enabled               = $false
+    $TextBox119.location              = New-Object System.Drawing.Point(413,212)
+    $TextBox119.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox119)
+    
+    $Label129.text                    = "MASCARA DE RED"
+    $Label129.AutoSize                = $true
+    $Label129.width                   = 25
+    $Label129.height                  = 10
+    $Label129.location                = New-Object System.Drawing.Point(438,198)
+    $Label129.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label129)
+    
+    $TextBox120.multiline             = $true
+    $TextBox120.width                 = 180
+    $TextBox120.height                = 30
+    $TextBox120.location              = New-Object System.Drawing.Point(659,210)
+    $TextBox120.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox120)
+    
+    $Label130.text                    = "GATEWAY"
+    $Label130.AutoSize                = $true
+    $Label130.width                   = 25
+    $Label130.height                  = 10
+    $Label130.location                = New-Object System.Drawing.Point(713,198)
+    $Label130.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label130)
+    
+    $Label131.text                    = "RUTA 4:"
+    $Label131.AutoSize                = $true
+    $Label131.width                   = 25
+    $Label131.height                  = 10
+    $Label131.location                = New-Object System.Drawing.Point(24,215)
+    $Label131.Font                    = 'Microsoft Sans Serif,10,style=Bold'
+    $Label131.ForeColor               = "#000000"
+    $Form2.Controls.Add($Label131)
+    
+    $TextBox121.multiline             = $true
+    $TextBox121.width                 = 180
+    $TextBox121.height                = 30
+    $TextBox121.location              = New-Object System.Drawing.Point(113,154)
+    $TextBox121.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox121)
+    
+    $Label132.text                    = "DIRECCION IP"
+    $Label132.AutoSize                = $true
+    $Label132.width                   = 25
+    $Label132.height                  = 10
+    $Label132.location                = New-Object System.Drawing.Point(151,141)
+    $Label132.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label132)
+    
+    $Label133.text                    = "/"
+    $Label133.AutoSize                = $true
+    $Label133.width                   = 25
+    $Label133.height                  = 10
+    $Label133.location                = New-Object System.Drawing.Point(296,158)
+    $Label133.Font                    = 'Microsoft Sans Serif,14'
+    $Form2.Controls.Add($Label133)
+    
+    $TextBox122.multiline             = $false
+    $TextBox122.width                 = 0
+    $TextBox122.height                = 30
+    $TextBox122.location              = New-Object System.Drawing.Point(306,155)
+    $TextBox122.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox122)
+    
+    $ComboBox160.text                  = "comboBox"
+    $ComboBox160.width                 = 55
+    $ComboBox160.height                = 74
+    $ComboBox160.location              = New-Object System.Drawing.Point(305,156)
+    $ComboBox160.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($ComboBox160)
+    
+    $Label134.text                    = "Prefijo"
+    $Label134.AutoSize                = $true
+    $Label134.width                   = 25
+    $Label134.height                  = 10
+    $Label134.location                = New-Object System.Drawing.Point(312,144)
+    $Label134.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label134)
+    
+    $TextBox123.multiline             = $true
+    $TextBox123.width                 = 180
+    $TextBox123.height                = 30
+    $TextBox123.enabled               = $false
+    $TextBox123.location              = New-Object System.Drawing.Point(412,152)
+    $TextBox123.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox123)
+    
+    $Label135.text                    = "MASCARA DE RED"
+    $Label135.AutoSize                = $true
+    $Label135.width                   = 25
+    $Label135.height                  = 10
+    $Label135.location                = New-Object System.Drawing.Point(437,138)
+    $Label135.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label135)
+    
+    $TextBox124.multiline             = $true
+    $TextBox124.width                 = 180
+    $TextBox124.height                = 30
+    $TextBox124.location              = New-Object System.Drawing.Point(658,150)
+    $TextBox124.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox124)
+    
+    $Label136.text                    = "GATEWAY"
+    $Label136.AutoSize                = $true
+    $Label136.width                   = 25
+    $Label136.height                  = 10
+    $Label136.location                = New-Object System.Drawing.Point(712,138)
+    $Label136.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label136)
+    
+    $Label137.text                    = "RUTA 3:"
+    $Label137.AutoSize                = $true
+    $Label137.width                   = 25
+    $Label137.height                  = 10
+    $Label137.location                = New-Object System.Drawing.Point(24,156)
+    $Label137.Font                    = 'Microsoft Sans Serif,10,style=Bold'
+    $Label137.ForeColor               = "#000000"
+    $Form2.Controls.Add($Label137)
+    
+    $TextBox125.multiline             = $true
+    $TextBox125.width                 = 180
+    $TextBox125.height                = 30
+    $TextBox125.location              = New-Object System.Drawing.Point(113,98)
+    $TextBox125.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox125)
+    
+    $Label138.text                    = "DIRECCION IP"
+    $Label138.AutoSize                = $true
+    $Label138.width                   = 25
+    $Label138.height                  = 10
+    $Label138.location                = New-Object System.Drawing.Point(151,85)
+    $Label138.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label138)
+    
+    $Label139.text                    = "/"
+    $Label139.AutoSize                = $true
+    $Label139.width                   = 25
+    $Label139.height                  = 10
+    $Label139.location                = New-Object System.Drawing.Point(296,102)
+    $Label139.Font                    = 'Microsoft Sans Serif,14'
+    $Form2.Controls.Add($Label139)
+    
+    $TextBox126.multiline             = $false
+    $TextBox126.width                 = 0
+    $TextBox126.height                = 30
+    $TextBox126.location              = New-Object System.Drawing.Point(306,99)
+    $TextBox126.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox126)
+    
+    $ComboBox170.text                  = "comboBox"
+    $ComboBox170.width                 = 55
+    $ComboBox170.height                = 74
+    $ComboBox170.location              = New-Object System.Drawing.Point(305,100)
+    $ComboBox170.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($ComboBox170)
+    
+    $Label140.text                    = "Prefijo"
+    $Label140.AutoSize                = $true
+    $Label140.width                   = 25
+    $Label140.height                  = 10
+    $Label140.location                = New-Object System.Drawing.Point(312,88)
+    $Label140.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label140)
+    
+    $TextBox127.multiline             = $true
+    $TextBox127.width                 = 180
+    $TextBox127.height                = 30
+    $TextBox127.enabled               = $false
+    $TextBox127.location              = New-Object System.Drawing.Point(412,96)
+    $TextBox127.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox127)
+    
+    $Label141.text                    = "MASCARA DE RED"
+    $Label141.AutoSize                = $true
+    $Label141.width                   = 25
+    $Label141.height                  = 10
+    $Label141.location                = New-Object System.Drawing.Point(437,82)
+    $Label141.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label141)
+    
+    $TextBox128.multiline             = $true
+    $TextBox128.width                 = 180
+    $TextBox128.height                = 30
+    $TextBox128.location              = New-Object System.Drawing.Point(658,94)
+    $TextBox128.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox128)
+    
+    $Label142.text                    = "GATEWAY"
+    $Label142.AutoSize                = $true
+    $Label142.width                   = 25
+    $Label142.height                  = 10
+    $Label142.location                = New-Object System.Drawing.Point(712,82)
+    $Label142.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label142)
+    
+    $Label143.text                    = "RUTA 2:"
+    $Label143.AutoSize                = $true
+    $Label143.width                   = 25
+    $Label143.height                  = 10
+    $Label143.location                = New-Object System.Drawing.Point(24,101)
+    $Label143.Font                    = 'Microsoft Sans Serif,10,style=Bold'
+    $Label143.ForeColor               = "#000000"
+    $Form2.Controls.Add($Label143)
+    
+    $TextBox129.multiline             = $true
+    $TextBox129.width                 = 180
+    $TextBox129.height                = 30
+    $TextBox129.location              = New-Object System.Drawing.Point(114,35)
+    $TextBox129.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox129)
+    
+    $Label144.text                    = "DIRECCION IP"
+    $Label144.AutoSize                = $true
+    $Label144.width                   = 25
+    $Label144.height                  = 10
+    $Label144.location                = New-Object System.Drawing.Point(152,22)
+    $Label144.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label144)
+    
+    $Label145.text                    = "/"
+    $Label145.AutoSize                = $true
+    $Label145.width                   = 25
+    $Label145.height                  = 10
+    $Label145.location                = New-Object System.Drawing.Point(297,39)
+    $Label145.Font                    = 'Microsoft Sans Serif,14'
+    $Form2.Controls.Add($Label145)
+    
+    $TextBox130.multiline             = $false
+    $TextBox130.width                 = 0
+    $TextBox130.height                = 30
+    $TextBox130.location              = New-Object System.Drawing.Point(307,36)
+    $TextBox130.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox130)
+    
+    $ComboBox180.text                  = "comboBox"
+    $ComboBox180.width                 = 55
+    $ComboBox180.height                = 74
+    $ComboBox180.location              = New-Object System.Drawing.Point(306,37)
+    $ComboBox180.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($ComboBox180)
+    
+    $Label146.text                    = "Prefijo"
+    $Label146.AutoSize                = $true
+    $Label146.width                   = 25
+    $Label146.height                  = 10
+    $Label146.location                = New-Object System.Drawing.Point(313,25)
+    $Label146.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label146)
+    
+    $TextBox131.multiline             = $true
+    $TextBox131.width                 = 180
+    $TextBox131.height                = 30
+    $TextBox131.enabled               = $false
+    $TextBox131.location              = New-Object System.Drawing.Point(413,33)
+    $TextBox131.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox131)
+    
+    $Label147.text                    = "MASCARA DE RED"
+    $Label147.AutoSize                = $true
+    $Label147.width                   = 25
+    $Label147.height                  = 10
+    $Label147.location                = New-Object System.Drawing.Point(438,19)
+    $Label147.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label147)
+    
+    $TextBox132.multiline             = $true
+    $TextBox132.width                 = 180
+    $TextBox132.height                = 30
+    $TextBox132.location              = New-Object System.Drawing.Point(659,31)
+    $TextBox132.Font                  = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($TextBox132)
+    
+    $Label148.text                    = "GATEWAY"
+    $Label148.AutoSize                = $true
+    $Label148.width                   = 25
+    $Label148.height                  = 10
+    $Label148.location                = New-Object System.Drawing.Point(713,19)
+    $Label148.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Label148)
+    
+    $Button110.BackColor               = "#acc9f8"
+    $Button110.text                    = "ACEPTAR"
+    $Button110.width                   = 150
+    $Button110.height                  = 40
+    $Button110.location                = New-Object System.Drawing.Point(747,593)
+    $Button110.Font                    = 'Microsoft Sans Serif,10'
+    $Form2.Controls.Add($Button110)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    $Form2.Add_Shown({$Form.Activate()})
+    [void] $Form2.ShowDialog();
+    
 
 
 
