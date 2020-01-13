@@ -99,7 +99,7 @@ $TextBox122=New-Object 'system.Windows.Forms.TextBox'
 $TextBox123=New-Object 'system.Windows.Forms.TextBox'
 $TextBox124=New-Object 'system.Windows.Forms.TextBox'
 $TextBox125=New-Object 'system.Windows.Forms.TextBox'
-$TextBox126=New-Object 'system.Windows.Forms.TextBox'
+
 $TextBox127=New-Object 'system.Windows.Forms.TextBox'
 $TextBox128=New-Object 'system.Windows.Forms.TextBox'
 $TextBox129=New-Object 'system.Windows.Forms.TextBox'
@@ -312,20 +312,81 @@ function routesForm{
 
        }
        else{
-        $Form2.Controls.Add($Label170)
-        $Form2.Controls.Add($TextBox150)
-        $Form2.Controls.Add($Label180)
-        $Form2.Controls.Add($Label190)
-        $Form2.Controls.Add($TextBox160)
-        $Form2.Controls.Add($ComboBox120)
-        $Form2.Controls.Add($Label0)
-        $Form2.Controls.Add($TextBox170)
-        $Form2.Controls.Add($Label111)
-        $Form2.Controls.Add($TextBox180)
-        $Form2.Controls.Add($Label112)
-        $Form2.Size = New-Object System.Drawing.Size(1100,750)  
-        $Button110.location                = New-Object System.Drawing.Point(747,593)
-        $Form2.Controls.Add($Button110)
+           if($comboBox5.SelectedItem -eq '3'){
+            $Form2.Controls.Add($Label100)
+            $Form2.Controls.Add($Label102)
+            $Form2.Controls.Add($Label103)
+            $Form2.Controls.Add($Label104)
+            $Form2.Controls.Add($Label150)
+            $Form2.Controls.Add($Label160)
+            $Form2.Controls.Add($TextBox100)
+            $Form2.Controls.Add($TextBox103)
+            $Form2.Controls.Add($TextBox104)
+            $Form2.Controls.Add($ComboBox110)
+            #################################
+            $Form2.Controls.Add($TextBox129)
+            $Form2.Controls.Add($Label143)
+            $Form2.Controls.Add($Label144)
+            $Form2.Controls.Add($Label145)
+            $Form2.Controls.Add($ComboBox180)
+            $Form2.Controls.Add($Label146)
+            $Form2.Controls.Add($TextBox131)
+            $Form2.Controls.Add($Label147)
+            $Form2.Controls.Add($TextBox132)
+            $Form2.Controls.Add($Label148)
+            #################################
+            $Form2.Controls.Add($TextBox125)
+            $Form2.Controls.Add($Label137)
+            $Form2.Controls.Add($Label138)
+            $Form2.Controls.Add($Label139)
+            $Form2.Controls.Add($ComboBox170)
+            $Form2.Controls.Add($Label140)
+            $Form2.Controls.Add($TextBox127)
+            $Form2.Controls.Add($Label141)
+            $Form2.Controls.Add($TextBox128)
+            $Form2.Controls.Add($Label142)
+            $Form2.Controls.Add($Label143)
+            
+
+
+
+
+
+            $Form2.Size = New-Object System.Drawing.Size(1000,520)  
+            $Button110.location                = New-Object System.Drawing.Point(747,380)
+            $Form2.Controls.Add($Button110)
+           }
+           else{
+            $Form2.Controls.Add($Label170)
+            $Form2.Controls.Add($TextBox150)
+            $Form2.Controls.Add($Label180)
+            $Form2.Controls.Add($Label190)
+            $Form2.Controls.Add($TextBox160)
+            $Form2.Controls.Add($ComboBox120)
+            $Form2.Controls.Add($Label0)
+            $Form2.Controls.Add($TextBox170)
+            $Form2.Controls.Add($Label111)
+            $Form2.Controls.Add($TextBox180)
+            $Form2.Controls.Add($Label112)
+            $Form2.Size = New-Object System.Drawing.Size(1100,750)  
+            $Button110.location                = New-Object System.Drawing.Point(747,593)
+            $Form2.Controls.Add($Button110)
+           }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
        }
 
 
@@ -860,20 +921,20 @@ function routesForm{
     $Label136.location                = New-Object System.Drawing.Point(712,138)
     $Label136.Font                    = 'Microsoft Sans Serif,10'
    
-    
+#######Ruta 3########
     $Label137.text                    = "RUTA 3:"
     $Label137.AutoSize                = $true
     $Label137.width                   = 25
     $Label137.height                  = 10
-    $Label137.location                = New-Object System.Drawing.Point(24,156)
+    $Label137.location                = New-Object System.Drawing.Point(24,206)
     $Label137.Font                    = 'Microsoft Sans Serif,10,style=Bold'
     $Label137.ForeColor               = "#000000"
   
-    
+        ######### DIRECCION IP 3 ###########
     $TextBox125.multiline             = $true
     $TextBox125.width                 = 180
     $TextBox125.height                = 30
-    $TextBox125.location              = New-Object System.Drawing.Point(113,98)
+    $TextBox125.location              = New-Object System.Drawing.Point(90,206)
     $TextBox125.Font                  = 'Microsoft Sans Serif,10'
  
     
@@ -881,29 +942,26 @@ function routesForm{
     $Label138.AutoSize                = $true
     $Label138.width                   = 25
     $Label138.height                  = 10
-    $Label138.location                = New-Object System.Drawing.Point(151,85)
+    $Label138.location                = New-Object System.Drawing.Point(120,185)
     $Label138.Font                    = 'Microsoft Sans Serif,10'
     
-    
+       ################################################
+
+    ################ MASKNET #######################
     $Label139.text                    = "/"
     $Label139.AutoSize                = $true
     $Label139.width                   = 25
     $Label139.height                  = 10
-    $Label139.location                = New-Object System.Drawing.Point(296,102)
+    $Label139.location                = New-Object System.Drawing.Point(270,206)
     $Label139.Font                    = 'Microsoft Sans Serif,14'
     
     
-    $TextBox126.multiline             = $false
-    $TextBox126.width                 = 0
-    $TextBox126.height                = 30
-    $TextBox126.location              = New-Object System.Drawing.Point(306,99)
-    $TextBox126.Font                  = 'Microsoft Sans Serif,10'
-   
+
     
     $ComboBox170.text                  = "comboBox"
     $ComboBox170.width                 = 55
     $ComboBox170.height                = 74
-    $ComboBox170.location              = New-Object System.Drawing.Point(305,100)
+    $ComboBox170.location              = New-Object System.Drawing.Point(280,206)
     $ComboBox170.Font                  = 'Microsoft Sans Serif,10'
  
     
@@ -911,7 +969,7 @@ function routesForm{
     $Label140.AutoSize                = $true
     $Label140.width                   = 25
     $Label140.height                  = 10
-    $Label140.location                = New-Object System.Drawing.Point(312,88)
+    $Label140.location                = New-Object System.Drawing.Point(280,185)
     $Label140.Font                    = 'Microsoft Sans Serif,10'
 
     
@@ -919,7 +977,7 @@ function routesForm{
     $TextBox127.width                 = 180
     $TextBox127.height                = 30
     $TextBox127.enabled               = $false
-    $TextBox127.location              = New-Object System.Drawing.Point(412,96)
+    $TextBox127.location              = New-Object System.Drawing.Point(400,206)
     $TextBox127.Font                  = 'Microsoft Sans Serif,10'
    
     
@@ -927,14 +985,15 @@ function routesForm{
     $Label141.AutoSize                = $true
     $Label141.width                   = 25
     $Label141.height                  = 10
-    $Label141.location                = New-Object System.Drawing.Point(437,82)
+    $Label141.location                = New-Object System.Drawing.Point(420,185)
     $Label141.Font                    = 'Microsoft Sans Serif,10'
- 
+    #######################################################
+   ################### GATEWAY ##########################
     
     $TextBox128.multiline             = $true
     $TextBox128.width                 = 180
     $TextBox128.height                = 30
-    $TextBox128.location              = New-Object System.Drawing.Point(658,94)
+    $TextBox128.location              = New-Object System.Drawing.Point(650,206)
     $TextBox128.Font                  = 'Microsoft Sans Serif,10'
    
     
@@ -942,7 +1001,7 @@ function routesForm{
     $Label142.AutoSize                = $true
     $Label142.width                   = 25
     $Label142.height                  = 10
-    $Label142.location                = New-Object System.Drawing.Point(712,82)
+    $Label142.location                = New-Object System.Drawing.Point(670,185)
     $Label142.Font                    = 'Microsoft Sans Serif,10'
 
     #####################RUTA 2 ##############################################
@@ -1643,7 +1702,7 @@ $comboBox1 = New-Object System.Windows.Forms.ComboBox
 $comboBox1.Font = 'Segoe UI, 12pt'
 $comboBox1.Location = New-Object System.Drawing.Point(35,50)
 $comboBox1.Size = New-Object System.Drawing.Size(200, 40)
-
+$comboBox1.Items.Clear();
  
 foreach($computer in $computerNames)
 {
@@ -1710,10 +1769,13 @@ $Groupbox2.location              = New-Object System.Drawing.Point(20,280)
 
 ######################################
 
+
 $datos2=@('AGREGAR RUTA','BLOQUEAR RUTA','ELIMINAR RUTA')
 $comboBox4.Font = 'Segoe UI, 12pt'
 $comboBox4.Location = New-Object System.Drawing.Point(20,40)
 $comboBox4.Size = New-Object System.Drawing.Size(200, 40)
+
+$comboBox4.Items.Clear();
 foreach($computer2 in $datos2)
 {
   $comboBox4.Items.add($computer2)
@@ -1726,6 +1788,7 @@ $comboBox4.add_SelectedIndexChanged({
         $comboBox5.Font = 'Segoe UI, 12pt'
         $comboBox5.Location = New-Object System.Drawing.Point(300,40)
         $comboBox5.Size = New-Object System.Drawing.Size(200, 40)
+        $comboBox5.Items.Clear();
         foreach($computer3 in $datos3)
 {
   $comboBox5.Items.add($computer3)
@@ -1757,7 +1820,7 @@ $datos = @('HABILITAR PROXY', 'DESHABILITAR PROXY')
 $comboBox2.Font = 'Segoe UI, 12pt'
 $comboBox2.Location = New-Object System.Drawing.Point(20,40)
 $comboBox2.Size = New-Object System.Drawing.Size(200, 40)
-
+$comboBox2.Items.Clear();
 foreach($computer1 in $datos)
 {
   $comboBox2.Items.add($computer1)
