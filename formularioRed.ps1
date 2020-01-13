@@ -1145,6 +1145,7 @@ function routesForm{
 
 #Creación de un nuevo formulario
 function rutasPredeterminadas{
+    
     [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
     [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")  
     ############### CREACION DEL ELEMENTO ############
@@ -1701,7 +1702,6 @@ function selectionIndex{
 
     Write-Host "###############################"
 Write-Host $comboBox2.SelectedItem -ForegroundColor "Blue" -BackgroundColor "White"
-
 
 
     ##########################################
