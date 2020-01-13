@@ -1,6 +1,6 @@
 [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
 [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")  
-
+[System.Windows.Forms.Application]::EnableVisualStyles()
 $textbox1 = New-Object 'System.Windows.Forms.TextBox'
 $textbox3 = New-Object 'System.Windows.Forms.TextBox'
 $textbox2 = New-Object 'System.Windows.Forms.TextBox'
@@ -1695,6 +1695,67 @@ else{
      
 }
 
+
+
+function selectionIndex{
+
+    Write-Host "###############################"
+Write-Host $comboBox2.SelectedItem -ForegroundColor "Blue" -BackgroundColor "White"
+
+
+
+    ##########################################
+    switch ($comboBox2.SelectedItem) 
+   {
+    'HABILITAR PROXY'
+       {
+        $Groupbox1.Controls.Add($comboBox3)
+        $Groupbox1.Controls.Remove($Button4)
+        $datos1 = @('Predeterminado', 'Personalizado')
+        $comboBox3.Font = 'Segoe UI, 12pt'
+        $comboBox3.Location = New-Object System.Drawing.Point(300,40)
+        $comboBox3.Size = New-Object System.Drawing.Size(200, 40)
+        $comboBox3.Items.Clear();
+   
+        foreach($computer2 in $datos1)
+{
+
+  $comboBox3.Items.add($computer2)
+}
+$comboBox3.add_SelectedIndexChanged({
+  
+
+
+    Write-Host "###############################"
+Write-Host $comboBox3.SelectedItem
+
+
+    ##########################################
+    $Button1.Location = New-Object System.Drawing.Size(520,40) 
+    $Button1.Size = New-Object System.Drawing.Size(150,50) 
+    $Button1.Text = "RUTAS PREDETERMINADAS" 
+    $Button1.UseVisualStyleBackColor = $True
+    $Button1.BackColor = [System.Drawing.Color]::LightBlue
+    $Button1.Add_Click({rutasPredeterminadas}) 
+    $Groupbox1.Controls.Add($Button1)	
+
+
+})
+       }
+       'DESHABILITAR PROXY'
+       {
+        $Groupbox1.Controls.Remove($Button1)
+        $Groupbox1.Controls.Remove($comboBox3)	
+        $Button4.Location = New-Object System.Drawing.Size(520,40) 
+$Button4.Size = New-Object System.Drawing.Size(150,50) 
+$Button4.Text = "DESHABILITAR AHORA" 
+$Button4.UseVisualStyleBackColor = $True
+$Button4.BackColor = [System.Drawing.Color]::LightBlue
+$Button4.Add_Click({deshabilitarRutas}) 
+$Groupbox1.Controls.Add($Button4)	
+       }
+   }
+}
 ###############################
 
 $computerNames = @('IP','RANGO DE IPS','ARCHIVO TXT')
@@ -1792,7 +1853,9 @@ $comboBox4.add_SelectedIndexChanged({
         foreach($computer3 in $datos3)
 {
   $comboBox5.Items.add($computer3)
+
 }
+
 $comboBox5.add_SelectedIndexChanged({
     ##########################################
     $Button5.Location = New-Object System.Drawing.Size(520,40) 
@@ -1821,52 +1884,14 @@ $comboBox2.Font = 'Segoe UI, 12pt'
 $comboBox2.Location = New-Object System.Drawing.Point(20,40)
 $comboBox2.Size = New-Object System.Drawing.Size(200, 40)
 $comboBox2.Items.Clear();
+
 foreach($computer1 in $datos)
 {
+  
   $comboBox2.Items.add($computer1)
 
 }
-$comboBox2.add_SelectedIndexChanged({
-    if($comboBox2.SelectedItem -eq 'HABILITAR PROXY'){
-        $Groupbox1.Controls.Add($comboBox3)
-        $Groupbox1.Controls.Remove($Button4)
-        $datos1 = @('Predeterminado', 'Personalizado')
-        $comboBox3.Font = 'Segoe UI, 12pt'
-        $comboBox3.Location = New-Object System.Drawing.Point(300,40)
-        $comboBox3.Size = New-Object System.Drawing.Size(200, 40)
-        foreach($computer2 in $datos1)
-{
-  $comboBox3.Items.add($computer2)
-}
-$comboBox3.add_SelectedIndexChanged({
-    ##########################################
-    $Button1.Location = New-Object System.Drawing.Size(520,40) 
-    $Button1.Size = New-Object System.Drawing.Size(150,50) 
-    $Button1.Text = "RUTAS PREDETERMINADAS" 
-    $Button1.UseVisualStyleBackColor = $True
-    $Button1.BackColor = [System.Drawing.Color]::LightBlue
-    $Button1.Add_Click({rutasPredeterminadas}) 
-    $Groupbox1.Controls.Add($Button1)	
-
-})
-    }
-    else{
-        if($comboBox2.SelectedItem -eq 'DESHABILITAR PROXY'){
-            $Groupbox1.Controls.Remove($Button1)
-            $Groupbox1.Controls.Remove($comboBox3)	
-            $Button4.Location = New-Object System.Drawing.Size(520,40) 
-    $Button4.Size = New-Object System.Drawing.Size(150,50) 
-    $Button4.Text = "DESHABILITAR AHORA" 
-    $Button4.UseVisualStyleBackColor = $True
-    $Button4.BackColor = [System.Drawing.Color]::LightBlue
-    $Button4.Add_Click({deshabilitarRutas}) 
-    $Groupbox1.Controls.Add($Button4)	
-        }
-    }
-
-
-
-})
+$comboBox2.add_SelectedIndexChanged({selectionIndex})
 
 #$ComboBox2.text                  = "comboBox"
 
