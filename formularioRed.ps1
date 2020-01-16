@@ -1145,7 +1145,7 @@ function routesForm{
 
 #Creación de un nuevo formulario
 function rutasPredeterminadas{
-    $comboBox3.Items.Clear()
+    
     [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
     [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")  
     ############### CREACION DEL ELEMENTO ############
@@ -1700,8 +1700,10 @@ else{
 
 function selectionIndex{
 
- 
+    Write-Host "###############################"
+    $hola=$comboBox2.Items
 
+    Write-Host $hola[1] -ForegroundColor "White" -BackgroundColor "Black"
     Write-Host "###############################"
 
 Write-Host $comboBox2.SelectedItem -ForegroundColor "Blue" -BackgroundColor "White"
@@ -1714,14 +1716,14 @@ Write-Host $comboBox2.SelectedItem -ForegroundColor "Blue" -BackgroundColor "Whi
        
     'HABILITAR PROXY'
        {
-      
+     
        # $comboBox2.SelectedIndex=-1
         $Groupbox1.Controls.Add($comboBox3)
         $Groupbox1.Controls.Remove($Button4)
         $datos1 = @('Predeterminado', 'Personalizado')
         $comboBox3.Font = 'Segoe UI, 12pt'
        
-       $comboBox3.DropDownStyle = 'DropDownList'
+       #$comboBox3.DropDownStyle = 'DropDownList'
         #$comboBox3.FormattingEnabled = $True
         $comboBox3.Location = New-Object System.Drawing.Point(300,40)
         $comboBox3.Size = New-Object System.Drawing.Size(200, 40)
@@ -1739,8 +1741,8 @@ Write-Host $comboBox2.SelectedItem -ForegroundColor "Blue" -BackgroundColor "Whi
 
 $comboBox3.add_SelectedIndexChanged({
  
-
- 
+   
+  
     Write-Host "###############################"
 Write-Host $comboBox3.SelectedItem
 
@@ -1899,7 +1901,7 @@ $datos = @('HABILITAR PROXY', 'DESHABILITAR PROXY')
 $comboBox2.Font = 'Segoe UI, 12pt'
 $comboBox2.Location = New-Object System.Drawing.Point(20,40)
 $comboBox2.Size = New-Object System.Drawing.Size(200, 40)
-$comboBox2.DropDownStyle = 'DropDownList'
+#$comboBox2.DropDownStyle = 'DropDownList'
 
 $comboBox2.Items.Clear();
 
