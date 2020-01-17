@@ -1701,12 +1701,16 @@ else{
 function selectionIndex{
 
     Write-Host "###############################"
-    $hola=$comboBox2.Items
+    
+ 
+ 
+ # $hola=$comboBox2.Items
+  # $hola=$comboBox2.SelectedItem.Count
 
-    Write-Host $hola[1] -ForegroundColor "White" -BackgroundColor "Black"
+  #Write-Host $hola -ForegroundColor "White" -BackgroundColor "Black"
     Write-Host "###############################"
 
-Write-Host $comboBox2.SelectedItem -ForegroundColor "Blue" -BackgroundColor "White"
+Write-Host $comboBox2.SelectedItem "-" $ComboBox2.SelectedIndex -ForegroundColor "Blue" -BackgroundColor "White"
 
 
     ##########################################
@@ -1716,7 +1720,9 @@ Write-Host $comboBox2.SelectedItem -ForegroundColor "Blue" -BackgroundColor "Whi
        
     'HABILITAR PROXY'
        {
+        
      
+       
        # $comboBox2.SelectedIndex=-1
         $Groupbox1.Controls.Add($comboBox3)
         $Groupbox1.Controls.Remove($Button4)
@@ -1730,18 +1736,19 @@ Write-Host $comboBox2.SelectedItem -ForegroundColor "Blue" -BackgroundColor "Whi
         #$comboBox3.SelectedIndex=-1
         $comboBox3.Items.Clear();
       
-      
+    
         
    
         foreach($computer2 in $datos1)
 {
 
   $comboBox3.Items.add($computer2)
+   
 }
 
 $comboBox3.add_SelectedIndexChanged({
  
-   
+  
   
     Write-Host "###############################"
 Write-Host $comboBox3.SelectedItem
@@ -1758,9 +1765,15 @@ Write-Host $comboBox3.SelectedItem
 
 
 })
+
+
        }
+
+
        'DESHABILITAR PROXY'
        {
+        
+  
         $Groupbox1.Controls.Remove($Button1)
         $Groupbox1.Controls.Remove($comboBox3)	
         $Button4.Location = New-Object System.Drawing.Size(520,40) 
@@ -1771,7 +1784,9 @@ $Button4.BackColor = [System.Drawing.Color]::LightBlue
 $Button4.Add_Click({deshabilitarRutas}) 
 $Groupbox1.Controls.Add($Button4)	
        }
+     
    }
+
 
 }
 ###############################
@@ -1910,8 +1925,12 @@ foreach($computer1 in $datos)
 {
   
   $comboBox2.Items.add($computer1)
+ 
+
+  
 
 }
+
 $comboBox2.add_SelectedIndexChanged({selectionIndex})
 
 #$ComboBox2.text                  = "comboBox"
