@@ -1,4 +1,74 @@
+
 [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
+[void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")  
+[System.Windows.Forms.Application]::EnableVisualStyles()
+
+$label222 = New-Object 'system.Windows.Forms.Label'
+$label333= New-Object 'system.Windows.Forms.Label'
+$textbox333 = New-Object 'System.Windows.Forms.TextBox'
+$textbox222 = New-Object 'System.Windows.Forms.TextBox'
+$Button111 = New-Object 'System.Windows.Forms.Button'
+
+
+$Form111 = New-Object System.Windows.Forms.Form 
+
+$Form111.Size = New-Object System.Drawing.Size(333,344)  
+$Form111.StartPosition = "CenterScreen" 
+$Form111.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::Sizable
+$Form111.MaximizeBox = $false
+$Form111.Text = "Login" 
+
+
+$label222.text                      = "Usuario:"
+$label222.AutoSize                  = $true
+$label222.width                     = 46
+$label222.height                    = 13
+$label222.location                  = New-Object System.Drawing.Point(70,70)
+$label222.Font                      = 'Microsoft Sans Serif,8.25'
+$Form111.Controls.Add($label222)	
+
+$label333.text                      = "Contraseña:"
+$label333.AutoSize                  = $true
+$label333.width                     = 64
+$label333.height                    = 13
+$label333.location                  = New-Object System.Drawing.Point(52,122)
+$label333.Font                      = 'Microsoft Sans Serif,8.25'
+$Form111.Controls.Add($label333) 
+
+$textbox222.Font = 'Microsoft Sans Serif, 10pt'
+$textbox222.Location = '126,67'
+$textbox222.Margin = '5, 5, 5, 5'
+$textbox222.Multiline = $true
+$textbox222.Name = 'textbox5'
+$textbox222.Size = '120, 20'
+$textbox222.Enabled=$True
+$textbox222.TabIndex = 1
+$Form111.Controls.Add($textbox222)	
+
+$textbox333.Font = 'Microsoft Sans Serif, 10pt'
+	$textbox333.Location = '126,122'
+	$textbox333.Margin = '5, 5, 5, 5'
+	$textbox333.Multiline = $true
+	$textbox333.Name = 'textbox5'
+    $textbox333.Size = '120, 20'
+    $textbox333.PasswordChar = '*'
+    $textbox333.Enabled=$True
+	$textbox333.TabIndex = 1
+    $Form111.Controls.Add($textbox333)	
+
+    $Button111.Location = New-Object System.Drawing.Size(120,180) 
+    $Button111.Size = New-Object System.Drawing.Size(75,40) 
+    $Button111.Text = "Ingresar" 
+    $Button111.UseVisualStyleBackColor = $True
+    $Button111.BackColor = [System.Drawing.Color]::LightBlue
+    $Button111.Add_Click({functionPrincipal}) 
+    $Form111.Controls.Add($Button111)
+
+
+function functionPrincipal{
+if(($textbox222.Text -eq 'Administrador' -Or $textbox222.Text -eq 'Administrador') -And $textbox333.Text -eq "R3c542016C4ll"){
+    Write-Host "Acceso Exitoso"
+    [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
 [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")  
 [System.Windows.Forms.Application]::EnableVisualStyles()
 $textbox1 = New-Object 'System.Windows.Forms.TextBox'
@@ -1145,7 +1215,9 @@ function routesForm{
 
 #Creación de un nuevo formulario
 function rutasPredeterminadas{
-    
+
+
+
     [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
     [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")  
     ############### CREACION DEL ELEMENTO ############
@@ -1701,14 +1773,17 @@ else{
 function selectionIndex{
 
     Write-Host "###############################"
-    
- 
+    $comboBox3.Items.Clear();
+    $comboBox3.ResetText();
+   
  
  # $hola=$comboBox2.Items
   # $hola=$comboBox2.SelectedItem.Count
 
   #Write-Host $hola -ForegroundColor "White" -BackgroundColor "Black"
-    Write-Host "###############################"
+    #Write-Host "###############################"
+    
+   # $comboBox2.DataSource = $null
 
 Write-Host $comboBox2.SelectedItem "-" $ComboBox2.SelectedIndex -ForegroundColor "Blue" -BackgroundColor "White"
 
@@ -1720,9 +1795,8 @@ Write-Host $comboBox2.SelectedItem "-" $ComboBox2.SelectedIndex -ForegroundColor
        
     'HABILITAR PROXY'
        {
+      
         
-     
-       
        # $comboBox2.SelectedIndex=-1
         $Groupbox1.Controls.Add($comboBox3)
         $Groupbox1.Controls.Remove($Button4)
@@ -1734,21 +1808,22 @@ Write-Host $comboBox2.SelectedItem "-" $ComboBox2.SelectedIndex -ForegroundColor
         $comboBox3.Location = New-Object System.Drawing.Point(300,40)
         $comboBox3.Size = New-Object System.Drawing.Size(200, 40)
         #$comboBox3.SelectedIndex=-1
-        $comboBox3.Items.Clear();
+       
       
     
         
    
         foreach($computer2 in $datos1)
 {
-
+  
   $comboBox3.Items.add($computer2)
    
 }
 
 $comboBox3.add_SelectedIndexChanged({
  
-  
+    #$ComboBox2.Text="";
+ 
   
     Write-Host "###############################"
 Write-Host $comboBox3.SelectedItem
@@ -1772,9 +1847,11 @@ Write-Host $comboBox3.SelectedItem
 
        'DESHABILITAR PROXY'
        {
-        
+        $comboBox3.Items.Clear();
+        $comboBox3.ResetText();
   
         $Groupbox1.Controls.Remove($Button1)
+     
         $Groupbox1.Controls.Remove($comboBox3)	
         $Button4.Location = New-Object System.Drawing.Size(520,40) 
 $Button4.Size = New-Object System.Drawing.Size(150,50) 
@@ -1916,6 +1993,7 @@ $datos = @('HABILITAR PROXY', 'DESHABILITAR PROXY')
 $comboBox2.Font = 'Segoe UI, 12pt'
 $comboBox2.Location = New-Object System.Drawing.Point(20,40)
 $comboBox2.Size = New-Object System.Drawing.Size(200, 40)
+
 #$comboBox2.DropDownStyle = 'DropDownList'
 
 $comboBox2.Items.Clear();
@@ -2011,26 +2089,24 @@ $Form.Controls.Add($comboBox1)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 $Form.Add_Shown({$Form.Activate()})
 [void] $Form.ShowDialog();
+}
+else{
+    Write-Host "Error"
+}
+
+
+
+
+
+
+
+
+
+
+}
+
+
+$Form111.Add_Shown({$Form111.Activate()})
+[void] $Form111.ShowDialog();
