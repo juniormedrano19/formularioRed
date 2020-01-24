@@ -91,6 +91,9 @@ $Button2 = New-Object 'System.Windows.Forms.Button'
 $Button3 = New-Object 'System.Windows.Forms.Button'
 $Button4 = New-Object 'System.Windows.Forms.Button'
 $Button5 = New-Object 'System.Windows.Forms.Button'
+
+#######El button 6 será de prueba #############
+$Button6 = New-Object 'System.Windows.Forms.Button'
 $textbox11 = New-Object 'System.Windows.Forms.TextBox'
 $textbox12 = New-Object 'System.Windows.Forms.TextBox'
 $textbox13 = New-Object 'System.Windows.Forms.TextBox'
@@ -377,8 +380,10 @@ function routesForm{
         $Form2.Size = New-Object System.Drawing.Size(1000,400)  
         $Button110.location                = New-Object System.Drawing.Point(747,280)
         $Form2.Controls.Add($Button110)
-
-
+        $TextBox100.Text=" ";
+        $TextBox104.Text=" ";
+        $ComboBox110.Text=" ";
+        $TextBox103.Text=" ";
 
 
 
@@ -1137,33 +1142,1169 @@ function numerosMask{
               }
         }
         4{
+            switch ($ComboBox110.SelectedItem) {
+                24
+                  {
+                      $TextBox103.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox103.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox103.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox103.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox103.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox103.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox103.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox103.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox103.Text="255.255.255.255"
+                }
+              }
+              switch ($ComboBox180.SelectedItem) {
+                24
+                  {
+                      $TextBox131.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox131.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox131.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox131.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox131.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox131.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox131.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox131.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox131.Text="255.255.255.255"
+                }
+              }
+              switch ($ComboBox170.SelectedItem) {
+                24
+                  {
+                      $TextBox127.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox127.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox127.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox127.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox127.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox127.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox127.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox127.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox127.Text="255.255.255.255"
+                }
+              }
+              switch ($ComboBox160.SelectedItem) {
+                24
+                  {
+                      $TextBox123.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox123.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox123.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox123.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox123.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox123.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox123.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox123.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox123.Text="255.255.255.255"
+                }
+              }
 
         }
         5
         {
+            switch ($ComboBox110.SelectedItem) {
+                24
+                  {
+                      $TextBox103.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox103.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox103.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox103.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox103.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox103.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox103.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox103.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox103.Text="255.255.255.255"
+                }
+              }
+              switch ($ComboBox180.SelectedItem) {
+                24
+                  {
+                      $TextBox131.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox131.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox131.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox131.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox131.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox131.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox131.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox131.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox131.Text="255.255.255.255"
+                }
+              }
+              switch ($ComboBox170.SelectedItem) {
+                24
+                  {
+                      $TextBox127.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox127.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox127.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox127.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox127.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox127.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox127.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox127.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox127.Text="255.255.255.255"
+                }
+              }
+              switch ($ComboBox160.SelectedItem) {
+                24
+                  {
+                      $TextBox123.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox123.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox123.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox123.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox123.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox123.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox123.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox123.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox123.Text="255.255.255.255"
+                }
+              }
+              switch ($ComboBox150.SelectedItem) {
+                24
+                  {
+                      $TextBox119.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox119.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox119.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox119.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox119.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox119.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox119.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox119.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox119.Text="255.255.255.255"
+                }
+              }
+
+
 
         }
         6
         {
+            switch ($ComboBox110.SelectedItem) {
+                24
+                  {
+                      $TextBox103.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox103.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox103.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox103.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox103.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox103.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox103.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox103.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox103.Text="255.255.255.255"
+                }
+              }
+              switch ($ComboBox180.SelectedItem) {
+                24
+                  {
+                      $TextBox131.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox131.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox131.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox131.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox131.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox131.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox131.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox131.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox131.Text="255.255.255.255"
+                }
+              }
+              switch ($ComboBox170.SelectedItem) {
+                24
+                  {
+                      $TextBox127.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox127.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox127.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox127.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox127.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox127.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox127.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox127.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox127.Text="255.255.255.255"
+                }
+              }
+              switch ($ComboBox160.SelectedItem) {
+                24
+                  {
+                      $TextBox123.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox123.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox123.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox123.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox123.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox123.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox123.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox123.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox123.Text="255.255.255.255"
+                }
+              }
+              switch ($ComboBox150.SelectedItem) {
+                24
+                  {
+                      $TextBox119.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox119.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox119.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox119.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox119.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox119.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox119.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox119.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox119.Text="255.255.255.255"
+                }
+              }
+              switch ($ComboBox140.SelectedItem) {
+                24
+                  {
+                      $TextBox115.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox115.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox115.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox115.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox115.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox115.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox115.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox115.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox115.Text="255.255.255.255"
+                }
+              }
+
 
         }
         7{
+            switch ($ComboBox110.SelectedItem) {
+                24
+                  {
+                      $TextBox103.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox103.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox103.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox103.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox103.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox103.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox103.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox103.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox103.Text="255.255.255.255"
+                }
+              }
+              switch ($ComboBox180.SelectedItem) {
+                24
+                  {
+                      $TextBox131.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox131.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox131.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox131.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox131.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox131.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox131.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox131.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox131.Text="255.255.255.255"
+                }
+              }
+              switch ($ComboBox170.SelectedItem) {
+                24
+                  {
+                      $TextBox127.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox127.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox127.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox127.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox127.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox127.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox127.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox127.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox127.Text="255.255.255.255"
+                }
+              }
+              switch ($ComboBox160.SelectedItem) {
+                24
+                  {
+                      $TextBox123.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox123.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox123.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox123.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox123.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox123.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox123.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox123.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox123.Text="255.255.255.255"
+                }
+              }
+              switch ($ComboBox150.SelectedItem) {
+                24
+                  {
+                      $TextBox119.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox119.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox119.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox119.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox119.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox119.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox119.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox119.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox119.Text="255.255.255.255"
+                }
+              }
+              switch ($ComboBox140.SelectedItem) {
+                24
+                  {
+                      $TextBox115.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox115.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox115.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox115.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox115.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox115.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox115.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox115.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox115.Text="255.255.255.255"
+                }
+              }
+
+              switch ($ComboBox130.SelectedItem) {
+                24
+                  {
+                      $TextBox111.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox111.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox111.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox111.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox111.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox111.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox111.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox111.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox111.Text="255.255.255.255"
+                }
+              }
 
         }
         8
         {
+            switch ($ComboBox110.SelectedItem) {
+                24
+                  {
+                      $TextBox103.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox103.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox103.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox103.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox103.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox103.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox103.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox103.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox103.Text="255.255.255.255"
+                }
+              }
+              switch ($ComboBox180.SelectedItem) {
+                24
+                  {
+                      $TextBox131.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox131.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox131.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox131.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox131.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox131.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox131.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox131.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox131.Text="255.255.255.255"
+                }
+              }
+              switch ($ComboBox170.SelectedItem) {
+                24
+                  {
+                      $TextBox127.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox127.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox127.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox127.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox127.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox127.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox127.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox127.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox127.Text="255.255.255.255"
+                }
+              }
+              switch ($ComboBox160.SelectedItem) {
+                24
+                  {
+                      $TextBox123.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox123.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox123.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox123.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox123.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox123.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox123.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox123.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox123.Text="255.255.255.255"
+                }
+              }
+              switch ($ComboBox150.SelectedItem) {
+                24
+                  {
+                      $TextBox119.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox119.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox119.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox119.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox119.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox119.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox119.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox119.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox119.Text="255.255.255.255"
+                }
+              }
+              switch ($ComboBox140.SelectedItem) {
+                24
+                  {
+                      $TextBox115.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox115.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox115.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox115.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox115.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox115.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox115.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox115.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox115.Text="255.255.255.255"
+                }
+              }
 
+              switch ($ComboBox130.SelectedItem) {
+                24
+                  {
+                      $TextBox111.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox111.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox111.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox111.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox111.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox111.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox111.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox111.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox111.Text="255.255.255.255"
+                }
+              }
+
+              switch ($ComboBox120.SelectedItem) {
+                24
+                  {
+                      $TextBox170.Text="255.255.255.0"
+                }
+                25
+                {
+                  $TextBox170.Text="255.255.255.128"
+                }
+                26
+                {
+                  $TextBox170.Text="255.255.255.192"
+                }
+                27
+                {
+                  $TextBox170.Text="255.255.255.224"
+                }
+                28
+                {
+                  $TextBox170.Text="255.255.255.240"
+                }
+                29
+                {
+                  $TextBox170.Text="255.255.255.248"
+                }
+                30
+                {
+                  $TextBox170.Text="255.255.255.252"
+                }
+                31
+                {
+                  $TextBox170.Text="255.255.255.254"
+                }
+                32
+                {
+                  $TextBox170.Text="255.255.255.255"
+                }
+              }
         }
     }
-
-
-
-
-
-
-
-
-
 }
     
 
@@ -1302,12 +2443,16 @@ function numerosMask{
   
    
     
-    
+      $datos=@(24,25,26,27,28,29,30,31,32)
     $ComboBox120.width                 = 55
     $ComboBox120.height                = 74
     $ComboBox120.location              = New-Object System.Drawing.Point(280,606)
     $ComboBox120.Font                  = 'Microsoft Sans Serif,10'
-  
+    $ComboBox120.Items.Clear();
+    foreach($datosCombo in $datos){
+        $ComboBox120.Items.add($datosCombo)
+    }
+    $ComboBox120.add_SelectedIndexChanged({numerosMask})
     
     $Label110.text                    = "Prefijo"
     $Label110.AutoSize                = $true
@@ -1385,12 +2530,18 @@ function numerosMask{
     
     
     
-    
+    $datos=@(24,25,26,27,28,29,30,31,32)
     $ComboBox130.width                 = 55
     $ComboBox130.height                = 74
     $ComboBox130.location              = New-Object System.Drawing.Point(280,526)
     $ComboBox130.Font                  = 'Microsoft Sans Serif,10'
-   
+    $ComboBox130.Items.Clear();
+    foreach($datosCombo in $datos){
+        $ComboBox130.Items.add($datosCombo)
+    }
+    $ComboBox130.add_SelectedIndexChanged({numerosMask})
+
+
     
     $Label116.text                    = "Prefijo"
     $Label116.AutoSize                = $true
@@ -1465,12 +2616,16 @@ function numerosMask{
 
    
     
-
+    $datos=@(24,25,26,27,28,29,30,31,32)
     $ComboBox140.width                 = 55
     $ComboBox140.height                = 74
     $ComboBox140.location              = New-Object System.Drawing.Point(280,446)
     $ComboBox140.Font                  = 'Microsoft Sans Serif,10'
-  
+    $ComboBox140.Items.Clear();
+    foreach($datosCombo in $datos){
+        $ComboBox140.Items.add($datosCombo)
+    }
+    $ComboBox140.add_SelectedIndexChanged({numerosMask})
     
     $Label122.text                    = "Prefijo"
     $Label122.AutoSize                = $true
@@ -1546,11 +2701,16 @@ function numerosMask{
    
   
     
-  
+    $datos=@(24,25,26,27,28,29,30,31,32)
     $ComboBox150.width                 = 55
     $ComboBox150.height                = 74
     $ComboBox150.location              = New-Object System.Drawing.Point(280,366)
     $ComboBox150.Font                  = 'Microsoft Sans Serif,10'
+    $ComboBox150.Items.Clear();
+    foreach($datosCombo in $datos){
+        $ComboBox150.Items.add($datosCombo)
+    }
+    $ComboBox150.add_SelectedIndexChanged({numerosMask})
    
     
     $Label128.text                    = "Prefijo"
@@ -1626,11 +2786,16 @@ function numerosMask{
     
 
     
-    
+    $datos=@(24,25,26,27,28,29,30,31,32)
     $ComboBox160.width                 = 55
     $ComboBox160.height                = 74
     $ComboBox160.location              = New-Object System.Drawing.Point(280,286)
     $ComboBox160.Font                  = 'Microsoft Sans Serif,10'
+    $ComboBox160.Items.Clear();
+    foreach($datosCombo in $datos){
+        $ComboBox160.Items.add($datosCombo)
+    }
+    $ComboBox160.add_SelectedIndexChanged({numerosMask})
    
     
     $Label134.text                    = "Prefijo"
@@ -1868,28 +3033,6 @@ function numerosMask{
     $Form2.Add_Shown({$Form.Activate()})
     [void] $Form2.ShowDialog();
     
-
-
-
-
-
-
-
-
-
-    $Form2.Add_Shown({$Form.Activate()})
-    [void] $Form2.ShowDialog();
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2395,6 +3538,148 @@ function Validacion{
         [System.Windows.Forms.MessageBox]::Show($errorMsg, $caption)
                 }
 }
+function ejecutarRutas{
+
+if($comboBox5.SelectedItem -eq 1){
+
+    $Username = "Administrador"
+    $Password = "R3c542016C4ll"
+
+    $Computer=$textbox1.Text; 
+    $ip_N1=$TextBox100.Text;
+    $mask_N1=$ComboBox110.SelectedItem.ToString();
+    $gateway_N1=$TextBox104.Text;
+   
+      $agregarRutas={
+         
+            Param($Computer,$ip_N1,$mask_N1,$gateway_N1)    
+
+       
+            route add -p $ip_N1/$mask_N1 $gateway_N1
+   
+        
+    
+
+    }  
+    $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+    $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+        $Session = New-PSSession -ComputerName $Computer -Credential $Cred
+     
+        
+         #Invocando comandos
+         $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($Computer,$ip_N1,$mask_N1,$gateway_N1) -AsJob 
+         $Null = Wait-Job -Job $Job
+        Remove-PSSession -Session $Session
+
+
+
+}
+elseif ($comboBox5.SelectedItem -eq 2) {
+    $Username = "Administrador"
+    $Password = "R3c542016C4ll"
+
+    $Computer=$textbox1.Text; 
+    $ip_N1=$TextBox100.Text;
+    $mask_N1=$ComboBox110.SelectedItem.ToString();
+    $gateway_N1=$TextBox104.Text;
+    $ip_N2=$TextBox129.Text;
+    $mask_N2=$ComboBox180.SelectedItem.ToString();
+    $gateway_N2=$TextBox132.Text;
+   
+      $agregarRutas={
+         
+            Param($Computer,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2)    
+
+       
+            route add -p $ip_N1/$mask_N1 $gateway_N1
+            route add -p $ip_N2/$mask_N2 $gateway_N2
+        
+    
+
+    }  
+    $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+    $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+        $Session = New-PSSession -ComputerName $Computer -Credential $Cred
+     
+        
+         #Invocando comandos
+         $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($Computer,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2) -AsJob 
+         $Null = Wait-Job -Job $Job
+        Remove-PSSession -Session $Session
+
+}
+elseif ($comboBox5.SelectedItem -eq 3) {
+    $Username = "Administrador"
+    $Password = "R3c542016C4ll"
+
+    $Computer=$textbox1.Text; 
+    $ip_N1=$TextBox100.Text;
+    $mask_N1=$ComboBox110.SelectedItem.ToString();
+    $gateway_N1=$TextBox104.Text;
+    $ip_N2=$TextBox129.Text;
+    $mask_N2=$ComboBox180.SelectedItem.ToString();
+    $gateway_N2=$TextBox132.Text;
+    $ip_N3=$TextBox125.Text;
+    $mask_N3=$ComboBox170.SelectedItem.ToString();
+    $gateway_N3=$TextBox128.Text;
+   
+      $agregarRutas={
+         
+            Param($Computer,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3)    
+
+       
+            route add -p $ip_N1/$mask_N1 $gateway_N1
+            route add -p $ip_N2/$mask_N2 $gateway_N2
+            route add -p $ip_N3/$mask_N3 $gateway_N3
+    
+
+    }  
+    $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+    $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+        $Session = New-PSSession -ComputerName $Computer -Credential $Cred
+     
+        
+         #Invocando comandos
+         $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($Computer,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3) -AsJob 
+         $Null = Wait-Job -Job $Job
+        Remove-PSSession -Session $Session
+
+}
+elseif ($comboBox5.SelectedItem -eq 4) {
+    
+}
+elseif ($comboBox5.SelectedItem -eq 5) {
+    
+}
+elseif ($comboBox5.SelectedItem -eq 6) {
+    
+}
+elseif ($comboBox5.SelectedItem -eq 7) {
+    
+}
+else{
+
+}
+     
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function ejecutarTareas{
@@ -2509,15 +3794,12 @@ function selection2{
             })
  
         }
- 
-        'BLOQUEAR RUTA'
-        {
-            $Groupbox2.Controls.Remove($comboBox5)	
-        }
+
         'ELIMINAR RUTA'
         {
             $Groupbox2.Controls.Remove($comboBox5)	
-
+            $Groupbox2.Controls.Remove($Button5)	
+            $comboBox5.Text="";
         }
       
     }
@@ -2583,7 +3865,7 @@ $comboBox1.add_SelectedIndexChanged({
         $Form.Controls.Add($textbox1)
               $Form.Controls.Add($Button2)	
               $Form.Controls.Add($Button3)
-       
+       $Form.Controls.Add($Button6)
         $Form.Controls.Add($Groupbox1)
         $Form.Controls.Add($Groupbox2)
         $Groupbox1.Controls.Add($comboBox2)
@@ -2620,7 +3902,9 @@ $comboBox1.add_SelectedIndexChanged({
                 $Form.Controls.Remove($textbox2)
                 $Form.Controls.Remove($textbox3)
                 $Form.Controls.Add($Button)	
-              
+                $Form.Controls.Remove($Button6)
+                $Form.Controls.Remove($Groupbox1)
+                $Form.Controls.Remove($Groupbox2)
               
                 
             }
@@ -2640,7 +3924,7 @@ $textbox1.add_TextChanged($textbox1_TextChanged)
 
 ###################################
 
-    $Button2.Location = New-Object System.Drawing.Size(520, 600) 
+    $Button2.Location = New-Object System.Drawing.Size(420, 600) 
     $Button2.Size = New-Object System.Drawing.Size(150, 50) 
     $Button2.Text = "RUTAS PREDETERMINADAS" 
     $Button2.UseVisualStyleBackColor = $True
@@ -2648,12 +3932,20 @@ $textbox1.add_TextChanged($textbox1_TextChanged)
     $Button2.Add_Click( { Validacion }) 
 
 
-    $Button3.Location = New-Object System.Drawing.Size(640, 600) 
+    $Button3.Location = New-Object System.Drawing.Size(580, 600) 
     $Button3.Size = New-Object System.Drawing.Size(150, 50) 
     $Button3.Text = "EJECUTAR" 
     $Button3.UseVisualStyleBackColor = $True
     $Button3.BackColor = [System.Drawing.Color]::LightBlue
     $Button3.Add_Click( { ejecutarTareas }) 
+
+
+    $Button6.Location = New-Object System.Drawing.Size(740, 600) 
+    $Button6.Size = New-Object System.Drawing.Size(150, 50) 
+    $Button6.Text = "RUTAS" 
+    $Button6.UseVisualStyleBackColor = $True
+    $Button6.BackColor = [System.Drawing.Color]::LightBlue
+    $Button6.Add_Click( { ejecutarRutas }) 
 
 #######################################
 $Groupbox1.height                = 140
@@ -2710,7 +4002,7 @@ $textbox3.Font = 'Segoe UI, 12pt'
     $Button.BackColor = [System.Drawing.Color]::LightBlue
     $Button.Add_Click({Ubicacion}) 
 
-    $datos2=@('AGREGAR RUTA','BLOQUEAR RUTA','ELIMINAR RUTA')
+    $datos2=@('AGREGAR RUTA','ELIMINAR RUTA')
     $comboBox4.Font = 'Segoe UI, 12pt'
     $comboBox4.Location = New-Object System.Drawing.Point(20,40)
     $comboBox4.Size = New-Object System.Drawing.Size(200, 40)
