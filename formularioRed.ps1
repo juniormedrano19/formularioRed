@@ -1,4 +1,5 @@
 
+
 [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
 [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")  
 [System.Windows.Forms.Application]::EnableVisualStyles()
@@ -10,7 +11,7 @@ $textbox222 = New-Object 'System.Windows.Forms.TextBox'
 $Button111 = New-Object 'System.Windows.Forms.Button'
 
 
-$Form111 = New-Object System.Windows.Forms.Form 
+$Form111 = New-Object 'System.Windows.Forms.Form'
 
 $Form111.Size = New-Object System.Drawing.Size(333,344)  
 $Form111.StartPosition = "CenterScreen" 
@@ -19,7 +20,7 @@ $Form111.MaximizeBox = $false
 $Form111.Text = "Login" 
 
 
-$label222.text                      = "Usuario:"
+$label222.Text                      = "Usuario:"
 $label222.AutoSize                  = $true
 $label222.width                     = 46
 $label222.height                    = 13
@@ -27,7 +28,7 @@ $label222.location                  = New-Object System.Drawing.Point(70,70)
 $label222.Font                      = 'Microsoft Sans Serif,8.25'
 $Form111.Controls.Add($label222)	
 
-$label333.text                      = "Contraseña:"
+$label333.Text                      = 'Contraseña:'
 $label333.AutoSize                  = $true
 $label333.width                     = 64
 $label333.height                    = 13
@@ -38,7 +39,7 @@ $Form111.Controls.Add($label333)
 $textbox222.Font = 'Microsoft Sans Serif, 10pt'
 $textbox222.Location = '126,67'
 $textbox222.Margin = '5, 5, 5, 5'
-$textbox222.Multiline = $true
+#$textbox222.Multiline = $true
 $textbox222.Name = 'textbox5'
 $textbox222.Size = '120, 20'
 $textbox222.Enabled=$True
@@ -48,7 +49,7 @@ $Form111.Controls.Add($textbox222)
 $textbox333.Font = 'Microsoft Sans Serif, 10pt'
 	$textbox333.Location = '126,122'
 	$textbox333.Margin = '5, 5, 5, 5'
-	$textbox333.Multiline = $true
+	#$textbox333.Multiline = $true
 	$textbox333.Name = 'textbox5'
     $textbox333.Size = '120, 20'
     $textbox333.PasswordChar = '*'
@@ -76,12 +77,15 @@ if(($textbox222.Text -eq 'Administrador' -Or $textbox222.Text -eq 'administrador
 $textbox1 = New-Object 'System.Windows.Forms.TextBox'
 $textbox3 = New-Object 'System.Windows.Forms.TextBox'
 $textbox2 = New-Object 'System.Windows.Forms.TextBox'
+$label4= New-Object 'system.Windows.Forms.Label'
+$textbox4=New-Object 'System.Windows.Forms.TextBox'
 $Button = New-Object 'System.Windows.Forms.Button'
 $dataGridView = New-Object 'System.Windows.Forms.DataGridView'
 $label2 = New-Object 'system.Windows.Forms.Label'
 $label3 = New-Object 'system.Windows.Forms.Label'
 $Groupbox1 = New-Object 'system.Windows.Forms.Groupbox'
 $Groupbox2 = New-Object 'system.Windows.Forms.Groupbox'
+$Groupbox3 = New-Object 'system.Windows.Forms.Groupbox'
 $comboBox2 = New-Object 'system.Windows.Forms.ComboBox'
 $comboBox3 = New-Object 'system.Windows.Forms.ComboBox'
 $comboBox4=New-Object 'system.Windows.Forms.ComboBox'
@@ -91,7 +95,7 @@ $Button2 = New-Object 'System.Windows.Forms.Button'
 $Button3 = New-Object 'System.Windows.Forms.Button'
 $Button4 = New-Object 'System.Windows.Forms.Button'
 $Button5 = New-Object 'System.Windows.Forms.Button'
-
+$Button7 = New-Object 'System.Windows.Forms.Button'
 #######El button 6 será de prueba #############
 $Button6 = New-Object 'System.Windows.Forms.Button'
 $textbox11 = New-Object 'System.Windows.Forms.TextBox'
@@ -432,6 +436,27 @@ function routesForm{
             $Form2.Size = New-Object System.Drawing.Size(1000,520)  
             $Button110.location                = New-Object System.Drawing.Point(747,380)
             $Form2.Controls.Add($Button110)
+            $TextBox100.Text=" ";
+            $TextBox104.Text=" ";
+            $ComboBox110.Text=" ";
+            $TextBox103.Text=" ";
+
+            $TextBox129.Text=" ";
+            $TextBox131.Text=" ";
+            $ComboBox180.Text=" ";
+            $TextBox132.Text=" ";
+
+
+
+
+
+
+
+
+
+
+
+
            }
            else{
 if($comboBox5.SelectedItem -eq '4'){
@@ -485,6 +510,35 @@ if($comboBox5.SelectedItem -eq '4'){
     $Form2.Size = New-Object System.Drawing.Size(1000,640)  
     $Button110.location                = New-Object System.Drawing.Point(747,480)
     $Form2.Controls.Add($Button110)
+
+
+    $TextBox100.Text=" ";
+            $TextBox104.Text=" ";
+            $ComboBox110.Text=" ";
+            $TextBox103.Text=" ";
+
+            $TextBox129.Text=" ";
+            $TextBox131.Text=" ";
+            $ComboBox180.Text=" ";
+            $TextBox132.Text=" ";
+
+
+            $TextBox125.Text=" ";
+            $TextBox127.Text=" ";
+            $ComboBox170.Text=" ";
+            $TextBox128.Text=" ";
+
+
+
+
+
+
+
+
+
+
+
+
     
 }
 else{
@@ -560,6 +614,40 @@ $Form2.Controls.Add($Label130)
         $Form2.Size = New-Object System.Drawing.Size(1000,750)  
         $Button110.location                = New-Object System.Drawing.Point(747,580)
         $Form2.Controls.Add($Button110)
+
+        $TextBox100.Text=" ";
+        $TextBox104.Text=" ";
+        $ComboBox110.Text=" ";
+        $TextBox103.Text=" ";
+
+        $TextBox129.Text=" ";
+        $TextBox131.Text=" ";
+        $ComboBox180.Text=" ";
+        $TextBox132.Text=" ";
+
+
+        $TextBox125.Text=" ";
+        $TextBox127.Text=" ";
+        $ComboBox170.Text=" ";
+        $TextBox128.Text=" ";
+
+
+        $TextBox121.Text=" ";
+        $TextBox123.Text=" ";
+        $ComboBox160.Text=" ";
+        $TextBox124.Text=" ";
+
+
+
+
+
+
+
+
+
+
+
+
     }
     else{
         if($comboBox5.SelectedItem -eq '6'){
@@ -635,24 +723,52 @@ $Form2.Controls.Add($TextBox116)
 $Form2.Controls.Add($Label124)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             
             $Form2.Size = New-Object System.Drawing.Size(1000,750)  
             $Button110.location                = New-Object System.Drawing.Point(747,600)
             $Form2.Controls.Add($Button110)
+
+
+            $TextBox100.Text=" ";
+            $TextBox104.Text=" ";
+            $ComboBox110.Text=" ";
+            $TextBox103.Text=" ";
+    
+            $TextBox129.Text=" ";
+            $TextBox131.Text=" ";
+            $ComboBox180.Text=" ";
+            $TextBox132.Text=" ";
+    
+    
+            $TextBox125.Text=" ";
+            $TextBox127.Text=" ";
+            $ComboBox170.Text=" ";
+            $TextBox128.Text=" ";
+    
+    
+            $TextBox121.Text=" ";
+            $TextBox123.Text=" ";
+            $ComboBox160.Text=" ";
+            $TextBox124.Text=" ";
+
+
+            $TextBox117.Text=" ";
+            $TextBox119.Text=" ";
+            $ComboBox150.Text=" ";
+            $TextBox120.Text=" ";
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
         else{
             if($comboBox5.SelectedItem -eq '7'){
@@ -749,6 +865,51 @@ $Form2.Controls.Add($Label118)
                 $Form2.Size = New-Object System.Drawing.Size(1000,750)  
                 $Button110.location                = New-Object System.Drawing.Point(747,600)
                 $Form2.Controls.Add($Button110)
+
+                $TextBox100.Text=" ";
+                $TextBox104.Text=" ";
+                $ComboBox110.Text=" ";
+                $TextBox103.Text=" ";
+        
+                $TextBox129.Text=" ";
+                $TextBox131.Text=" ";
+                $ComboBox180.Text=" ";
+                $TextBox132.Text=" ";
+        
+        
+                $TextBox125.Text=" ";
+                $TextBox127.Text=" ";
+                $ComboBox170.Text=" ";
+                $TextBox128.Text=" ";
+        
+        
+                $TextBox121.Text=" ";
+                $TextBox123.Text=" ";
+                $ComboBox160.Text=" ";
+                $TextBox124.Text=" ";
+    
+    
+                $TextBox117.Text=" ";
+                $TextBox119.Text=" ";
+                $ComboBox150.Text=" ";
+                $TextBox120.Text=" ";
+
+
+                $TextBox113.Text=" ";
+                $TextBox115.Text=" ";
+                $ComboBox140.Text=" ";
+                $TextBox116.Text=" ";
+
+
+
+
+
+
+
+
+
+
+
             }
             else{
 
@@ -854,6 +1015,54 @@ $Form2.Controls.Add($Label118)
                 $Form2.Size = New-Object System.Drawing.Size(1100,750)  
                 $Button110.location                = New-Object System.Drawing.Point(850,600)
                 $Form2.Controls.Add($Button110)
+
+                $TextBox100.Text=" ";
+                $TextBox104.Text=" ";
+                $ComboBox110.Text=" ";
+                $TextBox103.Text=" ";
+        
+                $TextBox129.Text=" ";
+                $TextBox131.Text=" ";
+                $ComboBox180.Text=" ";
+                $TextBox132.Text=" ";
+        
+        
+                $TextBox125.Text=" ";
+                $TextBox127.Text=" ";
+                $ComboBox170.Text=" ";
+                $TextBox128.Text=" ";
+        
+        
+                $TextBox121.Text=" ";
+                $TextBox123.Text=" ";
+                $ComboBox160.Text=" ";
+                $TextBox124.Text=" ";
+    
+    
+                $TextBox117.Text=" ";
+                $TextBox119.Text=" ";
+                $ComboBox150.Text=" ";
+                $TextBox120.Text=" ";
+
+
+                $TextBox113.Text=" ";
+                $TextBox115.Text=" ";
+                $ComboBox140.Text=" ";
+                $TextBox116.Text=" ";
+
+                $TextBox190.Text=" ";
+                $TextBox111.Text=" ";
+                $ComboBox130.Text=" ";
+                $TextBox112.Text=" ";
+
+                $TextBox170.Text=" ";
+                $TextBox150.Text=" ";
+                $ComboBox120.Text=" ";
+                $TextBox180.Text=" ";
+
+
+
+
             }
         }
     }
@@ -862,41 +1071,11 @@ $Form2.Controls.Add($Label118)
 }
 
 
-
-
-
-
-
-
-
            }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
  
        }
-
-
-
-
-
-
-
-
-
-
-
 
 
        
@@ -3646,19 +3825,247 @@ elseif ($comboBox5.SelectedItem -eq 3) {
 
 }
 elseif ($comboBox5.SelectedItem -eq 4) {
+    $Username = "Administrador"
+    $Password = "R3c542016C4ll"
+
+    $Computer=$textbox1.Text; 
+    $ip_N1=$TextBox100.Text;
+    $mask_N1=$ComboBox110.SelectedItem.ToString();
+    $gateway_N1=$TextBox104.Text;
+    $ip_N2=$TextBox129.Text;
+    $mask_N2=$ComboBox180.SelectedItem.ToString();
+    $gateway_N2=$TextBox132.Text;
+    $ip_N3=$TextBox125.Text;
+    $mask_N3=$ComboBox170.SelectedItem.ToString();
+    $gateway_N3=$TextBox128.Text;
+    $ip_N4=$TextBox121.Text;
+    $mask_N4=$ComboBox160.SelectedItem.ToString();
+    $gateway_N4=$TextBox124.Text;
+   
+      $agregarRutas={
+         
+            Param($Computer,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4)    
+
+       
+            route add -p $ip_N1/$mask_N1 $gateway_N1
+            route add -p $ip_N2/$mask_N2 $gateway_N2
+            route add -p $ip_N3/$mask_N3 $gateway_N3
+            route add -p $ip_N4/$mask_N4 $gateway_N4
+    
+
+    }  
+    $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+    $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+        $Session = New-PSSession -ComputerName $Computer -Credential $Cred
+     
+        
+         #Invocando comandos
+         $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($Computer,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4) -AsJob 
+         $Null = Wait-Job -Job $Job
+        Remove-PSSession -Session $Session
+
     
 }
 elseif ($comboBox5.SelectedItem -eq 5) {
+    $Username = "Administrador"
+    $Password = "R3c542016C4ll"
+
+    $Computer=$textbox1.Text; 
+    $ip_N1=$TextBox100.Text;
+    $mask_N1=$ComboBox110.SelectedItem.ToString();
+    $gateway_N1=$TextBox104.Text;
+    $ip_N2=$TextBox129.Text;
+    $mask_N2=$ComboBox180.SelectedItem.ToString();
+    $gateway_N2=$TextBox132.Text;
+    $ip_N3=$TextBox125.Text;
+    $mask_N3=$ComboBox170.SelectedItem.ToString();
+    $gateway_N3=$TextBox128.Text;
+    $ip_N4=$TextBox121.Text;
+    $mask_N4=$ComboBox160.SelectedItem.ToString();
+    $gateway_N4=$TextBox124.Text;
+    $ip_N5=$TextBox117.Text;
+    $mask_N5=$ComboBox150.SelectedItem.ToString();
+    $gateway_N5=$TextBox120.Text;
+
+
+
+   
+      $agregarRutas={
+         
+            Param($Computer,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4,$ip_N5,$mask_N5,$gateway_N5)    
+
+       
+            route add -p $ip_N1/$mask_N1 $gateway_N1
+            route add -p $ip_N2/$mask_N2 $gateway_N2
+            route add -p $ip_N3/$mask_N3 $gateway_N3
+            route add -p $ip_N4/$mask_N4 $gateway_N4
+            route add -p $ip_N5/$mask_N5 $gateway_N5
     
+
+    }  
+    $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+    $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+        $Session = New-PSSession -ComputerName $Computer -Credential $Cred
+     
+        
+         #Invocando comandos
+         $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($Computer,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4,$ip_N5,$mask_N5,$gateway_N5) -AsJob 
+         $Null = Wait-Job -Job $Job
+        Remove-PSSession -Session $Session
 }
 elseif ($comboBox5.SelectedItem -eq 6) {
-    
+    $Username = "Administrador"
+    $Password = "R3c542016C4ll"
+
+    $Computer=$textbox1.Text; 
+    $ip_N1=$TextBox100.Text;
+    $mask_N1=$ComboBox110.SelectedItem.ToString();
+    $gateway_N1=$TextBox104.Text;
+    $ip_N2=$TextBox129.Text;
+    $mask_N2=$ComboBox180.SelectedItem.ToString();
+    $gateway_N2=$TextBox132.Text;
+    $ip_N3=$TextBox125.Text;
+    $mask_N3=$ComboBox170.SelectedItem.ToString();
+    $gateway_N3=$TextBox128.Text;
+    $ip_N4=$TextBox121.Text;
+    $mask_N4=$ComboBox160.SelectedItem.ToString();
+    $gateway_N4=$TextBox124.Text;
+    $ip_N5=$TextBox117.Text;
+    $mask_N5=$ComboBox150.SelectedItem.ToString();
+    $gateway_N5=$TextBox120.Text;
+    $ip_N6=$TextBox113.Text;
+    $mask_N6=$ComboBox140.SelectedItem.ToString();
+    $gateway_N6=$TextBox116.Text;
+
+
+   
+      $agregarRutas={
+         
+            Param($Computer,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4,$ip_N5,$mask_N5,$gateway_N5,$ip_N6,$mask_N6,$gateway_N6)    
+
+       
+            route add -p $ip_N1/$mask_N1 $gateway_N1
+            route add -p $ip_N2/$mask_N2 $gateway_N2
+            route add -p $ip_N3/$mask_N3 $gateway_N3
+            route add -p $ip_N4/$mask_N4 $gateway_N4
+            route add -p $ip_N5/$mask_N5 $gateway_N5
+            route add -p $ip_N6/$mask_N6 $gateway_N6
+
+    }  
+    $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+    $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+        $Session = New-PSSession -ComputerName $Computer -Credential $Cred
+     
+        
+         #Invocando comandos
+         $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($Computer,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4,$ip_N5,$mask_N5,$gateway_N5,$ip_N6,$mask_N6,$gateway_N6) -AsJob 
+         $Null = Wait-Job -Job $Job
+        Remove-PSSession -Session $Session
 }
 elseif ($comboBox5.SelectedItem -eq 7) {
-    
+    $Username = "Administrador"
+    $Password = "R3c542016C4ll"
+
+    $Computer=$textbox1.Text; 
+    $ip_N1=$TextBox100.Text;
+    $mask_N1=$ComboBox110.SelectedItem.ToString();
+    $gateway_N1=$TextBox104.Text;
+    $ip_N2=$TextBox129.Text;
+    $mask_N2=$ComboBox180.SelectedItem.ToString();
+    $gateway_N2=$TextBox132.Text;
+    $ip_N3=$TextBox125.Text;
+    $mask_N3=$ComboBox170.SelectedItem.ToString();
+    $gateway_N3=$TextBox128.Text;
+    $ip_N4=$TextBox121.Text;
+    $mask_N4=$ComboBox160.SelectedItem.ToString();
+    $gateway_N4=$TextBox124.Text;
+    $ip_N5=$TextBox117.Text;
+    $mask_N5=$ComboBox150.SelectedItem.ToString();
+    $gateway_N5=$TextBox120.Text;
+    $ip_N6=$TextBox113.Text;
+    $mask_N6=$ComboBox140.SelectedItem.ToString();
+    $gateway_N6=$TextBox116.Text;
+    $ip_N7=$TextBox190.Text;
+    $mask_N7=$ComboBox130.SelectedItem.ToString();
+    $gateway_N7=$TextBox118.Text;
+
+   
+      $agregarRutas={
+         
+            Param($Computer,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4,$ip_N5,$mask_N5,$gateway_N5,$ip_N6,$mask_N6,$gateway_N6,$ip_N7,$mask_N7,$gateway_N7)    
+
+       
+            route add -p $ip_N1/$mask_N1 $gateway_N1
+            route add -p $ip_N2/$mask_N2 $gateway_N2
+            route add -p $ip_N3/$mask_N3 $gateway_N3
+            route add -p $ip_N4/$mask_N4 $gateway_N4
+            route add -p $ip_N5/$mask_N5 $gateway_N5
+            route add -p $ip_N6/$mask_N6 $gateway_N6
+            route add -p $ip_N7/$mask_N7 $gateway_N7
+    }  
+    $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+    $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+        $Session = New-PSSession -ComputerName $Computer -Credential $Cred
+     
+        
+         #Invocando comandos
+         $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($Computer,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4,$ip_N5,$mask_N5,$gateway_N5,$ip_N6,$mask_N6,$gateway_N6,$ip_N7,$mask_N7,$gateway_N7) -AsJob 
+         $Null = Wait-Job -Job $Job
+        Remove-PSSession -Session $Session
 }
 else{
+    $Username = "Administrador"
+    $Password = "R3c542016C4ll"
 
+    $Computer=$textbox1.Text; 
+    $ip_N1=$TextBox100.Text;
+    $mask_N1=$ComboBox110.SelectedItem.ToString();
+    $gateway_N1=$TextBox104.Text;
+    $ip_N2=$TextBox129.Text;
+    $mask_N2=$ComboBox180.SelectedItem.ToString();
+    $gateway_N2=$TextBox132.Text;
+    $ip_N3=$TextBox125.Text;
+    $mask_N3=$ComboBox170.SelectedItem.ToString();
+    $gateway_N3=$TextBox128.Text;
+    $ip_N4=$TextBox121.Text;
+    $mask_N4=$ComboBox160.SelectedItem.ToString();
+    $gateway_N4=$TextBox124.Text;
+    $ip_N5=$TextBox117.Text;
+    $mask_N5=$ComboBox150.SelectedItem.ToString();
+    $gateway_N5=$TextBox120.Text;
+    $ip_N6=$TextBox113.Text;
+    $mask_N6=$ComboBox140.SelectedItem.ToString();
+    $gateway_N6=$TextBox116.Text;
+    $ip_N7=$TextBox190.Text;
+    $mask_N7=$ComboBox130.SelectedItem.ToString();
+    $gateway_N7=$TextBox118.Text;
+    $ip_N8=$TextBox150.Text;
+    $mask_N8=$ComboBox120.SelectedItem.ToString();
+    $gateway_N8=$TextBox180.Text;
+   
+      $agregarRutas={
+         
+            Param($Computer,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4,$ip_N5,$mask_N5,$gateway_N5,$ip_N6,$mask_N6,$gateway_N6,$ip_N7,$mask_N7,$gateway_N7,$ip_N8,$mask_N8,$gateway_N8)    
+
+       
+            route add -p $ip_N1/$mask_N1 $gateway_N1
+            route add -p $ip_N2/$mask_N2 $gateway_N2
+            route add -p $ip_N3/$mask_N3 $gateway_N3
+            route add -p $ip_N4/$mask_N4 $gateway_N4
+            route add -p $ip_N5/$mask_N5 $gateway_N5
+            route add -p $ip_N6/$mask_N6 $gateway_N6
+            route add -p $ip_N7/$mask_N7 $gateway_N7
+            route add -p $ip_N8/$mask_N8 $gateway_N8
+    }  
+    $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+    $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+        $Session = New-PSSession -ComputerName $Computer -Credential $Cred
+     
+        
+         #Invocando comandos
+         $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($Computer,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4,$ip_N5,$mask_N5,$gateway_N5,$ip_N6,$mask_N6,$gateway_N6,$ip_N7,$mask_N7,$gateway_N7,$ip_N8,$mask_N8,$gateway_N8) -AsJob 
+         $Null = Wait-Job -Job $Job
+        Remove-PSSession -Session $Session
 }
      
 
@@ -3785,11 +4192,12 @@ function selection2{
         {
        
             $Groupbox2.Controls.Add($comboBox5)
-           
+            $Groupbox2.Controls.Remove($Button7)
     
             $comboBox5.add_SelectedIndexChanged({
                
-                $Groupbox2.Controls.Add($Button5)	
+                $Groupbox2.Controls.Add($Button5)
+                $Groupbox2.Controls.Remove($Button7)
             
             })
  
@@ -3800,6 +4208,7 @@ function selection2{
             $Groupbox2.Controls.Remove($comboBox5)	
             $Groupbox2.Controls.Remove($Button5)	
             $comboBox5.Text="";
+            $Groupbox2.Controls.Add($Button7)	
         }
       
     }
@@ -3868,10 +4277,13 @@ $comboBox1.add_SelectedIndexChanged({
        $Form.Controls.Add($Button6)
         $Form.Controls.Add($Groupbox1)
         $Form.Controls.Add($Groupbox2)
+        $Form.Controls.Add($Groupbox3)
         $Groupbox1.Controls.Add($comboBox2)
         $Groupbox2.Controls.Add($comboBox4)
         $Form.Controls.Remove($label2)
         $Form.Controls.Remove($label3)
+        $Groupbox3.Controls.Add($label4)
+        $Groupbox3.Controls.Add($textbox4)
  
 
 
@@ -3961,6 +4373,46 @@ $Groupbox2.text                  = "Rutas"
 $Groupbox2.location              = New-Object System.Drawing.Point(20,280)
 
 ######################################
+#####################################
+$Groupbox3.height                = 140
+$Groupbox3.width                 = 1000
+$Groupbox3.text                  = "Rutas"
+$Groupbox3.location              = New-Object System.Drawing.Point(20,450)
+
+####################################
+$label4.text                      = "GATEWAY"
+$label4.AutoSize                  = $true
+$label4.width                     = 40
+$label4.height                    = 30
+$label4.location                  = New-Object System.Drawing.Point(20,40)
+$label4.Font                      = 'Comic Sans MS,10'
+
+
+$textbox4.Font = 'Segoe UI, 10pt'
+$textbox4.Location = '250,40'
+$textbox4.Margin = '5, 5, 5, 5'
+#$textbox4.Multiline = $True
+$textbox4.Name = 'textbox5'
+$textbox4.Size = '200, 30'
+$textbox4.Enabled=$True
+$textbox4.Add_GotFocus({
+    if ($textbox4.Text -eq 'Ingrese el último dígito') {
+        $textbox4.Foreground = 'Black'
+        $textbox4.Text = ''
+    }
+
+})
+
+$textbox4.Add_LostFocus({
+    if ($textbox4.Text -eq '') {
+        $textbox4.Text = 'Ingrese el último dígito'
+        $textbox4.Foreground = 'Darkgray'
+    }
+})
+
+
+
+#############################################
 
 $label2.text                      = "IP INICIAL"
 $label2.AutoSize                  = $true
@@ -4035,6 +4487,12 @@ $textbox3.Font = 'Segoe UI, 12pt'
     $Button5.BackColor = [System.Drawing.Color]::LightBlue
     $Button5.Add_Click({routesForm}) 
     
+    $Button7.Location = New-Object System.Drawing.Size(520,40) 
+    $Button7.Size = New-Object System.Drawing.Size(150,50) 
+    $Button7.Text = "ELIMINAR ROUTES" 
+    $Button7.UseVisualStyleBackColor = $True
+    $Button7.BackColor = [System.Drawing.Color]::LightBlue
+    $Button7.Add_Click({routesForm}) 
     
     
     
