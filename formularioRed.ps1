@@ -96,6 +96,7 @@ $Button3 = New-Object 'System.Windows.Forms.Button'
 $Button4 = New-Object 'System.Windows.Forms.Button'
 $Button5 = New-Object 'System.Windows.Forms.Button'
 $Button7 = New-Object 'System.Windows.Forms.Button'
+$Button8 = New-Object 'System.Windows.Forms.Button'
 #######El button 6 será de prueba #############
 $Button6 = New-Object 'System.Windows.Forms.Button'
 $textbox11 = New-Object 'System.Windows.Forms.TextBox'
@@ -330,6 +331,66 @@ $totalRegistros=$acumulador+$acumulador2+$acumulador3+$acumulador4+$acumulador5+
 }
 
 #Creación de formulario Nuevas Rutas
+function changeGateway{
+  $Username = "Administrador"
+  $Password = "R3c542016C4ll"
+
+  $Computer=$textbox1.Text; 
+  $texto4=$textbox4.Text.Trim();
+
+    $cambio={
+       
+          Param($Computer,$texto4)    
+
+
+
+Write-Host $texto4
+$direccionIp=$Computer.split(".");
+$nuevaip=$direccionIp[0]+"."+$direccionIp[1]+"."+$direccionIp[2]+"."+$texto4
+
+
+
+    $oreo= get-wmiobject win32_networkadapter | where-object {$_.netconnectionstatus -eq 2 -and $_.ServiceName -eq 'rt640x64' }
+            
+          $clima=get-wmiobject win32_networkadapterconfiguration|where-object {$_.Index -eq $oreo.DeviceID};
+           $clima.SetGateways($nuevaip);
+ 
+      
+  
+
+  }  
+  $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+  $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+      $Session = New-PSSession -ComputerName $Computer -Credential $Cred
+   
+      
+       #Invocando comandos
+       $Job = Invoke-Command -Session $Session  -ScriptBlock $cambio -ArgumentList ($Computer,$texto4) -AsJob 
+       $Null = Wait-Job -Job $Job
+      Remove-PSSession -Session $Session
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function routesForm{
     [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
     [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")  
@@ -4284,6 +4345,7 @@ $comboBox1.add_SelectedIndexChanged({
         $Form.Controls.Remove($label3)
         $Groupbox3.Controls.Add($label4)
         $Groupbox3.Controls.Add($textbox4)
+        $Groupbox3.Controls.Add($Button8)
  
 
 
@@ -4301,6 +4363,10 @@ $comboBox1.add_SelectedIndexChanged({
             $Form.Controls.Add($label3) 
             $Form.Controls.Add($textbox2)
             $Form.Controls.Add($textbox3)
+            $Form.Controls.Remove($Groupbox1)
+            $Form.Controls.Remove($Groupbox2)
+            $Form.Controls.Remove($Groupbox3)
+
          
         }
         else{
@@ -4317,6 +4383,9 @@ $comboBox1.add_SelectedIndexChanged({
                 $Form.Controls.Remove($Button6)
                 $Form.Controls.Remove($Groupbox1)
                 $Form.Controls.Remove($Groupbox2)
+                $Form.Controls.Remove($Groupbox1)
+                $Form.Controls.Remove($Groupbox2)
+                $Form.Controls.Remove($Groupbox3)
               
                 
             }
@@ -4386,10 +4455,28 @@ $label4.width                     = 40
 $label4.height                    = 30
 $label4.location                  = New-Object System.Drawing.Point(20,40)
 $label4.Font                      = 'Comic Sans MS,10'
+######################################
+$Button8.Location = New-Object System.Drawing.Size(400,40) 
+    $Button8.Size = New-Object System.Drawing.Size(150,50) 
+    $Button8.Text = "CAMBIAR GATEWAY" 
+    $Button8.UseVisualStyleBackColor = $True
+    $Button8.BackColor = [System.Drawing.Color]::LightBlue
+    $Button8.Add_Click({changeGateway}) 
 
 
-$textbox4.Font = 'Segoe UI, 10pt'
-$textbox4.Location = '250,40'
+
+
+
+
+
+
+
+
+
+
+
+$textbox4.Font = 'Segoe UI, 8pt'
+$textbox4.Location = '180,40'
 $textbox4.Margin = '5, 5, 5, 5'
 #$textbox4.Multiline = $True
 $textbox4.Name = 'textbox5'
