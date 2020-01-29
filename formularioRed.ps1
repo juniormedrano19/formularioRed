@@ -3297,9 +3297,15 @@ function numerosMask{
 #Creación de un nuevo formulario
 function rutasPredeterminadas{
 
+  $Computer1=$textbox2.Text.Trim(); 
+      $Computer2=$textbox3.Text.Trim(); 
+      $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
 
+$validacion2 = $Computer2 -match $regip
 
-  if($comboBox1.SelectedItem -eq 'RANGO DE IPS')
+$ip1=$Computer1.Split(".");
+$ip2=$Computer2.Split(".");
+  if($comboBox1.SelectedItem -eq 'RANGO DE IPS' -and ($validacion2 -eq $true) -and ($Computer2.Length -gt 0))
   {
   
   
@@ -3375,8 +3381,7 @@ function rutasPredeterminadas{
       $textbox11.TabIndex = 1
       $textbox11.Enabled=$false
     $textbox11.add_TextChanged($textbox1_TextChanged)
-      $Computer1=$textbox2.Text.Trim(); 
-      $Computer2=$textbox3.Text.Trim(); 
+    
   
       $Form1.Controls.Add($textbox11)
       $peru =  $Computer1
@@ -4144,7 +4149,13 @@ function rutasPredeterminadas{
       [void] $Form1.ShowDialog();
   
   }
-
+else{
+  Add-Type -AssemblyName System.Windows.Forms
+$errorMsg = "No puede quedar en blanco la dirección ip.Dirección errónea
+Vuelva a intentarlo nuevamente."
+    $caption = "Error de contenido"
+    [System.Windows.Forms.MessageBox]::Show($errorMsg, $caption)
+}
 }
 function deshabilitarRutas{
 
