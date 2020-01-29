@@ -253,11 +253,14 @@ function Ubicacion{
  $acumulador4=0;
  $acumulador5=0;
  $acumulador6=0;
+ $acumulador7=0;
  
 
 foreach($prueba1 in $prueba2){
-   
-    $hola=$prueba1.Trim();
+  $hola=$prueba1.Trim();
+  $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+  $validacion1 = $hola -match $regip
+  
 $valor=$hola.split(".");
 $resultado=$valor[2]
 if($resultado -eq '60'){
@@ -289,6 +292,11 @@ else{
                                         $acumulador6++;
                                         
                                         } 
+                                        else{
+                                          if($validacion1 -eq $False){
+                                            $acumulador7++;
+                                          }
+                                        }
                                 }
                         }
                 }
@@ -321,8 +329,8 @@ $totalRegistros=$acumulador+$acumulador2+$acumulador3+$acumulador4+$acumulador5+
  $dataGridView.Rows.Add('Registros RED 63',$acumulador4)
  $dataGridView.Rows.Add('Registros RED 64',$acumulador5)
  $dataGridView.Rows.Add('Registros RED 65',$acumulador6)
- $dataGridView.Rows.Add('Registros INVALIDOS',$totalRegistros)
- $dataGridView.Rows.Add('TOTAL DE REGISTROS',$totalRegistros)
+ $dataGridView.Rows.Add('Registros INVALIDOS',$acumulador7)
+ $dataGridView.Rows.Add('TOTAL DE REGISTROS VALIDOS',$totalRegistros)
  $dataGridView.Columns[0].width='140'
  $dataGridView.Columns[1].width='50'
  $dataGridView.Columns[0].Name = "Número de Registros"
@@ -3291,425 +3299,851 @@ function rutasPredeterminadas{
 
 
 
-    [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
-    [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")  
-    ############### CREACION DEL ELEMENTO ############
-    $Form1 = New-Object System.Windows.Forms.Form 
-    
-   
-    $Button10 = New-Object 'System.Windows.Forms.Button'
-    $textbox19 = New-Object 'System.Windows.Forms.TextBox'
-    $textbox20 = New-Object 'System.Windows.Forms.TextBox'
-    $Button11 = New-Object 'System.Windows.Forms.Button'
-    $label11  = New-Object 'system.Windows.Forms.Label'
-    $label12 = New-Object 'system.Windows.Forms.Label'
-    $label13= New-Object 'system.Windows.Forms.Label'
-    $label14= New-Object 'system.Windows.Forms.Label'
-    $label15= New-Object 'system.Windows.Forms.Label'
-
-#Etiqueta de Ruta de Ubicación
-
-
-$label11.text                      = "Servidor Proxy"
-$label11.AutoSize                  = $true
-$label11.width                     = 40
-$label11.height                    = 30
-$label11.location                  = New-Object System.Drawing.Point(55,25)
-$label11.Font                      = 'Comic Sans MS,10'
-$Form1.Controls.Add($label11) 
-
-
-$label12.text                      = "Excepción 1:"
-$label12.AutoSize                  = $true
-$label12.width                     = 40
-$label12.height                    = 30
-$label12.location                  = New-Object System.Drawing.Point(55,80)
-$label12.Font                      = 'Comic Sans MS,10'
-$Form1.Controls.Add($label12) 
-
-
-$label13.text                      = "Excepción 2:"
-$label13.AutoSize                  = $true
-$label13.width                     = 40
-$label13.height                    = 30
-$label13.location                  = New-Object System.Drawing.Point(55,130)
-$label13.Font                      = 'Comic Sans MS,10'
-$Form1.Controls.Add($label13) 
-
-$label14.text                      = "Excepción 3:"
-$label14.AutoSize                  = $true
-$label14.width                     = 40
-$label14.height                    = 30
-$label14.location                  = New-Object System.Drawing.Point(55,180)
-$label14.Font                      = 'Comic Sans MS,10'
-$Form1.Controls.Add($label14) 
-
-$label15.text                      = "Excepción 4:"
-$label15.AutoSize                  = $true
-$label15.width                     = 40
-$label15.height                    = 30
-$label15.location                  = New-Object System.Drawing.Point(55,230)
-$label15.Font                      = 'Comic Sans MS,10'
-$Form1.Controls.Add($label15) 
-
-
-    ############TextBox Ruta de Ubicación
-	$textbox11.Font = 'Comic Sans MS,10'
-	$textbox11.Location = '200,25'
-	$textbox11.Margin = '5, 5, 5, 5'
-	$textbox11.Multiline = $True
-	$textbox11.Name = 'textbox5'
-	$textbox11.Size = '300, 30'
-    $textbox11.TabIndex = 1
-    $textbox11.Enabled=$false
-	$textbox11.add_TextChanged($textbox1_TextChanged)
-
-
-    $Form1.Controls.Add($textbox11)
-    $peru = $textbox1.Text
-    $arreglo = $peru.Split(".");
-
-if($arreglo[2] -eq '60'){
-        $array = $arreglo[0] + "." + $arreglo[1] + "." + $arreglo[2] + "." + "102"+":3128"
-        $textbox11.Text = $array
-}
-elseif ($arreglo[2] -eq '61' -or $arreglo[2] -eq '62' -or $arreglo[2] -eq '63' -or $arreglo[2] -eq '64' -or $arreglo[2] -eq '65' ) {
-    $array = $arreglo[0] + "." + $arreglo[1] + "." + $arreglo[2] + "." + "7"+":3128"
-    $textbox11.Text = $array  
-}else{
-
-    $textbox11.Text = " "
-}
-
-
-    $Form1.Size = New-Object System.Drawing.Size(1100,750)  
-    $Form1.StartPosition = "CenterScreen" 
-    $Form1.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::Sizable
-    $Form1.MaximizeBox = $false
-    $Form1.Text = "FORMULARIO DE RED" 
-    
-
-    $textbox12.Font = 'Comic Sans MS,10'
-    $textbox12.Location = '200,80'
-    $textbox12.Margin = '5, 5, 5, 5'
-    $textbox12.Multiline = $True
-    $textbox12.Name = 'textbox5'
-    $textbox12.Size = '300, 30'
-    $textbox12.TabIndex = 1
-    $textbox12.Enabled = $false
-    $textbox12.add_TextChanged($textbox1_TextChanged)
-    $Form1.Controls.Add($textbox12)
-
-
-    $textbox13.Font = 'Comic Sans MS,10'
-    $textbox13.Location = '200,130'
-    $textbox13.Margin = '5, 5, 5, 5'
-    $textbox13.Multiline = $True
-    $textbox13.Name = 'textbox5'
-    $textbox13.Size = '300, 30'
-    $textbox13.TabIndex = 1
-    $textbox13.Enabled = $false
-    $textbox13.add_TextChanged($textbox1_TextChanged)
-    $Form1.Controls.Add($textbox13)
-
-    $textbox14.Font = 'Comic Sans MS,10'
-    $textbox14.Location = '200,180'
-    $textbox14.Margin = '5, 5, 5, 5'
-    $textbox14.Multiline = $True
-    $textbox14.Name = 'textbox5'
-    $textbox14.Size = '300, 30'
-    $textbox14.TabIndex = 1
-    $textbox14.Enabled = $false
-    $textbox14.add_TextChanged($textbox1_TextChanged)
-    $Form1.Controls.Add($textbox14)
-
-    $textbox15.Font = 'Comic Sans MS,10'
-    $textbox15.Location = '200,230'
-    $textbox15.Margin = '5, 5, 5, 5'
-    $textbox15.Multiline = $True
-    $textbox15.Name = 'textbox5'
-    $textbox15.Size = '300, 30'
-    $textbox15.TabIndex = 1
-    $textbox15.Enabled = $false
-    $textbox15.add_TextChanged($textbox1_TextChanged)
-    $Form1.Controls.Add($textbox15)
-if($arreglo[2] -eq '60' -or $arreglo[2] -eq '61' -or $arreglo[2] -eq '62' -or $arreglo[2] -eq '63' -or $arreglo[2] -eq '64' -or $arreglo[2] -eq '65' ){
-    $textbox12.Text = "192.9.100.*"
-    $textbox13.Text = "10.10.10.*"
-    $array = $arreglo[0] + "." + $arreglo[1] + "." + $arreglo[2] + "." + "*"
-    $textbox14.Text = $array
-    $textbox15.Text = "<local>"
-}
-else{
-    $textbox12.Text = " "
-    $textbox13.Text = " "
-
-    $textbox14.Text = " "
-    $textbox15.Text = " "
-}
-
+  if($comboBox1.SelectedItem -eq 'RANGO DE IPS')
+  {
   
-
   
-      $Form1.Controls.Add($Button10)
-    $Button10.Location = New-Object System.Drawing.Size(520,600) 
-    $Button10.Size = New-Object System.Drawing.Size(150, 50) 
-    $Button10.Text = "RUTAS PREDETERMINADAS" 
-    $Button10.UseVisualStyleBackColor = $True
-    $Button10.BackColor = [System.Drawing.Color]::LightBlue
-    $Button10.Add_Click( { 
-            $textbox11.Enabled = $true
-            $textbox12.Enabled = $true
-            $textbox13.Enabled = $true
-            $textbox14.Enabled = $true
-            $textbox15.Enabled = $true
-        if ($arreglo[2] -eq '64') {
-           
-            $textbox16.Enabled = $true
-            $textbox17.Enabled = $true
-             $textbox18.Enabled=$true}
-    
-     }) 
+  [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
+      [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")  
+      ############### CREACION DEL ELEMENTO ############
+      $Form1 = New-Object System.Windows.Forms.Form 
       
+     
+      $Button10 = New-Object 'System.Windows.Forms.Button'
+      $textbox19 = New-Object 'System.Windows.Forms.TextBox'
+      $textbox20 = New-Object 'System.Windows.Forms.TextBox'
+      $Button11 = New-Object 'System.Windows.Forms.Button'
+      $label11  = New-Object 'system.Windows.Forms.Label'
+      $label12 = New-Object 'system.Windows.Forms.Label'
+      $label13= New-Object 'system.Windows.Forms.Label'
+      $label14= New-Object 'system.Windows.Forms.Label'
+      $label15= New-Object 'system.Windows.Forms.Label'
+  
+  #Etiqueta de Ruta de Ubicación
+  
+  
+  $label11.text                      = "Servidor Proxy"
+  $label11.AutoSize                  = $true
+  $label11.width                     = 40
+  $label11.height                    = 30
+  $label11.location                  = New-Object System.Drawing.Point(55,25)
+  $label11.Font                      = 'Comic Sans MS,10'
+  $Form1.Controls.Add($label11) 
+  
+  
+  $label12.text                      = "Excepción 1:"
+  $label12.AutoSize                  = $true
+  $label12.width                     = 40
+  $label12.height                    = 30
+  $label12.location                  = New-Object System.Drawing.Point(55,80)
+  $label12.Font                      = 'Comic Sans MS,10'
+  $Form1.Controls.Add($label12) 
+  
+  
+  $label13.text                      = "Excepción 2:"
+  $label13.AutoSize                  = $true
+  $label13.width                     = 40
+  $label13.height                    = 30
+  $label13.location                  = New-Object System.Drawing.Point(55,130)
+  $label13.Font                      = 'Comic Sans MS,10'
+  $Form1.Controls.Add($label13) 
+  
+  $label14.text                      = "Excepción 3:"
+  $label14.AutoSize                  = $true
+  $label14.width                     = 40
+  $label14.height                    = 30
+  $label14.location                  = New-Object System.Drawing.Point(55,180)
+  $label14.Font                      = 'Comic Sans MS,10'
+  $Form1.Controls.Add($label14) 
+  
+  $label15.text                      = "Excepción 4:"
+  $label15.AutoSize                  = $true
+  $label15.width                     = 40
+  $label15.height                    = 30
+  $label15.location                  = New-Object System.Drawing.Point(55,230)
+  $label15.Font                      = 'Comic Sans MS,10'
+  $Form1.Controls.Add($label15) 
+  
+  
+      ############TextBox Ruta de Ubicación
+    $textbox11.Font = 'Comic Sans MS,10'
+    $textbox11.Location = '200,25'
+    $textbox11.Margin = '5, 5, 5, 5'
+    $textbox11.Multiline = $True
+    $textbox11.Name = 'textbox5'
+    $textbox11.Size = '300, 30'
+      $textbox11.TabIndex = 1
+      $textbox11.Enabled=$false
+    $textbox11.add_TextChanged($textbox1_TextChanged)
+      $Computer1=$textbox2.Text.Trim(); 
+      $Computer2=$textbox3.Text.Trim(); 
+  
+      $Form1.Controls.Add($textbox11)
+      $peru =  $Computer1
+      $arreglo = $peru.Split(".");
+  
+  if($arreglo[2] -eq '60'){
+          $array = $arreglo[0] + "." + $arreglo[1] + "." + $arreglo[2] + "." + "102"+":3128"
+          $textbox11.Text = $array
+  }
+  elseif ($arreglo[2] -eq '61' -or $arreglo[2] -eq '62' -or $arreglo[2] -eq '63' -or $arreglo[2] -eq '64' -or $arreglo[2] -eq '65' ) {
+      $array = $arreglo[0] + "." + $arreglo[1] + "." + $arreglo[2] + "." + "7"+":3128"
+      $textbox11.Text = $array  
+  }else{
+  
+      $textbox11.Text = " "
+  }
+  
+  
+      $Form1.Size = New-Object System.Drawing.Size(1100,750)  
+      $Form1.StartPosition = "CenterScreen" 
+      $Form1.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::Sizable
+      $Form1.MaximizeBox = $false
+      $Form1.Text = "FORMULARIO DE RED" 
+      
+  
+      $textbox12.Font = 'Comic Sans MS,10'
+      $textbox12.Location = '200,80'
+      $textbox12.Margin = '5, 5, 5, 5'
+      $textbox12.Multiline = $True
+      $textbox12.Name = 'textbox5'
+      $textbox12.Size = '300, 30'
+      $textbox12.TabIndex = 1
+      $textbox12.Enabled = $false
+      $textbox12.add_TextChanged($textbox1_TextChanged)
+      $Form1.Controls.Add($textbox12)
+  
+  
+      $textbox13.Font = 'Comic Sans MS,10'
+      $textbox13.Location = '200,130'
+      $textbox13.Margin = '5, 5, 5, 5'
+      $textbox13.Multiline = $True
+      $textbox13.Name = 'textbox5'
+      $textbox13.Size = '300, 30'
+      $textbox13.TabIndex = 1
+      $textbox13.Enabled = $false
+      $textbox13.add_TextChanged($textbox1_TextChanged)
+      $Form1.Controls.Add($textbox13)
+  
+      $textbox14.Font = 'Comic Sans MS,10'
+      $textbox14.Location = '200,180'
+      $textbox14.Margin = '5, 5, 5, 5'
+      $textbox14.Multiline = $True
+      $textbox14.Name = 'textbox5'
+      $textbox14.Size = '300, 30'
+      $textbox14.TabIndex = 1
+      $textbox14.Enabled = $false
+      $textbox14.add_TextChanged($textbox1_TextChanged)
+      $Form1.Controls.Add($textbox14)
+  
+      $textbox15.Font = 'Comic Sans MS,10'
+      $textbox15.Location = '200,230'
+      $textbox15.Margin = '5, 5, 5, 5'
+      $textbox15.Multiline = $True
+      $textbox15.Name = 'textbox5'
+      $textbox15.Size = '300, 30'
+      $textbox15.TabIndex = 1
+      $textbox15.Enabled = $false
+      $textbox15.add_TextChanged($textbox1_TextChanged)
+      $Form1.Controls.Add($textbox15)
+  if($arreglo[2] -eq '60' -or $arreglo[2] -eq '61' -or $arreglo[2] -eq '62' -or $arreglo[2] -eq '63' -or $arreglo[2] -eq '64' -or $arreglo[2] -eq '65' ){
+      $textbox12.Text = "192.9.100.*"
+      $textbox13.Text = "10.10.10.*"
+      $array = $arreglo[0] + "." + $arreglo[1] + "." + $arreglo[2] + "." + "*"
+      $textbox14.Text = $array
+      $textbox15.Text = "<local>"
+  }
+  else{
+      $textbox12.Text = " "
+      $textbox13.Text = " "
+  
+      $textbox14.Text = " "
+      $textbox15.Text = " "
+  }
+  
+    
+  
+    
+        $Form1.Controls.Add($Button10)
+      $Button10.Location = New-Object System.Drawing.Size(520,600) 
+      $Button10.Size = New-Object System.Drawing.Size(150, 50) 
+      $Button10.Text = "RUTAS PREDETERMINADAS" 
+      $Button10.UseVisualStyleBackColor = $True
+      $Button10.BackColor = [System.Drawing.Color]::LightBlue
+      $Button10.Add_Click( { 
+              $textbox11.Enabled = $true
+              $textbox12.Enabled = $true
+              $textbox13.Enabled = $true
+              $textbox14.Enabled = $true
+              $textbox15.Enabled = $true
+          if ($arreglo[2] -eq '64') {
+             
+              $textbox16.Enabled = $true
+              $textbox17.Enabled = $true
+               $textbox18.Enabled=$true}
+      
+       }) 
+        
+     
+       $textbox19.Font = 'Comic Sans MS,10'
+       $textbox19.Location = '600,50'
+       $textbox19.Margin = '5, 5, 5, 5'
+       $textbox19.Multiline = $True
+       $textbox19.Name = 'textbox5'
+       $textbox19.Size = '300, 30'
+       $textbox19.TabIndex = 1
+       $textbox19.Enabled = $false
+       $textbox19.add_TextChanged($textbox1_TextChanged)
+     $Form1.Controls.Add($textbox19)
+  
+     $textbox20.Font = 'Comic Sans MS,10'
+     $textbox20.Location = '600,150'
+     $textbox20.Margin = '5, 5, 5, 5'
+     $textbox20.Multiline = $True
+     $textbox20.Name = 'textbox5'
+     $textbox20.Size = '300, 30'
+     $textbox20.TabIndex = 1
+     $textbox20.Enabled = $false
+     $textbox20.add_TextChanged($textbox1_TextChanged)
+   $Form1.Controls.Add($textbox20)
    
-     $textbox19.Font = 'Comic Sans MS,10'
-     $textbox19.Location = '600,50'
-     $textbox19.Margin = '5, 5, 5, 5'
-     $textbox19.Multiline = $True
-     $textbox19.Name = 'textbox5'
-     $textbox19.Size = '300, 30'
-     $textbox19.TabIndex = 1
-     $textbox19.Enabled = $false
-     $textbox19.add_TextChanged($textbox1_TextChanged)
-   $Form1.Controls.Add($textbox19)
-
-   $textbox20.Font = 'Comic Sans MS,10'
-   $textbox20.Location = '600,150'
-   $textbox20.Margin = '5, 5, 5, 5'
-   $textbox20.Multiline = $True
-   $textbox20.Name = 'textbox5'
-   $textbox20.Size = '300, 30'
-   $textbox20.TabIndex = 1
-   $textbox20.Enabled = $false
-   $textbox20.add_TextChanged($textbox1_TextChanged)
- $Form1.Controls.Add($textbox20)
- 
-
-$matikard="192.9.62.64/26"
- $movistarChile="192.9.64.0/25"
- $financieroChileJuanJo="192.9.62.128/26"
- $financieroChilePatricia="192.9.62.192/26"
- $Oncosalud="192.9.64.128/26"
- $cajaArequipa="192.9.64.0/26"
- $carteraPropia="192.9.65.128/25"
- $mesaDigital="192.9.61.100/32"
- $bbva="192.9.64.192/26"
-
-[int]$arregloModificado=$arreglo[3]
-#Mascara25
-$movistarMask=($arregloModificado -ge 0 -and $arregloModificado -le 127)
-$carteraMask=($arregloModificado -ge 128 -and $arregloModificado -le 255)
-#Mascara26
-$matikardMask=($arregloModificado -ge 64 -and $arregloModificado -le 127)
-
-$financieroMaskJuanJo=($arregloModificado -ge 128 -and $arregloModificado -le 191)
-$financieroMaskPatricia=($arregloModificado -ge 192 -and $arregloModificado -le 255)
-$OncosaludMask=($arregloModificado -ge 128 -and $arregloModificado -le 191)
-$cajaArequipaMask=($arregloModificado -ge 0 -and $arregloModificado -le 63)
-$bbvaMask=($arregloModificado -ge 192 -and $arregloModificado -le 255)
-#
-
-
-
-
-if($arreglo[2] -eq '64'){
-
-    if( $movistarMask){
-
-        $label16                           = New-Object system.Windows.Forms.Label
-        $label17                           = New-Object system.Windows.Forms.Label
-        $label16.text                      = "Excepción 5:"
-        $label16.AutoSize                  = $true
-        $label16.width                     = 40
-        $label16.height                    = 30
-        $label16.location                  = New-Object System.Drawing.Point(55,270)
-        $label16.Font                      = 'Comic Sans MS,10'
-        $Form1.Controls.Add($label16) 
-
-       
-$label17.text                      = "Excepción 6:"
-$label17.AutoSize                  = $true
-$label17.width                     = 40
-$label17.height                    = 30
-$label17.location                  = New-Object System.Drawing.Point(55,310)
-$label17.Font                      = 'Comic Sans MS,10'
-$Form1.Controls.Add($label17) 
-
-$label18                           = New-Object system.Windows.Forms.Label
-$label18.text                      = "Excepción 7:"
-$label18.AutoSize                  = $true
-$label18.width                     = 40
-$label18.height                    = 30
-$label18.location                  = New-Object System.Drawing.Point(55,350)
-$label18.Font                      = 'Comic Sans MS,10'
-$Form1.Controls.Add($label18) 
-
-
-
-
-
-
-
-        $textbox16 = New-Object 'System.Windows.Forms.TextBox'
-        $textbox16.Font = 'Comic Sans MS,10'
-         $textbox16.Location = '200,270'
-         $textbox16.Margin = '5, 5, 5, 5'
-         $textbox16.Multiline = $True
-        $textbox16.Name = 'textbox5'
-      $textbox16.Size = '300, 30'
-        $textbox16.TabIndex = 1
-        $textbox16.Enabled = $false
-      $textbox16.add_TextChanged($textbox1_TextChanged)
-      $Form1.Controls.Add($textbox16)
-
-
-      $textbox17 = New-Object 'System.Windows.Forms.TextBox'
-      $textbox17.Font = 'Comic Sans MS,10'
-      $textbox17.Location = '200,310'
-      $textbox17.Margin = '5, 5, 5, 5'
-      $textbox17.Multiline = $True
-      $textbox17.Name = 'textbox5'
-      $textbox17.Size = '300, 30'
-      $textbox17.TabIndex = 1
-      $textbox17.Enabled = $false
-      $textbox17.add_TextChanged($textbox1_TextChanged)
-      $Form1.Controls.Add($textbox17)
-
-      $textbox18 = New-Object 'System.Windows.Forms.TextBox'
-        $textbox18.Font = 'Comic Sans MS,10'
-        $textbox18.Location = '200,350'
-        $textbox18.Margin = '5, 5, 5, 5'
-        $textbox18.Multiline = $True
-        $textbox18.Name = 'textbox5'
-        $textbox18.Size = '300, 30'
-        $textbox18.TabIndex = 1
-        $textbox18.Enabled = $false
-        $textbox18.add_TextChanged($textbox1_TextChanged)
-      $Form1.Controls.Add($textbox18)
-
-      $textbox16.Text = "192.9.104.*"
-      $textbox17.Text = "192.9.106.*"
-      $textbox18.Text = "*.telefonicachile.cl"
-        $textbox19.Text=$movistarChile
-        $textbox20.Text="Movistar Chile"
-    }
-    else{
-        if($OncosaludMask){
-            $Form1.Controls.Remove($textbox16)
-            $Form1.Controls.Remove($textbox17)
-            $Form1.Controls.Remove($textbox18)
-            $Form1.Controls.Remove($label16 )
-            $Form1.Controls.Remove($label17 )
-            $Form1.Controls.Remove($label18 )
-            $textbox19.Text=$Oncosalud
-            $textbox20.Text="Oncosalud Cobranzas"
-        }
-        else{
-            if($bbvaMask){
-                $Form1.Controls.Remove($textbox16)
-                $Form1.Controls.Remove($textbox17)
-                $Form1.Controls.Remove($textbox18)
-                $Form1.Controls.Remove($label16 )
-                $Form1.Controls.Remove($label17 )
-                $Form1.Controls.Remove($label18 )
-                $textbox19.Text=$bbva
-                $textbox20.Text="BBVA"
-            }
-            else{
-                $Form1.Controls.Remove($textbox16)
-                $Form1.Controls.Remove($textbox17)
-                $Form1.Controls.Remove($textbox18)
-                $Form1.Controls.Remove($label16 )
-                $Form1.Controls.Remove($label17 )
-                $Form1.Controls.Remove($label18 )
-                $textbox19.Text="Error"
-                $textbox20.Text="Error"
-                $textbox11.Text = " "
-                $textbox12.Text = " "
-                $textbox13.Text = " "
-                $textbox14.Text = " "
-                $textbox15.Text = " "
-            }
-        }
-    }
-}
-
-
-if($arreglo[2] -eq '62'){
-    if($financieroMaskJuanJo){
-        $textbox19.Text=$financieroChileJuanJo
-        $textbox20.Text="Financiero Chile-Juan José"
-    }
-    else{
-        if($financieroMaskPatricia){
-            $textbox19.Text=$financieroChilePatricia
-            $textbox20.Text="Financiero Chile-Patricia"
-        }
-        else{
-            if($cajaArequipaMask){
-                $textbox19.Text=$cajaArequipa
-                $textbox20.Text="Caja Arequipa"
-            }
-            else{
-                if($matikardMask){
-                    $textbox19.Text=$matikard
-                    $textbox20.Text="Matikard/Entel/Claro"
-                }else{
-                    $textbox19.Text="Error"
-                    $textbox20.Text="Error"
-                    $textbox11.Text = " "
-                    $textbox12.Text = " "
-                    $textbox13.Text = " "
-                    $textbox14.Text = " "
-                    $textbox15.Text = " "
-                }
-               
-            }
-        }
-    }
-}
-if($arreglo[2] -eq '65'){
-    if($carteraMask){
-        $textbox19.Text=$carteraPropia
-        $textbox20.Text="Cartera Propia"
-    }
-    else{
-        $textbox19.Text="Error"
-        $textbox20.Text="Error"
-        $textbox11.Text = " "
-        $textbox12.Text = " "
-        $textbox13.Text = " "
-        $textbox14.Text = " "
-        $textbox15.Text = " "
-    }
-}
-
-
-$Button11.Location = New-Object System.Drawing.Size(720,600) 
-$Button11.Size = New-Object System.Drawing.Size(150, 50) 
-$Button11.Text = "ACEPTAR" 
-$Button11.UseVisualStyleBackColor = $True
-$Button11.BackColor = [System.Drawing.Color]::LightBlue
-$Button11.DialogResult = [System.Windows.Forms.DialogResult]::OK
-$Form1.AcceptButton = $Button11
-$Form1.Controls.Add($Button11)
-
-
-
-
-    $Form1.Add_Shown({$Form.Activate()})
-    [void] $Form1.ShowDialog();
-
+  
+  $matikard="192.9.62.64/26"
+   $movistarChile="192.9.64.0/25"
+   $financieroChileJuanJo="192.9.62.128/26"
+   $financieroChilePatricia="192.9.62.192/26"
+   $Oncosalud="192.9.64.128/26"
+   $cajaArequipa="192.9.64.0/26"
+   $carteraPropia="192.9.65.128/25"
+   $mesaDigital="192.9.61.100/32"
+   $bbva="192.9.64.192/26"
+  
+  [int]$arregloModificado=$arreglo[3]
+  #Mascara25
+  $movistarMask=($arregloModificado -ge 0 -and $arregloModificado -le 127)
+  $carteraMask=($arregloModificado -ge 128 -and $arregloModificado -le 255)
+  #Mascara26
+  $matikardMask=($arregloModificado -ge 64 -and $arregloModificado -le 127)
+  
+  $financieroMaskJuanJo=($arregloModificado -ge 128 -and $arregloModificado -le 191)
+  $financieroMaskPatricia=($arregloModificado -ge 192 -and $arregloModificado -le 255)
+  $OncosaludMask=($arregloModificado -ge 128 -and $arregloModificado -le 191)
+  $cajaArequipaMask=($arregloModificado -ge 0 -and $arregloModificado -le 63)
+  $bbvaMask=($arregloModificado -ge 192 -and $arregloModificado -le 255)
+  #
+  
+  
+  
+  
+  if($arreglo[2] -eq '64'){
+  
+      if( $movistarMask){
+  
+          $label16                           = New-Object system.Windows.Forms.Label
+          $label17                           = New-Object system.Windows.Forms.Label
+          $label16.text                      = "Excepción 5:"
+          $label16.AutoSize                  = $true
+          $label16.width                     = 40
+          $label16.height                    = 30
+          $label16.location                  = New-Object System.Drawing.Point(55,270)
+          $label16.Font                      = 'Comic Sans MS,10'
+          $Form1.Controls.Add($label16) 
+  
+         
+  $label17.text                      = "Excepción 6:"
+  $label17.AutoSize                  = $true
+  $label17.width                     = 40
+  $label17.height                    = 30
+  $label17.location                  = New-Object System.Drawing.Point(55,310)
+  $label17.Font                      = 'Comic Sans MS,10'
+  $Form1.Controls.Add($label17) 
+  
+  $label18                           = New-Object system.Windows.Forms.Label
+  $label18.text                      = "Excepción 7:"
+  $label18.AutoSize                  = $true
+  $label18.width                     = 40
+  $label18.height                    = 30
+  $label18.location                  = New-Object System.Drawing.Point(55,350)
+  $label18.Font                      = 'Comic Sans MS,10'
+  $Form1.Controls.Add($label18) 
+  
+  
+  
+  
+  
+  
+  
+          $textbox16 = New-Object 'System.Windows.Forms.TextBox'
+          $textbox16.Font = 'Comic Sans MS,10'
+           $textbox16.Location = '200,270'
+           $textbox16.Margin = '5, 5, 5, 5'
+           $textbox16.Multiline = $True
+          $textbox16.Name = 'textbox5'
+        $textbox16.Size = '300, 30'
+          $textbox16.TabIndex = 1
+          $textbox16.Enabled = $false
+        $textbox16.add_TextChanged($textbox1_TextChanged)
+        $Form1.Controls.Add($textbox16)
+  
+  
+        $textbox17 = New-Object 'System.Windows.Forms.TextBox'
+        $textbox17.Font = 'Comic Sans MS,10'
+        $textbox17.Location = '200,310'
+        $textbox17.Margin = '5, 5, 5, 5'
+        $textbox17.Multiline = $True
+        $textbox17.Name = 'textbox5'
+        $textbox17.Size = '300, 30'
+        $textbox17.TabIndex = 1
+        $textbox17.Enabled = $false
+        $textbox17.add_TextChanged($textbox1_TextChanged)
+        $Form1.Controls.Add($textbox17)
+  
+        $textbox18 = New-Object 'System.Windows.Forms.TextBox'
+          $textbox18.Font = 'Comic Sans MS,10'
+          $textbox18.Location = '200,350'
+          $textbox18.Margin = '5, 5, 5, 5'
+          $textbox18.Multiline = $True
+          $textbox18.Name = 'textbox5'
+          $textbox18.Size = '300, 30'
+          $textbox18.TabIndex = 1
+          $textbox18.Enabled = $false
+          $textbox18.add_TextChanged($textbox1_TextChanged)
+        $Form1.Controls.Add($textbox18)
+  
+        $textbox16.Text = "192.9.104.*"
+        $textbox17.Text = "192.9.106.*"
+        $textbox18.Text = "*.telefonicachile.cl"
+          $textbox19.Text=$movistarChile
+          $textbox20.Text="Movistar Chile"
+      }
+      else{
+          if($OncosaludMask){
+              $Form1.Controls.Remove($textbox16)
+              $Form1.Controls.Remove($textbox17)
+              $Form1.Controls.Remove($textbox18)
+              $Form1.Controls.Remove($label16 )
+              $Form1.Controls.Remove($label17 )
+              $Form1.Controls.Remove($label18 )
+              $textbox19.Text=$Oncosalud
+              $textbox20.Text="Oncosalud Cobranzas"
+          }
+          else{
+              if($bbvaMask){
+                  $Form1.Controls.Remove($textbox16)
+                  $Form1.Controls.Remove($textbox17)
+                  $Form1.Controls.Remove($textbox18)
+                  $Form1.Controls.Remove($label16 )
+                  $Form1.Controls.Remove($label17 )
+                  $Form1.Controls.Remove($label18 )
+                  $textbox19.Text=$bbva
+                  $textbox20.Text="BBVA"
+              }
+              else{
+                  $Form1.Controls.Remove($textbox16)
+                  $Form1.Controls.Remove($textbox17)
+                  $Form1.Controls.Remove($textbox18)
+                  $Form1.Controls.Remove($label16 )
+                  $Form1.Controls.Remove($label17 )
+                  $Form1.Controls.Remove($label18 )
+                  $textbox19.Text="Error"
+                  $textbox20.Text="Error"
+                  $textbox11.Text = " "
+                  $textbox12.Text = " "
+                  $textbox13.Text = " "
+                  $textbox14.Text = " "
+                  $textbox15.Text = " "
+              }
+          }
+      }
+  }
+  
+  
+  if($arreglo[2] -eq '62'){
+      if($financieroMaskJuanJo){
+          $textbox19.Text=$financieroChileJuanJo
+          $textbox20.Text="Financiero Chile-Juan José"
+      }
+      else{
+          if($financieroMaskPatricia){
+              $textbox19.Text=$financieroChilePatricia
+              $textbox20.Text="Financiero Chile-Patricia"
+          }
+          else{
+              if($cajaArequipaMask){
+                  $textbox19.Text=$cajaArequipa
+                  $textbox20.Text="Caja Arequipa"
+              }
+              else{
+                  if($matikardMask){
+                      $textbox19.Text=$matikard
+                      $textbox20.Text="Matikard/Entel/Claro"
+                  }else{
+                      $textbox19.Text="Error"
+                      $textbox20.Text="Error"
+                      $textbox11.Text = " "
+                      $textbox12.Text = " "
+                      $textbox13.Text = " "
+                      $textbox14.Text = " "
+                      $textbox15.Text = " "
+                  }
+                 
+              }
+          }
+      }
+  }
+  if($arreglo[2] -eq '65'){
+      if($carteraMask){
+          $textbox19.Text=$carteraPropia
+          $textbox20.Text="Cartera Propia"
+      }
+      else{
+          $textbox19.Text="Error"
+          $textbox20.Text="Error"
+          $textbox11.Text = " "
+          $textbox12.Text = " "
+          $textbox13.Text = " "
+          $textbox14.Text = " "
+          $textbox15.Text = " "
+      }
+  }
+  
+  
+  $Button11.Location = New-Object System.Drawing.Size(720,600) 
+  $Button11.Size = New-Object System.Drawing.Size(150, 50) 
+  $Button11.Text = "ACEPTAR" 
+  $Button11.UseVisualStyleBackColor = $True
+  $Button11.BackColor = [System.Drawing.Color]::LightBlue
+  $Button11.DialogResult = [System.Windows.Forms.DialogResult]::OK
+  $Form1.AcceptButton = $Button11
+  $Form1.Controls.Add($Button11)
+  
+  
+  
+  
+      $Form1.Add_Shown({$Form.Activate()})
+      [void] $Form1.ShowDialog();
+  }
+  elseif($comboBox1.SelectedItem -eq 'IP'){
+      [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
+      [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")  
+      ############### CREACION DEL ELEMENTO ############
+      $Form1 = New-Object System.Windows.Forms.Form 
+      
+     
+      $Button10 = New-Object 'System.Windows.Forms.Button'
+      $textbox19 = New-Object 'System.Windows.Forms.TextBox'
+      $textbox20 = New-Object 'System.Windows.Forms.TextBox'
+      $Button11 = New-Object 'System.Windows.Forms.Button'
+      $label11  = New-Object 'system.Windows.Forms.Label'
+      $label12 = New-Object 'system.Windows.Forms.Label'
+      $label13= New-Object 'system.Windows.Forms.Label'
+      $label14= New-Object 'system.Windows.Forms.Label'
+      $label15= New-Object 'system.Windows.Forms.Label'
+  
+  #Etiqueta de Ruta de Ubicación
+  
+  
+  $label11.text                      = "Servidor Proxy"
+  $label11.AutoSize                  = $true
+  $label11.width                     = 40
+  $label11.height                    = 30
+  $label11.location                  = New-Object System.Drawing.Point(55,25)
+  $label11.Font                      = 'Comic Sans MS,10'
+  $Form1.Controls.Add($label11) 
+  
+  
+  $label12.text                      = "Excepción 1:"
+  $label12.AutoSize                  = $true
+  $label12.width                     = 40
+  $label12.height                    = 30
+  $label12.location                  = New-Object System.Drawing.Point(55,80)
+  $label12.Font                      = 'Comic Sans MS,10'
+  $Form1.Controls.Add($label12) 
+  
+  
+  $label13.text                      = "Excepción 2:"
+  $label13.AutoSize                  = $true
+  $label13.width                     = 40
+  $label13.height                    = 30
+  $label13.location                  = New-Object System.Drawing.Point(55,130)
+  $label13.Font                      = 'Comic Sans MS,10'
+  $Form1.Controls.Add($label13) 
+  
+  $label14.text                      = "Excepción 3:"
+  $label14.AutoSize                  = $true
+  $label14.width                     = 40
+  $label14.height                    = 30
+  $label14.location                  = New-Object System.Drawing.Point(55,180)
+  $label14.Font                      = 'Comic Sans MS,10'
+  $Form1.Controls.Add($label14) 
+  
+  $label15.text                      = "Excepción 4:"
+  $label15.AutoSize                  = $true
+  $label15.width                     = 40
+  $label15.height                    = 30
+  $label15.location                  = New-Object System.Drawing.Point(55,230)
+  $label15.Font                      = 'Comic Sans MS,10'
+  $Form1.Controls.Add($label15) 
+  
+  
+      ############TextBox Ruta de Ubicación
+    $textbox11.Font = 'Comic Sans MS,10'
+    $textbox11.Location = '200,25'
+    $textbox11.Margin = '5, 5, 5, 5'
+    $textbox11.Multiline = $True
+    $textbox11.Name = 'textbox5'
+    $textbox11.Size = '300, 30'
+      $textbox11.TabIndex = 1
+      $textbox11.Enabled=$false
+    $textbox11.add_TextChanged($textbox1_TextChanged)
+  
+  
+      $Form1.Controls.Add($textbox11)
+      $peru = $textbox1.Text
+      $arreglo = $peru.Split(".");
+  
+  if($arreglo[2] -eq '60'){
+          $array = $arreglo[0] + "." + $arreglo[1] + "." + $arreglo[2] + "." + "102"+":3128"
+          $textbox11.Text = $array
+  }
+  elseif ($arreglo[2] -eq '61' -or $arreglo[2] -eq '62' -or $arreglo[2] -eq '63' -or $arreglo[2] -eq '64' -or $arreglo[2] -eq '65' ) {
+      $array = $arreglo[0] + "." + $arreglo[1] + "." + $arreglo[2] + "." + "7"+":3128"
+      $textbox11.Text = $array  
+  }else{
+  
+      $textbox11.Text = " "
+  }
+  
+  
+      $Form1.Size = New-Object System.Drawing.Size(1100,750)  
+      $Form1.StartPosition = "CenterScreen" 
+      $Form1.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::Sizable
+      $Form1.MaximizeBox = $false
+      $Form1.Text = "FORMULARIO DE RED" 
+      
+  
+      $textbox12.Font = 'Comic Sans MS,10'
+      $textbox12.Location = '200,80'
+      $textbox12.Margin = '5, 5, 5, 5'
+      $textbox12.Multiline = $True
+      $textbox12.Name = 'textbox5'
+      $textbox12.Size = '300, 30'
+      $textbox12.TabIndex = 1
+      $textbox12.Enabled = $false
+      $textbox12.add_TextChanged($textbox1_TextChanged)
+      $Form1.Controls.Add($textbox12)
+  
+  
+      $textbox13.Font = 'Comic Sans MS,10'
+      $textbox13.Location = '200,130'
+      $textbox13.Margin = '5, 5, 5, 5'
+      $textbox13.Multiline = $True
+      $textbox13.Name = 'textbox5'
+      $textbox13.Size = '300, 30'
+      $textbox13.TabIndex = 1
+      $textbox13.Enabled = $false
+      $textbox13.add_TextChanged($textbox1_TextChanged)
+      $Form1.Controls.Add($textbox13)
+  
+      $textbox14.Font = 'Comic Sans MS,10'
+      $textbox14.Location = '200,180'
+      $textbox14.Margin = '5, 5, 5, 5'
+      $textbox14.Multiline = $True
+      $textbox14.Name = 'textbox5'
+      $textbox14.Size = '300, 30'
+      $textbox14.TabIndex = 1
+      $textbox14.Enabled = $false
+      $textbox14.add_TextChanged($textbox1_TextChanged)
+      $Form1.Controls.Add($textbox14)
+  
+      $textbox15.Font = 'Comic Sans MS,10'
+      $textbox15.Location = '200,230'
+      $textbox15.Margin = '5, 5, 5, 5'
+      $textbox15.Multiline = $True
+      $textbox15.Name = 'textbox5'
+      $textbox15.Size = '300, 30'
+      $textbox15.TabIndex = 1
+      $textbox15.Enabled = $false
+      $textbox15.add_TextChanged($textbox1_TextChanged)
+      $Form1.Controls.Add($textbox15)
+  if($arreglo[2] -eq '60' -or $arreglo[2] -eq '61' -or $arreglo[2] -eq '62' -or $arreglo[2] -eq '63' -or $arreglo[2] -eq '64' -or $arreglo[2] -eq '65' ){
+      $textbox12.Text = "192.9.100.*"
+      $textbox13.Text = "10.10.10.*"
+      $array = $arreglo[0] + "." + $arreglo[1] + "." + $arreglo[2] + "." + "*"
+      $textbox14.Text = $array
+      $textbox15.Text = "<local>"
+  }
+  else{
+      $textbox12.Text = " "
+      $textbox13.Text = " "
+  
+      $textbox14.Text = " "
+      $textbox15.Text = " "
+  }
+  
+    
+  
+    
+        $Form1.Controls.Add($Button10)
+      $Button10.Location = New-Object System.Drawing.Size(520,600) 
+      $Button10.Size = New-Object System.Drawing.Size(150, 50) 
+      $Button10.Text = "RUTAS PREDETERMINADAS" 
+      $Button10.UseVisualStyleBackColor = $True
+      $Button10.BackColor = [System.Drawing.Color]::LightBlue
+      $Button10.Add_Click( { 
+              $textbox11.Enabled = $true
+              $textbox12.Enabled = $true
+              $textbox13.Enabled = $true
+              $textbox14.Enabled = $true
+              $textbox15.Enabled = $true
+          if ($arreglo[2] -eq '64') {
+             
+              $textbox16.Enabled = $true
+              $textbox17.Enabled = $true
+               $textbox18.Enabled=$true}
+      
+       }) 
+        
+     
+       $textbox19.Font = 'Comic Sans MS,10'
+       $textbox19.Location = '600,50'
+       $textbox19.Margin = '5, 5, 5, 5'
+       $textbox19.Multiline = $True
+       $textbox19.Name = 'textbox5'
+       $textbox19.Size = '300, 30'
+       $textbox19.TabIndex = 1
+       $textbox19.Enabled = $false
+       $textbox19.add_TextChanged($textbox1_TextChanged)
+     $Form1.Controls.Add($textbox19)
+  
+     $textbox20.Font = 'Comic Sans MS,10'
+     $textbox20.Location = '600,150'
+     $textbox20.Margin = '5, 5, 5, 5'
+     $textbox20.Multiline = $True
+     $textbox20.Name = 'textbox5'
+     $textbox20.Size = '300, 30'
+     $textbox20.TabIndex = 1
+     $textbox20.Enabled = $false
+     $textbox20.add_TextChanged($textbox1_TextChanged)
+   $Form1.Controls.Add($textbox20)
+   
+  
+  $matikard="192.9.62.64/26"
+   $movistarChile="192.9.64.0/25"
+   $financieroChileJuanJo="192.9.62.128/26"
+   $financieroChilePatricia="192.9.62.192/26"
+   $Oncosalud="192.9.64.128/26"
+   $cajaArequipa="192.9.64.0/26"
+   $carteraPropia="192.9.65.128/25"
+   $mesaDigital="192.9.61.100/32"
+   $bbva="192.9.64.192/26"
+  
+  [int]$arregloModificado=$arreglo[3]
+  #Mascara25
+  $movistarMask=($arregloModificado -ge 0 -and $arregloModificado -le 127)
+  $carteraMask=($arregloModificado -ge 128 -and $arregloModificado -le 255)
+  #Mascara26
+  $matikardMask=($arregloModificado -ge 64 -and $arregloModificado -le 127)
+  
+  $financieroMaskJuanJo=($arregloModificado -ge 128 -and $arregloModificado -le 191)
+  $financieroMaskPatricia=($arregloModificado -ge 192 -and $arregloModificado -le 255)
+  $OncosaludMask=($arregloModificado -ge 128 -and $arregloModificado -le 191)
+  $cajaArequipaMask=($arregloModificado -ge 0 -and $arregloModificado -le 63)
+  $bbvaMask=($arregloModificado -ge 192 -and $arregloModificado -le 255)
+  #
+  
+  
+  
+  
+  if($arreglo[2] -eq '64'){
+  
+      if( $movistarMask){
+  
+          $label16                           = New-Object system.Windows.Forms.Label
+          $label17                           = New-Object system.Windows.Forms.Label
+          $label16.text                      = "Excepción 5:"
+          $label16.AutoSize                  = $true
+          $label16.width                     = 40
+          $label16.height                    = 30
+          $label16.location                  = New-Object System.Drawing.Point(55,270)
+          $label16.Font                      = 'Comic Sans MS,10'
+          $Form1.Controls.Add($label16) 
+  
+         
+  $label17.text                      = "Excepción 6:"
+  $label17.AutoSize                  = $true
+  $label17.width                     = 40
+  $label17.height                    = 30
+  $label17.location                  = New-Object System.Drawing.Point(55,310)
+  $label17.Font                      = 'Comic Sans MS,10'
+  $Form1.Controls.Add($label17) 
+  
+  $label18                           = New-Object system.Windows.Forms.Label
+  $label18.text                      = "Excepción 7:"
+  $label18.AutoSize                  = $true
+  $label18.width                     = 40
+  $label18.height                    = 30
+  $label18.location                  = New-Object System.Drawing.Point(55,350)
+  $label18.Font                      = 'Comic Sans MS,10'
+  $Form1.Controls.Add($label18) 
+  
+  
+  
+  
+  
+  
+  
+          $textbox16 = New-Object 'System.Windows.Forms.TextBox'
+          $textbox16.Font = 'Comic Sans MS,10'
+           $textbox16.Location = '200,270'
+           $textbox16.Margin = '5, 5, 5, 5'
+           $textbox16.Multiline = $True
+          $textbox16.Name = 'textbox5'
+        $textbox16.Size = '300, 30'
+          $textbox16.TabIndex = 1
+          $textbox16.Enabled = $false
+        $textbox16.add_TextChanged($textbox1_TextChanged)
+        $Form1.Controls.Add($textbox16)
+  
+  
+        $textbox17 = New-Object 'System.Windows.Forms.TextBox'
+        $textbox17.Font = 'Comic Sans MS,10'
+        $textbox17.Location = '200,310'
+        $textbox17.Margin = '5, 5, 5, 5'
+        $textbox17.Multiline = $True
+        $textbox17.Name = 'textbox5'
+        $textbox17.Size = '300, 30'
+        $textbox17.TabIndex = 1
+        $textbox17.Enabled = $false
+        $textbox17.add_TextChanged($textbox1_TextChanged)
+        $Form1.Controls.Add($textbox17)
+  
+        $textbox18 = New-Object 'System.Windows.Forms.TextBox'
+          $textbox18.Font = 'Comic Sans MS,10'
+          $textbox18.Location = '200,350'
+          $textbox18.Margin = '5, 5, 5, 5'
+          $textbox18.Multiline = $True
+          $textbox18.Name = 'textbox5'
+          $textbox18.Size = '300, 30'
+          $textbox18.TabIndex = 1
+          $textbox18.Enabled = $false
+          $textbox18.add_TextChanged($textbox1_TextChanged)
+        $Form1.Controls.Add($textbox18)
+  
+        $textbox16.Text = "192.9.104.*"
+        $textbox17.Text = "192.9.106.*"
+        $textbox18.Text = "*.telefonicachile.cl"
+          $textbox19.Text=$movistarChile
+          $textbox20.Text="Movistar Chile"
+      }
+      else{
+          if($OncosaludMask){
+              $Form1.Controls.Remove($textbox16)
+              $Form1.Controls.Remove($textbox17)
+              $Form1.Controls.Remove($textbox18)
+              $Form1.Controls.Remove($label16 )
+              $Form1.Controls.Remove($label17 )
+              $Form1.Controls.Remove($label18 )
+              $textbox19.Text=$Oncosalud
+              $textbox20.Text="Oncosalud Cobranzas"
+          }
+          else{
+              if($bbvaMask){
+                  $Form1.Controls.Remove($textbox16)
+                  $Form1.Controls.Remove($textbox17)
+                  $Form1.Controls.Remove($textbox18)
+                  $Form1.Controls.Remove($label16 )
+                  $Form1.Controls.Remove($label17 )
+                  $Form1.Controls.Remove($label18 )
+                  $textbox19.Text=$bbva
+                  $textbox20.Text="BBVA"
+              }
+              else{
+                  $Form1.Controls.Remove($textbox16)
+                  $Form1.Controls.Remove($textbox17)
+                  $Form1.Controls.Remove($textbox18)
+                  $Form1.Controls.Remove($label16 )
+                  $Form1.Controls.Remove($label17 )
+                  $Form1.Controls.Remove($label18 )
+                  $textbox19.Text="Error"
+                  $textbox20.Text="Error"
+                  $textbox11.Text = " "
+                  $textbox12.Text = " "
+                  $textbox13.Text = " "
+                  $textbox14.Text = " "
+                  $textbox15.Text = " "
+              }
+          }
+      }
+  }
+  
+  
+  if($arreglo[2] -eq '62'){
+      if($financieroMaskJuanJo){
+          $textbox19.Text=$financieroChileJuanJo
+          $textbox20.Text="Financiero Chile-Juan José"
+      }
+      else{
+          if($financieroMaskPatricia){
+              $textbox19.Text=$financieroChilePatricia
+              $textbox20.Text="Financiero Chile-Patricia"
+          }
+          else{
+              if($cajaArequipaMask){
+                  $textbox19.Text=$cajaArequipa
+                  $textbox20.Text="Caja Arequipa"
+              }
+              else{
+                  if($matikardMask){
+                      $textbox19.Text=$matikard
+                      $textbox20.Text="Matikard/Entel/Claro"
+                  }else{
+                      $textbox19.Text="Error"
+                      $textbox20.Text="Error"
+                      $textbox11.Text = " "
+                      $textbox12.Text = " "
+                      $textbox13.Text = " "
+                      $textbox14.Text = " "
+                      $textbox15.Text = " "
+                  }
+                 
+              }
+          }
+      }
+  }
+  if($arreglo[2] -eq '65'){
+      if($carteraMask){
+          $textbox19.Text=$carteraPropia
+          $textbox20.Text="Cartera Propia"
+      }
+      else{
+          $textbox19.Text="Error"
+          $textbox20.Text="Error"
+          $textbox11.Text = " "
+          $textbox12.Text = " "
+          $textbox13.Text = " "
+          $textbox14.Text = " "
+          $textbox15.Text = " "
+      }
+  }
+  
+  
+  $Button11.Location = New-Object System.Drawing.Size(720,600) 
+  $Button11.Size = New-Object System.Drawing.Size(150, 50) 
+  $Button11.Text = "ACEPTAR" 
+  $Button11.UseVisualStyleBackColor = $True
+  $Button11.BackColor = [System.Drawing.Color]::LightBlue
+  $Button11.DialogResult = [System.Windows.Forms.DialogResult]::OK
+  $Form1.AcceptButton = $Button11
+  $Form1.Controls.Add($Button11)
+  
+  
+  
+  
+      $Form1.Add_Shown({$Form.Activate()})
+      [void] $Form1.ShowDialog();
+  
+  }
 
 }
 function deshabilitarRutas{
@@ -4151,36 +4585,61 @@ else{
 
 
 function ejecutarTareas{
-
-	$Username = "Administrador"
-    $Password = "R3c542016C4ll"
-
-    $Computer=$textbox1.Text; 
-    $serverProxy=$textbox11.Text;
-    $excepcion1=$textbox12.Text;
-    $excepcion2=$textbox13.Text;
-    $excepcion3=$textbox14.Text;
-    $excepcion4=$textbox15.Text;
-    $excepcion5=$textbox16.Text;
-    $excepcion6=$textbox17.Text;
-    $excepcion7=$textbox18.Text;
-    
-    
-        
-   
+  if($comboBox1.SelectedItem -eq 'RANGO DE IPS')
+  {
+  
+  $Username = "Administrador"
+  $Password = "R3c542016C4ll"
+  
+  $Computer1=$textbox2.Text.Trim(); 
+  $Computer2=$textbox3.Text.Trim(); 
+  $serverProxy=$textbox11.Text;
+  $excepcion1=$textbox12.Text;
+  $excepcion2=$textbox13.Text;
+  $excepcion3=$textbox14.Text;
+  $excepcion4=$textbox15.Text;
+  $excepcion5=$textbox16.Text;
+  $excepcion6=$textbox17.Text;
+  $excepcion7=$textbox18.Text;
+  
+  ############################
+  
+  $ip1=$Computer1.Split(".");
+  $ip2=$Computer2.Split(".");
+  
+  $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+  $validacion1 = $Computer1 -match $regip
+  $validacion2 = $Computer2 -match $regip
+  
+  
+  
+  $Inicial=$Computer1.Split(".")
+  $inicio0=$Inicial[0];
+  $inicio1=$Inicial[1];
+  $inicio2=$Inicial[2];
+  [int]$inicio3=$Inicial[3];
+  $primeraIP=$inicio0+"."+$inicio1+"."+$inicio2+"." ;
+  
+  $Final=$Computer2.Split(".")
+  [int]$ultima3=$Final[3];
+  
+  
+  
+  
+  if(($ip1[2] -eq $ip2[2]) -and ($ip1[3] -lt $ip2[3]) -and(($validacion1 -eq $true) -and ($validacion2 -eq $true) )){
       $habilitarProxy={
-          Param($Computer,$serverProxy,$excepcion1,$excepcion2,$excepcion3,$excepcion4,$excepcion5,$excepcion6,$excepcion7)    
-
+          Param($Computer1,$Computer2,$serverProxy,$excepcion1,$excepcion2,$excepcion3,$excepcion4,$excepcion5,$excepcion6,$excepcion7)    
+    
        
-
-        $arregloNuevo=$Computer.Split(".");
+    
+        $arregloNuevo=$Computer1.Split(".");
         $arregloFinal=$arregloNuevo[2]
         [int]$arregloModificado1=$arregloNuevo[3]
         #Mascara25
         $movistarMask1=($arregloModificado1 -ge 0 -and $arregloModificado1 -le 127)
-
-
-
+    
+    
+    
           
       #ENABLE SEC    
      #Agregamos claves faltantes para editar el proxy
@@ -4192,24 +4651,24 @@ function ejecutarTareas{
      #Forzamos la configuración por pc y no por usuario
      New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxySettingsPerUser -PropertyType DWord -Value 0;
     
-
+    
      #ENABLE PROXY
      Remove-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyEnable;
      #Configurando valores predeterminados del proxy para PC
      New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyServer -Value "$serverProxy";
      New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyEnable -PropertyType DWord -Value 1;
-if($arregloFinal -eq '64' ){
+    if($arregloFinal -eq '64' ){
     if($movistarMask1){
         New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion5;$excepcion6;$excepcion7;$excepcion4";
     }
     else{
         New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion4"; 
     }
-}
-else{
+    }
+    else{
     New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion4"; 
-}
-   
+    }
+    
      
      Remove-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyEnable;
      New-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyServer -Value "$serverProxy";
@@ -4225,24 +4684,149 @@ else{
     else{
          New-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion4"; 
     }
-
-
-  
+    
+    
+    
      #Lanzamos ie para que actualize la config proxy
      #& `"C:\Archivos de programa\Internet Explorer\iexplore.exe`"
     
     
-
+    
     }  
     $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
     $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
-        $Session = New-PSSession -ComputerName $Computer -Credential $Cred
+     
+    for($inicio3;$inicio3 -le $ultima3;$inicio3++){
+      $Computer3=$primeraIP+$inicio3;
+    
+    
+    $Session = New-PSSession -ComputerName $Computer3 -Credential $Cred
      
         
          #Invocando comandos
-         $Job = Invoke-Command -Session $Session  -ScriptBlock $habilitarProxy -ArgumentList ($Computer,$serverProxy,$excepcion1,$excepcion2,$excepcion3,$excepcion4,$excepcion5,$excepcion6,$excepcion7) -AsJob 
+         $Job = Invoke-Command -Session $Session  -ScriptBlock $habilitarProxy -ArgumentList ($Computer1,$Computer2,$serverProxy,$excepcion1,$excepcion2,$excepcion3,$excepcion4,$excepcion5,$excepcion6,$excepcion7) -AsJob 
          $Null = Wait-Job -Job $Job
         Remove-PSSession -Session $Session
+  
+    }
+  }
+  elseif(($Computer1.length -eq 0) -Or ($Computer2.length -eq 0)){
+      
+          Add-Type -AssemblyName System.Windows.Forms
+          $errorMsg = "No puede quedar en blanco la dirección ip.
+          Vuelva a intentarlo nuevamente."
+              $caption = "Error de contenido"
+              [System.Windows.Forms.MessageBox]::Show($errorMsg, $caption)
+         
+  }
+  
+  
+  elseif(($validacion1 -eq $false) -Or ($validacion2 -eq $false)){
+      Add-Type -AssemblyName System.Windows.Forms
+      $errorMsg = "Datos erróneos.
+      Vuelva a intentarlo nuevamente."
+          $caption = "Error de contenido"
+          [System.Windows.Forms.MessageBox]::Show($errorMsg, $caption)
+  }
+  
+  }
+  elseif($comboBox1.SelectedItem -eq 'IP'){
+      $Username = "Administrador"
+      $Password = "R3c542016C4ll"
+  
+      $Computer=$textbox1.Text; 
+      $serverProxy=$textbox11.Text;
+      $excepcion1=$textbox12.Text;
+      $excepcion2=$textbox13.Text;
+      $excepcion3=$textbox14.Text;
+      $excepcion4=$textbox15.Text;
+      $excepcion5=$textbox16.Text;
+      $excepcion6=$textbox17.Text;
+      $excepcion7=$textbox18.Text;
+      
+      
+          
+     
+        $habilitarProxy={
+            Param($Computer,$serverProxy,$excepcion1,$excepcion2,$excepcion3,$excepcion4,$excepcion5,$excepcion6,$excepcion7)    
+  
+         
+  
+          $arregloNuevo=$Computer.Split(".");
+          $arregloFinal=$arregloNuevo[2]
+          [int]$arregloModificado1=$arregloNuevo[3]
+          #Mascara25
+          $movistarMask1=($arregloModificado1 -ge 0 -and $arregloModificado1 -le 127)
+  
+  
+  
+            
+        #ENABLE SEC    
+       #Agregamos claves faltantes para editar el proxy
+       New-Item -Path "Registry::HKLM\SOFTWARE\Policies\Microsoft" -Name "Internet Explorer";
+       New-Item -Path "Registry::HKLM\SOFTWARE\Policies\Microsoft\Internet Explorer" -Name "Control Panel";
+       #Bloqueamos la edición del proxy (No estamos bloqueando pq se borra la config)
+       Remove-ItemProperty -Path "Registry::HKLM\SOFTWARE\Policies\Microsoft\Internet Explorer\Control Panel" -Name Proxy;
+       New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Policies\Microsoft\Internet Explorer\Control Panel" -Name Proxy -PropertyType DWord -Value 1;
+       #Forzamos la configuración por pc y no por usuario
+       New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxySettingsPerUser -PropertyType DWord -Value 0;
+      
+  
+       #ENABLE PROXY
+       Remove-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyEnable;
+       #Configurando valores predeterminados del proxy para PC
+       New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyServer -Value "$serverProxy";
+       New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyEnable -PropertyType DWord -Value 1;
+  if($arregloFinal -eq '64' ){
+      if($movistarMask1){
+          New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion5;$excepcion6;$excepcion7;$excepcion4";
+      }
+      else{
+          New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion4"; 
+      }
+  }
+  else{
+      New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion4"; 
+  }
+     
+       
+       Remove-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyEnable;
+       New-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyServer -Value "$serverProxy";
+       New-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyEnable -PropertyType DWord -Value 1;
+       if($arregloFinal -eq '64' ){
+          if($movistarMask1){
+              New-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings"-Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion5;$excepcion6;$excepcion7;$excepcion4";
+          }
+          else{
+              New-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion4"; 
+          }
+      }
+      else{
+           New-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion4"; 
+      }
+  
+  
+    
+       #Lanzamos ie para que actualize la config proxy
+       #& `"C:\Archivos de programa\Internet Explorer\iexplore.exe`"
+      
+      
+  
+      }  
+      $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+      $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+          $Session = New-PSSession -ComputerName $Computer -Credential $Cred
+       
+          
+           #Invocando comandos
+           $Job = Invoke-Command -Session $Session  -ScriptBlock $habilitarProxy -ArgumentList ($Computer,$serverProxy,$excepcion1,$excepcion2,$excepcion3,$excepcion4,$excepcion5,$excepcion6,$excepcion7) -AsJob 
+           $Null = Wait-Job -Job $Job
+          Remove-PSSession -Session $Session
+  }
+      
+  
+    
+	
      
 }
 function selection2{
@@ -4346,9 +4930,18 @@ $comboBox1.add_SelectedIndexChanged({
         $Groupbox3.Controls.Add($label4)
         $Groupbox3.Controls.Add($textbox4)
         $Groupbox3.Controls.Add($Button8)
- 
-
-
+ $textbox1.Text=" ";
+ $comboBox2.Text=" ";
+ $comboBox4.Text=" ";
+ $textbox4.Text=" ";
+ $comboBox3.Text=" ";
+ $comboBox5.Text=" ";
+ $Groupbox1.Controls.Remove($comboBox3)
+ $Groupbox1.Controls.Remove($Button1)	
+ $Groupbox1.Controls.Remove($Button4)
+ $Groupbox2.Controls.Remove($Button7)	
+ $Groupbox2.Controls.Remove($comboBox5)	
+ $Groupbox2.Controls.Remove($Button5)	
 
 
     }
@@ -4363,9 +4956,31 @@ $comboBox1.add_SelectedIndexChanged({
             $Form.Controls.Add($label3) 
             $Form.Controls.Add($textbox2)
             $Form.Controls.Add($textbox3)
-            $Form.Controls.Remove($Groupbox1)
-            $Form.Controls.Remove($Groupbox2)
-            $Form.Controls.Remove($Groupbox3)
+            $Form.Controls.Add($Button2)	
+            $Form.Controls.Add($Button3)
+     $Form.Controls.Add($Button6)
+      $Form.Controls.Add($Groupbox1)
+      $Form.Controls.Add($Groupbox2)
+      $Form.Controls.Add($Groupbox3)
+      $Groupbox1.Controls.Add($comboBox2)
+      $Groupbox2.Controls.Add($comboBox4)
+     
+      $Groupbox3.Controls.Add($label4)
+      $Groupbox3.Controls.Add($textbox4)
+      $Groupbox3.Controls.Add($Button8)
+$textbox1.Text=" ";
+$comboBox2.Text=" ";
+$comboBox4.Text=" ";
+$textbox4.Text=" ";
+$comboBox3.Text=" ";
+$comboBox5.Text=" ";
+$Groupbox1.Controls.Remove($comboBox3)
+$Groupbox1.Controls.Remove($Button1)	
+$Groupbox1.Controls.Remove($Button4)
+$Groupbox2.Controls.Remove($Button7)	
+$Groupbox2.Controls.Remove($comboBox5)	
+$Groupbox2.Controls.Remove($Button5)	
+
 
          
         }
@@ -4445,7 +5060,7 @@ $Groupbox2.location              = New-Object System.Drawing.Point(20,280)
 #####################################
 $Groupbox3.height                = 140
 $Groupbox3.width                 = 1000
-$Groupbox3.text                  = "Rutas"
+$Groupbox3.text                  = "GATEWAY"
 $Groupbox3.location              = New-Object System.Drawing.Point(20,450)
 
 ####################################
