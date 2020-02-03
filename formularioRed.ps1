@@ -78,14 +78,25 @@ $textbox1 = New-Object 'System.Windows.Forms.TextBox'
 $textbox3 = New-Object 'System.Windows.Forms.TextBox'
 $textbox2 = New-Object 'System.Windows.Forms.TextBox'
 $label4= New-Object 'system.Windows.Forms.Label'
+$label5= New-Object 'system.Windows.Forms.Label'
+$label6= New-Object 'system.Windows.Forms.Label'
+$label7= New-Object 'system.Windows.Forms.Label'
+$label8= New-Object 'system.Windows.Forms.Label'
 $textbox4=New-Object 'System.Windows.Forms.TextBox'
+$textbox5=New-Object 'System.Windows.Forms.TextBox'
+$textbox6=New-Object 'System.Windows.Forms.TextBox'
+$textbox7=New-Object 'System.Windows.Forms.TextBox'
+$textbox8=New-Object 'System.Windows.Forms.TextBox'
 $Button = New-Object 'System.Windows.Forms.Button'
 $dataGridView = New-Object 'System.Windows.Forms.DataGridView'
+$dataGridView1 = New-Object 'System.Windows.Forms.DataGridView'
+$dataGridView2 = New-Object 'System.Windows.Forms.DataGridView'
 $label2 = New-Object 'system.Windows.Forms.Label'
 $label3 = New-Object 'system.Windows.Forms.Label'
 $Groupbox1 = New-Object 'system.Windows.Forms.Groupbox'
 $Groupbox2 = New-Object 'system.Windows.Forms.Groupbox'
 $Groupbox3 = New-Object 'system.Windows.Forms.Groupbox'
+$Groupbox4 = New-Object 'system.Windows.Forms.Groupbox'
 $comboBox2 = New-Object 'system.Windows.Forms.ComboBox'
 $comboBox3 = New-Object 'system.Windows.Forms.ComboBox'
 $comboBox4=New-Object 'system.Windows.Forms.ComboBox'
@@ -217,12 +228,12 @@ $Form.Icon       = [System.Drawing.Icon]::FromHandle((New-Object System.Drawing.
 
 
 $label                           = New-Object system.Windows.Forms.Label
-$label.text                      = "LA ACCION SE REALIZARA EN :"
+$label.text                      = "La acción se realizará en:"
 $label.AutoSize                  = $true
-$label.width                     = 40
-$label.height                    = 30
-$label.location                  = New-Object System.Drawing.Point(35,10)
-$label.Font                      = 'Comic Sans MS,10'
+$label.width                     = 13
+$label.height                    = 128
+$label.location                  = New-Object System.Drawing.Point(39,9)
+$label.Font                      = 'Microsoft Sans Serif, 8.25pt'
 $Form.Controls.Add($label) 
 ######################
 
@@ -318,11 +329,7 @@ $totalRegistros=$acumulador+$acumulador2+$acumulador3+$acumulador4+$acumulador5+
 
 
 
- $dataGridView.Size=New-Object System.Drawing.Size(240,230)
- $dataGridView.Location= New-Object System.Drawing.Point(460,55)
- $Form.Controls.Add($dataGridView)
- $dataGridView.ColumnCount = 2
- $dataGridView.ColumnHeadersVisible = $true;
+
  $dataGridView.Rows.Add('Registros RED 60',$acumulador)
  $dataGridView.Rows.Add('Registros RED 61',$acumulador2)
  $dataGridView.Rows.Add('Registros RED 62',$acumulador3)
@@ -330,11 +337,12 @@ $totalRegistros=$acumulador+$acumulador2+$acumulador3+$acumulador4+$acumulador5+
  $dataGridView.Rows.Add('Registros RED 64',$acumulador5)
  $dataGridView.Rows.Add('Registros RED 65',$acumulador6)
  $dataGridView.Rows.Add('Registros INVALIDOS',$acumulador7)
- $dataGridView.Rows.Add('TOTAL DE REGISTROS VALIDOS',$totalRegistros)
+ $dataGridView.Rows.Add('REGISTROS VALIDOS',$totalRegistros)
  $dataGridView.Columns[0].width='140'
  $dataGridView.Columns[1].width='50'
  $dataGridView.Columns[0].Name = "Número de Registros"
  $dataGridView.Columns[1].Name = "Cantidad"
+
 
 }
 
@@ -398,7 +406,7 @@ function changeGateway{
   
   for($inicio3;$inicio3 -le $ultima3;$inicio3++){
       $Computer3=$primeraIP+$inicio3;
-    Write-Host "Iniciando Sesion en $Computer3"
+
     
   
   
@@ -409,6 +417,7 @@ function changeGateway{
        $Job = Invoke-Command -Session $Session  -ScriptBlock $cambio -ArgumentList ($Computer1,$Computer2,$texto4) -AsJob 
        $Null = Wait-Job -Job $Job
       Remove-PSSession -Session $Session
+    
   }
   }
   elseif(($Computer1.length -eq 0) -Or ($Computer2.length -eq 0)){
@@ -460,14 +469,16 @@ function changeGateway{
       }  
       $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
       $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
-          $Session = New-PSSession -ComputerName $Computer -Credential $Cred
+        
+     
+      $Session = New-PSSession -ComputerName $Computer -Credential $Cred
        
           
            #Invocando comandos
            $Job = Invoke-Command -Session $Session  -ScriptBlock $cambio -ArgumentList ($Computer,$texto4) -AsJob 
            $Null = Wait-Job -Job $Job
           Remove-PSSession -Session $Session
-    
+   
     
     
     
@@ -3389,7 +3400,7 @@ $ip2=$Computer2.Split(".");
         $Form1.Controls.Add($Button10)
       $Button10.Location = New-Object System.Drawing.Size(520,600) 
       $Button10.Size = New-Object System.Drawing.Size(150, 50) 
-      $Button10.Text = "RUTAS PREDETERMINADAS" 
+      $Button10.Text = "12345" 
       $Button10.UseVisualStyleBackColor = $True
       $Button10.BackColor = [System.Drawing.Color]::LightBlue
       $Button10.Add_Click( { 
@@ -5510,9 +5521,9 @@ $Groupbox1.Controls.Add($Button4)
 
 $computerNames = @('IP','RANGO DE IPS','ARCHIVO TXT')
 $comboBox1 = New-Object System.Windows.Forms.ComboBox
-$comboBox1.Font = 'Segoe UI, 12pt'
-$comboBox1.Location = New-Object System.Drawing.Point(35,50)
-$comboBox1.Size = New-Object System.Drawing.Size(200, 40)
+$comboBox1.Font = 'Microsoft Sans Serif, 8.25pt'
+$comboBox1.Location = New-Object System.Drawing.Point(42,29)
+$comboBox1.Size = New-Object System.Drawing.Size(181, 21)
 $comboBox1.Items.Clear();
  
 foreach($computer in $computerNames)
@@ -5526,6 +5537,8 @@ $comboBox1.add_SelectedIndexChanged({
         $dataGridView.Rows.Clear()
         $dataGridView.DataSource = $null
         $Form.Controls.Remove($dataGridView)
+        $Form.Controls.Remove($dataGridView1)
+        $Form.Controls.Add($dataGridView2)
         $Form.Controls.Remove($textbox2)
         $Form.Controls.Remove($textbox3)
         $Form.Controls.Remove($Button)
@@ -5536,6 +5549,8 @@ $comboBox1.add_SelectedIndexChanged({
         $Form.Controls.Add($Groupbox1)
         $Form.Controls.Add($Groupbox2)
         $Form.Controls.Add($Groupbox3)
+        $Form.Controls.Add($Groupbox4)
+        $Form.Controls.Add($label8)
         $Groupbox1.Controls.Add($comboBox2)
         $Groupbox2.Controls.Add($comboBox4)
         $Form.Controls.Remove($label2)
@@ -5543,6 +5558,13 @@ $comboBox1.add_SelectedIndexChanged({
         $Groupbox3.Controls.Add($label4)
         $Groupbox3.Controls.Add($textbox4)
         $Groupbox3.Controls.Add($Button8)
+        $Groupbox4.Controls.Add($textbox5)
+        $Groupbox4.Controls.Add($textbox6)
+        $Groupbox4.Controls.Add($textbox7)
+        $Groupbox4.Controls.Add($label5)
+        $Groupbox4.Controls.Add($label6)
+        $Groupbox4.Controls.Add($label7)
+        $Form.Controls.Add($textbox8)
  $textbox1.Text=" ";
  $comboBox2.Text=" ";
  $comboBox4.Text=" ";
@@ -5555,16 +5577,20 @@ $comboBox1.add_SelectedIndexChanged({
  $Groupbox2.Controls.Remove($Button7)	
  $Groupbox2.Controls.Remove($comboBox5)	
  $Groupbox2.Controls.Remove($Button5)	
-
+ $textbox8.Size = '419, 412'
+ $textbox8.Location = '247,79'
 
     }
     else{
         if($comboBox1.SelectedItem -eq 'RANGO DE IPS'){
             $dataGridView.Rows.Clear()
             $dataGridView.DataSource = $null
-            $Form.Controls.Remove($dataGridView)
+            $Form.Controls.Add($dataGridView)
+            $Form.Controls.Add($dataGridView1)
+            $Form.Controls.Add($dataGridView2)
             $Form.Controls.Remove($textbox1)
             $Form.Controls.Remove($Button)
+            $Form.Controls.Remove($label8)
             $Form.Controls.Add($label2)	
             $Form.Controls.Add($label3) 
             $Form.Controls.Add($textbox2)
@@ -5575,12 +5601,20 @@ $comboBox1.add_SelectedIndexChanged({
       $Form.Controls.Add($Groupbox1)
       $Form.Controls.Add($Groupbox2)
       $Form.Controls.Add($Groupbox3)
+      $Form.Controls.Add($Groupbox4)
       $Groupbox1.Controls.Add($comboBox2)
       $Groupbox2.Controls.Add($comboBox4)
      
       $Groupbox3.Controls.Add($label4)
       $Groupbox3.Controls.Add($textbox4)
       $Groupbox3.Controls.Add($Button8)
+      $Groupbox4.Controls.Add($textbox5)
+      $Groupbox4.Controls.Add($textbox6)
+      $Groupbox4.Controls.Add($textbox7)
+      $Groupbox4.Controls.Add($label5)
+      $Groupbox4.Controls.Add($label6)
+      $Groupbox4.Controls.Add($label7)
+ $Form.Controls.Add($textbox8)
 $textbox1.Text=" ";
 $comboBox2.Text=" ";
 $comboBox4.Text=" ";
@@ -5593,7 +5627,8 @@ $Groupbox1.Controls.Remove($Button4)
 $Groupbox2.Controls.Remove($Button7)	
 $Groupbox2.Controls.Remove($comboBox5)	
 $Groupbox2.Controls.Remove($Button5)	
-
+$textbox8.Size = '419, 166'
+$textbox8.Location = '247,325'
 
          
         }
@@ -5601,7 +5636,9 @@ $Groupbox2.Controls.Remove($Button5)
             if($comboBox1.SelectedItem -eq 'ARCHIVO TXT'){
                 $dataGridView.Rows.Clear()
                 $dataGridView.DataSource = $null
-                $Form.Controls.Remove($dataGridView)
+                $Form.Controls.Add($dataGridView)
+                $Form.Controls.Add($dataGridView1)
+                $Form.Controls.Add($dataGridView2)
                 $Form.Controls.Remove($label2)
                 $Form.Controls.Remove($label3)
                 $Form.Controls.Remove($textbox1)
@@ -5609,84 +5646,124 @@ $Groupbox2.Controls.Remove($Button5)
                 $Form.Controls.Remove($textbox3)
                 $Form.Controls.Add($Button)	
                 $Form.Controls.Remove($Button6)
-                $Form.Controls.Remove($Groupbox1)
-                $Form.Controls.Remove($Groupbox2)
-                $Form.Controls.Remove($Groupbox1)
-                $Form.Controls.Remove($Groupbox2)
-                $Form.Controls.Remove($Groupbox3)
-              
-                
+                $Form.Controls.Add($Button6)
+                $Form.Controls.Remove($label8)
+
+
+
+                $Form.Controls.Add($Groupbox1)
+                $Form.Controls.Add($Groupbox2)
+                $Form.Controls.Add($Groupbox3)
+                $Form.Controls.Add($Groupbox4)
+                $Groupbox1.Controls.Add($comboBox2)
+                $Groupbox2.Controls.Add($comboBox4)
+               
+                $Groupbox3.Controls.Add($label4)
+                $Groupbox3.Controls.Add($textbox4)
+                $Groupbox3.Controls.Add($Button8)
+                $Groupbox4.Controls.Add($textbox5)
+                $Groupbox4.Controls.Add($textbox6)
+                $Groupbox4.Controls.Add($textbox7)
+                $Groupbox4.Controls.Add($label5)
+                $Groupbox4.Controls.Add($label6)
+                $Groupbox4.Controls.Add($label7)
+                $Form.Controls.Add($textbox8)
+
+
+          $textbox1.Text=" ";
+          $comboBox2.Text=" ";
+          $comboBox4.Text=" ";
+          $textbox4.Text=" ";
+          $comboBox3.Text=" ";
+          $comboBox5.Text=" ";
+          $Groupbox1.Controls.Remove($comboBox3)
+          $Groupbox1.Controls.Remove($Button1)	
+          $Groupbox1.Controls.Remove($Button4)
+          $Groupbox2.Controls.Remove($Button7)	
+          $Groupbox2.Controls.Remove($comboBox5)	
+          $Groupbox2.Controls.Remove($Button5)	
+          $textbox8.Size = '419, 166'
+          $textbox8.Location = '247,325'
             }
         }
     }
   
 })
 
-$textbox1.Font = 'Comic Sans MS,10'
-$textbox1.Location = '300,50'
+$textbox1.Font = 'Microsoft Sans Serif, 8.25pt'
+$textbox1.Location = '247,29'
 $textbox1.Margin = '5, 5, 5, 5'
 $textbox1.Multiline = $True
 $textbox1.Name = 'textbox5'
-$textbox1.Size = '200, 30'
+$textbox1.Size = '181, 20'
 $textbox1.TabIndex = 1
 $textbox1.add_TextChanged($textbox1_TextChanged)
 
 ###################################
 
-    $Button2.Location = New-Object System.Drawing.Size(420, 600) 
-    $Button2.Size = New-Object System.Drawing.Size(150, 50) 
-    $Button2.Text = "RUTAS PREDETERMINADAS" 
+    $Button2.Location = New-Object System.Drawing.Size(414, 499) 
+    $Button2.Size = New-Object System.Drawing.Size(100, 43) 
+    $Button2.Text = "Validacion IP" 
     $Button2.UseVisualStyleBackColor = $True
     $Button2.BackColor = [System.Drawing.Color]::LightBlue
     $Button2.Add_Click( { Validacion }) 
 
 
-    $Button3.Location = New-Object System.Drawing.Size(580, 600) 
-    $Button3.Size = New-Object System.Drawing.Size(150, 50) 
+    $Button3.Location =New-Object System.Drawing.Size(247, 499) 
+    $Button3.Size = New-Object System.Drawing.Size(100, 43) 
     $Button3.Text = "EJECUTAR" 
     $Button3.UseVisualStyleBackColor = $True
     $Button3.BackColor = [System.Drawing.Color]::LightBlue
     $Button3.Add_Click( { ejecutarTareas }) 
 
 
-    $Button6.Location = New-Object System.Drawing.Size(740, 600) 
-    $Button6.Size = New-Object System.Drawing.Size(150, 50) 
+    $Button6.Location = New-Object System.Drawing.Size(566, 499) 
+    $Button6.Size = New-Object System.Drawing.Size(100, 43) 
     $Button6.Text = "RUTAS" 
     $Button6.UseVisualStyleBackColor = $True
     $Button6.BackColor = [System.Drawing.Color]::LightBlue
     $Button6.Add_Click( { ejecutarRutas }) 
 
 #######################################
-$Groupbox1.height                = 140
-$Groupbox1.width                 = 1000
+$Groupbox1.height                = 127
+$Groupbox1.width                 = 215
 $Groupbox1.text                  = "Proxy"
-$Groupbox1.location              = New-Object System.Drawing.Point(20,110)
+$Groupbox1.location              = New-Object System.Drawing.Point(26,79)
 
 ######################################
 #######################################
-$Groupbox2.height                = 140
-$Groupbox2.width                 = 1000
+$Groupbox2.height                = 124
+$Groupbox2.width                 = 215
 $Groupbox2.text                  = "Rutas"
-$Groupbox2.location              = New-Object System.Drawing.Point(20,280)
+$Groupbox2.location              = New-Object System.Drawing.Point(26,212)
 
 ######################################
 #####################################
-$Groupbox3.height                = 140
-$Groupbox3.width                 = 1000
-$Groupbox3.text                  = "GATEWAY"
-$Groupbox3.location              = New-Object System.Drawing.Point(20,450)
+$Groupbox3.height                = 97
+$Groupbox3.width                 = 215
+$Groupbox3.text                  = "Gateway"
+$Groupbox3.location              = New-Object System.Drawing.Point(26,335)
 
 ####################################
-$label4.text                      = "GATEWAY"
+#####################################
+$Groupbox4.height                = 185
+$Groupbox4.width                 = 215
+$Groupbox4.text                  = "Dominio"
+$Groupbox4.location              = New-Object System.Drawing.Point(26,438)
+
+####################################
+
+
+$label4.text                      = "Ingrese el número del gateway"
 $label4.AutoSize                  = $true
-$label4.width                     = 40
-$label4.height                    = 30
-$label4.location                  = New-Object System.Drawing.Point(20,40)
-$label4.Font                      = 'Comic Sans MS,10'
+$label4.width                     = 151
+$label4.height                    = 13
+$label4.location                  = New-Object System.Drawing.Point(13,16)
+$label4.Font                      = 'Microsoft Sans Serif, 8.25pt'
 ######################################
-$Button8.Location = New-Object System.Drawing.Size(400,40) 
-    $Button8.Size = New-Object System.Drawing.Size(150,50) 
-    $Button8.Text = "CAMBIAR GATEWAY" 
+$Button8.Location = New-Object System.Drawing.Size(122,68) 
+    $Button8.Size = New-Object System.Drawing.Size(75,23) 
+    $Button8.Text = "Change" 
     $Button8.UseVisualStyleBackColor = $True
     $Button8.BackColor = [System.Drawing.Color]::LightBlue
     $Button8.Add_Click({changeGateway}) 
@@ -5703,12 +5780,12 @@ $Button8.Location = New-Object System.Drawing.Size(400,40)
 
 
 
-$textbox4.Font = 'Segoe UI, 8pt'
-$textbox4.Location = '180,40'
+$textbox4.Font = 'Microsoft Sans Serif, 8.25pt'
+$textbox4.Location = '16,41'
 $textbox4.Margin = '5, 5, 5, 5'
 #$textbox4.Multiline = $True
 $textbox4.Name = 'textbox5'
-$textbox4.Size = '200, 30'
+$textbox4.Size = '181, 20'
 $textbox4.Enabled=$True
 $textbox4.Add_GotFocus({
     if ($textbox4.Text -eq 'Ingrese el último dígito') {
@@ -5725,54 +5802,145 @@ $textbox4.Add_LostFocus({
     }
 })
 
+$textbox5.Font = 'Microsoft Sans Serif, 8.25pt'
+$textbox5.Location = '16,33'
+$textbox5.Margin = '5, 5, 5, 5'
+#$textbox4.Multiline = $True
+$textbox5.Name = 'textbox5'
+$textbox5.Size = '181, 20'
+$textbox5.Enabled=$True
+#############################################
+$textbox6.Font = 'Microsoft Sans Serif, 8.25pt'
+$textbox6.Location = '16,93'
+$textbox6.Margin = '5, 5, 5, 5'
+#$textbox4.Multiline = $True
+$textbox6.Name = 'textbox5'
+$textbox6.Size = '181, 20'
+$textbox6.Enabled=$True
 
 
 #############################################
+#############################################
+$textbox7.Font = 'Microsoft Sans Serif, 8.25pt'
+$textbox7.Location = '16,142'
+$textbox7.Margin = '5, 5, 5, 5'
+#$textbox4.Multiline = $True
+$textbox7.Name = 'textbox5'
+$textbox7.Size = '181, 20'
+$textbox7.Enabled=$True
+####################################
 
-$label2.text                      = "IP INICIAL"
+
+$label5.text                      = "Nombre de Dominio"
+$label5.AutoSize                  = $true
+$label5.width                     = 100
+$label5.height                    = 13
+$label5.location                  = New-Object System.Drawing.Point(13,17)
+$label5.Font                      = 'Microsoft Sans Serif, 8.25pt'
+######################################
+####################################
+
+
+$label6.text                      = "Usuario Administrador del dominio"
+$label6.AutoSize                  = $true
+$label6.width                     = 100
+$label6.height                    = 13
+$label6.location                  = New-Object System.Drawing.Point(13,76)
+$label6.Font                      = 'Microsoft Sans Serif, 8.25pt'
+######################################
+####################################
+
+
+$label7.text                      = "Contraseña"
+$label7.AutoSize                  = $true
+$label7.width                     = 100
+$label7.height                    = 13
+$label7.location                  = New-Object System.Drawing.Point(13,126)
+$label7.Font                      = 'Microsoft Sans Serif, 8.25pt'
+######################################
+
+$label8.text                      = "Dirección IP"
+$label8.AutoSize                  = $true
+$label8.width                     = 65
+$label8.height                    = 13
+$label8.location                  = New-Object System.Drawing.Point(248,9)
+$label8.Font                      = 'Microsoft Sans Serif, 8.25pt'
+
+##################################
+$dataGridView.Size=New-Object System.Drawing.Size(240,230)
+$dataGridView.Location= New-Object System.Drawing.Point(247,79)
+# $Form.Controls.Add($dataGridView)
+$dataGridView.ColumnCount = 2
+$dataGridView.ColumnHeadersVisible = $true;
+
+
+
+$dataGridView1.Size=New-Object System.Drawing.Size(173,228)
+ $dataGridView1.Location= New-Object System.Drawing.Point(493,79)
+ $dataGridView1.ColumnCount = 1
+ $dataGridView1.ColumnHeadersVisible = $true;
+
+
+ $dataGridView2.Size=New-Object System.Drawing.Size(386,548)
+ $dataGridView2.Location= New-Object System.Drawing.Point(686,75)
+ $dataGridView2.ColumnCount = 4
+ $dataGridView2.ColumnHeadersVisible = $true;
+
+######################################################
+$textbox8.Font = 'Microsoft Sans Serif, 8.25pt'
+$textbox8.Location = '247,325'
+$textbox8.Margin = '5, 5, 5, 5'
+$textbox8.Multiline = $True
+$textbox8.Name = 'textbox5'
+$textbox8.Size = '419, 166'
+$textbox8.Enabled=$True
+
+
+#############################################
+$label2.text                      = "IP Inicial"
 $label2.AutoSize                  = $true
-$label2.width                     = 40
-$label2.height                    = 30
-$label2.location                  = New-Object System.Drawing.Point(250,50)
-$label2.Font                      = 'Comic Sans MS,10'
+$label2.width                     = 65
+$label2.height                    = 13
+$label2.location                  = New-Object System.Drawing.Point(248,9)
+$label2.Font                      = 'Microsoft Sans Serif, 8.25pt'
 
-$label3.text                      = "IP FINAL"
+$label3.text                      = "IP Final"
 $label3.AutoSize                  = $true
-$label3.width                     = 40
-$label3.height                    = 30
-$label3.location                  = New-Object System.Drawing.Point(650,50)
-$label3.Font                      = 'Comic Sans MS,10'
+$label3.width                     = 65
+$label3.height                    = 13
+$label3.location                  = New-Object System.Drawing.Point(463,9)
+$label3.Font                      = 'Microsoft Sans Serif, 8.25pt'
 
 
-            $textbox2.Font = 'Segoe UI, 12pt'
-$textbox2.Location = '360,50'
+            $textbox2.Font = 'Microsoft Sans Serif, 8.25pt'
+$textbox2.Location = '247,29'
 $textbox2.Margin = '5, 5, 5, 5'
 $textbox2.Multiline = $True
 $textbox2.Name = 'textbox5'
-$textbox2.Size = '200, 30'
+$textbox2.Size = '181, 20'
 $textbox2.Enabled=$True
 $textbox2.TabIndex = 1
 
-$textbox3.Font = 'Segoe UI, 12pt'
-	$textbox3.Location = '720,50'
+$textbox3.Font = 'Microsoft Sans Serif, 8.25pt'
+	$textbox3.Location = '466,29'
 	$textbox3.Margin = '5, 5, 5, 5'
 	$textbox3.Multiline = $True
 	$textbox3.Name = 'textbox5'
-    $textbox3.Size = '200, 30'
+    $textbox3.Size = '181, 20'
     $textbox3.Enabled=$True
 	$textbox3.TabIndex = 1
 
-    $Button.Location = New-Object System.Drawing.Size(300,50) 
-    $Button.Size = New-Object System.Drawing.Size(150,50) 
+    $Button.Location = New-Object System.Drawing.Size(247,12) 
+    $Button.Size = New-Object System.Drawing.Size(125,38) 
     $Button.Text = "Seleccionar Archivo" 
     $Button.UseVisualStyleBackColor = $True
     $Button.BackColor = [System.Drawing.Color]::LightBlue
     $Button.Add_Click({Ubicacion}) 
 
     $datos2=@('AGREGAR RUTA','ELIMINAR RUTA')
-    $comboBox4.Font = 'Segoe UI, 12pt'
-    $comboBox4.Location = New-Object System.Drawing.Point(20,40)
-    $comboBox4.Size = New-Object System.Drawing.Size(200, 40)
+    $comboBox4.Font = 'Microsoft Sans Serif, 8.25pt'
+    $comboBox4.Location = New-Object System.Drawing.Point(16,28)
+    $comboBox4.Size = New-Object System.Drawing.Size(181, 21)
     
     $comboBox4.Items.Clear();
     foreach($computer2 in $datos2)
@@ -5784,9 +5952,9 @@ $textbox3.Font = 'Segoe UI, 12pt'
     $comboBox4.add_SelectedIndexChanged({selection2})
 
     $datos3 = @('1','2','3','4','5','6','7','8')
-    $comboBox5.Font = 'Segoe UI, 12pt'
-    $comboBox5.Location = New-Object System.Drawing.Point(300,40)
-    $comboBox5.Size = New-Object System.Drawing.Size(200, 40)
+    $comboBox5.Font = 'Microsoft Sans Serif, 8.25pt'
+    $comboBox5.Location = New-Object System.Drawing.Point(16,67)
+    $comboBox5.Size = New-Object System.Drawing.Size(181, 21)
     $comboBox5.Items.Clear();
     foreach($computer3 in $datos3)
     {
@@ -5795,16 +5963,16 @@ $textbox3.Font = 'Segoe UI, 12pt'
     }
     
     
-    $Button5.Location = New-Object System.Drawing.Size(520,40) 
-    $Button5.Size = New-Object System.Drawing.Size(150,50) 
-    $Button5.Text = "ROUTES" 
+    $Button5.Location = New-Object System.Drawing.Size(122,94) 
+    $Button5.Size = New-Object System.Drawing.Size(75,23) 
+    $Button5.Text = "ADD" 
     $Button5.UseVisualStyleBackColor = $True
     $Button5.BackColor = [System.Drawing.Color]::LightBlue
     $Button5.Add_Click({routesForm}) 
     
-    $Button7.Location = New-Object System.Drawing.Size(520,40) 
-    $Button7.Size = New-Object System.Drawing.Size(150,50) 
-    $Button7.Text = "ELIMINAR ROUTES" 
+    $Button7.Location = New-Object System.Drawing.Size(122,94) 
+    $Button7.Size = New-Object System.Drawing.Size(75,23) 
+    $Button7.Text = "DELETE" 
     $Button7.UseVisualStyleBackColor = $True
     $Button7.BackColor = [System.Drawing.Color]::LightBlue
     $Button7.Add_Click({routesForm}) 
@@ -5814,9 +5982,9 @@ $textbox3.Font = 'Segoe UI, 12pt'
     
     
     $datos = @('HABILITAR PROXY', 'DESHABILITAR PROXY')
-    $comboBox2.Font = 'Segoe UI, 12pt'
-    $comboBox2.Location = New-Object System.Drawing.Point(20,40)
-    $comboBox2.Size = New-Object System.Drawing.Size(200, 40)
+    $comboBox2.Font = 'Microsoft Sans Serif, 8.25pt'
+    $comboBox2.Location = New-Object System.Drawing.Point(16,28)
+    $comboBox2.Size = New-Object System.Drawing.Size(181, 21)
     
     #$comboBox2.DropDownStyle = 'DropDownList'
     
@@ -5837,11 +6005,11 @@ $textbox3.Font = 'Segoe UI, 12pt'
     
     
     $datos1 = @('Predeterminado', 'Personalizado')
-    $comboBox3.Font = 'Segoe UI, 12pt'
+    $comboBox3.Font = 'Microsoft Sans Serif, 8.25pt'
     
     
-    $comboBox3.Location = New-Object System.Drawing.Point(300,40)
-    $comboBox3.Size = New-Object System.Drawing.Size(200, 40)
+    $comboBox3.Location = New-Object System.Drawing.Point(16,67)
+    $comboBox3.Size = New-Object System.Drawing.Size(181, 21)
     $comboBox3.Items.Clear();
     foreach($computer2 in $datos1)
     {
@@ -5851,16 +6019,16 @@ $textbox3.Font = 'Segoe UI, 12pt'
     }
     
         ##########################################
-        $Button1.Location = New-Object System.Drawing.Size(520,40) 
-        $Button1.Size = New-Object System.Drawing.Size(150,50) 
-        $Button1.Text = "RUTAS PREDETERMINADAS" 
+        $Button1.Location = New-Object System.Drawing.Size(122,94) 
+        $Button1.Size = New-Object System.Drawing.Size(75,23) 
+        $Button1.Text = "DEFAULT" 
         $Button1.UseVisualStyleBackColor = $True
         $Button1.BackColor = [System.Drawing.Color]::LightBlue
         $Button1.Add_Click({rutasPredeterminadas}) 
     
-        $Button4.Location = New-Object System.Drawing.Size(520,40) 
-        $Button4.Size = New-Object System.Drawing.Size(150,50) 
-        $Button4.Text = "DESHABILITAR AHORA" 
+        $Button4.Location = New-Object System.Drawing.Size(122,94) 
+        $Button4.Size = New-Object System.Drawing.Size(75,23) 
+        $Button4.Text = "DISABLE" 
         $Button4.UseVisualStyleBackColor = $True
         $Button4.BackColor = [System.Drawing.Color]::LightBlue
         $Button4.Add_Click({deshabilitarRutas}) 
