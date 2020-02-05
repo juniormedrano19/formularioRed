@@ -82,11 +82,13 @@ $label5= New-Object 'system.Windows.Forms.Label'
 $label6= New-Object 'system.Windows.Forms.Label'
 $label7= New-Object 'system.Windows.Forms.Label'
 $label8= New-Object 'system.Windows.Forms.Label'
+$label9= New-Object 'system.Windows.Forms.Label'
 $textbox4=New-Object 'System.Windows.Forms.TextBox'
 $textbox5=New-Object 'System.Windows.Forms.TextBox'
 $textbox6=New-Object 'System.Windows.Forms.TextBox'
 $textbox7=New-Object 'System.Windows.Forms.TextBox'
 $textbox8=New-Object 'System.Windows.Forms.TextBox'
+$textbox9=New-Object 'System.Windows.Forms.TextBox'
 $Button = New-Object 'System.Windows.Forms.Button'
 $dataGridView = New-Object 'System.Windows.Forms.DataGridView'
 $dataGridView1 = New-Object 'System.Windows.Forms.DataGridView'
@@ -108,6 +110,10 @@ $Button4 = New-Object 'System.Windows.Forms.Button'
 $Button5 = New-Object 'System.Windows.Forms.Button'
 $Button7 = New-Object 'System.Windows.Forms.Button'
 $Button8 = New-Object 'System.Windows.Forms.Button'
+$Button9 = New-Object 'System.Windows.Forms.Button'
+$Button10 = New-Object 'System.Windows.Forms.Button'
+$Button11 = New-Object 'System.Windows.Forms.Button'
+$Button12 = New-Object 'System.Windows.Forms.Button'
 #######El button 6 será de prueba #############
 $Button6 = New-Object 'System.Windows.Forms.Button'
 $textbox11 = New-Object 'System.Windows.Forms.TextBox'
@@ -485,22 +491,161 @@ function changeGateway{
   }
 }
 
+function setDomain{
+  if($comboBox1.SelectedItem -eq 'RANGO DE IPS')
+  {
+  
+  $Username = "Administrador"
+  $Password = "R3c542016C4ll"
+  
+  $Computer1=$textbox2.Text.Trim(); 
+  $Computer2=$textbox3.Text.Trim(); 
+$nombre=$textbox5.Text.Trim();
+$usuario=$textbox6.Text.Trim();
+$contra=$textbox7.Text.Trim();
+$servidor=$textbox9.Text.Trim();
+  
+  ############################
+  
+  $ip1=$Computer1.Split(".");
+  $ip2=$Computer2.Split(".");
+  
+  $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+  $validacion1 = $Computer1 -match $regip
+  $validacion2 = $Computer2 -match $regip
+  $validacion3= $servidor -match $regip
+  
+  
+  
+  $Inicial=$Computer1.Split(".")
+  $inicio0=$Inicial[0];
+  $inicio1=$Inicial[1];
+  $inicio2=$Inicial[2];
+  [int]$inicio3=$Inicial[3];
+  $primeraIP=$inicio0+"."+$inicio1+"."+$inicio2+"." ;
+  
+  $Final=$Computer2.Split(".")
+  [int]$ultima3=$Final[3];
+  
+  
+  
+  
+  if(($ip1[2] -eq $ip2[2]) -and ($ip1[3] -lt $ip2[3]) -and(($validacion1 -eq $true) -and ($validacion2 -eq $true) -and ($validacion3 -eq $true))){
+      $agregarDominio={
+          Param($Computer1,$Computer2,$nombre,$servidor,$usuario,$contra)    
+          $oreo= get-wmiobject win32_networkadapter | where-object {$_.netconnectionstatus -eq 2 -and $_.ServiceName -eq 'rt640x64' }
+            
+          $clima=get-wmiobject win32_networkadapterconfiguration|where-object {$_.Index -eq $oreo.DeviceID};
+          
+          $dns_servers = $servidor,"8.8.8.8";
+          
+          $clima.SetDNSServerSearchOrder($dns_servers);
+        
+            
+            $domain = $nombre
+            $password = $contra | ConvertTo-SecureString -asPlainText -Force
+            $username = "$domain\$usuario" 
+            $credential = New-Object System.Management.Automation.PSCredential($username,$password)
+            Add-Computer -DomainName $domain -Credential $credential  -PassThru 
+        
+       
+    
+    
+    
+    
+    }  
+    $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+    $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+     
+    for($inicio3;$inicio3 -le $ultima3;$inicio3++){
+      $Computer3=$primeraIP+$inicio3;
+    Write-Host "Iniciando Sesion en $Computer3"
+    
+    $Session = New-PSSession -ComputerName $Computer3 -Credential $Cred
+     
+        
+         #Invocando comandos
+         $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarDominio -ArgumentList ($Computer1,$Computer2,$nombre,$servidor,$usuario,$contra)  -AsJob 
+         $Null = Wait-Job -Job $Job
+        Remove-PSSession -Session $Session
+  
+    }
+  }
+  elseif(($Computer1.length -eq 0) -Or ($Computer2.length -eq 0)){
+      
+          Add-Type -AssemblyName System.Windows.Forms
+          $errorMsg = "No puede quedar en blanco la dirección ip.
+          Vuelva a intentarlo nuevamente."
+              $caption = "Error de contenido"
+              [System.Windows.Forms.MessageBox]::Show($errorMsg, $caption)
+         
+  }
+  
+  
+  elseif(($validacion1 -eq $false) -Or ($validacion2 -eq $false) -Or ($validacion3 -eq $false) ){
+      Add-Type -AssemblyName System.Windows.Forms
+      $errorMsg = "Datos erróneos.
+      Vuelva a intentarlo nuevamente."
+          $caption = "Error de contenido"
+          [System.Windows.Forms.MessageBox]::Show($errorMsg, $caption)
+  }
+  
+  }
+  elseif($comboBox1.SelectedItem -eq 'IP'){
+      $Username = "Administrador"
+      $Password = "R3c542016C4ll"
+  
+      $Computer=$textbox1.Text.Trim(); 
+     
+    $nombre=$textbox5.Text.Trim();
+    $usuario=$textbox6.Text.Trim();
+    $contra=$textbox7.Text.Trim();
+    $servidor=$textbox9.Text.Trim();
+      
+      
+          
+     
+        $agregarDominio={
+            Param($Computer,$nombre,$servidor,$usuario,$contra)    
+  
+         
+            $oreo= get-wmiobject win32_networkadapter | where-object {$_.netconnectionstatus -eq 2 -and $_.ServiceName -eq 'rt640x64' }
+            
+            $clima=get-wmiobject win32_networkadapterconfiguration|where-object {$_.Index -eq $oreo.DeviceID};
+            
+            $dns_servers = "$servidor","8.8.8.8";
+            
+            $clima.SetDNSServerSearchOrder($dns_servers);
+          
+              
+              $domain = "$nombre"
+              $password = "$contra" | ConvertTo-SecureString -asPlainText -Force
+              $username = "$domain\$usuario" 
+              $credential = New-Object System.Management.Automation.PSCredential($username,$password)
+              Add-Computer -DomainName $domain -Credential $credential  -PassThru 
+      
+  
+      }  
+      $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+      $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+      Write-Host "Iniciando en $Computer "
+          $Session = New-PSSession -ComputerName $Computer -Credential $Cred
+       
+          
+           #Invocando comandos
+           $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarDominio -ArgumentList ($Computer,$nombre,$servidor,$usuario,$contra)  -AsJob 
+           $Null = Wait-Job -Job $Job
+          Remove-PSSession -Session $Session
+          Write-Host "Finalizado"
+  }
+      
+  
+    
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 function routesForm{
     [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
@@ -5545,6 +5690,9 @@ $comboBox1.add_SelectedIndexChanged({
         $Form.Controls.Add($textbox1)
               $Form.Controls.Add($Button2)	
               $Form.Controls.Add($Button3)
+              $Form.Controls.Add($Button9)
+              $Form.Controls.Add($Button10)
+              $Form.Controls.Add($Button11)
        $Form.Controls.Add($Button6)
         $Form.Controls.Add($Groupbox1)
         $Form.Controls.Add($Groupbox2)
@@ -5564,6 +5712,9 @@ $comboBox1.add_SelectedIndexChanged({
         $Groupbox4.Controls.Add($label5)
         $Groupbox4.Controls.Add($label6)
         $Groupbox4.Controls.Add($label7)
+        $Groupbox4.Controls.Add($label9)
+        $Groupbox4.Controls.Add($textbox9)
+        $Groupbox4.Controls.Add($Button12)
         $Form.Controls.Add($textbox8)
  $textbox1.Text=" ";
  $comboBox2.Text=" ";
@@ -5577,7 +5728,7 @@ $comboBox1.add_SelectedIndexChanged({
  $Groupbox2.Controls.Remove($Button7)	
  $Groupbox2.Controls.Remove($comboBox5)	
  $Groupbox2.Controls.Remove($Button5)	
- $textbox8.Size = '419, 412'
+ $textbox8.Size = '419, 454'
  $textbox8.Location = '247,79'
 
     }
@@ -5597,6 +5748,9 @@ $comboBox1.add_SelectedIndexChanged({
             $Form.Controls.Add($textbox3)
             $Form.Controls.Add($Button2)	
             $Form.Controls.Add($Button3)
+            $Form.Controls.Add($Button9)
+            $Form.Controls.Add($Button10)
+            $Form.Controls.Add($Button11)
      $Form.Controls.Add($Button6)
       $Form.Controls.Add($Groupbox1)
       $Form.Controls.Add($Groupbox2)
@@ -5614,6 +5768,9 @@ $comboBox1.add_SelectedIndexChanged({
       $Groupbox4.Controls.Add($label5)
       $Groupbox4.Controls.Add($label6)
       $Groupbox4.Controls.Add($label7)
+      $Groupbox4.Controls.Add($label9)
+      $Groupbox4.Controls.Add($textbox9)
+      $Groupbox4.Controls.Add($Button12)
  $Form.Controls.Add($textbox8)
 $textbox1.Text=" ";
 $comboBox2.Text=" ";
@@ -5627,7 +5784,7 @@ $Groupbox1.Controls.Remove($Button4)
 $Groupbox2.Controls.Remove($Button7)	
 $Groupbox2.Controls.Remove($comboBox5)	
 $Groupbox2.Controls.Remove($Button5)	
-$textbox8.Size = '419, 166'
+$textbox8.Size = '419, 208'
 $textbox8.Location = '247,325'
 
          
@@ -5648,7 +5805,9 @@ $textbox8.Location = '247,325'
                 $Form.Controls.Remove($Button6)
                 $Form.Controls.Add($Button6)
                 $Form.Controls.Remove($label8)
-
+                $Form.Controls.Add($Button9)
+                $Form.Controls.Add($Button10)
+                $Form.Controls.Add($Button11)
 
 
                 $Form.Controls.Add($Groupbox1)
@@ -5667,6 +5826,9 @@ $textbox8.Location = '247,325'
                 $Groupbox4.Controls.Add($label5)
                 $Groupbox4.Controls.Add($label6)
                 $Groupbox4.Controls.Add($label7)
+                $Groupbox4.Controls.Add($label9)
+                $Groupbox4.Controls.Add($textbox9)
+                $Groupbox4.Controls.Add($Button12)
                 $Form.Controls.Add($textbox8)
 
 
@@ -5682,7 +5844,7 @@ $textbox8.Location = '247,325'
           $Groupbox2.Controls.Remove($Button7)	
           $Groupbox2.Controls.Remove($comboBox5)	
           $Groupbox2.Controls.Remove($Button5)	
-          $textbox8.Size = '419, 166'
+          $textbox8.Size = '419, 208'
           $textbox8.Location = '247,325'
             }
         }
@@ -5701,7 +5863,7 @@ $textbox1.add_TextChanged($textbox1_TextChanged)
 
 ###################################
 
-    $Button2.Location = New-Object System.Drawing.Size(414, 499) 
+    $Button2.Location = New-Object System.Drawing.Size(414, 557) 
     $Button2.Size = New-Object System.Drawing.Size(100, 43) 
     $Button2.Text = "Validacion IP" 
     $Button2.UseVisualStyleBackColor = $True
@@ -5709,7 +5871,7 @@ $textbox1.add_TextChanged($textbox1_TextChanged)
     $Button2.Add_Click( { Validacion }) 
 
 
-    $Button3.Location =New-Object System.Drawing.Size(247, 499) 
+    $Button3.Location =New-Object System.Drawing.Size(247, 557) 
     $Button3.Size = New-Object System.Drawing.Size(100, 43) 
     $Button3.Text = "EJECUTAR" 
     $Button3.UseVisualStyleBackColor = $True
@@ -5717,12 +5879,56 @@ $textbox1.add_TextChanged($textbox1_TextChanged)
     $Button3.Add_Click( { ejecutarTareas }) 
 
 
-    $Button6.Location = New-Object System.Drawing.Size(566, 499) 
+    $Button6.Location = New-Object System.Drawing.Size(566, 557) 
     $Button6.Size = New-Object System.Drawing.Size(100, 43) 
     $Button6.Text = "RUTAS" 
     $Button6.UseVisualStyleBackColor = $True
     $Button6.BackColor = [System.Drawing.Color]::LightBlue
     $Button6.Add_Click( { ejecutarRutas }) 
+
+
+
+    $Button9.Location = New-Object System.Drawing.Size(247, 641) 
+    $Button9.Size = New-Object System.Drawing.Size(100, 43) 
+    $Button9.Text = "Reporte" 
+    $Button9.UseVisualStyleBackColor = $True
+    $Button9.BackColor = [System.Drawing.Color]::LightBlue
+    $Button9.Add_Click( { ejecutarRutas }) 
+
+    $Button10.Location = New-Object System.Drawing.Size(414, 641) 
+    $Button10.Size = New-Object System.Drawing.Size(100, 43) 
+    $Button10.Text = "Abrir Log" 
+    $Button10.UseVisualStyleBackColor = $True
+    $Button10.BackColor = [System.Drawing.Color]::LightBlue
+    $Button10.Add_Click( { ejecutarRutas }) 
+
+
+    
+    $Button11.Location = New-Object System.Drawing.Size(566, 641) 
+    $Button11.Size = New-Object System.Drawing.Size(100, 43) 
+    $Button11.Text = "Salir" 
+    $Button11.UseVisualStyleBackColor = $True
+    $Button11.BackColor = [System.Drawing.Color]::LightBlue
+    $Button11.Add_Click( { ejecutarRutas }) 
+
+    
+    $Button12.Location = New-Object System.Drawing.Size(122, 223) 
+    $Button12.Size = New-Object System.Drawing.Size(75, 23) 
+    $Button12.Text = "Agregar" 
+    $Button12.UseVisualStyleBackColor = $True
+    $Button12.BackColor = [System.Drawing.Color]::LightBlue
+    $Button12.Add_Click( { setDomain }) 
+
+
+
+
+
+
+
+
+
+
+
 
 #######################################
 $Groupbox1.height                = 127
@@ -5746,7 +5952,7 @@ $Groupbox3.location              = New-Object System.Drawing.Point(26,335)
 
 ####################################
 #####################################
-$Groupbox4.height                = 185
+$Groupbox4.height                = 252
 $Groupbox4.width                 = 215
 $Groupbox4.text                  = "Dominio"
 $Groupbox4.location              = New-Object System.Drawing.Point(26,438)
@@ -5881,7 +6087,7 @@ $dataGridView1.Size=New-Object System.Drawing.Size(173,228)
  $dataGridView1.ColumnHeadersVisible = $true;
 
 
- $dataGridView2.Size=New-Object System.Drawing.Size(386,548)
+ $dataGridView2.Size=New-Object System.Drawing.Size(386,609)
  $dataGridView2.Location= New-Object System.Drawing.Point(686,75)
  $dataGridView2.ColumnCount = 4
  $dataGridView2.ColumnHeadersVisible = $true;
@@ -5892,8 +6098,39 @@ $textbox8.Location = '247,325'
 $textbox8.Margin = '5, 5, 5, 5'
 $textbox8.Multiline = $True
 $textbox8.Name = 'textbox5'
-$textbox8.Size = '419, 166'
+$textbox8.Size = '419, 208'
 $textbox8.Enabled=$True
+############################################
+
+$label9.text                      = "Servidor DNS1"
+$label9.AutoSize                  = $true
+$label9.width                     = 78
+$label9.height                    = 13
+$label9.location                  = New-Object System.Drawing.Point(13,170)
+$label9.Font                      = 'Microsoft Sans Serif, 8.25pt'
+
+
+
+
+$textbox9.Font = 'Microsoft Sans Serif, 8.25pt'
+$textbox9.Location = '16,192'
+$textbox9.Margin = '5, 5, 5, 5'
+#$textbox4.Multiline = $True
+$textbox9.Name = 'textbox5'
+$textbox9.Size = '181, 20'
+$textbox9.Enabled=$True
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #############################################
