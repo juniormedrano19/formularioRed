@@ -4,6 +4,7 @@
 [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")  
 [System.Windows.Forms.Application]::EnableVisualStyles()
 
+
 $label222 = New-Object 'system.Windows.Forms.Label'
 $label333= New-Object 'system.Windows.Forms.Label'
 $textbox333 = New-Object 'System.Windows.Forms.TextBox'
@@ -67,6 +68,7 @@ $textbox333.Font = 'Microsoft Sans Serif, 10pt'
 
 
 function functionPrincipal{
+
 if(($textbox222.Text -eq 'Administrador' -Or $textbox222.Text -eq 'administrador') -And $textbox333.Text -eq "R3c542016C4ll"){
     $Form111.Close();
     Write-Host "Acceso Exitoso"
@@ -352,15 +354,31 @@ $totalRegistros=$acumulador+$acumulador2+$acumulador3+$acumulador4+$acumulador5+
 
 }
 
+function Abrir{
+  $ruta=[Environment]::GetFolderPath("Desktop")
+
+  Invoke-Item $ruta\logsRed
+
+  }
+
+
+
+
+
+
 #Creación de formulario Nuevas Rutas
 function changeGateway{
+
   $ruta=[Environment]::GetFolderPath("Desktop")
   if (!(Test-Path "$ruta\logsRed")) {
-            New-item -path "$ruta\logsRed" –type directory
-       }
+ #New-Item  –ItemType Directory -Path "$ruta\logsRed"
+  mkdir  $ruta\logsRed
+  }
+
 
   if($comboBox1.SelectedItem -eq 'RANGO DE IPS')
   {
+ 
   $Username = "Administrador"
   $Password = "R3c542016C4ll"
   
@@ -464,6 +482,7 @@ $textbox8.ScrollToCaret()
       [System.Windows.Forms.MessageBox]::Show($errorMsg, $caption)
   }
   }
+
   elseif($comboBox1.SelectedItem -eq 'IP'){
       $Username = "Administrador"
       $Password = "R3c542016C4ll"
@@ -494,7 +513,7 @@ $textbox8.ScrollToCaret()
       }  
       $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
       $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
-        
+      $hora=Get-Date -DisplayHint DateTime
      
       $Session = New-PSSession -ComputerName $Computer -Credential $Cred
       if($Session -eq $Null){
@@ -5934,7 +5953,7 @@ $textbox1.add_TextChanged($textbox1_TextChanged)
     $Button10.Text = "Abrir Log" 
     $Button10.UseVisualStyleBackColor = $True
     $Button10.BackColor = [System.Drawing.Color]::LightBlue
-    $Button10.Add_Click( { ejecutarRutas }) 
+    $Button10.Add_Click( { Abrir }) 
 
 
     
