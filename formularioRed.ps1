@@ -354,6 +354,11 @@ $totalRegistros=$acumulador+$acumulador2+$acumulador3+$acumulador4+$acumulador5+
 
 #Creación de formulario Nuevas Rutas
 function changeGateway{
+  $ruta=[Environment]::GetFolderPath("Desktop")
+  if (!(Test-Path "$ruta\logsRed")) {
+            New-item -path "$ruta\logsRed" –type directory
+       }
+
   if($comboBox1.SelectedItem -eq 'RANGO DE IPS')
   {
   $Username = "Administrador"
@@ -414,16 +419,30 @@ function changeGateway{
       $Computer3=$primeraIP+$inicio3;
 
     
-  
+      $hora=Get-Date -DisplayHint DateTime
   
   $Session = New-PSSession -ComputerName $Computer3 -Credential $Cred
-   
-      
+  if($Session -eq $Null){
+    #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+    "No se pudo conectar en $Computer3" + " - " + $hora >> "$ruta\logsRed\log.txt"
+      # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+      $Message="No se pudo conectar en $Computer3"+ " - " + $hora;   
+        $textbox8.AppendText("`r`n$Message");
+           $textbox8.Refresh()
+       $textbox8.ScrollToCaret()
+       }
+      else{
        #Invocando comandos
        $Job = Invoke-Command -Session $Session  -ScriptBlock $cambio -ArgumentList ($Computer1,$Computer2,$texto4) -AsJob 
        $Null = Wait-Job -Job $Job
       Remove-PSSession -Session $Session
-    
+      "Inicio exitoso en $Computer3" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+      #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+   $Message="Inicio exitoso en $Computer3";   
+   $textbox8.AppendText("`r`n$Message");
+   $textbox8.Refresh()
+$textbox8.ScrollToCaret()
+      }
   }
   }
   elseif(($Computer1.length -eq 0) -Or ($Computer2.length -eq 0)){
@@ -478,14 +497,29 @@ function changeGateway{
         
      
       $Session = New-PSSession -ComputerName $Computer -Credential $Cred
-       
+      if($Session -eq $Null){
+        #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+        "No se pudo conectar en $Computer" + " - " + $hora >> "$ruta\logsRed\log.txt"
+          # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+          $Message="No se pudo conectar en $Computer"+ " - " + $hora;   
+            $textbox8.AppendText("`r`n$Message");
+               $textbox8.Refresh()
+           $textbox8.ScrollToCaret()
+           }
+          else{
+
           
            #Invocando comandos
            $Job = Invoke-Command -Session $Session  -ScriptBlock $cambio -ArgumentList ($Computer,$texto4) -AsJob 
            $Null = Wait-Job -Job $Job
           Remove-PSSession -Session $Session
-   
-    
+          "Inicio exitoso en $Computer" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+          #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+       $Message="Inicio exitoso en $Computer";   
+       $textbox8.AppendText("`r`n$Message");
+       $textbox8.Refresh()
+    $textbox8.ScrollToCaret()
+          }
     
     
   }
@@ -535,25 +569,23 @@ $servidor=$textbox9.Text.Trim();
           Param($Computer1,$Computer2,$nombre,$servidor,$usuario,$contra)    
           $oreo= get-wmiobject win32_networkadapter | where-object {$_.netconnectionstatus -eq 2 -and $_.ServiceName -eq 'rt640x64' }
             
-          $clima=get-wmiobject win32_networkadapterconfiguration|where-object {$_.Index -eq $oreo.DeviceID};
-          
-          $dns_servers = $servidor,"8.8.8.8";
-          
-          $clima.SetDNSServerSearchOrder($dns_servers);
-        
+            $clima=get-wmiobject win32_networkadapterconfiguration|where-object {$_.Index -eq $oreo.DeviceID};
             
-            $domain = $nombre
-            $password = $contra | ConvertTo-SecureString -asPlainText -Force
-            $username = "$domain\$usuario" 
-            $credential = New-Object System.Management.Automation.PSCredential($username,$password)
-            Add-Computer -DomainName $domain -Credential $credential  -PassThru 
+            $dns_servers = $servidor,"8.8.8.8";
+            
+            $clima.SetDNSServerSearchOrder($dns_servers);
+          
+     
+              $domain = "$nombre"
+              $password = "$contra" | ConvertTo-SecureString -asPlainText -Force
+              $username = "$domain\$usuario"
+              $credential = New-Object System.Management.Automation.PSCredential($username,$password)
+              Add-Computer -DomainName $domain -Credential $credential  -PassThru 
         
        
     
-    
-    
-    
     }  
+
     $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
     $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
      
@@ -595,12 +627,12 @@ $servidor=$textbox9.Text.Trim();
       $Username = "Administrador"
       $Password = "R3c542016C4ll"
   
-      $Computer=$textbox1.Text.Trim(); 
+      $Computer = $textbox1.Text.Trim(); 
      
-    $nombre=$textbox5.Text.Trim();
-    $usuario=$textbox6.Text.Trim();
-    $contra=$textbox7.Text.Trim();
-    $servidor=$textbox9.Text.Trim();
+    $nombre = $textbox5.Text.Trim();
+    $usuario = $textbox6.Text.Trim();
+    $contra = $textbox7.Text.Trim();
+    $servidor = $textbox9.Text.Trim();
       
       
           
@@ -608,19 +640,18 @@ $servidor=$textbox9.Text.Trim();
         $agregarDominio={
             Param($Computer,$nombre,$servidor,$usuario,$contra)    
   
-         
             $oreo= get-wmiobject win32_networkadapter | where-object {$_.netconnectionstatus -eq 2 -and $_.ServiceName -eq 'rt640x64' }
             
             $clima=get-wmiobject win32_networkadapterconfiguration|where-object {$_.Index -eq $oreo.DeviceID};
             
-            $dns_servers = "$servidor","8.8.8.8";
+            $dns_servers = $servidor,"8.8.8.8";
             
             $clima.SetDNSServerSearchOrder($dns_servers);
           
-              
+     
               $domain = "$nombre"
               $password = "$contra" | ConvertTo-SecureString -asPlainText -Force
-              $username = "$domain\$usuario" 
+              $username = "$domain\$usuario"
               $credential = New-Object System.Management.Automation.PSCredential($username,$password)
               Add-Computer -DomainName $domain -Credential $credential  -PassThru 
       
@@ -633,7 +664,7 @@ $servidor=$textbox9.Text.Trim();
        
           
            #Invocando comandos
-           $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarDominio -ArgumentList ($Computer,$nombre,$servidor,$usuario,$contra)  -AsJob 
+           $Job = Invoke-Command -Session $Session -ScriptBlock $agregarDominio -ArgumentList ($Computer,$nombre,$servidor,$usuario,$contra)  -AsJob 
            $Null = Wait-Job -Job $Job
           Remove-PSSession -Session $Session
           Write-Host "Finalizado"
@@ -5722,6 +5753,7 @@ $comboBox1.add_SelectedIndexChanged({
  $textbox4.Text=" ";
  $comboBox3.Text=" ";
  $comboBox5.Text=" ";
+ $textbox8.Text=" ";
  $Groupbox1.Controls.Remove($comboBox3)
  $Groupbox1.Controls.Remove($Button1)	
  $Groupbox1.Controls.Remove($Button4)
@@ -5778,6 +5810,7 @@ $comboBox4.Text=" ";
 $textbox4.Text=" ";
 $comboBox3.Text=" ";
 $comboBox5.Text=" ";
+$textbox8.Text=" ";
 $Groupbox1.Controls.Remove($comboBox3)
 $Groupbox1.Controls.Remove($Button1)	
 $Groupbox1.Controls.Remove($Button4)
@@ -5838,6 +5871,7 @@ $textbox8.Location = '247,325'
           $textbox4.Text=" ";
           $comboBox3.Text=" ";
           $comboBox5.Text=" ";
+          $textbox8.Text=" ";
           $Groupbox1.Controls.Remove($comboBox3)
           $Groupbox1.Controls.Remove($Button1)	
           $Groupbox1.Controls.Remove($Button4)
