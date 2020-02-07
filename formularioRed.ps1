@@ -69,10 +69,10 @@ $textbox333.Font = 'Microsoft Sans Serif, 10pt'
 
 function functionPrincipal{
 
-if(($textbox222.Text -eq 'Administrador' -Or $textbox222.Text -eq 'administrador') -And $textbox333.Text -eq "R3c542016C4ll"){
-    $Form111.Close();
+if(($textbox222.Text -eq 'Administrador' -Or $textbox222.Text -eq 'administrador' -Or $textbox222.Text -eq 'admin') -And $textbox333.Text -eq "123456"){
+  $Form111.Close();
     Write-Host "Acceso Exitoso"
-   
+ 
     [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
 [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")  
 [System.Windows.Forms.Application]::EnableVisualStyles()
@@ -258,6 +258,8 @@ $Form.Controls.Add($label)
 function Ubicacion{
     $dataGridView.Rows.Clear()
                 $dataGridView.DataSource = $null
+                $dataGridView1.Rows.Clear()
+                $dataGridView1.DataSource = $null
     [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null
     
     $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
@@ -321,7 +323,9 @@ else{
                 }
         }
 }
-
+if($validacion1 -eq $True){
+  $dataGridView1.Rows.Add($hola);
+}
 
 
 
@@ -351,6 +355,8 @@ $totalRegistros=$acumulador+$acumulador2+$acumulador3+$acumulador4+$acumulador5+
  $dataGridView.Columns[0].Name = "Número de Registros"
  $dataGridView.Columns[1].Name = "Cantidad"
 
+ $dataGridView1.Columns[0].width='130'
+$dataGridView1.Columns[0].Name="Registros"
 
 }
 
@@ -5731,6 +5737,8 @@ $comboBox1.add_SelectedIndexChanged({
     if($comboBox1.SelectedItem -eq 'IP'){
         $dataGridView.Rows.Clear()
         $dataGridView.DataSource = $null
+        $dataGridView1.Rows.Clear()
+        $dataGridView1.DataSource = $null
         $Form.Controls.Remove($dataGridView)
         $Form.Controls.Remove($dataGridView1)
         $Form.Controls.Add($dataGridView2)
@@ -5787,6 +5795,8 @@ $comboBox1.add_SelectedIndexChanged({
         if($comboBox1.SelectedItem -eq 'RANGO DE IPS'){
             $dataGridView.Rows.Clear()
             $dataGridView.DataSource = $null
+            $dataGridView1.Rows.Clear()
+            $dataGridView1.DataSource = $null
             $Form.Controls.Add($dataGridView)
             $Form.Controls.Add($dataGridView1)
             $Form.Controls.Add($dataGridView2)
@@ -5845,6 +5855,8 @@ $textbox8.Location = '247,325'
             if($comboBox1.SelectedItem -eq 'ARCHIVO TXT'){
                 $dataGridView.Rows.Clear()
                 $dataGridView.DataSource = $null
+                $dataGridView1.Rows.Clear()
+                $dataGridView1.DataSource = $null
                 $Form.Controls.Add($dataGridView)
                 $Form.Controls.Add($dataGridView1)
                 $Form.Controls.Add($dataGridView2)
@@ -5860,7 +5872,8 @@ $textbox8.Location = '247,325'
                 $Form.Controls.Add($Button9)
                 $Form.Controls.Add($Button10)
                 $Form.Controls.Add($Button11)
-
+                $Form.Controls.Add($Button2)	
+                $Form.Controls.Add($Button3)
 
                 $Form.Controls.Add($Groupbox1)
                 $Form.Controls.Add($Groupbox2)
@@ -6146,7 +6159,7 @@ $dataGridView1.Size=New-Object System.Drawing.Size(173,228)
  $dataGridView2.ColumnHeadersVisible = $true;
 
 ######################################################
-$textbox8.Font = 'Microsoft Sans Serif, 8.25pt'
+$textbox8.Font = 'Microsoft Sans Serif, 10pt'
 $textbox8.Location = '247,325'
 $textbox8.Margin = '5, 5, 5, 5'
 $textbox8.Multiline = $True
