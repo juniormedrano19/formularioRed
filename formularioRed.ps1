@@ -448,9 +448,9 @@ function changeGateway{
   $Session = New-PSSession -ComputerName $Computer3 -Credential $Cred
   if($Session -eq $Null){
     #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
-    "No se pudo conectar en $Computer3" + " - " + $hora >> "$ruta\logsRed\log.txt"
+    "No se pudo conectar(Rango) en $Computer3" + " - " + $hora >> "$ruta\logsRed\log.txt"
       # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
-      $Message="No se pudo conectar en $Computer3"+ " - " + $hora;   
+      $Message="No se pudo conectar(Rango) en $Computer3"+ " - " + $hora;   
         $textbox8.AppendText("`r`n$Message");
            $textbox8.Refresh()
        $textbox8.ScrollToCaret()
@@ -460,9 +460,9 @@ function changeGateway{
        $Job = Invoke-Command -Session $Session  -ScriptBlock $cambio -ArgumentList ($Computer1,$Computer2,$texto4) -AsJob 
        $Null = Wait-Job -Job $Job
       Remove-PSSession -Session $Session
-      "Inicio exitoso en $Computer3" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+      "Cambiar Gateway -(Rango) Inicio exitoso en $Computer3" + " - " + $hora >>  "$ruta\logsRed\log.txt"
       #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
-   $Message="Inicio exitoso en $Computer3";   
+   $Message="Cambiar Gateway -(Rango) Inicio exitoso en $Computer3";   
    $textbox8.AppendText("`r`n$Message");
    $textbox8.Refresh()
 $textbox8.ScrollToCaret()
@@ -524,9 +524,9 @@ $textbox8.ScrollToCaret()
       $Session = New-PSSession -ComputerName $Computer -Credential $Cred
       if($Session -eq $Null){
         #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
-        "No se pudo conectar en $Computer" + " - " + $hora >> "$ruta\logsRed\log.txt"
+        "No se pudo conectar(IP) en $Computer" + " - " + $hora >> "$ruta\logsRed\log.txt"
           # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
-          $Message="No se pudo conectar en $Computer"+ " - " + $hora;   
+          $Message="No se pudo conectar(IP) en $Computer"+ " - " + $hora;   
             $textbox8.AppendText("`r`n$Message");
                $textbox8.Refresh()
            $textbox8.ScrollToCaret()
@@ -538,9 +538,9 @@ $textbox8.ScrollToCaret()
            $Job = Invoke-Command -Session $Session  -ScriptBlock $cambio -ArgumentList ($Computer,$texto4) -AsJob 
            $Null = Wait-Job -Job $Job
           Remove-PSSession -Session $Session
-          "Inicio exitoso en $Computer" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+          "Cambiar Gateway -(IP)Inicio exitoso en $Computer" + " - " + $hora >>  "$ruta\logsRed\log.txt"
           #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
-       $Message="Inicio exitoso en $Computer";   
+       $Message="Cambiar Gateway -(IP)Inicio exitoso en $Computer";   
        $textbox8.AppendText("`r`n$Message");
        $textbox8.Refresh()
     $textbox8.ScrollToCaret()
@@ -551,6 +551,11 @@ $textbox8.ScrollToCaret()
 }
 
 function setDomain{
+  $ruta=[Environment]::GetFolderPath("Desktop")
+  if (!(Test-Path "$ruta\logsRed")) {
+ #New-Item  –ItemType Directory -Path "$ruta\logsRed"
+  mkdir  $ruta\logsRed
+  }
   if($comboBox1.SelectedItem -eq 'RANGO DE IPS')
   {
   
@@ -619,12 +624,36 @@ $servidor=$textbox9.Text.Trim();
     Write-Host "Iniciando Sesion en $Computer3"
     
     $Session = New-PSSession -ComputerName $Computer3 -Credential $Cred
-     
-        
+    $hora=Get-Date -DisplayHint DateTime
+    if($Session -eq $Null){
+      #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+      "No se pudo conectar(RANGO) en $Computer3" + " - " + $hora >> "$ruta\logsRed\log.txt"
+        # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+        $Message="No se pudo conectar(RANGO) en $Computer3"+ " - " + $hora;   
+          $textbox8.AppendText("`r`n$Message");
+             $textbox8.Refresh()
+         $textbox8.ScrollToCaret()
+         }
+
+        else{
          #Invocando comandos
          $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarDominio -ArgumentList ($Computer1,$Computer2,$nombre,$servidor,$usuario,$contra)  -AsJob 
          $Null = Wait-Job -Job $Job
         Remove-PSSession -Session $Session
+
+        "Unir al Dominio(RANGO) - Inicio exitoso en $Computer" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+        #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+     $Message="Unir al Dominio(RANGO) - Inicio exitoso en $Computer";   
+     $textbox8.AppendText("`r`n$Message");
+     $textbox8.Refresh()
+    $textbox8.ScrollToCaret()
+
+
+
+
+
+
+        }
   
     }
   }
@@ -687,12 +716,31 @@ $servidor=$textbox9.Text.Trim();
       Write-Host "Iniciando en $Computer "
           $Session = New-PSSession -ComputerName $Computer -Credential $Cred
        
-          
+          $hora=Get-Date -DisplayHint DateTime
+          if($Session -eq $Null){
+            #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+            "No se pudo conectar(IP) en $Computer" + " - " + $hora >> "$ruta\logsRed\log.txt"
+              # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+              $Message="No se pudo conectar(IP) en $Computer"+ " - " + $hora;   
+                $textbox8.AppendText("`r`n$Message");
+                   $textbox8.Refresh()
+               $textbox8.ScrollToCaret()
+               }
+ else{
            #Invocando comandos
            $Job = Invoke-Command -Session $Session -ScriptBlock $agregarDominio -ArgumentList ($Computer,$nombre,$servidor,$usuario,$contra)  -AsJob 
            $Null = Wait-Job -Job $Job
           Remove-PSSession -Session $Session
           Write-Host "Finalizado"
+
+          "Unir al Dominio(IP)  - Inicio exitoso en $Computer" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+          #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+       $Message="Unir al Dominio(IP)  - Inicio exitoso en $Computer";   
+       $textbox8.AppendText("`r`n$Message");
+       $textbox8.Refresh()
+      $textbox8.ScrollToCaret()
+
+ }
   }
       
   
@@ -4353,7 +4401,11 @@ function Validacion{
                 }
 }
 function ejecutarRutas{
-
+  $ruta=[Environment]::GetFolderPath("Desktop")
+  if (!(Test-Path "$ruta\logsRed")) {
+ #New-Item  –ItemType Directory -Path "$ruta\logsRed"
+  mkdir  $ruta\logsRed
+  }
 
   if($comboBox1.SelectedItem -eq 'RANGO DE IPS')
   {
@@ -4399,16 +4451,34 @@ if($comboBox5.SelectedItem -eq 1){
     for($inicio3;$inicio3 -le $ultima3;$inicio3++){
         $Computer3=$primeraIP+$inicio3;
       Write-Host "Iniciando Sesion en $Computer3"
-    
+      $hora=Get-Date -DisplayHint DateTime
     
     $Session = New-PSSession -ComputerName $Computer3 -Credential $Cred
-     
+    if($Session -eq $Null){
+      #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+      "No se pudo conectar(RANGO) en $Computer3" + " - " + $hora >> "$ruta\logsRed\log.txt"
+        # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+        $Message="No se pudo conectar(RANGO) en $Computer3"+ " - " + $hora;   
+          $textbox8.AppendText("`r`n$Message");
+             $textbox8.Refresh()
+         $textbox8.ScrollToCaret()
+         }
+        else{
+
         
          #Invocando comandos
          $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($Computer1,$Computer2,$ip_N1,$mask_N1,$gateway_N1) -AsJob 
          $Null = Wait-Job -Job $Job
         Remove-PSSession -Session $Session
+        "Agregar 1 Ruta (Rango IP) - Inicio exitoso en $Computer3" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+        #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+     $Message="Agregar 1 Ruta (Rango IP) - Inicio exitoso en $Computer3";   
+     $textbox8.AppendText("`r`n$Message");
+     $textbox8.Refresh()
+    $textbox8.ScrollToCaret()
 
+
+        }
     }
 
 }
@@ -4477,15 +4547,44 @@ elseif ($comboBox5.SelectedItem -eq 2) {
     for($inicio3;$inicio3 -le $ultima3;$inicio3++){
         $Computer3=$primeraIP+$inicio3;
       Write-Host "Iniciando Sesion en $Computer3"
-    
+      $hora=Get-Date -DisplayHint DateTime
+
     
     $Session = New-PSSession -ComputerName $Computer3 -Credential $Cred
-     
+    if($Session -eq $Null){
+      #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+      "No se pudo conectar(RANGO) en $Computer3" + " - " + $hora >> "$ruta\logsRed\log.txt"
+        # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+        $Message="No se pudo conectar(RANGO) en $Computer3"+ " - " + $hora;   
+          $textbox8.AppendText("`r`n$Message");
+             $textbox8.Refresh()
+         $textbox8.ScrollToCaret()
+         }
+
+         else{
         
          #Invocando comandos
          $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($Computer1,$Computer2,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2) -AsJob 
          $Null = Wait-Job -Job $Job
         Remove-PSSession -Session $Session
+
+        "Agregar 2 Rutas (Rango IP) - Inicio exitoso en $Computer3" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+        #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+     $Message="Agregar 2 Rutas (Rango IP) - Inicio exitoso en $Computer3";   
+     $textbox8.AppendText("`r`n$Message");
+     $textbox8.Refresh()
+    $textbox8.ScrollToCaret()
+
+
+
+
+
+
+
+
+
+
+         }
     }
 }
 elseif(($Computer1.length -eq 0) -Or ($Computer2.length -eq 0)){
@@ -4559,16 +4658,31 @@ elseif ($comboBox5.SelectedItem -eq 3) {
     for($inicio3;$inicio3 -le $ultima3;$inicio3++){
         $Computer3=$primeraIP+$inicio3;
       Write-Host "Iniciando Sesion en $Computer3"
-    
+      $hora=Get-Date -DisplayHint DateTime
     
     
     $Session = New-PSSession -ComputerName $Computer3 -Credential $Cred
-     
-        
+    if($Session -eq $Null){
+      #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+      "No se pudo conectar(RANGO) en $Computer3" + " - " + $hora >> "$ruta\logsRed\log.txt"
+        # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+        $Message="No se pudo conectar(RANGO) en $Computer3"+ " - " + $hora;   
+          $textbox8.AppendText("`r`n$Message");
+             $textbox8.Refresh()
+         $textbox8.ScrollToCaret()
+         }
+        else{
          #Invocando comandos
          $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($Computer1,$Computer2,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3) -AsJob 
          $Null = Wait-Job -Job $Job
         Remove-PSSession -Session $Session
+        "Agregar 3 Rutas (Rango IP) - Inicio exitoso en $Computer3" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+        #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+     $Message="Agregar 3 Rutas (Rango IP) - Inicio exitoso en $Computer3";   
+     $textbox8.AppendText("`r`n$Message");
+     $textbox8.Refresh()
+    $textbox8.ScrollToCaret()
+        }
     }
     }
     elseif(($Computer1.length -eq 0) -Or ($Computer2.length -eq 0)){
@@ -4644,16 +4758,44 @@ elseif ($comboBox5.SelectedItem -eq 4) {
     for($inicio3;$inicio3 -le $ultima3;$inicio3++){
         $Computer3=$primeraIP+$inicio3;
       Write-Host "Iniciando Sesion en $Computer3"
-    
+      $hora=Get-Date -DisplayHint DateTime
     
     
     $Session = New-PSSession -ComputerName $Computer3 -Credential $Cred
+    
+if($Session -eq $Null){
+  #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+  "No se pudo conectar(RANGO) en $Computer3" + " - " + $hora >> "$ruta\logsRed\log.txt"
+    # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+    $Message="No se pudo conectar(RANGO) en $Computer3"+ " - " + $hora;   
+      $textbox8.AppendText("`r`n$Message");
+         $textbox8.Refresh()
+     $textbox8.ScrollToCaret()
+     }
+
+     else{
+
      
         
          #Invocando comandos
          $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($Computer1,$Computer2,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4) -AsJob 
          $Null = Wait-Job -Job $Job
         Remove-PSSession -Session $Session
+        "Agregar 4 Rutas (Rango IP) - Inicio exitoso en $Computer3" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+        #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+     $Message="Agregar 4 Rutas (Rango IP) - Inicio exitoso en $Computer3";   
+     $textbox8.AppendText("`r`n$Message");
+     $textbox8.Refresh()
+    $textbox8.ScrollToCaret()
+
+
+
+
+
+
+
+
+     }
     }
 }
 elseif(($Computer1.length -eq 0) -Or ($Computer2.length -eq 0)){
@@ -4737,16 +4879,43 @@ elseif ($comboBox5.SelectedItem -eq 5) {
     for($inicio3;$inicio3 -le $ultima3;$inicio3++){
         $Computer3=$primeraIP+$inicio3;
       Write-Host "Iniciando Sesion en $Computer3"
+      $hora=Get-Date -DisplayHint DateTime
 
     
     $Session = New-PSSession -ComputerName $Computer3 -Credential $Cred
-     
-        
-         #Invocando comandos
+    if($Session -eq $Null){
+      #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+      "No se pudo conectar(RANGO) en $Computer3" + " - " + $hora >> "$ruta\logsRed\log.txt"
+        # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+        $Message="No se pudo conectar(RANGO) en $Computer3"+ " - " + $hora;   
+          $textbox8.AppendText("`r`n$Message");
+             $textbox8.Refresh()
+         $textbox8.ScrollToCaret()
+         }
+
+        else{
+
+                 #Invocando comandos
          $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($Computer1,$Computer2,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4,$ip_N5,$mask_N5,$gateway_N5) -AsJob 
          $Null = Wait-Job -Job $Job
         Remove-PSSession -Session $Session
 
+
+
+        "Agregar 5 Rutas (Rango IP) - Inicio exitoso en $Computer3" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+        #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+     $Message="Agregar 5 Rutas (Rango IP) - Inicio exitoso en $Computer3";   
+     $textbox8.AppendText("`r`n$Message");
+     $textbox8.Refresh()
+    $textbox8.ScrollToCaret()
+
+
+
+
+
+
+
+        }
 
     }
 }
@@ -4832,16 +5001,39 @@ elseif ($comboBox5.SelectedItem -eq 6) {
     for($inicio3;$inicio3 -le $ultima3;$inicio3++){
         $Computer3=$primeraIP+$inicio3;
       Write-Host "Iniciando Sesion en $Computer3"
-    
+      $hora=Get-Date -DisplayHint DateTime
     
     
     $Session = New-PSSession -ComputerName $Computer3 -Credential $Cred
-     
+    if($Session -eq $Null){
+      #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+      "No se pudo conectar(RANGO) en $Computer3" + " - " + $hora >> "$ruta\logsRed\log.txt"
+        # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+        $Message="No se pudo conectar(RANGO) en $Computer3"+ " - " + $hora;   
+          $textbox8.AppendText("`r`n$Message");
+             $textbox8.Refresh()
+         $textbox8.ScrollToCaret()
+         }
+else{
+
+
         
          #Invocando comandos
          $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($Computer1,$Computer2,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4,$ip_N5,$mask_N5,$gateway_N5,$ip_N6,$mask_N6,$gateway_N6) -AsJob 
          $Null = Wait-Job -Job $Job
         Remove-PSSession -Session $Session
+        "Agregar 6 Rutas (Rango IP) - Inicio exitoso en $Computer3" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+        #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+     $Message="Agregar 6 Rutas (Rango IP) - Inicio exitoso en $Computer3";   
+     $textbox8.AppendText("`r`n$Message");
+     $textbox8.Refresh()
+    $textbox8.ScrollToCaret()
+
+
+
+
+
+}
     }
 }
 elseif(($Computer1.length -eq 0) -Or ($Computer2.length -eq 0)){
@@ -4928,14 +5120,32 @@ elseif ($comboBox5.SelectedItem -eq 7) {
     for($inicio3;$inicio3 -le $ultima3;$inicio3++){
         $Computer3=$primeraIP+$inicio3;
       Write-Host "Iniciando Sesion en $Computer3"
-    
+      $hora=Get-Date -DisplayHint DateTime
     $Session = New-PSSession -ComputerName $Computer3 -Credential $Cred
-     
+    if($Session -eq $Null){
+      #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+      "No se pudo conectar(RANGO) en $Computer3" + " - " + $hora >> "$ruta\logsRed\log.txt"
+        # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+        $Message="No se pudo conectar(RANGO) en $Computer3"+ " - " + $hora;   
+          $textbox8.AppendText("`r`n$Message");
+             $textbox8.Refresh()
+         $textbox8.ScrollToCaret()
+         }
+
+         else{
         
          #Invocando comandos
          $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($Computer1,$Computer2,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4,$ip_N5,$mask_N5,$gateway_N5,$ip_N6,$mask_N6,$gateway_N6,$ip_N7,$mask_N7,$gateway_N7) -AsJob 
          $Null = Wait-Job -Job $Job
         Remove-PSSession -Session $Session
+        "Agregar 7 Rutas (Rango IP) - Inicio exitoso en $Computer3" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+        #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+     $Message="Agregar 7 Rutas (Rango IP) - Inicio exitoso en $Computer3";   
+     $textbox8.AppendText("`r`n$Message");
+     $textbox8.Refresh()
+    $textbox8.ScrollToCaret()
+
+         }
     }
 }
 elseif(($Computer1.length -eq 0) -Or ($Computer2.length -eq 0)){
@@ -5021,14 +5231,37 @@ else{
         
     for($inicio3;$inicio3 -le $ultima3;$inicio3++){
         $Computer3=$primeraIP+$inicio3;
-
+        $hora=Get-Date -DisplayHint DateTime
     $Session = New-PSSession -ComputerName $Computer3 -Credential $Cred
-    Write-Host "Iniciando Sesion en $Computer3"
+    if($Session -eq $Null){
+      #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+      "No se pudo conectar(RANGO) en $Computer3" + " - " + $hora >> "$ruta\logsRed\log.txt"
+        # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+        $Message="No se pudo conectar(RANGO) en $Computer3"+ " - " + $hora;   
+          $textbox8.AppendText("`r`n$Message");
+             $textbox8.Refresh()
+         $textbox8.ScrollToCaret()
+         }
+
+  #  Write-Host "Iniciando Sesion en $Computer3"
         
          #Invocando comandos
+
+         else{
+
+         
          $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($Computer1,$Computer2,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4,$ip_N5,$mask_N5,$gateway_N5,$ip_N6,$mask_N6,$gateway_N6,$ip_N7,$mask_N7,$gateway_N7,$ip_N8,$mask_N8,$gateway_N8) -AsJob 
          $Null = Wait-Job -Job $Job
         Remove-PSSession -Session $Session
+        "Agregar 8 Rutas (Rango IP) - Inicio exitoso en $Computer3" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+        #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+     $Message="Agregar 8 Rutas (Rango IP) - Inicio exitoso en $Computer3";   
+     $textbox8.AppendText("`r`n$Message");
+     $textbox8.Refresh()
+    $textbox8.ScrollToCaret()
+
+
+         }
 }
      
 }
@@ -5077,14 +5310,35 @@ Vuelva a intentarlo nuevamente."
         $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
         $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
             $Session = New-PSSession -ComputerName $Computer -Credential $Cred
-         
-            
+            $hora=Get-Date -DisplayHint DateTime
+            if($Session -eq $Null){
+              #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+              "No se pudo conectar(IP) en $Computer" + " - " + $hora >> "$ruta\logsRed\log.txt"
+                # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+                $Message="No se pudo conectar(IP) en $Computer"+ " - " + $hora;   
+                  $textbox8.AppendText("`r`n$Message");
+                     $textbox8.Refresh()
+                 $textbox8.ScrollToCaret()
+                 }
              #Invocando comandos
+
+else{
+
              $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($Computer,$ip_N1,$mask_N1,$gateway_N1) -AsJob 
              $Null = Wait-Job -Job $Job
             Remove-PSSession -Session $Session
+            "Agregar 1 Ruta (IP) - Inicio exitoso en $Computer" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+            #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+         $Message="Agregar 1 Ruta (IP) - Inicio exitoso en $Computer";   
+         $textbox8.AppendText("`r`n$Message");
+         $textbox8.Refresh()
+        $textbox8.ScrollToCaret()
+
+
+
+
     
-    
+}
     
     }
     elseif ($comboBox5.SelectedItem -eq 2) {
@@ -5113,12 +5367,37 @@ Vuelva a intentarlo nuevamente."
         $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
         $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
             $Session = New-PSSession -ComputerName $Computer -Credential $Cred
-         
+            $hora=Get-Date -DisplayHint DateTime
+            if($Session -eq $Null){
+              #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+              "No se pudo conectar(IP) en $Computer" + " - " + $hora >> "$ruta\logsRed\log.txt"
+                # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+                $Message="No se pudo conectar(IP) en $Computer"+ " - " + $hora;   
+                  $textbox8.AppendText("`r`n$Message");
+                     $textbox8.Refresh()
+                 $textbox8.ScrollToCaret()
+                 }
+
+
+else{
+
             
              #Invocando comandos
              $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($Computer,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2) -AsJob 
              $Null = Wait-Job -Job $Job
             Remove-PSSession -Session $Session
+            "Agregar 2 Rutas (IP) - Inicio exitoso en $Computer" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+            #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+         $Message="Agregar 2 Rutas (IP) - Inicio exitoso en $Computer";   
+         $textbox8.AppendText("`r`n$Message");
+         $textbox8.Refresh()
+        $textbox8.ScrollToCaret()
+
+
+
+
+
+}
     
     }
     elseif ($comboBox5.SelectedItem -eq 3) {
@@ -5150,12 +5429,32 @@ Vuelva a intentarlo nuevamente."
         $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
         $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
             $Session = New-PSSession -ComputerName $Computer -Credential $Cred
-         
-            
+            $hora=Get-Date -DisplayHint DateTime
+            if($Session -eq $Null){
+              #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+              "No se pudo conectar(IP) en $Computer" + " - " + $hora >> "$ruta\logsRed\log.txt"
+                # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+                $Message="No se pudo conectar(IP) en $Computer"+ " - " + $hora;   
+                  $textbox8.AppendText("`r`n$Message");
+                     $textbox8.Refresh()
+                 $textbox8.ScrollToCaret()
+                 }
+
+            else{
              #Invocando comandos
              $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($Computer,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3) -AsJob 
              $Null = Wait-Job -Job $Job
             Remove-PSSession -Session $Session
+
+            "Agregar 3 Rutas (IP) - Inicio exitoso en $Computer" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+            #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+         $Message="Agregar 3 Rutas (IP) - Inicio exitoso en $Computer";   
+         $textbox8.AppendText("`r`n$Message");
+         $textbox8.Refresh()
+        $textbox8.ScrollToCaret()
+
+
+            }
     
     }
     elseif ($comboBox5.SelectedItem -eq 4) {
@@ -5191,13 +5490,39 @@ Vuelva a intentarlo nuevamente."
         $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
         $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
             $Session = New-PSSession -ComputerName $Computer -Credential $Cred
-         
+            $hora=Get-Date -DisplayHint DateTime
+            if($Session -eq $Null){
+              #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+              "No se pudo conectar(IP) en $Computer" + " - " + $hora >> "$ruta\logsRed\log.txt"
+                # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+                $Message="No se pudo conectar(IP) en $Computer"+ " - " + $hora;   
+                  $textbox8.AppendText("`r`n$Message");
+                     $textbox8.Refresh()
+                 $textbox8.ScrollToCaret()
+                 }
             
+
+
+            else{
              #Invocando comandos
              $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($Computer,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4) -AsJob 
              $Null = Wait-Job -Job $Job
             Remove-PSSession -Session $Session
-    
+
+
+            "Agregar 4 Rutas (IP) - Inicio exitoso en $Computer" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+            #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+         $Message="Agregar 4 Rutas (IP) - Inicio exitoso en $Computer";   
+         $textbox8.AppendText("`r`n$Message");
+         $textbox8.Refresh()
+        $textbox8.ScrollToCaret()
+
+
+
+
+
+
+            }
         
     }
     elseif ($comboBox5.SelectedItem -eq 5) {
@@ -5240,12 +5565,30 @@ Vuelva a intentarlo nuevamente."
         $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
         $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
             $Session = New-PSSession -ComputerName $Computer -Credential $Cred
-         
-            
+            $hora=Get-Date -DisplayHint DateTime
+            if($Session -eq $Null){
+              #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+              "No se pudo conectar(IP) en $Computer" + " - " + $hora >> "$ruta\logsRed\log.txt"
+                # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+                $Message="No se pudo conectar(IP) en $Computer"+ " - " + $hora;   
+                  $textbox8.AppendText("`r`n$Message");
+                     $textbox8.Refresh()
+                 $textbox8.ScrollToCaret()
+                 }
+
+            else{
              #Invocando comandos
              $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($Computer,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4,$ip_N5,$mask_N5,$gateway_N5) -AsJob 
              $Null = Wait-Job -Job $Job
             Remove-PSSession -Session $Session
+            "Agregar 5 Rutas (IP) - Inicio exitoso en $Computer" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+            #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+         $Message="Agregar 5 Rutas (IP) - Inicio exitoso en $Computer";   
+         $textbox8.AppendText("`r`n$Message");
+         $textbox8.Refresh()
+        $textbox8.ScrollToCaret()
+
+            }
     }
     elseif ($comboBox5.SelectedItem -eq 6) {
         $Username = "Administrador"
@@ -5289,12 +5632,30 @@ Vuelva a intentarlo nuevamente."
         $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
         $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
             $Session = New-PSSession -ComputerName $Computer -Credential $Cred
-         
-            
+            $hora=Get-Date -DisplayHint DateTime
+            if($Session -eq $Null){
+              #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+              "No se pudo conectar(IP) en $Computer" + " - " + $hora >> "$ruta\logsRed\log.txt"
+                # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+                $Message="No se pudo conectar(IP) en $Computer"+ " - " + $hora;   
+                  $textbox8.AppendText("`r`n$Message");
+                     $textbox8.Refresh()
+                 $textbox8.ScrollToCaret()
+                 }
+
+            else{
              #Invocando comandos
              $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($Computer,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4,$ip_N5,$mask_N5,$gateway_N5,$ip_N6,$mask_N6,$gateway_N6) -AsJob 
              $Null = Wait-Job -Job $Job
             Remove-PSSession -Session $Session
+            
+   "Agregar 6 Rutas (IP) - Inicio exitoso en $Computer" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+   #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+$Message="Agregar 6 Rutas (IP) - Inicio exitoso en $Computer";   
+$textbox8.AppendText("`r`n$Message");
+$textbox8.Refresh()
+$textbox8.ScrollToCaret()
+            }
     }
     elseif ($comboBox5.SelectedItem -eq 7) {
         $Username = "Administrador"
@@ -5340,12 +5701,32 @@ Vuelva a intentarlo nuevamente."
         $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
         $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
             $Session = New-PSSession -ComputerName $Computer -Credential $Cred
-         
-            
+            $hora=Get-Date -DisplayHint DateTime
+            if($Session -eq $Null){
+              #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+              "No se pudo conectar(IP) en $Computer" + " - " + $hora >> "$ruta\logsRed\log.txt"
+                # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+                $Message="No se pudo conectar(IP) en $Computer"+ " - " + $hora;   
+                  $textbox8.AppendText("`r`n$Message");
+                     $textbox8.Refresh()
+                 $textbox8.ScrollToCaret()
+                 }
+
+            else{
              #Invocando comandos
              $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($Computer,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4,$ip_N5,$mask_N5,$gateway_N5,$ip_N6,$mask_N6,$gateway_N6,$ip_N7,$mask_N7,$gateway_N7) -AsJob 
              $Null = Wait-Job -Job $Job
             Remove-PSSession -Session $Session
+            
+            "Agregar 7 Rutas (IP) - Inicio exitoso en $Computer" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+            #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+         $Message="Agregar 7 Rutas (IP) - Inicio exitoso en $Computer";   
+         $textbox8.AppendText("`r`n$Message");
+         $textbox8.Refresh()
+         $textbox8.ScrollToCaret()
+
+
+            }
     }
     else{
         $Username = "Administrador"
@@ -5394,12 +5775,32 @@ Vuelva a intentarlo nuevamente."
         $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
         $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
             $Session = New-PSSession -ComputerName $Computer -Credential $Cred
-         
-            
+            if($Session -eq $Null){
+              #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+              "No se pudo conectar(IP) en $Computer" + " - " + $hora >> "$ruta\logsRed\log.txt"
+                # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+                $Message="No se pudo conectar(IP) en $Computer"+ " - " + $hora;   
+                  $textbox8.AppendText("`r`n$Message");
+                     $textbox8.Refresh()
+                 $textbox8.ScrollToCaret()
+                 }
+
+            else{
              #Invocando comandos
              $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($Computer,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4,$ip_N5,$mask_N5,$gateway_N5,$ip_N6,$mask_N6,$gateway_N6,$ip_N7,$mask_N7,$gateway_N7,$ip_N8,$mask_N8,$gateway_N8) -AsJob 
              $Null = Wait-Job -Job $Job
             Remove-PSSession -Session $Session
+
+            "Agregar 8 Rutas (IP) - Inicio exitoso en $Computer" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+            #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+         $Message="Agregar 8 Rutas (IP) - Inicio exitoso en $Computer";   
+         $textbox8.AppendText("`r`n$Message");
+         $textbox8.Refresh()
+         $textbox8.ScrollToCaret()
+
+
+
+            }
     }
          
     
@@ -5410,6 +5811,11 @@ Vuelva a intentarlo nuevamente."
 
 
 function ejecutarTareas{
+  $ruta=[Environment]::GetFolderPath("Desktop")
+  if (!(Test-Path "$ruta\logsRed")) {
+ #New-Item  –ItemType Directory -Path "$ruta\logsRed"
+  mkdir  $ruta\logsRed
+  }
   if($comboBox1.SelectedItem -eq 'RANGO DE IPS')
   {
   
@@ -5524,14 +5930,29 @@ function ejecutarTareas{
     for($inicio3;$inicio3 -le $ultima3;$inicio3++){
       $Computer3=$primeraIP+$inicio3;
     Write-Host "Iniciando Sesion en $Computer3"
-    
+    $hora=Get-Date -DisplayHint DateTime
     $Session = New-PSSession -ComputerName $Computer3 -Credential $Cred
-     
-        
+    if($Session -eq $Null){
+      #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+      "No se pudo conectar (RANGO) en $Computer3" + " - " + $hora >> "$ruta\logsRed\log.txt"
+        # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+        $Message="No se pudo conectar (RANGO) en $Computer3"+ " - " + $hora;   
+          $textbox8.AppendText("`r`n$Message");
+             $textbox8.Refresh()
+         $textbox8.ScrollToCaret()
+         }
+         else{
          #Invocando comandos
          $Job = Invoke-Command -Session $Session  -ScriptBlock $habilitarProxy -ArgumentList ($Computer1,$Computer2,$serverProxy,$excepcion1,$excepcion2,$excepcion3,$excepcion4,$excepcion5,$excepcion6,$excepcion7) -AsJob 
          $Null = Wait-Job -Job $Job
         Remove-PSSession -Session $Session
+        "HABILITAR PROXY(RANGO) - Inicio exitoso en $Computer3" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+        #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+     $Message="HABILITAR PROXY(RANGO) - Inicio exitoso en $Computer3";   
+     $textbox8.AppendText("`r`n$Message");
+     $textbox8.Refresh()
+    $textbox8.ScrollToCaret()
+         }
   
     }
   }
@@ -5640,13 +6061,37 @@ function ejecutarTareas{
       }  
       $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
       $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
-          $Session = New-PSSession -ComputerName $Computer -Credential $Cred
-       
+      $hora=Get-Date -DisplayHint DateTime
+      $Session = New-PSSession -ComputerName $Computer -Credential $Cred
+      if($Session -eq $Null){
+        #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+        "No se pudo conectar(IP) en $Computer" + " - " + $hora >> "$ruta\logsRed\log.txt"
+          # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+          $Message="No se pudo conectar(IP) en $Computer"+ " - " + $hora;   
+            $textbox8.AppendText("`r`n$Message");
+               $textbox8.Refresh()
+           $textbox8.ScrollToCaret()
+           }
+          else{
           
            #Invocando comandos
            $Job = Invoke-Command -Session $Session  -ScriptBlock $habilitarProxy -ArgumentList ($Computer,$serverProxy,$excepcion1,$excepcion2,$excepcion3,$excepcion4,$excepcion5,$excepcion6,$excepcion7) -AsJob 
            $Null = Wait-Job -Job $Job
           Remove-PSSession -Session $Session
+          "HABILITAR PROXY(IP) - Inicio exitoso en $Computer" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+          #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+       $Message="HABILITAR PROXY(IP) - Inicio exitoso en $Computer";   
+       $textbox8.AppendText("`r`n$Message");
+       $textbox8.Refresh()
+      $textbox8.ScrollToCaret()
+
+
+
+
+
+
+
+          }
   }
       
   
@@ -5654,6 +6099,30 @@ function ejecutarTareas{
 	
      
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function selection2{
     switch ($comboBox4.SelectedItem) 
     {
@@ -5848,6 +6317,132 @@ $Groupbox2.Controls.Remove($comboBox5)
 $Groupbox2.Controls.Remove($Button5)	
 $textbox8.Size = '419, 208'
 $textbox8.Location = '247,325'
+
+#################################################################
+
+    $dataGridView.Rows.Clear()
+    $dataGridView.DataSource = $null
+    $dataGridView1.Rows.Clear()
+    $dataGridView1.DataSource = $null
+    $acumulador=0;
+    $acumulador2=0;
+    $acumulador3=0;
+    $acumulador4=0;
+    $acumulador5=0;
+    $acumulador6=0;
+    $acumulador7=0;
+
+    $Computer1=$textbox2.Text.Trim(); 
+    $Computer2=$textbox3.Text.Trim(); 
+    $Inicial=$Computer1.Split(".")
+    $inicio0=$Inicial[0];
+    $inicio1=$Inicial[1];
+    $inicio2=$Inicial[2];
+    [int]$inicio3=$Inicial[3];
+    $primeraIP=$inicio0+"."+$inicio1+"."+$inicio2+"." ;
+    
+    $Final=$Computer2.Split(".")
+    [int]$ultima3=$Final[3];
+    
+    for($inicio3;$inicio3 -le $ultima3;$inicio3++){
+        $Computer3=$primeraIP+$inicio3;
+        $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+        $validacion1 = $Computer3 -match $regip
+     $Pc=$Computer3.Split(".");
+     $resultado=$Pc[2]
+     if($resultado -eq '60'){
+        $acumulador++;
+        
+        }
+        else{
+            if($resultado -eq '61'){
+                $acumulador2++;
+                
+                }
+                else{
+                    if($resultado -eq '62'){
+                        $acumulador3++;
+                        
+                        }
+                        else{
+                            if($resultado -eq '63'){
+                                $acumulador4++;
+                                
+                                }
+                                else{
+                                    if($resultado -eq '64'){
+                                        $acumulador5++;
+                                        
+                                        }
+                                        else{
+                                            if($resultado -eq '65'){
+                                                $acumulador6++;
+                                                
+                                                } 
+                                                else{
+                                                  if($validacion1 -eq $False){
+                                                    $acumulador7++;
+                                                  }
+                                                }
+                                        }
+                                }
+                        }
+                }
+        }
+        if($validacion1 -eq $True){
+          $dataGridView1.Rows.Add($Computer3);
+        }
+
+
+
+
+
+
+
+
+
+    }
+    $totalRegistros=$acumulador+$acumulador2+$acumulador3+$acumulador4+$acumulador5+$acumulador6;
+    $dataGridView.Rows.Add('Registros RED 60',$acumulador)
+    $dataGridView.Rows.Add('Registros RED 61',$acumulador2)
+    $dataGridView.Rows.Add('Registros RED 62',$acumulador3)
+    $dataGridView.Rows.Add('Registros RED 63',$acumulador4)
+    $dataGridView.Rows.Add('Registros RED 64',$acumulador5)
+    $dataGridView.Rows.Add('Registros RED 65',$acumulador6)
+    $dataGridView.Rows.Add('Registros INVALIDOS',$acumulador7)
+    $dataGridView.Rows.Add('REGISTROS VALIDOS',$totalRegistros)
+    $dataGridView.Columns[0].width='140'
+    $dataGridView.Columns[1].width='50'
+    $dataGridView.Columns[0].Name = "Número de Registros"
+    $dataGridView.Columns[1].Name = "Cantidad"
+   
+    $dataGridView1.Columns[0].width='130'
+   $dataGridView1.Columns[0].Name="Registros"
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
          
         }
