@@ -116,6 +116,7 @@ $Button9 = New-Object 'System.Windows.Forms.Button'
 $Button10 = New-Object 'System.Windows.Forms.Button'
 $Button11 = New-Object 'System.Windows.Forms.Button'
 $Button12 = New-Object 'System.Windows.Forms.Button'
+$Button13 = New-Object 'System.Windows.Forms.Button'
 #######El button 6 será de prueba #############
 $Button6 = New-Object 'System.Windows.Forms.Button'
 $textbox11 = New-Object 'System.Windows.Forms.TextBox'
@@ -6153,6 +6154,113 @@ function selection2{
     }
 }
 
+function viewValidation{
+  $dataGridView.Rows.Clear()
+  $dataGridView.DataSource = $null
+  $dataGridView1.Rows.Clear()
+  $dataGridView1.DataSource = $null
+  $acumulador=0;
+  $acumulador2=0;
+  $acumulador3=0;
+  $acumulador4=0;
+  $acumulador5=0;
+  $acumulador6=0;
+  $acumulador7=0;
+
+  $Computer1=$textbox2.Text.Trim(); 
+  $Computer2=$textbox3.Text.Trim(); 
+  $Inicial=$Computer1.Split(".")
+  $inicio0=$Inicial[0];
+  $inicio1=$Inicial[1];
+  $inicio2=$Inicial[2];
+  [int]$inicio3=$Inicial[3];
+  $primeraIP=$inicio0+"."+$inicio1+"."+$inicio2+"." ;
+  
+  $Final=$Computer2.Split(".")
+  [int]$ultima3=$Final[3];
+  
+  for($inicio3;$inicio3 -le $ultima3;$inicio3++){
+      $Computer3=$primeraIP+$inicio3;
+      $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+      $validacion1 = $Computer3 -match $regip
+   $Pc=$Computer3.Split(".");
+   $resultado=$Pc[2]
+   if($resultado -eq '60'){
+      $acumulador++;
+      
+      }
+      else{
+          if($resultado -eq '61'){
+              $acumulador2++;
+              
+              }
+              else{
+                  if($resultado -eq '62'){
+                      $acumulador3++;
+                      
+                      }
+                      else{
+                          if($resultado -eq '63'){
+                              $acumulador4++;
+                              
+                              }
+                              else{
+                                  if($resultado -eq '64'){
+                                      $acumulador5++;
+                                      
+                                      }
+                                      else{
+                                          if($resultado -eq '65'){
+                                              $acumulador6++;
+                                              
+                                              } 
+                                              else{
+                                                if($validacion1 -eq $False){
+                                                  $acumulador7++;
+                                                }
+                                              }
+                                      }
+                              }
+                      }
+              }
+      }
+      if($validacion1 -eq $True){
+        $dataGridView1.Rows.Add($Computer3);
+      }
+
+
+
+
+
+
+
+
+
+  }
+  $totalRegistros=$acumulador+$acumulador2+$acumulador3+$acumulador4+$acumulador5+$acumulador6;
+  $dataGridView.Rows.Add('Registros RED 60',$acumulador)
+  $dataGridView.Rows.Add('Registros RED 61',$acumulador2)
+  $dataGridView.Rows.Add('Registros RED 62',$acumulador3)
+  $dataGridView.Rows.Add('Registros RED 63',$acumulador4)
+  $dataGridView.Rows.Add('Registros RED 64',$acumulador5)
+  $dataGridView.Rows.Add('Registros RED 65',$acumulador6)
+  $dataGridView.Rows.Add('Registros INVALIDOS',$acumulador7)
+  $dataGridView.Rows.Add('REGISTROS VALIDOS',$totalRegistros)
+  $dataGridView.Columns[0].width='140'
+  $dataGridView.Columns[1].width='50'
+  $dataGridView.Columns[0].Name = "Número de Registros"
+  $dataGridView.Columns[1].Name = "Cantidad"
+ 
+  $dataGridView1.Columns[0].width='130'
+ $dataGridView1.Columns[0].Name="Registros"
+  
+
+
+
+
+}
+
+
 
 function selectionIndex{
 
@@ -6243,6 +6351,7 @@ $comboBox1.add_SelectedIndexChanged({
         $Groupbox4.Controls.Add($textbox9)
         $Groupbox4.Controls.Add($Button12)
         $Form.Controls.Add($textbox8)
+        $Form.Controls.Remove($Button13)
  $textbox1.Text=" ";
  $comboBox2.Text=" ";
  $comboBox4.Text=" ";
@@ -6281,6 +6390,7 @@ $comboBox1.add_SelectedIndexChanged({
             $Form.Controls.Add($Button9)
             $Form.Controls.Add($Button10)
             $Form.Controls.Add($Button11)
+            $Form.Controls.Add($Button13)
      $Form.Controls.Add($Button6)
       $Form.Controls.Add($Groupbox1)
       $Form.Controls.Add($Groupbox2)
@@ -6320,128 +6430,7 @@ $textbox8.Location = '247,325'
 
 #################################################################
 
-    $dataGridView.Rows.Clear()
-    $dataGridView.DataSource = $null
-    $dataGridView1.Rows.Clear()
-    $dataGridView1.DataSource = $null
-    $acumulador=0;
-    $acumulador2=0;
-    $acumulador3=0;
-    $acumulador4=0;
-    $acumulador5=0;
-    $acumulador6=0;
-    $acumulador7=0;
-
-    $Computer1=$textbox2.Text.Trim(); 
-    $Computer2=$textbox3.Text.Trim(); 
-    $Inicial=$Computer1.Split(".")
-    $inicio0=$Inicial[0];
-    $inicio1=$Inicial[1];
-    $inicio2=$Inicial[2];
-    [int]$inicio3=$Inicial[3];
-    $primeraIP=$inicio0+"."+$inicio1+"."+$inicio2+"." ;
-    
-    $Final=$Computer2.Split(".")
-    [int]$ultima3=$Final[3];
-    
-    for($inicio3;$inicio3 -le $ultima3;$inicio3++){
-        $Computer3=$primeraIP+$inicio3;
-        $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
-        $validacion1 = $Computer3 -match $regip
-     $Pc=$Computer3.Split(".");
-     $resultado=$Pc[2]
-     if($resultado -eq '60'){
-        $acumulador++;
-        
-        }
-        else{
-            if($resultado -eq '61'){
-                $acumulador2++;
-                
-                }
-                else{
-                    if($resultado -eq '62'){
-                        $acumulador3++;
-                        
-                        }
-                        else{
-                            if($resultado -eq '63'){
-                                $acumulador4++;
-                                
-                                }
-                                else{
-                                    if($resultado -eq '64'){
-                                        $acumulador5++;
-                                        
-                                        }
-                                        else{
-                                            if($resultado -eq '65'){
-                                                $acumulador6++;
-                                                
-                                                } 
-                                                else{
-                                                  if($validacion1 -eq $False){
-                                                    $acumulador7++;
-                                                  }
-                                                }
-                                        }
-                                }
-                        }
-                }
-        }
-        if($validacion1 -eq $True){
-          $dataGridView1.Rows.Add($Computer3);
-        }
-
-
-
-
-
-
-
-
-
-    }
-    $totalRegistros=$acumulador+$acumulador2+$acumulador3+$acumulador4+$acumulador5+$acumulador6;
-    $dataGridView.Rows.Add('Registros RED 60',$acumulador)
-    $dataGridView.Rows.Add('Registros RED 61',$acumulador2)
-    $dataGridView.Rows.Add('Registros RED 62',$acumulador3)
-    $dataGridView.Rows.Add('Registros RED 63',$acumulador4)
-    $dataGridView.Rows.Add('Registros RED 64',$acumulador5)
-    $dataGridView.Rows.Add('Registros RED 65',$acumulador6)
-    $dataGridView.Rows.Add('Registros INVALIDOS',$acumulador7)
-    $dataGridView.Rows.Add('REGISTROS VALIDOS',$totalRegistros)
-    $dataGridView.Columns[0].width='140'
-    $dataGridView.Columns[1].width='50'
-    $dataGridView.Columns[0].Name = "Número de Registros"
-    $dataGridView.Columns[1].Name = "Cantidad"
    
-    $dataGridView1.Columns[0].width='130'
-   $dataGridView1.Columns[0].Name="Registros"
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
          
@@ -6469,7 +6458,7 @@ $textbox8.Location = '247,325'
                 $Form.Controls.Add($Button11)
                 $Form.Controls.Add($Button2)	
                 $Form.Controls.Add($Button3)
-
+                $Form.Controls.Remove($Button13)
                 $Form.Controls.Add($Groupbox1)
                 $Form.Controls.Add($Groupbox2)
                 $Form.Controls.Add($Groupbox3)
@@ -6581,6 +6570,12 @@ $textbox1.add_TextChanged($textbox1_TextChanged)
     $Button12.Add_Click( { setDomain }) 
 
 
+    $Button13.Location = New-Object System.Drawing.Size(665, 20) 
+    $Button13.Size = New-Object System.Drawing.Size(75, 23) 
+    $Button13.Text = "Revisar" 
+    $Button13.UseVisualStyleBackColor = $True
+    $Button13.BackColor = [System.Drawing.Color]::LightBlue
+    $Button13.Add_Click( { viewValidation }) 
 
 
 
