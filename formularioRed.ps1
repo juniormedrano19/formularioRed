@@ -76,6 +76,7 @@ if(($textbox222.Text -eq 'Administrador' -Or $textbox222.Text -eq 'administrador
     [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
 [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")  
 [System.Windows.Forms.Application]::EnableVisualStyles()
+$OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
 $textbox1 = New-Object 'System.Windows.Forms.TextBox'
 $textbox3 = New-Object 'System.Windows.Forms.TextBox'
 $textbox2 = New-Object 'System.Windows.Forms.TextBox'
@@ -263,7 +264,7 @@ function Ubicacion{
                 $dataGridView1.DataSource = $null
     [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null
     
-    $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
+  
     $OpenFileDialog.initialDirectory = $initialDirectory
     $OpenFileDialog.filter = "TXT (*.txt)| *.txt"
     $OpenFileDialog.ShowDialog() | Out-Null
