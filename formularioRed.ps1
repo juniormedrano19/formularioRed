@@ -5,6 +5,7 @@
 [System.Windows.Forms.Application]::EnableVisualStyles()
 
 
+
 $label222 = New-Object 'system.Windows.Forms.Label'
 $label333= New-Object 'system.Windows.Forms.Label'
 $textbox333 = New-Object 'System.Windows.Forms.TextBox'
@@ -262,8 +263,8 @@ function Ubicacion{
                 $dataGridView.DataSource = $null
                 $dataGridView1.Rows.Clear()
                 $dataGridView1.DataSource = $null
-    [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null
-    
+
+ [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null
   
     $OpenFileDialog.initialDirectory = $initialDirectory
     $OpenFileDialog.filter = "TXT (*.txt)| *.txt"
@@ -550,6 +551,72 @@ $textbox8.ScrollToCaret()
     
     
   }
+  elseif ($comboBox1.SelectedItem -eq 'ARCHIVO TXT'){
+
+    $Username = "Administrador"
+    $Password = "R3c542016C4ll"
+    $texto4=$textbox4.Text.Trim();
+    $prueba2= Get-Content $OpenFileDialog.FileName
+
+   
+    $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+    $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+      
+    
+    
+    
+    foreach($newPc in $prueba2){
+        $cambio={
+         
+            Param($newPc,$texto4)    
+    
+    
+    $sinEspacio=$newPc.Trim();
+    Write-Host $texto4
+    $direccionIp= $sinEspacio.split(".");
+    $nuevaip=$direccionIp[0]+"."+$direccionIp[1]+"."+$direccionIp[2]+"."+$texto4
+    
+    
+    
+      $oreo= get-wmiobject win32_networkadapter | where-object {$_.netconnectionstatus -eq 2 -and $_.ServiceName -eq 'rt640x64' }
+              
+            $clima=get-wmiobject win32_networkadapterconfiguration|where-object {$_.Index -eq $oreo.DeviceID};
+             $clima.SetGateways($nuevaip);
+    
+        
+    
+    
+    }
+  
+      
+        $hora=Get-Date -DisplayHint DateTime
+    
+        $Session = New-PSSession -ComputerName $newPc  -Credential $Cred
+        if($Session -eq $Null){
+          #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+          "No se pudo conectar(ARCHIVO TXT) en $newPc " + " - " + $hora >> "$ruta\logsRed\log.txt"
+            # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+            $Message="No se pudo conectar(ARCHIVO TXT) en $newPc "+ " - " + $hora;   
+              $textbox8.AppendText("`r`n$Message");
+                 $textbox8.Refresh()
+             $textbox8.ScrollToCaret()
+             }
+            else{
+             #Invocando comandos
+             $Job = Invoke-Command -Session $Session  -ScriptBlock $cambio -ArgumentList ($newPc,$texto4)   -AsJob 
+             $Null = Wait-Job -Job $Job
+            Remove-PSSession -Session $Session
+            "Cambiar Gateway -(ARCHIVO TXT) Inicio exitoso en $newPc " + " - " + $hora >>  "$ruta\logsRed\log.txt"
+            #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+         $Message="Cambiar Gateway -(ARCHIVO TXT) Inicio exitoso en $newPc ";   
+         $textbox8.AppendText("`r`n$Message");
+         $textbox8.Refresh()
+      $textbox8.ScrollToCaret()
+            }
+    }
+  
+
+}
 }
 
 function setDomain{
@@ -614,7 +681,7 @@ $servidor=$textbox9.Text.Trim();
               $credential = New-Object System.Management.Automation.PSCredential($username,$password)
               Add-Computer -DomainName $domain -Credential $credential  -PassThru 
         
-       
+       shutdown -r -t 1
     
     }  
 
@@ -711,7 +778,7 @@ $servidor=$textbox9.Text.Trim();
               $credential = New-Object System.Management.Automation.PSCredential($username,$password)
               Add-Computer -DomainName $domain -Credential $credential  -PassThru 
       
-  
+              shutdown -r -t 1
       }  
       $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
       $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
@@ -744,7 +811,73 @@ $servidor=$textbox9.Text.Trim();
 
  }
   }
+  elseif($comboBox1.SelectedItem -eq 'ARCHIVO TXT'){
+    $Username = "Administrador"
+    $Password = "R3c542016C4ll"
+ 
+    $nombre = $textbox5.Text.Trim();
+    $usuario = $textbox6.Text.Trim();
+    $contra = $textbox7.Text.Trim();
+    $servidor = $textbox9.Text.Trim();
       
+    $prueba2= Get-Content $OpenFileDialog.FileName
+
+   
+    $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+    $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+      
+    foreach($newPc in $prueba2){
+        $agregarDominio={
+         
+            Param($newPc,$nombre,$servidor,$usuario,$contra)    
+    
+            $oreo= get-wmiobject win32_networkadapter | where-object {$_.netconnectionstatus -eq 2 -and $_.ServiceName -eq 'rt640x64' }
+            
+            $clima=get-wmiobject win32_networkadapterconfiguration|where-object {$_.Index -eq $oreo.DeviceID};
+            
+            $dns_servers = $servidor,"8.8.8.8";
+            
+            $clima.SetDNSServerSearchOrder($dns_servers);
+          
+     
+              $domain = "$nombre"
+              $password = "$contra" | ConvertTo-SecureString -asPlainText -Force
+              $username = "$domain\$usuario"
+              $credential = New-Object System.Management.Automation.PSCredential($username,$password)
+              Add-Computer -DomainName $domain -Credential $credential  -PassThru 
+              shutdown -r -t 1
+ 
+    }
+  
+      
+        $hora=Get-Date -DisplayHint DateTime
+    
+        $Session = New-PSSession -ComputerName $newPc  -Credential $Cred
+        if($Session -eq $Null){
+          #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+          "No se pudo conectar(ARCHIVO TXT) en $newPc " + " - " + $hora >> "$ruta\logsRed\log.txt"
+            # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+            $Message="No se pudo conectar(ARCHIVO TXT) en $newPc "+ " - " + $hora;   
+              $textbox8.AppendText("`r`n$Message");
+                 $textbox8.Refresh()
+             $textbox8.ScrollToCaret()
+             }
+            else{
+             #Invocando comandos
+             $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarDominio -ArgumentList ($newPc,$nombre,$servidor,$usuario,$contra) -AsJob 
+             $Null = Wait-Job -Job $Job
+            Remove-PSSession -Session $Session
+            "Unir al Dominio -(ARCHIVO TXT) Inicio exitoso en $newPc " + " - " + $hora >>  "$ruta\logsRed\log.txt"
+            #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+         $Message="Unir al Dominio -(ARCHIVO TXT) Inicio exitoso en $newPc ";   
+         $textbox8.AppendText("`r`n$Message");
+         $textbox8.Refresh()
+      $textbox8.ScrollToCaret()
+            }
+    }
+
+
+  }  
   
     
 
@@ -6095,10 +6228,127 @@ function ejecutarTareas{
 
           }
   }
+
+  elseif ($comboBox1.SelectedItem -eq 'ARCHIVO TXT'){
+
+    $Username = "Administrador"
+    $Password = "R3c542016C4ll"
+    $serverProxy=$textbox11.Text;
+    $excepcion1=$textbox12.Text;
+    $excepcion2=$textbox13.Text;
+    $excepcion3=$textbox14.Text;
+    $excepcion4=$textbox15.Text;
+    $excepcion5=$textbox16.Text;
+    $excepcion6=$textbox17.Text;
+    $excepcion7=$textbox18.Text;
+    $prueba2= Get-Content $OpenFileDialog.FileName
+
+   
+    $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+    $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
       
-  
     
-	
+    
+    
+    foreach($newPc in $prueba2){
+        $habilitarProxy={
+         
+            Param($newPc,$serverProxy,$excepcion1,$excepcion2,$excepcion3,$excepcion4,$excepcion5,$excepcion6,$excepcion7)    
+
+       
+
+            $arregloNuevo=$newPc.Split(".");
+            $arregloFinal=$arregloNuevo[2]
+            [int]$arregloModificado1=$arregloNuevo[3]
+            #Mascara25
+            $movistarMask1=($arregloModificado1 -ge 0 -and $arregloModificado1 -le 127)
+    
+    
+    
+              
+          #ENABLE SEC    
+         #Agregamos claves faltantes para editar el proxy
+         New-Item -Path "Registry::HKLM\SOFTWARE\Policies\Microsoft" -Name "Internet Explorer";
+         New-Item -Path "Registry::HKLM\SOFTWARE\Policies\Microsoft\Internet Explorer" -Name "Control Panel";
+         #Bloqueamos la edición del proxy (No estamos bloqueando pq se borra la config)
+         Remove-ItemProperty -Path "Registry::HKLM\SOFTWARE\Policies\Microsoft\Internet Explorer\Control Panel" -Name Proxy;
+         New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Policies\Microsoft\Internet Explorer\Control Panel" -Name Proxy -PropertyType DWord -Value 1;
+         #Forzamos la configuración por pc y no por usuario
+         New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxySettingsPerUser -PropertyType DWord -Value 0;
+        
+    
+         #ENABLE PROXY
+         Remove-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyEnable;
+         #Configurando valores predeterminados del proxy para PC
+         New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyServer -Value "$serverProxy";
+         New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyEnable -PropertyType DWord -Value 1;
+    if($arregloFinal -eq '64' ){
+        if($movistarMask1){
+            New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion5;$excepcion6;$excepcion7;$excepcion4";
+        }
+        else{
+            New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion4"; 
+        }
+    }
+    else{
+        New-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion4"; 
+    }
+       
+         
+         Remove-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyEnable;
+         New-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyServer -Value "$serverProxy";
+         New-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyEnable -PropertyType DWord -Value 1;
+         if($arregloFinal -eq '64' ){
+            if($movistarMask1){
+                New-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings"-Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion5;$excepcion6;$excepcion7;$excepcion4";
+            }
+            else{
+                New-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion4"; 
+            }
+        }
+        else{
+             New-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride -Value "$excepcion1;$excepcion2;$excepcion3;$excepcion4"; 
+        }
+    
+    
+      
+         #Lanzamos ie para que actualize la config proxy
+         #& `"C:\Archivos de programa\Internet Explorer\iexplore.exe`"
+        
+    
+    }
+  
+      
+        $hora=Get-Date -DisplayHint DateTime
+    
+        $Session = New-PSSession -ComputerName $newPc  -Credential $Cred
+        if($Session -eq $Null){
+          #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+          "No se pudo conectar(ARCHIVO TXT) en $newPc " + " - " + $hora >> "$ruta\logsRed\log.txt"
+            # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+            $Message="No se pudo conectar(ARCHIVO TXT) en $newPc "+ " - " + $hora;   
+              $textbox8.AppendText("`r`n$Message");
+                 $textbox8.Refresh()
+             $textbox8.ScrollToCaret()
+             }
+            else{
+             #Invocando comandos
+             $Job = Invoke-Command -Session $Session  -ScriptBlock $habilitarProxy -ArgumentList ($newPc,$serverProxy,$excepcion1,$excepcion2,$excepcion3,$excepcion4,$excepcion5,$excepcion6,$excepcion7)  -AsJob 
+             $Null = Wait-Job -Job $Job
+            Remove-PSSession -Session $Session
+            "HABILITAR PROXY -(ARCHIVO TXT) Inicio exitoso en $newPc " + " - " + $hora >>  "$ruta\logsRed\log.txt"
+            #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+         $Message="HABILITAR PROXY -(ARCHIVO TXT) Inicio exitoso en $newPc ";   
+         $textbox8.AppendText("`r`n$Message");
+         $textbox8.Refresh()
+      $textbox8.ScrollToCaret()
+            }
+    }
+  
+
+}
+
+
      
 }
 
