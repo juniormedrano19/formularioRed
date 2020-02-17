@@ -87,6 +87,9 @@ $label6= New-Object 'system.Windows.Forms.Label'
 $label7= New-Object 'system.Windows.Forms.Label'
 $label8= New-Object 'system.Windows.Forms.Label'
 $label9= New-Object 'system.Windows.Forms.Label'
+$label10= New-Object 'system.Windows.Forms.Label'
+$label11= New-Object 'system.Windows.Forms.Label'
+$label12= New-Object 'system.Windows.Forms.Label'
 $textbox4=New-Object 'System.Windows.Forms.TextBox'
 $textbox5=New-Object 'System.Windows.Forms.TextBox'
 $textbox6=New-Object 'System.Windows.Forms.TextBox'
@@ -119,6 +122,8 @@ $Button10 = New-Object 'System.Windows.Forms.Button'
 $Button11 = New-Object 'System.Windows.Forms.Button'
 $Button12 = New-Object 'System.Windows.Forms.Button'
 $Button13 = New-Object 'System.Windows.Forms.Button'
+$Button14 = New-Object 'System.Windows.Forms.Button'
+$Button15 = New-Object 'System.Windows.Forms.Button'
 #######El button 6 será de prueba #############
 $Button6 = New-Object 'System.Windows.Forms.Button'
 $textbox11 = New-Object 'System.Windows.Forms.TextBox'
@@ -6386,7 +6391,7 @@ function selection2{
             $Groupbox2.Controls.Remove($Button7)
     
             $comboBox5.add_SelectedIndexChanged({
-               
+                  $Groupbox2.Controls.Add($Button15)
                 $Groupbox2.Controls.Add($Button5)
                 $Groupbox2.Controls.Remove($Button7)
             
@@ -6396,6 +6401,7 @@ function selection2{
 
         'ELIMINAR RUTA'
         {
+                    $Groupbox2.Controls.Remove($Button15)
             $Groupbox2.Controls.Remove($comboBox5)	
             $Groupbox2.Controls.Remove($Button5)	
             $comboBox5.Text="";
@@ -6527,6 +6533,7 @@ function selectionIndex{
 $comboBox3.add_SelectedIndexChanged({
 
     $Groupbox1.Controls.Add($Button1)	
+       $Groupbox1.Controls.Add($Button14)	
 })
 
 
@@ -6536,6 +6543,7 @@ $comboBox3.add_SelectedIndexChanged({
        {
     
         $Groupbox1.Controls.Remove($Button1)
+            $Groupbox1.Controls.Remove($Button14)
      
         $Groupbox1.Controls.Remove($comboBox3)	
 
@@ -6616,6 +6624,8 @@ $comboBox1.add_SelectedIndexChanged({
  $Groupbox2.Controls.Remove($Button7)	
  $Groupbox2.Controls.Remove($comboBox5)	
  $Groupbox2.Controls.Remove($Button5)	
+  $Groupbox2.Controls.Remove($Button15)	
+    $Groupbox1.Controls.Remove($Button14)	
  $textbox8.Size = '419, 454'
  $textbox8.Location = '247,79'
 
@@ -6676,6 +6686,8 @@ $Groupbox1.Controls.Remove($Button4)
 $Groupbox2.Controls.Remove($Button7)	
 $Groupbox2.Controls.Remove($comboBox5)	
 $Groupbox2.Controls.Remove($Button5)	
+  $Groupbox2.Controls.Remove($Button15)	
+    $Groupbox1.Controls.Remove($Button14)	
 $textbox8.Size = '419, 208'
 $textbox8.Location = '247,325'
 
@@ -6744,7 +6756,9 @@ $textbox8.Location = '247,325'
           $Groupbox1.Controls.Remove($Button4)
           $Groupbox2.Controls.Remove($Button7)	
           $Groupbox2.Controls.Remove($comboBox5)	
-          $Groupbox2.Controls.Remove($Button5)	
+          $Groupbox2.Controls.Remove($Button5)
+            $Groupbox2.Controls.Remove($Button15)	
+    $Groupbox1.Controls.Remove($Button14)		
           $textbox8.Size = '419, 208'
           $textbox8.Location = '247,325'
             }
@@ -6829,10 +6843,27 @@ $textbox1.add_TextChanged($textbox1_TextChanged)
     $Button13.Add_Click( { viewValidation }) 
 
 
+    $Button13.Location = New-Object System.Drawing.Size(665, 20) 
+    $Button13.Size = New-Object System.Drawing.Size(75, 23) 
+    $Button13.Text = "Revisar" 
+    $Button13.UseVisualStyleBackColor = $True
+    $Button13.BackColor = [System.Drawing.Color]::LightBlue
+    $Button13.Add_Click( { viewValidation }) 
+    
 
+    $Button14.Location = New-Object System.Drawing.Size(122,94) 
+    $Button14.Size = New-Object System.Drawing.Size(75, 23) 
+    $Button14.Text = "Ejecutar" 
+    $Button14.UseVisualStyleBackColor = $True
+    $Button14.BackColor = [System.Drawing.Color]::LightBlue
+    $Button14.Add_Click( { ejecutarTareas }) 
 
-
-
+    $Button15.Location = New-Object System.Drawing.Size(122, 94) 
+    $Button15.Size = New-Object System.Drawing.Size(75, 23) 
+    $Button15.Text = "Ejecutar" 
+    $Button15.UseVisualStyleBackColor = $True
+    $Button15.BackColor = [System.Drawing.Color]::LightBlue
+    $Button15.Add_Click( {ejecutarRutas}) 
 
 
 
@@ -7107,7 +7138,7 @@ $textbox3.Font = 'Microsoft Sans Serif, 8.25pt'
     }
     
     
-    $Button5.Location = New-Object System.Drawing.Size(122,94) 
+    $Button5.Location = New-Object System.Drawing.Size(41,94) 
     $Button5.Size = New-Object System.Drawing.Size(75,23) 
     $Button5.Text = "ADD" 
     $Button5.UseVisualStyleBackColor = $True
@@ -7163,7 +7194,7 @@ $textbox3.Font = 'Microsoft Sans Serif, 8.25pt'
     }
     
         ##########################################
-        $Button1.Location = New-Object System.Drawing.Size(122,94) 
+        $Button1.Location = New-Object System.Drawing.Size(38,94) 
         $Button1.Size = New-Object System.Drawing.Size(75,23) 
         $Button1.Text = "DEFAULT" 
         $Button1.UseVisualStyleBackColor = $True
