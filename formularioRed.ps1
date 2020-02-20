@@ -268,6 +268,8 @@ function Ubicacion{
                 $dataGridView.DataSource = $null
                 $dataGridView1.Rows.Clear()
                 $dataGridView1.DataSource = $null
+                $dataGridView2.Rows.Clear()
+                $dataGridView2.DataSource = $null
 
  [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null
   
@@ -4475,7 +4477,11 @@ Vuelva a intentarlo nuevamente. Recuerde que la ip inicial y final deben ser de 
 }
 }
 function deshabilitarRutas{
-
+  $ruta=[Environment]::GetFolderPath("Desktop")
+  if (!(Test-Path "$ruta\logsRed")) {
+ #New-Item  –ItemType Directory -Path "$ruta\logsRed"
+  mkdir  $ruta\logsRed
+  }
 	$Username = "Administrador"
     $Password = "R3c542016C4ll"
 
@@ -4513,13 +4519,31 @@ function deshabilitarRutas{
     $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
     $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
         $Session = New-PSSession -ComputerName $Computer -Credential $Cred
-     
+        $hora=Get-Date -DisplayHint DateTime
+if($Session -eq $Null){
+  $dataGridView2.Rows.Add($Computer,"NO CONECTADO","-----","-----","-----","-----","-----","-----","-----");
+  #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+  "No se pudo conectar(IP) en $Computer" + " - " + $hora >> "$ruta\logsRed\log.txt"
+    # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+    $Message="No se pudo conectar(IP) en $Computer"+ " - " + $hora;   
+      $textbox8.AppendText("`r`n$Message");
+         $textbox8.Refresh()
+     $textbox8.ScrollToCaret()
+     }
         
+   else{
          #Invocando comandos
          $Job = Invoke-Command -Session $Session  -ScriptBlock  $deshabilitarProxy -ArgumentList ($Computer) -AsJob 
          $Null = Wait-Job -Job $Job
         Remove-PSSession -Session $Session
-    
+        $dataGridView2.Rows.Add($Computer,"CONECTADO","DESHABILITADO","-----","-----","-----","-----","-----","-----");
+          "DESHABILITAR PROXY(IP) - Inicio exitoso en $Computer" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+          #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+       $Message="DESHABILITAR PROXY(IP) - Inicio exitoso en $Computer";   
+       $textbox8.AppendText("`r`n$Message");
+       $textbox8.Refresh()
+      $textbox8.ScrollToCaret()
+}
 
 }
 
@@ -5948,9 +5972,37 @@ $textbox8.ScrollToCaret()
 
 }
 
+function ejecutarPrincipal{
+
+
+
+  
+
+  $Computer=$textbox1.Text.Trim(); 
+if($comboBox2.SelectedItem -eq 'HABILITAR PROXY'){
+  if($comboBox3.SelectedItem -eq 'Predeterminado'){
+
+ejecutarTareas
+
+  }
+
+}
+elseif($comboBox2.SelectedItem -eq 'DESHABILITAR PROXY'){
+  deshabilitarRutas;
+
+}
+
+}
+
+
+
+
+
+
 
 
 function ejecutarTareas{
+
   $ruta=[Environment]::GetFolderPath("Desktop")
   if (!(Test-Path "$ruta\logsRed")) {
  #New-Item  –ItemType Directory -Path "$ruta\logsRed"
@@ -6204,6 +6256,7 @@ function ejecutarTareas{
       $hora=Get-Date -DisplayHint DateTime
       $Session = New-PSSession -ComputerName $Computer -Credential $Cred
       if($Session -eq $Null){
+        $dataGridView2.Rows.Add($Computer,"NO CONECTADO","-----","-----","-----","-----","-----","-----","-----");
         #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
         "No se pudo conectar(IP) en $Computer" + " - " + $hora >> "$ruta\logsRed\log.txt"
           # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
@@ -6218,6 +6271,7 @@ function ejecutarTareas{
            $Job = Invoke-Command -Session $Session  -ScriptBlock $habilitarProxy -ArgumentList ($Computer,$serverProxy,$excepcion1,$excepcion2,$excepcion3,$excepcion4,$excepcion5,$excepcion6,$excepcion7) -AsJob 
            $Null = Wait-Job -Job $Job
           Remove-PSSession -Session $Session
+          $dataGridView2.Rows.Add($Computer,"CONECTADO","HABILITADO","-----","-----","-----","-----","-----","-----");
           "HABILITAR PROXY(IP) - Inicio exitoso en $Computer" + " - " + $hora >>  "$ruta\logsRed\log.txt"
           #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
        $Message="HABILITAR PROXY(IP) - Inicio exitoso en $Computer";   
@@ -6232,6 +6286,7 @@ function ejecutarTareas{
 
 
           }
+         
   }
 
   elseif ($comboBox1.SelectedItem -eq 'ARCHIVO TXT'){
@@ -6575,6 +6630,8 @@ $comboBox1.add_SelectedIndexChanged({
         $dataGridView.DataSource = $null
         $dataGridView1.Rows.Clear()
         $dataGridView1.DataSource = $null
+        $dataGridView2.Rows.Clear()
+        $dataGridView2.DataSource = $null
         $Form.Controls.Remove($dataGridView)
         $Form.Controls.Remove($dataGridView1)
         $Form.Controls.Add($dataGridView2)
@@ -6636,6 +6693,8 @@ $comboBox1.add_SelectedIndexChanged({
             $dataGridView.DataSource = $null
             $dataGridView1.Rows.Clear()
             $dataGridView1.DataSource = $null
+            $dataGridView2.Rows.Clear()
+            $dataGridView2.DataSource = $null
             $Form.Controls.Add($dataGridView)
             $Form.Controls.Add($dataGridView1)
             $Form.Controls.Add($dataGridView2)
@@ -6704,6 +6763,8 @@ $textbox8.Location = '247,325'
                 $dataGridView.DataSource = $null
                 $dataGridView1.Rows.Clear()
                 $dataGridView1.DataSource = $null
+                $dataGridView2.Rows.Clear()
+                $dataGridView2.DataSource = $null
                 $Form.Controls.Add($dataGridView)
                 $Form.Controls.Add($dataGridView1)
                 $Form.Controls.Add($dataGridView2)
@@ -6791,7 +6852,7 @@ $textbox1.add_TextChanged($textbox1_TextChanged)
     $Button3.Text = "EJECUTAR" 
     $Button3.UseVisualStyleBackColor = $True
     $Button3.BackColor = [System.Drawing.Color]::LightBlue
-    $Button3.Add_Click( { ejecutarTareas }) 
+    $Button3.Add_Click( { ejecutarPrincipal }) 
 
 
     $Button6.Location = New-Object System.Drawing.Size(566, 557) 
@@ -6915,15 +6976,6 @@ $Button8.Location = New-Object System.Drawing.Size(122,68)
 
 
 
-
-
-
-
-
-
-
-
-
 $textbox4.Font = 'Microsoft Sans Serif, 8.25pt'
 $textbox4.Location = '16,41'
 $textbox4.Margin = '5, 5, 5, 5'
@@ -7027,8 +7079,18 @@ $dataGridView1.Size=New-Object System.Drawing.Size(173,228)
 
  $dataGridView2.Size=New-Object System.Drawing.Size(386,609)
  $dataGridView2.Location= New-Object System.Drawing.Point(686,75)
- $dataGridView2.ColumnCount = 4
+ $dataGridView2.ColumnCount = 8
  $dataGridView2.ColumnHeadersVisible = $true;
+ $dataGridView2.Columns[0].Name="Direccion IP"
+ $dataGridView2.Columns[1].Name="ESTADO"
+ $dataGridView2.Columns[2].Name="PROXY"
+ $dataGridView2.Columns[3].Name="RUTAS"
+ $dataGridView2.Columns[4].Name="GATEWAY"
+ $dataGridView2.Columns[5].Name="DOMINIO"
+ $dataGridView2.Columns[6].Name="FECHA"
+ $dataGridView2.Columns[7].Name="HORA"
+
+
 
 ######################################################
 $textbox8.Font = 'Microsoft Sans Serif, 10pt'
