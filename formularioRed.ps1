@@ -545,6 +545,13 @@ $textbox8.ScrollToCaret()
         $time=Get-Date -Format HH:mm:ss
   
         $dataGridView2.Rows.Add($Computer,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+        
+ foreach ($Row in $dataGridView2.Rows) {
+  if ($Row.Cells[1].Value  -eq 'NO CONECTADO') {
+      $row.defaultcellstyle.backcolor = "Yellow"
+  }
+}
+
         "No se pudo conectar(IP) en $Computer" + " - " + $hora >> "$ruta\logsRed\log.txt"
           # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
           $Message="No se pudo conectar(IP) en $Computer"+ " - " + $hora;   
@@ -828,7 +835,11 @@ $servidor=$textbox9.Text.Trim();
             $time=Get-Date -Format HH:mm:ss
       
             $dataGridView2.Rows.Add($Computer,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
-    
+            foreach ($Row in $dataGridView2.Rows) {
+              if ($Row.Cells[1].Value  -eq 'NO CONECTADO') {
+                  $row.defaultcellstyle.backcolor = "Yellow"
+              }
+            }
     
             "No se pudo conectar(IP) en $Computer" + " - " + $hora >> "$ruta\logsRed\log.txt"
               # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
@@ -6246,13 +6257,12 @@ elseif($comboBox2.SelectedItem -eq 'DESHABILITAR PROXY'){
 
 
  #$dataGridView2.RowsDefaultCellStyle.BackColor = 'Orange'
-
-
  foreach ($Row in $dataGridView2.Rows) {
   if ($Row.Cells[1].Value  -eq 'NO CONECTADO') {
       $row.defaultcellstyle.backcolor = "Yellow"
   }
 }
+
 
 
 
@@ -6532,6 +6542,11 @@ function ejecutarTareas{
         $time=Get-Date -Format HH:mm:ss
   
         $dataGridView2.Rows.Add($Computer,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+        foreach ($Row in $dataGridView2.Rows) {
+          if ($Row.Cells[1].Value  -eq 'NO CONECTADO') {
+              $row.defaultcellstyle.backcolor = "Yellow"
+          }
+        }
         #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
         "No se pudo conectar(IP) en $Computer" + " - " + $hora >> "$ruta\logsRed\log.txt"
           # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
