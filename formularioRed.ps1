@@ -4624,7 +4624,39 @@ if($Session -eq $Null){
 }
 
 }
+function Limpieza{
+  $dataGridView.Rows.Clear()
+  $dataGridView.DataSource = $null
+  $dataGridView1.Rows.Clear()
+  $dataGridView1.DataSource = $null
+  $dataGridView2.Rows.Clear()
+  $dataGridView2.DataSource = $null
+$textbox1.Text=" ";
+$comboBox2.Text=" ";
+$comboBox4.Text=" ";
+$textbox4.Text=" ";
+$comboBox3.Text=" ";
+$comboBox5.Text=" ";
+$textbox8.Text=" ";
+$textbox5.Text=" ";
+$textbox6.Text=" ";
+$textbox7.Text=" ";
+$textbox9.Text=" ";
+$comboBox110.Text=" ";
+$TextBox100.Text=" ";
+$TextBox104.Text=" ";
+$TextBox103.Text=" ";
 
+
+$Groupbox1.Controls.Remove($comboBox3)
+$Groupbox1.Controls.Remove($Button1)	
+$Groupbox1.Controls.Remove($Button4)
+$Groupbox2.Controls.Remove($Button7)	
+$Groupbox2.Controls.Remove($comboBox5)	
+$Groupbox2.Controls.Remove($Button5)	
+$Groupbox2.Controls.Remove($Button15)	
+$Groupbox1.Controls.Remove($Button14)	
+}
 
 function Validacion{
     $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
@@ -6236,37 +6268,65 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
 }
 
 function ejecutarPrincipal{
-
-
-
-  
-
-  $Computer=$textbox1.Text.Trim(); 
-if($comboBox2.SelectedItem -eq 'HABILITAR PROXY'){
-  if($comboBox3.SelectedItem -eq 'Predeterminado'){
-
-ejecutarTareas
-
+    
+  if($comboBox4.Text -eq 'AGREGAR RUTA' -and ($comboBox5.Text -eq 1 -Or $comboBox5.Text -eq 2 -Or $comboBox5.Text -eq 3 -Or $comboBox5.Text -eq 4 -Or $comboBox5.Text -eq 5 -Or $comboBox5.Text -eq 6 -Or $comboBox5.Text -eq 7 -Or $comboBox5.Text -eq 8 )  -and  $textbox4.Text -ne ' ' ){
+    ejecutarRutas;
+    changeGateway;
   }
-
-}
-elseif($comboBox2.SelectedItem -eq 'DESHABILITAR PROXY'){
-  deshabilitarRutas;
-
-}
-
-
- #$dataGridView2.RowsDefaultCellStyle.BackColor = 'Orange'
- foreach ($Row in $dataGridView2.Rows) {
-  if ($Row.Cells[1].Value  -eq 'NO CONECTADO') {
-      $row.defaultcellstyle.backcolor = "Yellow"
+elseif($comboBox2.Text -eq 'HABILITAR PROXY' -and $comboBox3.Text -eq 'Predeterminado' -and $comboBox4.Text -eq 'AGREGAR RUTA' -and ($comboBox5.Text -eq 1 -Or $comboBox5.Text -eq 2 -Or $comboBox5.Text -eq 3 -Or $comboBox5.Text -eq 4 -Or $comboBox5.Text -eq 5 -Or $comboBox5.Text -eq 6 -Or $comboBox5.Text -eq 7 -Or $comboBox5.Text -eq 8 )){
+    ejecutarTareas;
+    ejecutarRutas;
   }
-}
+elseif($comboBox2.Text -eq 'HABILITAR PROXY' -and $comboBox3.Text -eq 'Predeterminado' -and  $textbox4.Text -ne ' '){
 
-
-
-
-
+    ejecutarTareas;
+      changeGateway;
+    }
+elseif($comboBox2.Text -eq 'HABILITAR PROXY' -and $comboBox3.Text -eq 'Predeterminado' -and $textbox5.Text -ne ' ' -and $textbox6.Text -ne ' ' -and $textbox7.Text -ne ' '-and $textbox9.Text -ne ' '  ){
+      ejecutarTareas;
+      setDomain;
+    }
+elseif($comboBox4.Text -eq 'AGREGAR RUTA' -and ($comboBox5.Text -eq 1 -Or $comboBox5.Text -eq 2 -Or $comboBox5.Text -eq 3 -Or $comboBox5.Text -eq 4 -Or $comboBox5.Text -eq 5 -Or $comboBox5.Text -eq 6 -Or $comboBox5.Text -eq 7 -Or $comboBox5.Text -eq 8 )  -and $textbox5.Text -ne ' ' -and $textbox6.Text -ne ' ' -and $textbox7.Text -ne ' '-and $textbox9.Text -ne ' '  ){
+      ejecutarRutas;
+      setDomain;
+            }
+      
+elseif($textbox4.Text -ne ' ' -and $textbox5.Text -ne ' ' -and $textbox6.Text -ne ' ' -and $textbox7.Text -ne ' '-and $textbox9.Text -ne ' ' ){
+              changeGateway;
+              setDomain;
+            }
+elseif($comboBox2.Text -eq 'HABILITAR PROXY' -and $comboBox3.Text -eq 'Predeterminado' -and $comboBox4.Text -eq 'AGREGAR RUTA' -and ($comboBox5.Text -eq 1 -Or $comboBox5.Text -eq 2 -Or $comboBox5.Text -eq 3 -Or $comboBox5.Text -eq 4 -Or $comboBox5.Text -eq 5 -Or $comboBox5.Text -eq 6 -Or $comboBox5.Text -eq 7 -Or $comboBox5.Text -eq 8 )  -and  $textbox4.Text -ne ' ' ){
+              ejecutarTareas;
+              ejecutarRutas;
+              changeGateway;
+            }
+elseif($comboBox2.Text -eq 'HABILITAR PROXY' -and $comboBox3.Text -eq 'Predeterminado' -and $textbox4.Text -ne ' ' -and $textbox5.Text -ne ' ' -and $textbox6.Text -ne ' ' -and $textbox7.Text -ne ' '-and $textbox9.Text -ne ' '  ){
+              ejecutarTareas;
+              changeGateway;
+              setDomain;
+            }
+ elseif($comboBox2.Text -eq 'HABILITAR PROXY' -and $comboBox3.Text -eq 'Predeterminado' -and  $comboBox4.Text -eq 'AGREGAR RUTA' -and ($comboBox5.Text -eq 1 -Or $comboBox5.Text -eq 2 -Or $comboBox5.Text -eq 3 -Or $comboBox5.Text -eq 4 -Or $comboBox5.Text -eq 5 -Or $comboBox5.Text -eq 6 -Or $comboBox5.Text -eq 7 -Or $comboBox5.Text -eq 8 ) -and $textbox5.Text -ne ' ' -and $textbox6.Text -ne ' ' -and $textbox7.Text -ne ' '-and $textbox9.Text -ne ' '  ){
+          ejecutarTareas;
+          ejecutarRutas;
+          setDomain;
+          }
+elseif($comboBox4.Text -eq 'AGREGAR RUTA' -and ($comboBox5.Text -eq 1 -Or $comboBox5.Text -eq 2 -Or $comboBox5.Text -eq 3 -Or $comboBox5.Text -eq 4 -Or $comboBox5.Text -eq 5 -Or $comboBox5.Text -eq 6 -Or $comboBox5.Text -eq 7 -Or $comboBox5.Text -eq 8 )  -and $textbox5.Text -ne ' ' -and $textbox6.Text -ne ' ' -and $textbox7.Text -ne ' '-and $textbox9.Text -ne ' ' -and $textbox4.Text -ne ' '  ){
+            ejecutarRutas;
+            changeGateway;
+            setDomain;
+          }
+ elseif($comboBox2.Text -eq 'HABILITAR PROXY' -and $comboBox3.Text -eq 'Predeterminado' -and $comboBox4.Text -eq 'AGREGAR RUTA' -and ($comboBox5.Text -eq 1 -Or $comboBox5.Text -eq 2 -Or $comboBox5.Text -eq 3 -Or $comboBox5.Text -eq 4 -Or $comboBox5.Text -eq 5 -Or $comboBox5.Text -eq 6 -Or $comboBox5.Text -eq 7 -Or $comboBox5.Text -eq 8 )  -and  $textbox4.Text -ne ' '  -and $textbox5.Text -ne ' ' -and $textbox6.Text -ne ' ' -and $textbox7.Text -ne ' '-and $textbox9.Text -ne ' '   ){
+            ejecutarTareas;
+            ejecutarRutas;
+            changeGateway;
+            setDomain;
+          }
+        
+        
+        
+              
+          
+          
 }
 
 
@@ -6974,6 +7034,10 @@ $comboBox1.add_SelectedIndexChanged({
  $comboBox3.Text=" ";
  $comboBox5.Text=" ";
  $textbox8.Text=" ";
+ $textbox5.Text=" ";
+$textbox6.Text=" ";
+$textbox7.Text=" ";
+$textbox9.Text=" ";
  $Groupbox1.Controls.Remove($comboBox3)
  $Groupbox1.Controls.Remove($Button1)	
  $Groupbox1.Controls.Remove($Button4)
@@ -7038,6 +7102,10 @@ $textbox4.Text=" ";
 $comboBox3.Text=" ";
 $comboBox5.Text=" ";
 $textbox8.Text=" ";
+$textbox5.Text=" ";
+$textbox6.Text=" ";
+$textbox7.Text=" ";
+$textbox9.Text=" ";
 $Groupbox1.Controls.Remove($comboBox3)
 $Groupbox1.Controls.Remove($Button1)	
 $Groupbox1.Controls.Remove($Button4)
@@ -7111,6 +7179,10 @@ $textbox8.Location = '247,325'
           $comboBox3.Text=" ";
           $comboBox5.Text=" ";
           $textbox8.Text=" ";
+          $textbox5.Text=" ";
+$textbox6.Text=" ";
+$textbox7.Text=" ";
+$textbox9.Text=" ";
           $Groupbox1.Controls.Remove($comboBox3)
           $Groupbox1.Controls.Remove($Button1)	
           $Groupbox1.Controls.Remove($Button4)
@@ -7140,10 +7212,10 @@ $textbox1.add_TextChanged($textbox1_TextChanged)
 
     $Button2.Location = New-Object System.Drawing.Size(414, 557) 
     $Button2.Size = New-Object System.Drawing.Size(100, 43) 
-    $Button2.Text = "Validacion IP" 
+    $Button2.Text = "Limpiar" 
     $Button2.UseVisualStyleBackColor = $True
     $Button2.BackColor = [System.Drawing.Color]::LightBlue
-    $Button2.Add_Click( { Validacion }) 
+    $Button2.Add_Click( { Limpieza }) 
 
 
     $Button3.Location =New-Object System.Drawing.Size(247, 557) 
@@ -7282,20 +7354,7 @@ $textbox4.Margin = '5, 5, 5, 5'
 $textbox4.Name = 'textbox5'
 $textbox4.Size = '181, 20'
 $textbox4.Enabled=$True
-$textbox4.Add_GotFocus({
-    if ($textbox4.Text -eq 'Ingrese el último dígito') {
-        $textbox4.Foreground = 'Black'
-        $textbox4.Text = ''
-    }
 
-})
-
-$textbox4.Add_LostFocus({
-    if ($textbox4.Text -eq '') {
-        $textbox4.Text = 'Ingrese el último dígito'
-        $textbox4.Foreground = 'Darkgray'
-    }
-})
 
 $textbox5.Font = 'Microsoft Sans Serif, 8.25pt'
 $textbox5.Location = '16,33'
