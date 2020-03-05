@@ -668,6 +668,23 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","-----",$texto4,"-----",$p
     
         $Session = New-PSSession -ComputerName $newPc  -Credential $Cred
         if($Session -eq $Null){
+          $a = get-date
+
+          $month =$a.tostring("MM")
+         
+          $day = $a.tostring("dd")
+         
+          $year = $a.tostring("yyyy")
+          $prueba=$day+"/"+$month+"/"+$year
+          $time=Get-Date -Format HH:mm:ss
+    
+          $dataGridView2.Rows.Add($newPc,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+          foreach ($Row in $dataGridView2.Rows) {
+            if ($Row.Cells[1].Value  -eq 'NO CONECTADO') {
+                $row.defaultcellstyle.backcolor = "Yellow"
+            }
+          }
+  
           #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
           "No se pudo conectar(ARCHIVO TXT) en $newPc " + " - " + $hora >> "$ruta\logsRed\log.txt"
             # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
@@ -677,6 +694,17 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","-----",$texto4,"-----",$p
              $textbox8.ScrollToCaret()
              }
             else{
+              
+$a = get-date
+
+$month =$a.tostring("MM")
+
+$day = $a.tostring("dd")
+
+$year = $a.tostring("yyyy")
+$prueba=$day+"/"+$month+"/"+$year
+$time=Get-Date -Format HH:mm:ss
+$dataGridView2.Rows.Add($newPc,"CONECTADO","-----","-----",$texto4,"-----",$prueba,$time,"-----");
              #Invocando comandos
              $Job = Invoke-Command -Session $Session  -ScriptBlock $cambio -ArgumentList ($newPc,$texto4)   -AsJob 
              $Null = Wait-Job -Job $Job
@@ -989,6 +1017,25 @@ $servidor=$textbox9.Text.Trim();
     
         $Session = New-PSSession -ComputerName $newPc  -Credential $Cred
         if($Session -eq $Null){
+          $a = get-date
+
+          $month =$a.tostring("MM")
+         
+          $day = $a.tostring("dd")
+         
+          $year = $a.tostring("yyyy")
+          $prueba=$day+"/"+$month+"/"+$year
+          $time=Get-Date -Format HH:mm:ss
+    
+          $dataGridView2.Rows.Add($newPc,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+          foreach ($Row in $dataGridView2.Rows) {
+            if ($Row.Cells[1].Value  -eq 'NO CONECTADO') {
+                $row.defaultcellstyle.backcolor = "Yellow"
+            }
+          }
+  
+
+
           #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
           "No se pudo conectar(ARCHIVO TXT) en $newPc " + " - " + $hora >> "$ruta\logsRed\log.txt"
             # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
@@ -1002,6 +1049,23 @@ $servidor=$textbox9.Text.Trim();
              $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarDominio -ArgumentList ($newPc,$nombre,$servidor,$usuario,$contra) -AsJob 
              $Null = Wait-Job -Job $Job
             Remove-PSSession -Session $Session
+            $a = get-date
+
+            $month =$a.tostring("MM")
+           
+            $day = $a.tostring("dd")
+           
+            $year = $a.tostring("yyyy")
+            $prueba=$day+"/"+$month+"/"+$year
+            $time=Get-Date -Format HH:mm:ss
+            $dataGridView2.Rows.Add($newPc,"CONECTADO","-----","-----","-----","AGREGADO",$prueba,$time,"-----");
+
+
+
+
+
+
+
             "Unir al Dominio -(ARCHIVO TXT) Inicio exitoso en $newPc " + " - " + $hora >>  "$ruta\logsRed\log.txt"
             #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
          $Message="Unir al Dominio -(ARCHIVO TXT) Inicio exitoso en $newPc ";   
@@ -4548,7 +4612,7 @@ $ip2=$Computer2.Split(".");
               else{
                   if($matikardMask){
                       $textbox19.Text=$matikard
-                      $textbox20.Text="Matikard/Entel/Claro"
+                      $textbox20.Text="Matikard/Entel/Claro/CMR"
                   }else{
                       $textbox19.Text="Error"
                       $textbox20.Text="Error"
@@ -4610,7 +4674,146 @@ function deshabilitarRutas{
  #New-Item  –ItemType Directory -Path "$ruta\logsRed"
   mkdir  $ruta\logsRed
   }
-	$Username = "Administrador"
+  if($comboBox1.SelectedItem -eq 'RANGO DE IPS'){
+    $Username = "Administrador"
+    $Password = "R3c542016C4ll"
+    
+    $Computer1=$textbox2.Text.Trim(); 
+    $Computer2=$textbox3.Text.Trim(); 
+    $ip1=$Computer1.Split(".");
+    $ip2=$Computer2.Split(".");
+    
+    $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+    $validacion1 = $Computer1 -match $regip
+    $validacion2 = $Computer2 -match $regip
+    
+    
+    
+    $Inicial=$Computer1.Split(".")
+    $inicio0=$Inicial[0];
+    $inicio1=$Inicial[1];
+    $inicio2=$Inicial[2];
+    [int]$inicio3=$Inicial[3];
+    $primeraIP=$inicio0+"."+$inicio1+"."+$inicio2+"." ;
+    
+    $Final=$Computer2.Split(".")
+    [int]$ultima3=$Final[3];
+    
+    
+    
+    
+    if(($ip1[2] -eq $ip2[2]) -and ($ip1[3] -lt $ip2[3]) -and(($validacion1 -eq $true) -and ($validacion2 -eq $true) )){
+      $deshabilitarProxy={
+        Param($Computer1,$Computer2)    
+
+          Remove-ItemProperty -Path "Registry::HKLM\SOFTWARE\Policies\Microsoft\Internet Explorer\Control Panel" -Name Proxy;
+          Remove-Item -Path "Registry::HKLM\SOFTWARE\Policies\Microsoft\Internet Explorer" -Name "Control Panel";
+          Remove-Item -Path "Registry::HKLM\SOFTWARE\Policies\Microsoft" -Name "Internet Explorer";
+          Remove-ItemProperty -Path "Registry::HKLM\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxySettingsPerUser;
+      
+      #Deshabilitar el proxy
+   
+          #Deshabilitando Proxy
+          Remove-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyServer;
+          Remove-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyEnable;
+          Remove-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride;
+          #Lanzamos ie para que actualize la config proxy
+          #& `"C:\Archivos de programa\Internet Explorer\iexplore.exe`"
+          Remove-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyEnable;
+          Remove-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyServer;
+          Remove-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride;
+   
+   #Lanzamos ie para que actualize la config proxy
+   #& `"C:\Archivos de programa\Internet Explorer\iexplore.exe`"
+  
+  
+
+  }  
+  $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+  $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+   
+  for($inicio3;$inicio3 -le $ultima3;$inicio3++){
+    $Computer3=$primeraIP+$inicio3;
+  Write-Host "Iniciando Sesion en $Computer3"
+  $hora=Get-Date -DisplayHint DateTime
+  $Session = New-PSSession -ComputerName $Computer3 -Credential $Cred
+  if($Session -eq $Null){
+    $a = get-date
+
+    $month =$a.tostring("MM")
+   
+    $day = $a.tostring("dd")
+   
+    $year = $a.tostring("yyyy")
+    $prueba=$day+"/"+$month+"/"+$year
+    $time=Get-Date -Format HH:mm:ss
+
+    $dataGridView2.Rows.Add($Computer3,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+    foreach ($Row in $dataGridView2.Rows) {
+      if ($Row.Cells[1].Value  -eq 'NO CONECTADO') {
+          $row.defaultcellstyle.backcolor = "Yellow"
+      }
+    }
+
+    #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+    "No se pudo conectar (RANGO) en $Computer3" + " - " + $hora >> "$ruta\logsRed\log.txt"
+      # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+      $Message="No se pudo conectar (RANGO) en $Computer3"+ " - " + $hora;   
+        $textbox8.AppendText("`r`n$Message");
+           $textbox8.Refresh()
+       $textbox8.ScrollToCaret()
+       }
+       else{
+       #Invocando comandos
+       $Job = Invoke-Command -Session $Session  -ScriptBlock $deshabilitarProxy -ArgumentList ($Computer1,$Computer2) -AsJob 
+       $Null = Wait-Job -Job $Job
+      Remove-PSSession -Session $Session
+
+      $a = get-date
+
+      $month =$a.tostring("MM")
+     
+      $day = $a.tostring("dd")
+     
+      $year = $a.tostring("yyyy")
+      $prueba=$day+"/"+$month+"/"+$year
+      $time=Get-Date -Format HH:mm:ss
+      $dataGridView2.Rows.Add($computer3,"CONECTADO","DESHABILITADO","-----","-----","-----",$prueba,$time,"-----");
+
+      "DESHABILITAR PROXY(RANGO) - Inicio exitoso en $Computer3" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+      #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+   $Message="DESHABILITAR PROXY(RANGO) - Inicio exitoso en $Computer3";   
+   $textbox8.AppendText("`r`n$Message");
+   $textbox8.Refresh()
+  $textbox8.ScrollToCaret()
+       }
+
+  }
+
+    }
+    elseif(($Computer1.length -eq 0) -Or ($Computer2.length -eq 0)){
+        
+      Add-Type -AssemblyName System.Windows.Forms
+      $errorMsg = "No puede quedar en blanco la dirección ip.
+      Vuelva a intentarlo nuevamente."
+          $caption = "Error de contenido"
+          [System.Windows.Forms.MessageBox]::Show($errorMsg, $caption)
+     
+}
+
+
+elseif(($validacion1 -eq $false) -Or ($validacion2 -eq $false)){
+  Add-Type -AssemblyName System.Windows.Forms
+  $errorMsg = "Datos erróneos.
+  Vuelva a intentarlo nuevamente."
+      $caption = "Error de contenido"
+      [System.Windows.Forms.MessageBox]::Show($errorMsg, $caption)
+}
+  }
+  
+  elseif($comboBox1.SelectedItem -eq 'IP'){
+  
+  $Username = "Administrador"
     $Password = "R3c542016C4ll"
 
     $Computer=$textbox1.Text; 
@@ -4690,7 +4893,103 @@ if($Session -eq $Null){
        $textbox8.Refresh()
       $textbox8.ScrollToCaret()
 }
+  }
+  elseif ($comboBox1.SelectedItem -eq 'ARCHIVO TXT'){
+    $Username = "Administrador"
+    $Password = "R3c542016C4ll"
+    $prueba2= Get-Content $OpenFileDialog.FileName
+  
+     
+    $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+    $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+    foreach($newPc in $prueba2){
+      $deshabilitarProxy={
+        Param($newPc)    
 
+          Remove-ItemProperty -Path "Registry::HKLM\SOFTWARE\Policies\Microsoft\Internet Explorer\Control Panel" -Name Proxy;
+          Remove-Item -Path "Registry::HKLM\SOFTWARE\Policies\Microsoft\Internet Explorer" -Name "Control Panel";
+          Remove-Item -Path "Registry::HKLM\SOFTWARE\Policies\Microsoft" -Name "Internet Explorer";
+          Remove-ItemProperty -Path "Registry::HKLM\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxySettingsPerUser;
+      
+      #Deshabilitar el proxy
+   
+          #Deshabilitando Proxy
+          Remove-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyServer;
+          Remove-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyEnable;
+          Remove-ItemProperty -Path "Registry::HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride;
+          #Lanzamos ie para que actualize la config proxy
+          #& `"C:\Archivos de programa\Internet Explorer\iexplore.exe`"
+          Remove-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyEnable;
+          Remove-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyServer;
+          Remove-ItemProperty -Path "Registry::HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name ProxyOverride;
+   
+   #Lanzamos ie para que actualize la config proxy
+   #& `"C:\Archivos de programa\Internet Explorer\iexplore.exe`"
+  
+  
+
+  } 
+  $hora=Get-Date -DisplayHint DateTime
+      
+  $Session = New-PSSession -ComputerName $newPc  -Credential $Cred
+  if($Session -eq $Null){
+    $a = get-date
+
+    $month =$a.tostring("MM")
+   
+    $day = $a.tostring("dd")
+   
+    $year = $a.tostring("yyyy")
+    $prueba=$day+"/"+$month+"/"+$year
+    $time=Get-Date -Format HH:mm:ss
+
+    $dataGridView2.Rows.Add($newPc,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+    foreach ($Row in $dataGridView2.Rows) {
+      if ($Row.Cells[1].Value  -eq 'NO CONECTADO') {
+          $row.defaultcellstyle.backcolor = "Yellow"
+      }
+    }
+
+
+
+    #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+    "No se pudo conectar(ARCHIVO TXT) en $newPc " + " - " + $hora >> "$ruta\logsRed\log.txt"
+      # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+      $Message="No se pudo conectar(ARCHIVO TXT) en $newPc "+ " - " + $hora;   
+        $textbox8.AppendText("`r`n$Message");
+           $textbox8.Refresh()
+       $textbox8.ScrollToCaret()
+       }
+      else{
+       #Invocando comandos
+       $Job = Invoke-Command -Session $Session  -ScriptBlock $deshabilitarProxy -ArgumentList ($newPc)  -AsJob 
+       $Null = Wait-Job -Job $Job
+      Remove-PSSession -Session $Session
+      $a = get-date
+
+    $month =$a.tostring("MM")
+   
+    $day = $a.tostring("dd")
+   
+    $year = $a.tostring("yyyy")
+    $prueba=$day+"/"+$month+"/"+$year
+    $time=Get-Date -Format HH:mm:ss
+    $dataGridView2.Rows.Add($newPc,"CONECTADO","DESHABILITADO","-----","-----","-----",$prueba,$time,"-----");
+      "DESHABILITAR PROXY -(ARCHIVO TXT) Inicio exitoso en $newPc " + " - " + $hora >>  "$ruta\logsRed\log.txt"
+      #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+   $Message="DESHABILITAR PROXY -(ARCHIVO TXT) Inicio exitoso en $newPc ";   
+   $textbox8.AppendText("`r`n$Message");
+   $textbox8.Refresh()
+$textbox8.ScrollToCaret()
+      }
+
+
+
+    }
+
+
+
+  }
 }
 function Limpieza{
   $dataGridView.Rows.Clear()
@@ -6334,6 +6633,801 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
          
     
   }
+  elseif($comboBox1.SelectedItem -eq 'ARCHIVO TXT'){
+    if($comboBox5.SelectedItem -eq 1){
+
+      $Username = "Administrador"
+      $Password = "R3c542016C4ll"
+      $prueba2= Get-Content $OpenFileDialog.FileName
+    
+      $ip_N1=$TextBox100.Text;
+      $mask_N1=$ComboBox110.SelectedItem.ToString();
+      $gateway_N1=$TextBox104.Text;
+      $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+      $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+      foreach($newPc in $prueba2){
+        $agregarRutas={
+           
+              Param($newPc,$ip_N1,$mask_N1,$gateway_N1)    
+  
+         
+              route add -p $ip_N1/$mask_N1 $gateway_N1
+     
+          
+      
+  
+      }  
+      
+          $Session = New-PSSession -ComputerName $newPc -Credential $Cred
+          $hora=Get-Date -DisplayHint DateTime
+          if($Session -eq $Null){
+            $a = get-date
+  
+            $month =$a.tostring("MM")
+           
+            $day = $a.tostring("dd")
+           
+            $year = $a.tostring("yyyy")
+            $prueba=$day+"/"+$month+"/"+$year
+            $time=Get-Date -Format HH:mm:ss
+      
+            $dataGridView2.Rows.Add($newPc,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+            foreach ($Row in $dataGridView2.Rows) {
+              if ($Row.Cells[1].Value  -eq 'NO CONECTADO') {
+                  $row.defaultcellstyle.backcolor = "Yellow"
+              }
+            }
+    
+            #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+            "No se pudo conectar(ARCHIVO TXT) en $newPc" + " - " + $hora >> "$ruta\logsRed\log.txt"
+              # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+              $Message="No se pudo conectar(ARCHIVO TXT) en $newPc"+ " - " + $hora;   
+                $textbox8.AppendText("`r`n$Message");
+                   $textbox8.Refresh()
+               $textbox8.ScrollToCaret()
+               }
+           #Invocando comandos
+  
+  else{
+  
+           $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($newPc,$ip_N1,$mask_N1,$gateway_N1) -AsJob 
+           $Null = Wait-Job -Job $Job
+          Remove-PSSession -Session $Session
+          
+  $a = get-date
+  
+  $month =$a.tostring("MM")
+  
+  $day = $a.tostring("dd")
+  
+  $year = $a.tostring("yyyy")
+  $prueba=$day+"/"+$month+"/"+$year
+  $time=Get-Date -Format HH:mm:ss
+  $dataGridView2.Rows.Add($newPc,"CONECTADO","-----","1 RUTA AGREGADA","-----","-----",$prueba,$time,"-----");
+  
+          "Agregar 1 Ruta (ARCHIVO TXT) - Inicio exitoso en $newPc" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+          #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+       $Message="Agregar 1 Ruta (ARCHIVO TXT) - Inicio exitoso en $newPc";   
+       $textbox8.AppendText("`r`n$Message");
+       $textbox8.Refresh()
+      $textbox8.ScrollToCaret()
+  
+  
+  
+  
+  
+  }
+  }
+  }
+  elseif ($comboBox5.SelectedItem -eq 2) {
+      $Username = "Administrador"
+      $Password = "R3c542016C4ll"
+      $prueba2= Get-Content $OpenFileDialog.FileName
+    
+    $ip_N1=$TextBox100.Text;
+      $mask_N1=$ComboBox110.SelectedItem.ToString();
+      $gateway_N1=$TextBox104.Text;
+      $ip_N2=$TextBox129.Text;
+      $mask_N2=$ComboBox180.SelectedItem.ToString();
+      $gateway_N2=$TextBox132.Text;
+      $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+      $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+      foreach($newPc in $prueba2){
+      
+        $agregarRutas={
+           
+              Param($newPc,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2)    
+  
+         
+              route add -p $ip_N1/$mask_N1 $gateway_N1
+              route add -p $ip_N2/$mask_N2 $gateway_N2
+          
+      
+  
+      }  
+      
+          $Session = New-PSSession -ComputerName $newPc -Credential $Cred
+          $hora=Get-Date -DisplayHint DateTime
+          if($Session -eq $Null){
+            $a = get-date
+  
+            $month =$a.tostring("MM")
+           
+            $day = $a.tostring("dd")
+           
+            $year = $a.tostring("yyyy")
+            $prueba=$day+"/"+$month+"/"+$year
+            $time=Get-Date -Format HH:mm:ss
+      
+            $dataGridView2.Rows.Add($newPc,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+            foreach ($Row in $dataGridView2.Rows) {
+              if ($Row.Cells[1].Value  -eq 'NO CONECTADO') {
+                  $row.defaultcellstyle.backcolor = "Yellow"
+              }
+            }
+    
+            #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+            "No se pudo conectar(ARCHIVO TXT) en $newPc" + " - " + $hora >> "$ruta\logsRed\log.txt"
+              # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+              $Message="No se pudo conectar(ARCHIVO TXT) en $newPc"+ " - " + $hora;   
+                $textbox8.AppendText("`r`n$Message");
+                   $textbox8.Refresh()
+               $textbox8.ScrollToCaret()
+               }
+           #Invocando comandos
+  
+  else{
+  
+           $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($newPc,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2) -AsJob 
+           $Null = Wait-Job -Job $Job
+          Remove-PSSession -Session $Session
+          
+  $a = get-date
+  
+  $month =$a.tostring("MM")
+  
+  $day = $a.tostring("dd")
+  
+  $year = $a.tostring("yyyy")
+  $prueba=$day+"/"+$month+"/"+$year
+  $time=Get-Date -Format HH:mm:ss
+  $dataGridView2.Rows.Add($newPc,"CONECTADO","-----","2 RUTAS AGREGADAS","-----","-----",$prueba,$time,"-----");
+  
+          "Agregar 2 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+          #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+       $Message="Agregar 2 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc";   
+       $textbox8.AppendText("`r`n$Message");
+       $textbox8.Refresh()
+      $textbox8.ScrollToCaret()
+  
+  
+  
+  
+  
+  }
+  }
+  
+  }
+  elseif ($comboBox5.SelectedItem -eq 3) {
+      $Username = "Administrador"
+      $Password = "R3c542016C4ll"
+      $prueba2= Get-Content $OpenFileDialog.FileName
+    
+     $ip_N1=$TextBox100.Text;
+      $mask_N1=$ComboBox110.SelectedItem.ToString();
+      $gateway_N1=$TextBox104.Text;
+      $ip_N2=$TextBox129.Text;
+      $mask_N2=$ComboBox180.SelectedItem.ToString();
+      $gateway_N2=$TextBox132.Text;
+      $ip_N3=$TextBox125.Text;
+      $mask_N3=$ComboBox170.SelectedItem.ToString();
+      $gateway_N3=$TextBox128.Text;
+      $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+      $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+      foreach($newPc in $prueba2){
+      
+     
+        $agregarRutas={
+           
+              Param($newPc,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3)    
+  
+         
+              route add -p $ip_N1/$mask_N1 $gateway_N1
+              route add -p $ip_N2/$mask_N2 $gateway_N2
+              route add -p $ip_N3/$mask_N3 $gateway_N3
+      
+  
+      }  
+      
+          $Session = New-PSSession -ComputerName $newPc -Credential $Cred
+          $hora=Get-Date -DisplayHint DateTime
+          if($Session -eq $Null){
+            $a = get-date
+  
+            $month =$a.tostring("MM")
+           
+            $day = $a.tostring("dd")
+           
+            $year = $a.tostring("yyyy")
+            $prueba=$day+"/"+$month+"/"+$year
+            $time=Get-Date -Format HH:mm:ss
+      
+            $dataGridView2.Rows.Add($newPc,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+            foreach ($Row in $dataGridView2.Rows) {
+              if ($Row.Cells[1].Value  -eq 'NO CONECTADO') {
+                  $row.defaultcellstyle.backcolor = "Yellow"
+              }
+            }
+    
+            #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+            "No se pudo conectar(ARCHIVO TXT) en $newPc" + " - " + $hora >> "$ruta\logsRed\log.txt"
+              # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+              $Message="No se pudo conectar(ARCHIVO TXT) en $newPc"+ " - " + $hora;   
+                $textbox8.AppendText("`r`n$Message");
+                   $textbox8.Refresh()
+               $textbox8.ScrollToCaret()
+               }
+           #Invocando comandos
+  
+  else{
+  
+           $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($newPc,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3) -AsJob 
+           $Null = Wait-Job -Job $Job
+          Remove-PSSession -Session $Session
+          
+  $a = get-date
+  
+  $month =$a.tostring("MM")
+  
+  $day = $a.tostring("dd")
+  
+  $year = $a.tostring("yyyy")
+  $prueba=$day+"/"+$month+"/"+$year
+  $time=Get-Date -Format HH:mm:ss
+  $dataGridView2.Rows.Add($newPc,"CONECTADO","-----","3 RUTAS AGREGADAS","-----","-----",$prueba,$time,"-----");
+  
+          "Agregar 3 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+          #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+       $Message="Agregar 3 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc";   
+       $textbox8.AppendText("`r`n$Message");
+       $textbox8.Refresh()
+      $textbox8.ScrollToCaret()
+  
+  
+  
+  
+  
+  }
+  }
+  
+  }
+  elseif ($comboBox5.SelectedItem -eq 4) {
+      $Username = "Administrador"
+      $Password = "R3c542016C4ll"
+      $prueba2= Get-Content $OpenFileDialog.FileName
+    
+   $ip_N1=$TextBox100.Text;
+      $mask_N1=$ComboBox110.SelectedItem.ToString();
+      $gateway_N1=$TextBox104.Text;
+      $ip_N2=$TextBox129.Text;
+      $mask_N2=$ComboBox180.SelectedItem.ToString();
+      $gateway_N2=$TextBox132.Text;
+      $ip_N3=$TextBox125.Text;
+      $mask_N3=$ComboBox170.SelectedItem.ToString();
+      $gateway_N3=$TextBox128.Text;
+      $ip_N4=$TextBox121.Text;
+      $mask_N4=$ComboBox160.SelectedItem.ToString();
+      $gateway_N4=$TextBox124.Text;
+      $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+      $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+      foreach($newPc in $prueba2){
+      
+     
+     
+        $agregarRutas={
+           
+              Param($newPc,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4)    
+  
+         
+              route add -p $ip_N1/$mask_N1 $gateway_N1
+              route add -p $ip_N2/$mask_N2 $gateway_N2
+              route add -p $ip_N3/$mask_N3 $gateway_N3
+              route add -p $ip_N4/$mask_N4 $gateway_N4
+      
+  
+      }  
+      
+          $Session = New-PSSession -ComputerName $newPc -Credential $Cred
+          $hora=Get-Date -DisplayHint DateTime
+          if($Session -eq $Null){
+            $a = get-date
+  
+            $month =$a.tostring("MM")
+           
+            $day = $a.tostring("dd")
+           
+            $year = $a.tostring("yyyy")
+            $prueba=$day+"/"+$month+"/"+$year
+            $time=Get-Date -Format HH:mm:ss
+      
+            $dataGridView2.Rows.Add($newPc,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+            foreach ($Row in $dataGridView2.Rows) {
+              if ($Row.Cells[1].Value  -eq 'NO CONECTADO') {
+                  $row.defaultcellstyle.backcolor = "Yellow"
+              }
+            }
+    
+            #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+            "No se pudo conectar(ARCHIVO TXT) en $newPc" + " - " + $hora >> "$ruta\logsRed\log.txt"
+              # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+              $Message="No se pudo conectar(ARCHIVO TXT) en $newPc"+ " - " + $hora;   
+                $textbox8.AppendText("`r`n$Message");
+                   $textbox8.Refresh()
+               $textbox8.ScrollToCaret()
+               }
+           #Invocando comandos
+  
+  else{
+  
+           $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($newPc,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4) -AsJob 
+           $Null = Wait-Job -Job $Job
+          Remove-PSSession -Session $Session
+          
+  $a = get-date
+  
+  $month =$a.tostring("MM")
+  
+  $day = $a.tostring("dd")
+  
+  $year = $a.tostring("yyyy")
+  $prueba=$day+"/"+$month+"/"+$year
+  $time=Get-Date -Format HH:mm:ss
+  $dataGridView2.Rows.Add($newPc,"CONECTADO","-----","4 RUTAS AGREGADAS","-----","-----",$prueba,$time,"-----");
+  
+          "Agregar 4 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+          #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+       $Message="Agregar 4 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc";   
+       $textbox8.AppendText("`r`n$Message");
+       $textbox8.Refresh()
+      $textbox8.ScrollToCaret()
+  
+  
+  
+  
+  
+  }
+  }
+      
+  }
+  elseif ($comboBox5.SelectedItem -eq 5) {
+      $Username = "Administrador"
+      $Password = "R3c542016C4ll"
+      $prueba2= Get-Content $OpenFileDialog.FileName
+    
+  
+      $ip_N1=$TextBox100.Text;
+      $mask_N1=$ComboBox110.SelectedItem.ToString();
+      $gateway_N1=$TextBox104.Text;
+      $ip_N2=$TextBox129.Text;
+      $mask_N2=$ComboBox180.SelectedItem.ToString();
+      $gateway_N2=$TextBox132.Text;
+      $ip_N3=$TextBox125.Text;
+      $mask_N3=$ComboBox170.SelectedItem.ToString();
+      $gateway_N3=$TextBox128.Text;
+      $ip_N4=$TextBox121.Text;
+      $mask_N4=$ComboBox160.SelectedItem.ToString();
+      $gateway_N4=$TextBox124.Text;
+      $ip_N5=$TextBox117.Text;
+      $mask_N5=$ComboBox150.SelectedItem.ToString();
+      $gateway_N5=$TextBox120.Text;
+      $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+      $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+      foreach($newPc in $prueba2){
+      
+     
+     
+        $agregarRutas={
+           
+              Param($newPc,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4,$ip_N5,$mask_N5,$gateway_N5)    
+  
+         
+              route add -p $ip_N1/$mask_N1 $gateway_N1
+              route add -p $ip_N2/$mask_N2 $gateway_N2
+              route add -p $ip_N3/$mask_N3 $gateway_N3
+              route add -p $ip_N4/$mask_N4 $gateway_N4
+              route add -p $ip_N5/$mask_N5 $gateway_N5
+  
+      }  
+      
+          $Session = New-PSSession -ComputerName $newPc -Credential $Cred
+          $hora=Get-Date -DisplayHint DateTime
+          if($Session -eq $Null){
+            $a = get-date
+  
+            $month =$a.tostring("MM")
+           
+            $day = $a.tostring("dd")
+           
+            $year = $a.tostring("yyyy")
+            $prueba=$day+"/"+$month+"/"+$year
+            $time=Get-Date -Format HH:mm:ss
+      
+            $dataGridView2.Rows.Add($newPc,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+            foreach ($Row in $dataGridView2.Rows) {
+              if ($Row.Cells[1].Value  -eq 'NO CONECTADO') {
+                  $row.defaultcellstyle.backcolor = "Yellow"
+              }
+            }
+    
+            #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+            "No se pudo conectar(ARCHIVO TXT) en $newPc" + " - " + $hora >> "$ruta\logsRed\log.txt"
+              # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+              $Message="No se pudo conectar(ARCHIVO TXT) en $newPc"+ " - " + $hora;   
+                $textbox8.AppendText("`r`n$Message");
+                   $textbox8.Refresh()
+               $textbox8.ScrollToCaret()
+               }
+           #Invocando comandos
+  
+  else{
+  
+           $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($newPc,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4,$ip_N5,$mask_N5,$gateway_N5) -AsJob 
+           $Null = Wait-Job -Job $Job
+          Remove-PSSession -Session $Session
+          
+  $a = get-date
+  
+  $month =$a.tostring("MM")
+  
+  $day = $a.tostring("dd")
+  
+  $year = $a.tostring("yyyy")
+  $prueba=$day+"/"+$month+"/"+$year
+  $time=Get-Date -Format HH:mm:ss
+  $dataGridView2.Rows.Add($newPc,"CONECTADO","-----","5 RUTAS AGREGADAS","-----","-----",$prueba,$time,"-----");
+  
+          "Agregar 5 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+          #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+       $Message="Agregar 5 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc";   
+       $textbox8.AppendText("`r`n$Message");
+       $textbox8.Refresh()
+      $textbox8.ScrollToCaret()
+  
+  
+  
+  
+  
+  }
+  }
+  }
+  elseif ($comboBox5.SelectedItem -eq 6) {
+      $Username = "Administrador"
+      $Password = "R3c542016C4ll"
+      $prueba2= Get-Content $OpenFileDialog.FileName
+  
+        $ip_N1=$TextBox100.Text;
+      $mask_N1=$ComboBox110.SelectedItem.ToString();
+      $gateway_N1=$TextBox104.Text;
+      $ip_N2=$TextBox129.Text;
+      $mask_N2=$ComboBox180.SelectedItem.ToString();
+      $gateway_N2=$TextBox132.Text;
+      $ip_N3=$TextBox125.Text;
+      $mask_N3=$ComboBox170.SelectedItem.ToString();
+      $gateway_N3=$TextBox128.Text;
+      $ip_N4=$TextBox121.Text;
+      $mask_N4=$ComboBox160.SelectedItem.ToString();
+      $gateway_N4=$TextBox124.Text;
+      $ip_N5=$TextBox117.Text;
+      $mask_N5=$ComboBox150.SelectedItem.ToString();
+      $gateway_N5=$TextBox120.Text;
+      $ip_N6=$TextBox113.Text;
+      $mask_N6=$ComboBox140.SelectedItem.ToString();
+      $gateway_N6=$TextBox116.Text;
+      $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+      $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+      foreach($newPc in $prueba2){
+      
+     
+     
+        $agregarRutas={
+           
+              Param($newPc,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4,$ip_N5,$mask_N5,$gateway_N5,$ip_N6,$mask_N6,$gateway_N6)    
+  
+         
+              route add -p $ip_N1/$mask_N1 $gateway_N1
+              route add -p $ip_N2/$mask_N2 $gateway_N2
+              route add -p $ip_N3/$mask_N3 $gateway_N3
+              route add -p $ip_N4/$mask_N4 $gateway_N4
+              route add -p $ip_N5/$mask_N5 $gateway_N5
+              route add -p $ip_N6/$mask_N6 $gateway_N6
+  
+      }  
+      
+          $Session = New-PSSession -ComputerName $newPc -Credential $Cred
+          $hora=Get-Date -DisplayHint DateTime
+          if($Session -eq $Null){
+            $a = get-date
+  
+            $month =$a.tostring("MM")
+           
+            $day = $a.tostring("dd")
+           
+            $year = $a.tostring("yyyy")
+            $prueba=$day+"/"+$month+"/"+$year
+            $time=Get-Date -Format HH:mm:ss
+      
+            $dataGridView2.Rows.Add($newPc,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+            foreach ($Row in $dataGridView2.Rows) {
+              if ($Row.Cells[1].Value  -eq 'NO CONECTADO') {
+                  $row.defaultcellstyle.backcolor = "Yellow"
+              }
+            }
+    
+            #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+            "No se pudo conectar(ARCHIVO TXT) en $newPc" + " - " + $hora >> "$ruta\logsRed\log.txt"
+              # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+              $Message="No se pudo conectar(ARCHIVO TXT) en $newPc"+ " - " + $hora;   
+                $textbox8.AppendText("`r`n$Message");
+                   $textbox8.Refresh()
+               $textbox8.ScrollToCaret()
+               }
+           #Invocando comandos
+  
+  else{
+  
+           $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($newPc,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4,$ip_N5,$mask_N5,$gateway_N5,$ip_N6,$mask_N6,$gateway_N6) -AsJob 
+           $Null = Wait-Job -Job $Job
+          Remove-PSSession -Session $Session
+          
+  $a = get-date
+  
+  $month =$a.tostring("MM")
+  
+  $day = $a.tostring("dd")
+  
+  $year = $a.tostring("yyyy")
+  $prueba=$day+"/"+$month+"/"+$year
+  $time=Get-Date -Format HH:mm:ss
+  $dataGridView2.Rows.Add($newPc,"CONECTADO","-----","6 RUTAS AGREGADAS","-----","-----",$prueba,$time,"-----");
+  
+          "Agregar 6 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+          #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+       $Message="Agregar 6 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc";   
+       $textbox8.AppendText("`r`n$Message");
+       $textbox8.Refresh()
+      $textbox8.ScrollToCaret()
+  
+  
+  
+  
+  
+  }
+  }
+  }
+  elseif ($comboBox5.SelectedItem -eq 7) {
+      $Username = "Administrador"
+      $Password = "R3c542016C4ll"
+      $prueba2= Get-Content $OpenFileDialog.FileName
+  
+         $ip_N1=$TextBox100.Text;
+      $mask_N1=$ComboBox110.SelectedItem.ToString();
+      $gateway_N1=$TextBox104.Text;
+      $ip_N2=$TextBox129.Text;
+      $mask_N2=$ComboBox180.SelectedItem.ToString();
+      $gateway_N2=$TextBox132.Text;
+      $ip_N3=$TextBox125.Text;
+      $mask_N3=$ComboBox170.SelectedItem.ToString();
+      $gateway_N3=$TextBox128.Text;
+      $ip_N4=$TextBox121.Text;
+      $mask_N4=$ComboBox160.SelectedItem.ToString();
+      $gateway_N4=$TextBox124.Text;
+      $ip_N5=$TextBox117.Text;
+      $mask_N5=$ComboBox150.SelectedItem.ToString();
+      $gateway_N5=$TextBox120.Text;
+      $ip_N6=$TextBox113.Text;
+      $mask_N6=$ComboBox140.SelectedItem.ToString();
+      $gateway_N6=$TextBox116.Text;
+      $ip_N7=$TextBox190.Text;
+      $mask_N7=$ComboBox130.SelectedItem.ToString();
+      $gateway_N7=$TextBox118.Text;
+  
+      $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+      $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+      foreach($newPc in $prueba2){
+      
+     
+     
+        $agregarRutas={
+           
+              Param($newPc,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4,$ip_N5,$mask_N5,$gateway_N5,$ip_N6,$mask_N6,$gateway_N6,$ip_N7,$mask_N7,$gateway_N7)    
+  
+         
+              route add -p $ip_N1/$mask_N1 $gateway_N1
+              route add -p $ip_N2/$mask_N2 $gateway_N2
+              route add -p $ip_N3/$mask_N3 $gateway_N3
+              route add -p $ip_N4/$mask_N4 $gateway_N4
+              route add -p $ip_N5/$mask_N5 $gateway_N5
+              route add -p $ip_N6/$mask_N6 $gateway_N6
+              route add -p $ip_N7/$mask_N7 $gateway_N7
+  
+      }  
+      
+          $Session = New-PSSession -ComputerName $newPc -Credential $Cred
+          $hora=Get-Date -DisplayHint DateTime
+          if($Session -eq $Null){
+            $a = get-date
+  
+            $month =$a.tostring("MM")
+           
+            $day = $a.tostring("dd")
+           
+            $year = $a.tostring("yyyy")
+            $prueba=$day+"/"+$month+"/"+$year
+            $time=Get-Date -Format HH:mm:ss
+      
+            $dataGridView2.Rows.Add($newPc,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+            foreach ($Row in $dataGridView2.Rows) {
+              if ($Row.Cells[1].Value  -eq 'NO CONECTADO') {
+                  $row.defaultcellstyle.backcolor = "Yellow"
+              }
+            }
+    
+            #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+            "No se pudo conectar(ARCHIVO TXT) en $newPc" + " - " + $hora >> "$ruta\logsRed\log.txt"
+              # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+              $Message="No se pudo conectar(ARCHIVO TXT) en $newPc"+ " - " + $hora;   
+                $textbox8.AppendText("`r`n$Message");
+                   $textbox8.Refresh()
+               $textbox8.ScrollToCaret()
+               }
+           #Invocando comandos
+  
+  else{
+  
+           $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($newPc,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4,$ip_N5,$mask_N5,$gateway_N5,$ip_N6,$mask_N6,$gateway_N6,$ip_N7,$mask_N7,$gateway_N7) -AsJob 
+           $Null = Wait-Job -Job $Job
+          Remove-PSSession -Session $Session
+          
+  $a = get-date
+  
+  $month =$a.tostring("MM")
+  
+  $day = $a.tostring("dd")
+  
+  $year = $a.tostring("yyyy")
+  $prueba=$day+"/"+$month+"/"+$year
+  $time=Get-Date -Format HH:mm:ss
+  $dataGridView2.Rows.Add($newPc,"CONECTADO","-----","7 RUTAS AGREGADAS","-----","-----",$prueba,$time,"-----");
+  
+          "Agregar 7 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+          #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+       $Message="Agregar 7 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc";   
+       $textbox8.AppendText("`r`n$Message");
+       $textbox8.Refresh()
+      $textbox8.ScrollToCaret()
+  
+  
+  
+  
+  
+  }
+  }
+  }
+  else{
+      $Username = "Administrador"
+      $Password = "R3c542016C4ll"
+      $prueba2= Get-Content $OpenFileDialog.FileName
+  
+           $ip_N1=$TextBox100.Text;
+      $mask_N1=$ComboBox110.SelectedItem.ToString();
+      $gateway_N1=$TextBox104.Text;
+      $ip_N2=$TextBox129.Text;
+      $mask_N2=$ComboBox180.SelectedItem.ToString();
+      $gateway_N2=$TextBox132.Text;
+      $ip_N3=$TextBox125.Text;
+      $mask_N3=$ComboBox170.SelectedItem.ToString();
+      $gateway_N3=$TextBox128.Text;
+      $ip_N4=$TextBox121.Text;
+      $mask_N4=$ComboBox160.SelectedItem.ToString();
+      $gateway_N4=$TextBox124.Text;
+      $ip_N5=$TextBox117.Text;
+      $mask_N5=$ComboBox150.SelectedItem.ToString();
+      $gateway_N5=$TextBox120.Text;
+      $ip_N6=$TextBox113.Text;
+      $mask_N6=$ComboBox140.SelectedItem.ToString();
+      $gateway_N6=$TextBox116.Text;
+      $ip_N7=$TextBox190.Text;
+      $mask_N7=$ComboBox130.SelectedItem.ToString();
+      $gateway_N7=$TextBox118.Text;
+      $ip_N8=$TextBox150.Text;
+      $mask_N8=$ComboBox120.SelectedItem.ToString();
+      $gateway_N8=$TextBox180.Text;
+  
+      $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+      $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+      foreach($newPc in $prueba2){
+      
+     
+     
+        $agregarRutas={
+           
+              Param($newPc,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4,$ip_N5,$mask_N5,$gateway_N5,$ip_N6,$mask_N6,$gateway_N6,$ip_N7,$mask_N7,$gateway_N7,$ip_N8,$mask_N8,$gateway_N8)    
+  
+         
+              route add -p $ip_N1/$mask_N1 $gateway_N1
+              route add -p $ip_N2/$mask_N2 $gateway_N2
+              route add -p $ip_N3/$mask_N3 $gateway_N3
+              route add -p $ip_N4/$mask_N4 $gateway_N4
+              route add -p $ip_N5/$mask_N5 $gateway_N5
+              route add -p $ip_N6/$mask_N6 $gateway_N6
+              route add -p $ip_N7/$mask_N7 $gateway_N7
+              route add -p $ip_N8/$mask_N8 $gateway_N8
+  
+      }  
+      
+          $Session = New-PSSession -ComputerName $newPc -Credential $Cred
+          $hora=Get-Date -DisplayHint DateTime
+          if($Session -eq $Null){
+            $a = get-date
+  
+            $month =$a.tostring("MM")
+           
+            $day = $a.tostring("dd")
+           
+            $year = $a.tostring("yyyy")
+            $prueba=$day+"/"+$month+"/"+$year
+            $time=Get-Date -Format HH:mm:ss
+      
+            $dataGridView2.Rows.Add($newPc,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+            foreach ($Row in $dataGridView2.Rows) {
+              if ($Row.Cells[1].Value  -eq 'NO CONECTADO') {
+                  $row.defaultcellstyle.backcolor = "Yellow"
+              }
+            }
+    
+            #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+            "No se pudo conectar(ARCHIVO TXT) en $newPc" + " - " + $hora >> "$ruta\logsRed\log.txt"
+              # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+              $Message="No se pudo conectar(ARCHIVO TXT) en $newPc"+ " - " + $hora;   
+                $textbox8.AppendText("`r`n$Message");
+                   $textbox8.Refresh()
+               $textbox8.ScrollToCaret()
+               }
+           #Invocando comandos
+  
+  else{
+  
+           $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($newPc,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3,$ip_N4,$mask_N4,$gateway_N4,$ip_N5,$mask_N5,$gateway_N5,$ip_N6,$mask_N6,$gateway_N6,$ip_N7,$mask_N7,$gateway_N7,$ip_N8,$mask_N8,$gateway_N8) -AsJob 
+           $Null = Wait-Job -Job $Job
+          Remove-PSSession -Session $Session
+          
+  $a = get-date
+  
+  $month =$a.tostring("MM")
+  
+  $day = $a.tostring("dd")
+  
+  $year = $a.tostring("yyyy")
+  $prueba=$day+"/"+$month+"/"+$year
+  $time=Get-Date -Format HH:mm:ss
+  $dataGridView2.Rows.Add($newPc,"CONECTADO","-----","8 RUTAS AGREGADAS","-----","-----",$prueba,$time,"-----");
+  
+          "Agregar 8 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+          #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+       $Message="Agregar 8 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc";   
+       $textbox8.AppendText("`r`n$Message");
+       $textbox8.Refresh()
+      $textbox8.ScrollToCaret()
+  
+  
+  
+  
+  
+  }
+  }
+  }
+      
+  }
 
 }
 
@@ -6929,6 +8023,25 @@ function ejecutarTareas{
     
         $Session = New-PSSession -ComputerName $newPc  -Credential $Cred
         if($Session -eq $Null){
+          $a = get-date
+
+          $month =$a.tostring("MM")
+         
+          $day = $a.tostring("dd")
+         
+          $year = $a.tostring("yyyy")
+          $prueba=$day+"/"+$month+"/"+$year
+          $time=Get-Date -Format HH:mm:ss
+    
+          $dataGridView2.Rows.Add($newPc,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+          foreach ($Row in $dataGridView2.Rows) {
+            if ($Row.Cells[1].Value  -eq 'NO CONECTADO') {
+                $row.defaultcellstyle.backcolor = "Yellow"
+            }
+          }
+  
+
+
           #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
           "No se pudo conectar(ARCHIVO TXT) en $newPc " + " - " + $hora >> "$ruta\logsRed\log.txt"
             # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
@@ -6942,6 +8055,16 @@ function ejecutarTareas{
              $Job = Invoke-Command -Session $Session  -ScriptBlock $habilitarProxy -ArgumentList ($newPc,$serverProxy,$excepcion1,$excepcion2,$excepcion3,$excepcion4,$excepcion5,$excepcion6,$excepcion7)  -AsJob 
              $Null = Wait-Job -Job $Job
             Remove-PSSession -Session $Session
+            $a = get-date
+
+          $month =$a.tostring("MM")
+         
+          $day = $a.tostring("dd")
+         
+          $year = $a.tostring("yyyy")
+          $prueba=$day+"/"+$month+"/"+$year
+          $time=Get-Date -Format HH:mm:ss
+          $dataGridView2.Rows.Add($newPc,"CONECTADO","HABILITADO","-----","-----","-----",$prueba,$time,"-----");
             "HABILITAR PROXY -(ARCHIVO TXT) Inicio exitoso en $newPc " + " - " + $hora >>  "$ruta\logsRed\log.txt"
             #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
          $Message="HABILITAR PROXY -(ARCHIVO TXT) Inicio exitoso en $newPc ";   
