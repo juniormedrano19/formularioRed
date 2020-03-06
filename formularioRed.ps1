@@ -90,6 +90,10 @@ $label9= New-Object 'system.Windows.Forms.Label'
 $label10= New-Object 'system.Windows.Forms.Label'
 $label11= New-Object 'system.Windows.Forms.Label'
 $label12= New-Object 'system.Windows.Forms.Label'
+$label13= New-Object 'system.Windows.Forms.Label'
+$label14= New-Object 'system.Windows.Forms.Label'
+$label15= New-Object 'system.Windows.Forms.Label'
+$label16= New-Object 'system.Windows.Forms.Label'
 $textbox4=New-Object 'System.Windows.Forms.TextBox'
 $textbox5=New-Object 'System.Windows.Forms.TextBox'
 $textbox6=New-Object 'System.Windows.Forms.TextBox'
@@ -124,6 +128,7 @@ $Button12 = New-Object 'System.Windows.Forms.Button'
 $Button13 = New-Object 'System.Windows.Forms.Button'
 $Button14 = New-Object 'System.Windows.Forms.Button'
 $Button15 = New-Object 'System.Windows.Forms.Button'
+$Button16 = New-Object 'System.Windows.Forms.Button'
 #######El button 6 será de prueba #############
 $Button6 = New-Object 'System.Windows.Forms.Button'
 $textbox11 = New-Object 'System.Windows.Forms.TextBox'
@@ -1084,6 +1089,582 @@ $servidor=$textbox9.Text.Trim();
 
 
 }
+function deleteForm{
+  [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
+  [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")  
+ 
+  
+  ############### CREACION DEL ELEMENTO ############
+  $Form2 = New-Object System.Windows.Forms.Form 
+
+  $Form2.StartPosition = "CenterScreen" 
+  $Form2.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::Sizable
+  $Form2.MaximizeBox = $false
+  $Form2.Text = "ELIMINAR RUTAS" 
+  
+  if($comboBox5.SelectedItem -eq '1'){
+      $Form2.Controls.Add($Label100)
+      $Form2.Controls.Add($Label102)
+      $Form2.Controls.Add($TextBox100)
+      $Form2.Size = New-Object System.Drawing.Size(1000,280)  
+      $Button110.location                = New-Object System.Drawing.Point(747,180)
+      $Form2.Controls.Add($Button110)
+  }
+  else{
+     if($comboBox5.SelectedItem -eq '2'){
+      $Form2.Controls.Add($Label100)
+      $Form2.Controls.Add($Label102)
+    
+      $Form2.Controls.Add($TextBox100)
+   
+      #################################
+      $Form2.Controls.Add($TextBox129)
+      $Form2.Controls.Add($Label143)
+      $Form2.Controls.Add($Label144)
+
+      $Form2.Size = New-Object System.Drawing.Size(1000,400)  
+      $Button110.location                = New-Object System.Drawing.Point(747,280)
+      $Form2.Controls.Add($Button110)
+
+
+
+
+     }
+     else{
+         if($comboBox5.SelectedItem -eq '3'){
+          $Form2.Controls.Add($Label100)
+          $Form2.Controls.Add($Label102)
+
+          $Form2.Controls.Add($TextBox100)
+      
+          #################################
+          $Form2.Controls.Add($TextBox129)
+          $Form2.Controls.Add($Label143)
+          $Form2.Controls.Add($Label144)
+
+          #################################
+          $Form2.Controls.Add($TextBox125)
+          $Form2.Controls.Add($Label137)
+          $Form2.Controls.Add($Label138)
+     
+
+
+
+
+
+          $Form2.Size = New-Object System.Drawing.Size(1000,520)  
+          $Button110.location                = New-Object System.Drawing.Point(747,380)
+          $Form2.Controls.Add($Button110)
+         
+
+
+
+
+
+
+
+
+
+
+         }
+         else{
+if($comboBox5.SelectedItem -eq '4'){
+  $Form2.Controls.Add($Label100)
+  $Form2.Controls.Add($Label102)
+
+  $Form2.Controls.Add($TextBox100)
+
+  #################################
+  $Form2.Controls.Add($TextBox129)
+  $Form2.Controls.Add($Label143)
+  $Form2.Controls.Add($Label144)
+
+  #################################
+  $Form2.Controls.Add($TextBox125)
+  $Form2.Controls.Add($Label137)
+  $Form2.Controls.Add($Label138)
+
+
+##################################
+  $Form2.Controls.Add($Label131)
+  $Form2.Controls.Add($TextBox121)
+  $Form2.Controls.Add($Label132)
+
+  
+  $Form2.Size = New-Object System.Drawing.Size(1000,640)  
+  $Button110.location                = New-Object System.Drawing.Point(747,480)
+  $Form2.Controls.Add($Button110)
+
+
+ 
+
+  
+}
+else{
+  if($comboBox5.SelectedItem -eq '5'){
+      $Form2.Controls.Add($Label100)
+      $Form2.Controls.Add($Label102)
+     
+      $Form2.Controls.Add($TextBox100)
+  
+      #################################
+      $Form2.Controls.Add($TextBox129)
+      $Form2.Controls.Add($Label143)
+      $Form2.Controls.Add($Label144)
+     
+      #################################
+      $Form2.Controls.Add($TextBox125)
+      $Form2.Controls.Add($Label137)
+      $Form2.Controls.Add($Label138)
+     
+  
+  ##################################
+      $Form2.Controls.Add($Label131)
+      $Form2.Controls.Add($TextBox121)
+      $Form2.Controls.Add($Label132)
+    
+###########################################
+$Form2.Controls.Add($Label125)
+$Form2.Controls.Add($TextBox117)
+$Form2.Controls.Add($Label126)
+
+
+
+
+
+
+
+
+
+
+      
+      $Form2.Size = New-Object System.Drawing.Size(1000,750)  
+      $Button110.location                = New-Object System.Drawing.Point(747,580)
+      $Form2.Controls.Add($Button110)
+
+   
+
+  }
+  else{
+      if($comboBox5.SelectedItem -eq '6'){
+          $Form2.Controls.Add($Label100)
+          $Form2.Controls.Add($Label102)
+         
+          $Form2.Controls.Add($TextBox100)
+         
+          #################################
+          $Form2.Controls.Add($TextBox129)
+          $Form2.Controls.Add($Label143)
+          $Form2.Controls.Add($Label144)
+          
+          #################################
+          $Form2.Controls.Add($TextBox125)
+          $Form2.Controls.Add($Label137)
+          $Form2.Controls.Add($Label138)
+         
+      ##################################
+          $Form2.Controls.Add($Label131)
+          $Form2.Controls.Add($TextBox121)
+          $Form2.Controls.Add($Label132)
+         
+          #####################################
+          $Form2.Controls.Add($Label125)
+$Form2.Controls.Add($TextBox117)
+$Form2.Controls.Add($Label126)
+
+##################################################
+$Form2.Controls.Add($Label119)
+$Form2.Controls.Add($TextBox113)
+$Form2.Controls.Add($Label120)
+
+
+
+          
+          $Form2.Size = New-Object System.Drawing.Size(1000,750)  
+          $Button110.location                = New-Object System.Drawing.Point(747,600)
+          $Form2.Controls.Add($Button110)
+
+
+
+
+      }
+      else{
+          if($comboBox5.SelectedItem -eq '7'){
+              $Form2.Controls.Add($Label100)
+              $Form2.Controls.Add($Label102)
+              
+              $Form2.Controls.Add($TextBox100)
+             
+              #################################
+              $Form2.Controls.Add($TextBox129)
+              $Form2.Controls.Add($Label143)
+              $Form2.Controls.Add($Label144)
+              
+              #################################
+              $Form2.Controls.Add($TextBox125)
+              $Form2.Controls.Add($Label137)
+              $Form2.Controls.Add($Label138)
+              
+          ##################################
+              $Form2.Controls.Add($Label131)
+              $Form2.Controls.Add($TextBox121)
+              $Form2.Controls.Add($Label132)
+              
+
+###########################################################
+
+$Form2.Controls.Add($Label125)
+$Form2.Controls.Add($TextBox117)
+$Form2.Controls.Add($Label126)
+
+##################################################
+$Form2.Controls.Add($Label119)
+$Form2.Controls.Add($TextBox113)
+$Form2.Controls.Add($Label120)
+
+
+#######################################
+$Form2.Controls.Add($Label113)
+$Form2.Controls.Add($TextBox190)
+$Form2.Controls.Add($Label114)
+
+
+
+
+
+              
+              $Form2.Size = New-Object System.Drawing.Size(1000,750)  
+              $Button110.location                = New-Object System.Drawing.Point(747,600)
+              $Form2.Controls.Add($Button110)
+
+            
+
+
+
+
+
+
+
+
+          }
+          else{
+
+              $Form2.Controls.Add($Label100)
+              $Form2.Controls.Add($Label102)
+              
+              $Form2.Controls.Add($TextBox100)
+              
+              #################################
+              $Form2.Controls.Add($TextBox129)
+              $Form2.Controls.Add($Label143)
+              $Form2.Controls.Add($Label144)
+             
+              #################################
+              $Form2.Controls.Add($TextBox125)
+              $Form2.Controls.Add($Label137)
+              $Form2.Controls.Add($Label138)
+             
+          
+          ##################################
+              $Form2.Controls.Add($Label131)
+              $Form2.Controls.Add($TextBox121)
+              $Form2.Controls.Add($Label132)
+              
+
+###########################################################
+
+$Form2.Controls.Add($Label125)
+$Form2.Controls.Add($TextBox117)
+$Form2.Controls.Add($Label126)
+
+##################################################
+$Form2.Controls.Add($Label119)
+$Form2.Controls.Add($TextBox113)
+$Form2.Controls.Add($Label120)
+
+
+#######################################
+$Form2.Controls.Add($Label113)
+$Form2.Controls.Add($TextBox190)
+$Form2.Controls.Add($Label114)
+
+
+
+
+              $Form2.Controls.Add($Label170)
+              $Form2.Controls.Add($TextBox150)
+              $Form2.Controls.Add($Label180)
+              
+              $Form2.Size = New-Object System.Drawing.Size(1100,750)  
+              $Button110.location                = New-Object System.Drawing.Point(850,600)
+              $Form2.Controls.Add($Button110)
+
+           
+
+
+
+          }
+      }
+  }
+
+
+}
+
+
+         }
+
+
+
+     }
+
+
+     
+  }
+  
+  $Button110.Size = New-Object System.Drawing.Size(150, 40) 
+  $Button110.Text = "ACEPTAR" 
+  $Button110.UseVisualStyleBackColor = $True
+  $Button110.BackColor = [System.Drawing.Color]::LightBlue
+  $Button110.DialogResult = [System.Windows.Forms.DialogResult]::OK
+  $Form2.AcceptButton = $Button110
+  
+
+   #######Ruta 1########
+  
+  
+   $Label100.text                     = "RUTA 1:"
+   $Label100.AutoSize                 = $true
+   $Label100.width                    = 25
+   $Label100.height                   = 10
+   $Label100.location                 = New-Object System.Drawing.Point(24,46)
+   $Label100.Font                     = 'Microsoft Sans Serif,10,style=Bold'
+   $Label100.ForeColor                = "#000000"
+   
+   ######### DIRECCION IP 1 ###########
+   
+   $TextBox100.multiline              = $true
+   $TextBox100.width                  = 180
+   $TextBox100.height                 = 30
+   $TextBox100.location               = New-Object System.Drawing.Point(90,46)
+   $TextBox100.Font                   = 'Microsoft Sans Serif,10'
+   
+   
+   
+   $Label102.text                     = "DIRECCION IP"
+   $Label102.AutoSize                 = $true
+   $Label102.width                    = 25
+   $Label102.height                   = 10
+   $Label102.location                 = New-Object System.Drawing.Point(120,25)
+   $Label102.Font                     = 'Microsoft Sans Serif,10'
+   ################################################
+
+   
+   $Label170.text                     = "RUTA 8:"
+   $Label170.AutoSize                 = $true
+   $Label170.width                    = 25
+   $Label170.height                   = 10
+   $Label170.location                 = New-Object System.Drawing.Point(24,606)
+   $Label170.Font                     = 'Microsoft Sans Serif,10,style=Bold'
+   $Label170.ForeColor                = "#000000"
+  
+   
+   $TextBox150.multiline              = $true
+   $TextBox150.width                  = 180
+   $TextBox150.height                 = 30
+   $TextBox150.location               = New-Object System.Drawing.Point(90,606)
+   $TextBox150.Font                   = 'Microsoft Sans Serif,10'
+   
+   
+   $Label180.text                     = "DIRECCION IP"
+   $Label180.AutoSize                 = $true
+   $Label180.width                    = 25
+   $Label180.height                   = 10
+   $Label180.location                 = New-Object System.Drawing.Point(120,585)
+   $Label180.Font                     = 'Microsoft Sans Serif,10'
+   
+   
+   
+ 
+   ##################### RUTA 7
+   $Label113.text                    = "RUTA 7:"
+   $Label113.AutoSize                = $true
+   $Label113.width                   = 25
+   $Label113.height                  = 10
+   $Label113.location                = New-Object System.Drawing.Point(24,526)
+   $Label113.Font                    = 'Microsoft Sans Serif,10,style=Bold'
+   $Label113.ForeColor               = "#000000"
+
+   
+   $TextBox190.multiline              = $true
+   $TextBox190.width                  = 180
+   $TextBox190.height                 = 30
+   $TextBox190.location               = New-Object System.Drawing.Point(90,526)
+   $TextBox190.Font                   = 'Microsoft Sans Serif,10'
+  
+   
+   $Label114.text                    = "DIRECCION IP"
+   $Label114.AutoSize                = $true
+   $Label114.width                   = 25
+   $Label114.height                  = 10
+   $Label114.location                = New-Object System.Drawing.Point(120,505)
+   $Label114.Font                    = 'Microsoft Sans Serif,10'
+
+   
+  
+
+   ########################## RUTA 6 
+   $Label119.text                    = "RUTA 6:"
+   $Label119.AutoSize                = $true
+   $Label119.width                   = 25
+   $Label119.height                  = 10
+   $Label119.location                = New-Object System.Drawing.Point(24,446)
+   $Label119.Font                    = 'Microsoft Sans Serif,10,style=Bold'
+   $Label119.ForeColor               = "#000000"
+  
+   
+   $TextBox113.multiline             = $true
+   $TextBox113.width                 = 180
+   $TextBox113.height                = 30
+   $TextBox113.location              = New-Object System.Drawing.Point(90,446)
+   $TextBox113.Font                  = 'Microsoft Sans Serif,10'
+  
+   
+   $Label120.text                    = "DIRECCION IP"
+   $Label120.AutoSize                = $true
+   $Label120.width                   = 25
+   $Label120.height                  = 10
+   $Label120.location                = New-Object System.Drawing.Point(120,425)
+   $Label120.Font                    = 'Microsoft Sans Serif,10'
+   
+   
+   
+
+   ########################## RUTA 5 ##########################
+   $Label125.text                    = "RUTA 5:"
+   $Label125.AutoSize                = $true
+   $Label125.width                   = 25
+   $Label125.height                  = 10
+   $Label125.location                = New-Object System.Drawing.Point(24,366)
+   $Label125.Font                    = 'Microsoft Sans Serif,10,style=Bold'
+   $Label125.ForeColor               = "#000000"
+  
+   
+   $TextBox117.multiline             = $true
+   $TextBox117.width                 = 180
+   $TextBox117.height                = 30
+   $TextBox117.location              = New-Object System.Drawing.Point(90,366)
+   $TextBox117.Font                  = 'Microsoft Sans Serif,10'
+   
+   
+   $Label126.text                    = "DIRECCION IP"
+   $Label126.AutoSize                = $true
+   $Label126.width                   = 25
+   $Label126.height                  = 10
+   $Label126.location                = New-Object System.Drawing.Point(120,345)
+   $Label126.Font                    = 'Microsoft Sans Serif,10'
+  
+   
+   
+   
+   ################# RUTA 4
+   $Label131.text                    = "RUTA 4:"
+   $Label131.AutoSize                = $true
+   $Label131.width                   = 25
+   $Label131.height                  = 10
+   $Label131.location                = New-Object System.Drawing.Point(24,286)
+   $Label131.Font                    = 'Microsoft Sans Serif,10,style=Bold'
+   $Label131.ForeColor               = "#000000"
+  
+   
+   $TextBox121.multiline             = $true
+   $TextBox121.width                 = 180
+   $TextBox121.height                = 30
+   $TextBox121.location              = New-Object System.Drawing.Point(90,286)
+   $TextBox121.Font                  = 'Microsoft Sans Serif,10'
+  
+   
+   $Label132.text                    = "DIRECCION IP"
+   $Label132.AutoSize                = $true
+   $Label132.width                   = 25
+   $Label132.height                  = 10
+   $Label132.location                = New-Object System.Drawing.Point(120,265)
+   $Label132.Font                    = 'Microsoft Sans Serif,10'
+  
+   
+   
+#######Ruta 3########
+   $Label137.text                    = "RUTA 3:"
+   $Label137.AutoSize                = $true
+   $Label137.width                   = 25
+   $Label137.height                  = 10
+   $Label137.location                = New-Object System.Drawing.Point(24,206)
+   $Label137.Font                    = 'Microsoft Sans Serif,10,style=Bold'
+   $Label137.ForeColor               = "#000000"
+ 
+       ######### DIRECCION IP 3 ###########
+   $TextBox125.multiline             = $true
+   $TextBox125.width                 = 180
+   $TextBox125.height                = 30
+   $TextBox125.location              = New-Object System.Drawing.Point(90,206)
+   $TextBox125.Font                  = 'Microsoft Sans Serif,10'
+
+   
+   $Label138.text                    = "DIRECCION IP"
+   $Label138.AutoSize                = $true
+   $Label138.width                   = 25
+   $Label138.height                  = 10
+   $Label138.location                = New-Object System.Drawing.Point(120,185)
+   $Label138.Font                    = 'Microsoft Sans Serif,10'
+   
+    
+
+   #####################RUTA 2 ##############################################
+   $Label143.text                    = "RUTA 2:"
+   $Label143.AutoSize                = $true
+   $Label143.width                   = 25
+   $Label143.height                  = 10
+   $Label143.location                = New-Object System.Drawing.Point(24,126)
+   $Label143.Font                    = 'Microsoft Sans Serif,10,style=Bold'
+   $Label143.ForeColor               = "#000000"
+  
+   ################# DIRECCION IP2 ############################################
+   $TextBox129.multiline             = $true
+   $TextBox129.width                 = 180
+   $TextBox129.height                = 30
+   $TextBox129.location              = New-Object System.Drawing.Point(90,126)
+   $TextBox129.Font                  = 'Microsoft Sans Serif,10'
+ 
+   
+   $Label144.text                    = "DIRECCION IP"
+   $Label144.AutoSize                = $true
+   $Label144.width                   = 25
+   $Label144.height                  = 10
+   $Label144.location                = New-Object System.Drawing.Point(120,105)
+   $Label144.Font                    = 'Microsoft Sans Serif,10'
+      ################################################
+
+   
+    
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   $Form2.Add_Shown({$Form.Activate()})
+   [void] $Form2.ShowDialog();
+   
+
+
+
+
+}
+
 
 function routesForm{
     [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
@@ -5020,7 +5601,8 @@ $TextBox103.Text=" ";
 $Groupbox1.Controls.Remove($comboBox3)
 $Groupbox1.Controls.Remove($Button1)	
 $Groupbox1.Controls.Remove($Button4)
-$Groupbox2.Controls.Remove($Button7)	
+$Groupbox2.Controls.Remove($Button7)
+$Groupbox2.Controls.Remove($Button16)		
 $Groupbox2.Controls.Remove($comboBox5)	
 $Groupbox2.Controls.Remove($Button5)	
 $Groupbox2.Controls.Remove($Button15)	
@@ -5042,6 +5624,2287 @@ function Validacion{
         $caption = "Error de contenido"
         [System.Windows.Forms.MessageBox]::Show($errorMsg, $caption)
                 }
+}
+function eliminarRutas{
+  $ruta=[Environment]::GetFolderPath("Desktop")
+  if (!(Test-Path "$ruta\logsRed")) {
+ #New-Item  –ItemType Directory -Path "$ruta\logsRed"
+  mkdir  $ruta\logsRed
+  }
+
+  if($comboBox1.SelectedItem -eq 'RANGO DE IPS')
+  {
+  
+
+if($comboBox5.SelectedItem -eq 1){
+
+    $Username = "Administrador"
+    $Password = "R3c542016C4ll"
+    $Computer1=$textbox2.Text.Trim(); 
+    $Computer2=$textbox3.Text.Trim(); 
+    $ip1=$Computer1.Split(".");
+    $ip2=$Computer2.Split("."); 
+    $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+    $validacion1 = $Computer1 -match $regip
+    $validacion2 = $Computer2 -match $regip
+    
+    $Inicial=$Computer1.Split(".")
+    $inicio0=$Inicial[0];
+    $inicio1=$Inicial[1];
+    $inicio2=$Inicial[2];
+    [int]$inicio3=$Inicial[3];
+    $primeraIP=$inicio0+"."+$inicio1+"."+$inicio2+"." ;
+    
+    $Final=$Computer2.Split(".")
+    [int]$ultima3=$Final[3];
+
+    $ip_N1=$TextBox100.Text;
+
+    if(($ip1[2] -eq $ip2[2]) -and ($ip1[3] -lt $ip2[3]) -and(($validacion1 -eq $true) -and ($validacion2 -eq $true) )){
+      $eliminarRutas={
+         
+            Param($Computer1,$Computer2,$ip_N1)    
+
+       
+            route delete $ip_N1
+ 
+    }  
+    $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+    $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+       
+    for($inicio3;$inicio3 -le $ultima3;$inicio3++){
+        $Computer3=$primeraIP+$inicio3;
+      Write-Host "Iniciando Sesion en $Computer3"
+      $hora=Get-Date -DisplayHint DateTime
+    
+    $Session = New-PSSession -ComputerName $Computer3 -Credential $Cred
+    if($Session -eq $Null){
+      #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+      "No se pudo conectar(RANGO) en $Computer3" + " - " + $hora >> "$ruta\logsRed\log.txt"
+        # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+        $Message="No se pudo conectar(RANGO) en $Computer3"+ " - " + $hora;   
+          $textbox8.AppendText("`r`n$Message");
+             $textbox8.Refresh()
+         $textbox8.ScrollToCaret()
+         }
+        else{
+
+        
+         #Invocando comandos
+         $Job = Invoke-Command -Session $Session  -ScriptBlock $eliminarRutas -ArgumentList ($Computer1,$Computer2,$ip_N1) -AsJob 
+         $Null = Wait-Job -Job $Job
+        Remove-PSSession -Session $Session
+        "Eliminar 1 Ruta (Rango IP) - Inicio exitoso en $Computer3" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+        #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+     $Message="Eliminar 1 Ruta (Rango IP) - Inicio exitoso en $Computer3";   
+     $textbox8.AppendText("`r`n$Message");
+     $textbox8.Refresh()
+    $textbox8.ScrollToCaret()
+
+
+        }
+    }
+
+}
+elseif(($Computer1.length -eq 0) -Or ($Computer2.length -eq 0)){
+      
+    Add-Type -AssemblyName System.Windows.Forms
+    $errorMsg = "No puede quedar en blanco la dirección ip.
+    Vuelva a intentarlo nuevamente."
+        $caption = "Error de contenido"
+        [System.Windows.Forms.MessageBox]::Show($errorMsg, $caption)
+   
+}
+
+
+elseif(($validacion1 -eq $false) -Or ($validacion2 -eq $false)){
+Add-Type -AssemblyName System.Windows.Forms
+$errorMsg = "Datos erróneos.
+Vuelva a intentarlo nuevamente."
+    $caption = "Error de contenido"
+    [System.Windows.Forms.MessageBox]::Show($errorMsg, $caption)
+}
+}
+elseif ($comboBox5.SelectedItem -eq 2) {
+    $Username = "Administrador"
+    $Password = "R3c542016C4ll"
+    $Computer1=$textbox2.Text.Trim(); 
+    $Computer2=$textbox3.Text.Trim(); 
+    $ip1=$Computer1.Split(".");
+    $ip2=$Computer2.Split("."); 
+    $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+    $validacion1 = $Computer1 -match $regip
+    $validacion2 = $Computer2 -match $regip
+    
+    $Inicial=$Computer1.Split(".")
+    $inicio0=$Inicial[0];
+    $inicio1=$Inicial[1];
+    $inicio2=$Inicial[2];
+    [int]$inicio3=$Inicial[3];
+    $primeraIP=$inicio0+"."+$inicio1+"."+$inicio2+"." ;
+    
+    $Final=$Computer2.Split(".")
+    [int]$ultima3=$Final[3];
+
+
+    $ip_N1=$TextBox100.Text;
+
+    $ip_N2=$TextBox129.Text;
+   
+    if(($ip1[2] -eq $ip2[2]) -and ($ip1[3] -lt $ip2[3]) -and(($validacion1 -eq $true) -and ($validacion2 -eq $true) )){
+      $agregarRutas={
+         
+            Param($Computer1,$Computer2,$ip_N1,$ip_N2)    
+
+       
+            route delete $ip_N1
+            route delete $ip_N2
+    
+
+    }  
+    $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+    $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+       
+    for($inicio3;$inicio3 -le $ultima3;$inicio3++){
+        $Computer3=$primeraIP+$inicio3;
+      Write-Host "Iniciando Sesion en $Computer3"
+      $hora=Get-Date -DisplayHint DateTime
+
+    
+    $Session = New-PSSession -ComputerName $Computer3 -Credential $Cred
+    if($Session -eq $Null){
+      #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+      "No se pudo conectar(RANGO) en $Computer3" + " - " + $hora >> "$ruta\logsRed\log.txt"
+        # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+        $Message="No se pudo conectar(RANGO) en $Computer3"+ " - " + $hora;   
+          $textbox8.AppendText("`r`n$Message");
+             $textbox8.Refresh()
+         $textbox8.ScrollToCaret()
+         }
+
+         else{
+        
+         #Invocando comandos
+         $Job = Invoke-Command -Session $Session  -ScriptBlock $agregarRutas -ArgumentList ($Computer1,$Computer2,$ip_N1,$ip_N2) -AsJob 
+         $Null = Wait-Job -Job $Job
+        Remove-PSSession -Session $Session
+
+        "Eliminar 2 Rutas (Rango IP) - Inicio exitoso en $Computer3" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+        #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+     $Message="Eliminar 2 Rutas (Rango IP) - Inicio exitoso en $Computer3";   
+     $textbox8.AppendText("`r`n$Message");
+     $textbox8.Refresh()
+    $textbox8.ScrollToCaret()
+
+
+
+
+
+
+
+
+
+
+         }
+    }
+}
+elseif(($Computer1.length -eq 0) -Or ($Computer2.length -eq 0)){
+      
+    Add-Type -AssemblyName System.Windows.Forms
+    $errorMsg = "No puede quedar en blanco la dirección ip.
+    Vuelva a intentarlo nuevamente."
+        $caption = "Error de contenido"
+        [System.Windows.Forms.MessageBox]::Show($errorMsg, $caption)
+   
+}
+
+
+elseif(($validacion1 -eq $false) -Or ($validacion2 -eq $false)){
+Add-Type -AssemblyName System.Windows.Forms
+$errorMsg = "Datos erróneos.
+Vuelva a intentarlo nuevamente."
+    $caption = "Error de contenido"
+    [System.Windows.Forms.MessageBox]::Show($errorMsg, $caption)
+}
+}
+elseif ($comboBox5.SelectedItem -eq 3) {
+    $Username = "Administrador"
+    $Password = "R3c542016C4ll"
+
+
+    $Computer1=$textbox2.Text.Trim(); 
+    $Computer2=$textbox3.Text.Trim(); 
+    $ip1=$Computer1.Split(".");
+    $ip2=$Computer2.Split("."); 
+    $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+    $validacion1 = $Computer1 -match $regip
+    $validacion2 = $Computer2 -match $regip
+    
+    $Inicial=$Computer1.Split(".")
+    $inicio0=$Inicial[0];
+    $inicio1=$Inicial[1];
+    $inicio2=$Inicial[2];
+    [int]$inicio3=$Inicial[3];
+    $primeraIP=$inicio0+"."+$inicio1+"."+$inicio2+"." ;
+    
+    $Final=$Computer2.Split(".")
+    [int]$ultima3=$Final[3];
+
+
+   
+    $ip_N1=$TextBox100.Text;
+ 
+    $ip_N2=$TextBox129.Text;
+
+   
+    $ip_N3=$TextBox125.Text;
+   
+    if(($ip1[2] -eq $ip2[2]) -and ($ip1[3] -lt $ip2[3]) -and(($validacion1 -eq $true) -and ($validacion2 -eq $true) )){
+      $eliminarRutas={
+         
+            Param($Computer1,$Computer2,$ip_N1,$ip_N2,$ip_N3)    
+
+       
+            route delete $ip_N1
+            route delete $ip_N2
+            route delete $ip_N3
+    
+
+    }  
+    $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+    $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+      
+    for($inicio3;$inicio3 -le $ultima3;$inicio3++){
+        $Computer3=$primeraIP+$inicio3;
+      Write-Host "Iniciando Sesion en $Computer3"
+      $hora=Get-Date -DisplayHint DateTime
+    
+    
+    $Session = New-PSSession -ComputerName $Computer3 -Credential $Cred
+    if($Session -eq $Null){
+      #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+      "No se pudo conectar(RANGO) en $Computer3" + " - " + $hora >> "$ruta\logsRed\log.txt"
+        # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+        $Message="No se pudo conectar(RANGO) en $Computer3"+ " - " + $hora;   
+          $textbox8.AppendText("`r`n$Message");
+             $textbox8.Refresh()
+         $textbox8.ScrollToCaret()
+         }
+        else{
+         #Invocando comandos
+         $Job = Invoke-Command -Session $Session  -ScriptBlock $eliminarRutas -ArgumentList ($Computer1,$Computer2,$ip_N1,$ip_N2,$ip_N3) -AsJob 
+         $Null = Wait-Job -Job $Job
+        Remove-PSSession -Session $Session
+        "Eliminar 3 Rutas (Rango IP) - Inicio exitoso en $Computer3" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+        #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+     $Message="Eliminar 3 Rutas (Rango IP) - Inicio exitoso en $Computer3";   
+     $textbox8.AppendText("`r`n$Message");
+     $textbox8.Refresh()
+    $textbox8.ScrollToCaret()
+        }
+    }
+    }
+    elseif(($Computer1.length -eq 0) -Or ($Computer2.length -eq 0)){
+      
+        Add-Type -AssemblyName System.Windows.Forms
+        $errorMsg = "No puede quedar en blanco la dirección ip.
+        Vuelva a intentarlo nuevamente."
+            $caption = "Error de contenido"
+            [System.Windows.Forms.MessageBox]::Show($errorMsg, $caption)
+       
+    }
+    
+    
+    elseif(($validacion1 -eq $false) -Or ($validacion2 -eq $false)){
+    Add-Type -AssemblyName System.Windows.Forms
+    $errorMsg = "Datos erróneos.
+    Vuelva a intentarlo nuevamente."
+        $caption = "Error de contenido"
+        [System.Windows.Forms.MessageBox]::Show($errorMsg, $caption)
+    }
+}
+elseif ($comboBox5.SelectedItem -eq 4) {
+    $Username = "Administrador"
+    $Password = "R3c542016C4ll"
+
+
+    $Computer1=$textbox2.Text.Trim(); 
+    $Computer2=$textbox3.Text.Trim(); 
+    $ip1=$Computer1.Split(".");
+    $ip2=$Computer2.Split("."); 
+    $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+    $validacion1 = $Computer1 -match $regip
+    $validacion2 = $Computer2 -match $regip
+    
+    $Inicial=$Computer1.Split(".")
+    $inicio0=$Inicial[0];
+    $inicio1=$Inicial[1];
+    $inicio2=$Inicial[2];
+    [int]$inicio3=$Inicial[3];
+    $primeraIP=$inicio0+"."+$inicio1+"."+$inicio2+"." ;
+    
+    $Final=$Computer2.Split(".")
+    [int]$ultima3=$Final[3];
+
+
+    $ip_N1=$TextBox100.Text;
+   
+    $ip_N2=$TextBox129.Text;
+  
+    $ip_N3=$TextBox125.Text;
+   
+    $ip_N4=$TextBox121.Text;
+ 
+    if(($ip1[2] -eq $ip2[2]) -and ($ip1[3] -lt $ip2[3]) -and(($validacion1 -eq $true) -and ($validacion2 -eq $true) )){
+      $eliminarRutas={
+         
+            Param($Computer1,$Computer2,$ip_N1,$ip_N2,$ip_N3,$ip_N4)    
+
+       
+            route delete $ip_N1
+            route delete $ip_N2
+            route delete $ip_N3
+            route delete $ip_N4
+    
+
+    }  
+    $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+    $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+    for($inicio3;$inicio3 -le $ultima3;$inicio3++){
+        $Computer3=$primeraIP+$inicio3;
+      Write-Host "Iniciando Sesion en $Computer3"
+      $hora=Get-Date -DisplayHint DateTime
+    
+    
+    $Session = New-PSSession -ComputerName $Computer3 -Credential $Cred
+    
+if($Session -eq $Null){
+  #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+  "No se pudo conectar(RANGO) en $Computer3" + " - " + $hora >> "$ruta\logsRed\log.txt"
+    # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+    $Message="No se pudo conectar(RANGO) en $Computer3"+ " - " + $hora;   
+      $textbox8.AppendText("`r`n$Message");
+         $textbox8.Refresh()
+     $textbox8.ScrollToCaret()
+     }
+
+     else{
+
+     
+        
+         #Invocando comandos
+         $Job = Invoke-Command -Session $Session  -ScriptBlock $eliminarRutas -ArgumentList ($Computer1,$Computer2,$ip_N1,$ip_N2,$ip_N3,$ip_N4) -AsJob 
+         $Null = Wait-Job -Job $Job
+        Remove-PSSession -Session $Session
+        "Eliminar 4 Rutas (Rango IP) - Inicio exitoso en $Computer3" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+        #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+     $Message="Eliminar 4 Rutas (Rango IP) - Inicio exitoso en $Computer3";   
+     $textbox8.AppendText("`r`n$Message");
+     $textbox8.Refresh()
+    $textbox8.ScrollToCaret()
+
+
+
+
+
+
+
+
+     }
+    }
+}
+elseif(($Computer1.length -eq 0) -Or ($Computer2.length -eq 0)){
+      
+    Add-Type -AssemblyName System.Windows.Forms
+    $errorMsg = "No puede quedar en blanco la dirección ip.
+    Vuelva a intentarlo nuevamente."
+        $caption = "Error de contenido"
+        [System.Windows.Forms.MessageBox]::Show($errorMsg, $caption)
+   
+}
+
+
+elseif(($validacion1 -eq $false) -Or ($validacion2 -eq $false)){
+Add-Type -AssemblyName System.Windows.Forms
+$errorMsg = "Datos erróneos.
+Vuelva a intentarlo nuevamente."
+    $caption = "Error de contenido"
+    [System.Windows.Forms.MessageBox]::Show($errorMsg, $caption)
+}
+}
+elseif ($comboBox5.SelectedItem -eq 5) {
+    $Username = "Administrador"
+    $Password = "R3c542016C4ll"
+
+    $Computer1=$textbox2.Text.Trim(); 
+    $Computer2=$textbox3.Text.Trim(); 
+    $ip1=$Computer1.Split(".");
+    $ip2=$Computer2.Split("."); 
+    $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+    $validacion1 = $Computer1 -match $regip
+    $validacion2 = $Computer2 -match $regip
+    
+    $Inicial=$Computer1.Split(".")
+    $inicio0=$Inicial[0];
+    $inicio1=$Inicial[1];
+    $inicio2=$Inicial[2];
+    [int]$inicio3=$Inicial[3];
+    $primeraIP=$inicio0+"."+$inicio1+"."+$inicio2+"." ;
+    
+    $Final=$Computer2.Split(".")
+    [int]$ultima3=$Final[3];
+
+
+    $ip_N1=$TextBox100.Text;
+
+    $ip_N2=$TextBox129.Text;
+ 
+    $ip_N3=$TextBox125.Text;
+  
+    $ip_N4=$TextBox121.Text;
+ 
+    $ip_N5=$TextBox117.Text;
+
+
+
+
+ 
+
+      if(($ip1[2] -eq $ip2[2]) -and ($ip1[3] -lt $ip2[3]) -and(($validacion1 -eq $true) -and ($validacion2 -eq $true) )){
+      $eliminarRutas={
+         
+            Param($Computer1,$Computer2,$ip_N1,$ip_N2,$ip_N3,$ip_N4,$ip_N5)    
+
+       
+            route delete $ip_N1
+            route delete $ip_N2
+            route delete $ip_N3
+            route delete $ip_N4
+            route delete $ip_N5
+    
+
+    }  
+    $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+    $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+    for($inicio3;$inicio3 -le $ultima3;$inicio3++){
+        $Computer3=$primeraIP+$inicio3;
+      Write-Host "Iniciando Sesion en $Computer3"
+      $hora=Get-Date -DisplayHint DateTime
+
+    
+    $Session = New-PSSession -ComputerName $Computer3 -Credential $Cred
+    if($Session -eq $Null){
+      #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+      "No se pudo conectar(RANGO) en $Computer3" + " - " + $hora >> "$ruta\logsRed\log.txt"
+        # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+        $Message="No se pudo conectar(RANGO) en $Computer3"+ " - " + $hora;   
+          $textbox8.AppendText("`r`n$Message");
+             $textbox8.Refresh()
+         $textbox8.ScrollToCaret()
+         }
+
+        else{
+
+                 #Invocando comandos
+         $Job = Invoke-Command -Session $Session  -ScriptBlock $eliminarRutas -ArgumentList ($Computer1,$Computer2,$ip_N1,$ip_N2,$ip_N3,$ip_N4,$ip_N5) -AsJob 
+         $Null = Wait-Job -Job $Job
+        Remove-PSSession -Session $Session
+
+
+
+        "Eliminar 5 Rutas (Rango IP) - Inicio exitoso en $Computer3" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+        #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+     $Message="Eliminar 5 Rutas (Rango IP) - Inicio exitoso en $Computer3";   
+     $textbox8.AppendText("`r`n$Message");
+     $textbox8.Refresh()
+    $textbox8.ScrollToCaret()
+
+
+
+
+
+
+
+        }
+
+    }
+}
+elseif(($Computer1.length -eq 0) -Or ($Computer2.length -eq 0)){
+      
+    Add-Type -AssemblyName System.Windows.Forms
+    $errorMsg = "No puede quedar en blanco la dirección ip.
+    Vuelva a intentarlo nuevamente."
+        $caption = "Error de contenido"
+        [System.Windows.Forms.MessageBox]::Show($errorMsg, $caption)
+   
+}
+
+
+elseif(($validacion1 -eq $false) -Or ($validacion2 -eq $false)){
+Add-Type -AssemblyName System.Windows.Forms
+$errorMsg = "Datos erróneos.
+Vuelva a intentarlo nuevamente."
+    $caption = "Error de contenido"
+    [System.Windows.Forms.MessageBox]::Show($errorMsg, $caption)
+}
+}
+elseif ($comboBox5.SelectedItem -eq 6) {
+    $Username = "Administrador"
+    $Password = "R3c542016C4ll"
+
+    $Computer1=$textbox2.Text.Trim(); 
+    $Computer2=$textbox3.Text.Trim(); 
+    $ip1=$Computer1.Split(".");
+    $ip2=$Computer2.Split("."); 
+    $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+    $validacion1 = $Computer1 -match $regip
+    $validacion2 = $Computer2 -match $regip
+    
+    $Inicial=$Computer1.Split(".")
+    $inicio0=$Inicial[0];
+    $inicio1=$Inicial[1];
+    $inicio2=$Inicial[2];
+    [int]$inicio3=$Inicial[3];
+    $primeraIP=$inicio0+"."+$inicio1+"."+$inicio2+"." ;
+    
+    $Final=$Computer2.Split(".")
+    [int]$ultima3=$Final[3];
+
+
+    $ip_N1=$TextBox100.Text;
+  
+    $ip_N2=$TextBox129.Text;
+  
+    $ip_N3=$TextBox125.Text;
+ 
+    $ip_N4=$TextBox121.Text;
+   
+    $ip_N5=$TextBox117.Text;
+
+    $ip_N6=$TextBox113.Text;
+
+
+ if(($ip1[2] -eq $ip2[2]) -and ($ip1[3] -lt $ip2[3]) -and(($validacion1 -eq $true) -and ($validacion2 -eq $true) )){
+   
+      $eliminarRutas={
+         
+            Param($Computer1,$Computer2,$ip_N1,$ip_N2,$ip_N3,$ip_N4,$ip_N5,$ip_N6)    
+
+       
+            route delete $ip_N1
+            route delete $ip_N2
+            route delete $ip_N3
+            route delete $ip_N4
+            route delete $ip_N5
+            route delete $ip_N6
+
+    }  
+    $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+    $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+        
+    for($inicio3;$inicio3 -le $ultima3;$inicio3++){
+        $Computer3=$primeraIP+$inicio3;
+      Write-Host "Iniciando Sesion en $Computer3"
+      $hora=Get-Date -DisplayHint DateTime
+    
+    
+    $Session = New-PSSession -ComputerName $Computer3 -Credential $Cred
+    if($Session -eq $Null){
+      #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+      "No se pudo conectar(RANGO) en $Computer3" + " - " + $hora >> "$ruta\logsRed\log.txt"
+        # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+        $Message="No se pudo conectar(RANGO) en $Computer3"+ " - " + $hora;   
+          $textbox8.AppendText("`r`n$Message");
+             $textbox8.Refresh()
+         $textbox8.ScrollToCaret()
+         }
+else{
+
+
+        
+         #Invocando comandos
+         $Job = Invoke-Command -Session $Session  -ScriptBlock $eliminarRutas -ArgumentList ($Computer1,$Computer2,$ip_N1,$ip_N2,$ip_N3,$ip_N4,$ip_N5,$ip_N6) -AsJob 
+         $Null = Wait-Job -Job $Job
+        Remove-PSSession -Session $Session
+        "Eliminar 6 Rutas (Rango IP) - Inicio exitoso en $Computer3" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+        #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+     $Message="Eliminar 6 Rutas (Rango IP) - Inicio exitoso en $Computer3";   
+     $textbox8.AppendText("`r`n$Message");
+     $textbox8.Refresh()
+    $textbox8.ScrollToCaret()
+
+
+
+
+
+}
+    }
+}
+elseif(($Computer1.length -eq 0) -Or ($Computer2.length -eq 0)){
+      
+    Add-Type -AssemblyName System.Windows.Forms
+    $errorMsg = "No puede quedar en blanco la dirección ip.
+    Vuelva a intentarlo nuevamente."
+        $caption = "Error de contenido"
+        [System.Windows.Forms.MessageBox]::Show($errorMsg, $caption)
+   
+}
+
+
+elseif(($validacion1 -eq $false) -Or ($validacion2 -eq $false)){
+Add-Type -AssemblyName System.Windows.Forms
+$errorMsg = "Datos erróneos.
+Vuelva a intentarlo nuevamente."
+    $caption = "Error de contenido"
+    [System.Windows.Forms.MessageBox]::Show($errorMsg, $caption)
+}
+}
+elseif ($comboBox5.SelectedItem -eq 7) {
+    $Username = "Administrador"
+    $Password = "R3c542016C4ll"
+
+    $Computer1=$textbox2.Text.Trim(); 
+    $Computer2=$textbox3.Text.Trim(); 
+    $ip1=$Computer1.Split(".");
+    $ip2=$Computer2.Split("."); 
+    $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+    $validacion1 = $Computer1 -match $regip
+    $validacion2 = $Computer2 -match $regip
+    
+    $Inicial=$Computer1.Split(".")
+    $inicio0=$Inicial[0];
+    $inicio1=$Inicial[1];
+    $inicio2=$Inicial[2];
+    [int]$inicio3=$Inicial[3];
+    $primeraIP=$inicio0+"."+$inicio1+"."+$inicio2+"." ;
+    
+    $Final=$Computer2.Split(".")
+    [int]$ultima3=$Final[3];
+
+    $ip_N1=$TextBox100.Text;
+
+    $ip_N2=$TextBox129.Text;
+
+    $ip_N3=$TextBox125.Text;
+
+    $ip_N4=$TextBox121.Text;
+ 
+    $ip_N5=$TextBox117.Text;
+ 
+    $ip_N6=$TextBox113.Text;
+
+    $ip_N7=$TextBox190.Text;
+ 
+    if(($ip1[2] -eq $ip2[2]) -and ($ip1[3] -lt $ip2[3]) -and(($validacion1 -eq $true) -and ($validacion2 -eq $true) )){
+   
+      $eliminarRutas={
+         
+            Param($Computer1,$Computer2,$ip_N1,$ip_N2,$ip_N3,$ip_N4,$ip_N5,$ip_N6,$ip_N7)    
+
+       
+            route delete $ip_N1
+            route delete $ip_N2
+            route delete $ip_N3
+            route delete $ip_N4
+            route delete $ip_N5
+            route delete $ip_N6
+            route delete $ip_N7
+    }  
+    $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+    $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+    
+            
+    for($inicio3;$inicio3 -le $ultima3;$inicio3++){
+        $Computer3=$primeraIP+$inicio3;
+      Write-Host "Iniciando Sesion en $Computer3"
+      $hora=Get-Date -DisplayHint DateTime
+    $Session = New-PSSession -ComputerName $Computer3 -Credential $Cred
+    if($Session -eq $Null){
+      #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+      "No se pudo conectar(RANGO) en $Computer3" + " - " + $hora >> "$ruta\logsRed\log.txt"
+        # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+        $Message="No se pudo conectar(RANGO) en $Computer3"+ " - " + $hora;   
+          $textbox8.AppendText("`r`n$Message");
+             $textbox8.Refresh()
+         $textbox8.ScrollToCaret()
+         }
+
+         else{
+        
+         #Invocando comandos
+         $Job = Invoke-Command -Session $Session  -ScriptBlock $eliminarRutas -ArgumentList ($Computer1,$Computer2,$ip_N1,$ip_N2,$ip_N3,$ip_N4,$ip_N5,$ip_N6,$ip_N7) -AsJob 
+         $Null = Wait-Job -Job $Job
+        Remove-PSSession -Session $Session
+        "Eliminar 7 Rutas (Rango IP) - Inicio exitoso en $Computer3" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+        #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+     $Message="Eliminar 7 Rutas (Rango IP) - Inicio exitoso en $Computer3";   
+     $textbox8.AppendText("`r`n$Message");
+     $textbox8.Refresh()
+    $textbox8.ScrollToCaret()
+
+         }
+    }
+}
+elseif(($Computer1.length -eq 0) -Or ($Computer2.length -eq 0)){
+      
+    Add-Type -AssemblyName System.Windows.Forms
+    $errorMsg = "No puede quedar en blanco la dirección ip.
+    Vuelva a intentarlo nuevamente."
+        $caption = "Error de contenido"
+        [System.Windows.Forms.MessageBox]::Show($errorMsg, $caption)
+   
+}
+
+
+elseif(($validacion1 -eq $false) -Or ($validacion2 -eq $false)){
+Add-Type -AssemblyName System.Windows.Forms
+$errorMsg = "Datos erróneos.
+Vuelva a intentarlo nuevamente."
+    $caption = "Error de contenido"
+    [System.Windows.Forms.MessageBox]::Show($errorMsg, $caption)
+}
+}
+else{
+    $Username = "Administrador"
+    $Password = "R3c542016C4ll"
+    $Computer1=$textbox2.Text.Trim(); 
+    $Computer2=$textbox3.Text.Trim(); 
+    $ip1=$Computer1.Split(".");
+    $ip2=$Computer2.Split("."); 
+    $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+    $validacion1 = $Computer1 -match $regip
+    $validacion2 = $Computer2 -match $regip
+    
+    $Inicial=$Computer1.Split(".")
+    $inicio0=$Inicial[0];
+    $inicio1=$Inicial[1];
+    $inicio2=$Inicial[2];
+    [int]$inicio3=$Inicial[3];
+    $primeraIP=$inicio0+"."+$inicio1+"."+$inicio2+"." ;
+    
+    $Final=$Computer2.Split(".")
+    [int]$ultima3=$Final[3];
+    $ip_N1=$TextBox100.Text;
+
+    $ip_N2=$TextBox129.Text;
+
+    $ip_N3=$TextBox125.Text;
+
+    $ip_N4=$TextBox121.Text;
+
+    $ip_N5=$TextBox117.Text;
+
+    $ip_N6=$TextBox113.Text;
+
+    $ip_N7=$TextBox190.Text;
+  
+    $ip_N8=$TextBox150.Text;
+
+    if(($ip1[2] -eq $ip2[2]) -and ($ip1[3] -lt $ip2[3]) -and(($validacion1 -eq $true) -and ($validacion2 -eq $true) )){
+      $eliminarRutas={
+         
+            Param($Computer1,$Computer2,$ip_N1,$ip_N2,$ip_N3,$ip_N4,$ip_N5,$ip_N6,$ip_N7,$ip_N8)    
+
+       
+            route delete $ip_N1
+            route delete $ip_N2
+            route delete $ip_N3
+            route delete $ip_N4
+            route delete $ip_N5
+            route delete $ip_N6
+            route delete $ip_N7
+            route delete $ip_N8
+    }  
+    $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+    $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+        
+    for($inicio3;$inicio3 -le $ultima3;$inicio3++){
+        $Computer3=$primeraIP+$inicio3;
+        $hora=Get-Date -DisplayHint DateTime
+    $Session = New-PSSession -ComputerName $Computer3 -Credential $Cred
+    if($Session -eq $Null){
+      #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+      "No se pudo conectar(RANGO) en $Computer3" + " - " + $hora >> "$ruta\logsRed\log.txt"
+        # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+        $Message="No se pudo conectar(RANGO) en $Computer3"+ " - " + $hora;   
+          $textbox8.AppendText("`r`n$Message");
+             $textbox8.Refresh()
+         $textbox8.ScrollToCaret()
+         }
+
+  #  Write-Host "Iniciando Sesion en $Computer3"
+        
+         #Invocando comandos
+
+         else{
+
+         
+         $Job = Invoke-Command -Session $Session  -ScriptBlock $eliminarRutas -ArgumentList ($Computer1,$Computer2,$ip_N1,$ip_N2,$ip_N3,$ip_N4,$ip_N5,$ip_N6,$ip_N7,$ip_N8) -AsJob 
+         $Null = Wait-Job -Job $Job
+        Remove-PSSession -Session $Session
+        "Eliminar 8 Rutas (Rango IP) - Inicio exitoso en $Computer3" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+        #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+     $Message="Eliminar 8 Rutas (Rango IP) - Inicio exitoso en $Computer3";   
+     $textbox8.AppendText("`r`n$Message");
+     $textbox8.Refresh()
+    $textbox8.ScrollToCaret()
+
+
+         }
+}
+     
+}
+elseif(($Computer1.length -eq 0) -Or ($Computer2.length -eq 0)){
+      
+    Add-Type -AssemblyName System.Windows.Forms
+    $errorMsg = "No puede quedar en blanco la dirección ip.
+    Vuelva a intentarlo nuevamente."
+        $caption = "Error de contenido"
+        [System.Windows.Forms.MessageBox]::Show($errorMsg, $caption)
+   
+}
+
+
+elseif(($validacion1 -eq $false) -Or ($validacion2 -eq $false)){
+Add-Type -AssemblyName System.Windows.Forms
+$errorMsg = "Datos erróneos.
+Vuelva a intentarlo nuevamente."
+    $caption = "Error de contenido"
+    [System.Windows.Forms.MessageBox]::Show($errorMsg, $caption)
+}
+}
+  }
+  elseif($comboBox1.SelectedItem -eq 'IP'){
+    if($comboBox5.SelectedItem -eq 1){
+
+        $Username = "Administrador"
+        $Password = "R3c542016C4ll"
+    
+        $Computer=$textbox1.Text; 
+        $ip_N1=$TextBox100.Text;
+      
+       
+          $eliminarRutas={
+             
+                Param($Computer,$ip_N1)    
+    
+           
+                route delete $ip_N1
+       
+            
+        
+    
+        }  
+        $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+        $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+            $Session = New-PSSession -ComputerName $Computer -Credential $Cred
+            $hora=Get-Date -DisplayHint DateTime
+            if($Session -eq $Null){
+              $a = get-date
+
+              $month =$a.tostring("MM")
+             
+              $day = $a.tostring("dd")
+             
+              $year = $a.tostring("yyyy")
+              $prueba=$day+"/"+$month+"/"+$year
+              $time=Get-Date -Format HH:mm:ss
+        
+              $dataGridView2.Rows.Add($Computer,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+      
+              #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+              "No se pudo conectar(IP) en $Computer" + " - " + $hora >> "$ruta\logsRed\log.txt"
+                # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+                $Message="No se pudo conectar(IP) en $Computer"+ " - " + $hora;   
+                  $textbox8.AppendText("`r`n$Message");
+                     $textbox8.Refresh()
+                 $textbox8.ScrollToCaret()
+                 }
+             #Invocando comandos
+
+else{
+
+             $Job = Invoke-Command -Session $Session  -ScriptBlock $eliminarRutas -ArgumentList ($Computer,$ip_N1) -AsJob 
+             $Null = Wait-Job -Job $Job
+            Remove-PSSession -Session $Session
+            
+$a = get-date
+
+$month =$a.tostring("MM")
+
+$day = $a.tostring("dd")
+
+$year = $a.tostring("yyyy")
+$prueba=$day+"/"+$month+"/"+$year
+$time=Get-Date -Format HH:mm:ss
+$dataGridView2.Rows.Add($Computer,"CONECTADO","-----","1 RUTA ELIMINADA","-----","-----",$prueba,$time,"-----");
+
+            "Eliminar 1 Ruta (IP) - Inicio exitoso en $Computer" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+            #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+         $Message="Eliminar 1 Ruta (IP) - Inicio exitoso en $Computer";   
+         $textbox8.AppendText("`r`n$Message");
+         $textbox8.Refresh()
+        $textbox8.ScrollToCaret()
+
+
+
+
+    
+}
+    
+    }
+    elseif ($comboBox5.SelectedItem -eq 2) {
+        $Username = "Administrador"
+        $Password = "R3c542016C4ll"
+    
+        $Computer=$textbox1.Text; 
+        $ip_N1=$TextBox100.Text;
+   
+ 
+        $ip_N2=$TextBox129.Text;
+      
+       
+          $eliminarRutas={
+             
+                Param($Computer,$ip_N1,$ip_N2)    
+    
+           
+                route delete $ip_N1
+                route delete $ip_N2
+            
+        
+    
+        }  
+        $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+        $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+            $Session = New-PSSession -ComputerName $Computer -Credential $Cred
+            $hora=Get-Date -DisplayHint DateTime
+            if($Session -eq $Null){
+              $a = get-date
+
+              $month =$a.tostring("MM")
+             
+              $day = $a.tostring("dd")
+             
+              $year = $a.tostring("yyyy")
+              $prueba=$day+"/"+$month+"/"+$year
+              $time=Get-Date -Format HH:mm:ss
+        
+              $dataGridView2.Rows.Add($Computer,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+
+              #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+              "No se pudo conectar(IP) en $Computer" + " - " + $hora >> "$ruta\logsRed\log.txt"
+                # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+                $Message="No se pudo conectar(IP) en $Computer"+ " - " + $hora;   
+                  $textbox8.AppendText("`r`n$Message");
+                     $textbox8.Refresh()
+                 $textbox8.ScrollToCaret()
+                 }
+
+
+else{
+
+            
+             #Invocando comandos
+             $Job = Invoke-Command -Session $Session  -ScriptBlock $eliminarRutas -ArgumentList ($Computer,$ip_N1,$ip_N2) -AsJob 
+             $Null = Wait-Job -Job $Job
+            Remove-PSSession -Session $Session
+            $a = get-date
+
+            $month =$a.tostring("MM")
+            
+            $day = $a.tostring("dd")
+            
+            $year = $a.tostring("yyyy")
+            $prueba=$day+"/"+$month+"/"+$year
+            $time=Get-Date -Format HH:mm:ss
+            $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","2 RUTAS ELIMINADAS","-----","-----",$prueba,$time,"-----");
+            
+
+
+
+
+
+            "Eliminar 2 Rutas (IP) - Inicio exitoso en $Computer" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+            #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+         $Message="Eliminar 2 Rutas (IP) - Inicio exitoso en $Computer";   
+         $textbox8.AppendText("`r`n$Message");
+         $textbox8.Refresh()
+        $textbox8.ScrollToCaret()
+
+
+
+
+
+}
+    
+    }
+    elseif ($comboBox5.SelectedItem -eq 3) {
+        $Username = "Administrador"
+        $Password = "R3c542016C4ll"
+    
+        $Computer=$textbox1.Text; 
+        $ip_N1=$TextBox100.Text;
+    
+        $ip_N2=$TextBox129.Text;
+    
+        $ip_N3=$TextBox125.Text;
+    
+       
+          $eliminarRutas={
+             
+                Param($Computer,$ip_N1,$ip_N2,$ip_N3)    
+    
+           
+                route delete $ip_N1
+                route delete $ip_N2
+                route delete $ip_N3
+        
+    
+        }  
+        $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+        $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+            $Session = New-PSSession -ComputerName $Computer -Credential $Cred
+            $hora=Get-Date -DisplayHint DateTime
+            if($Session -eq $Null){
+
+
+
+              $a = get-date
+
+              $month =$a.tostring("MM")
+             
+              $day = $a.tostring("dd")
+             
+              $year = $a.tostring("yyyy")
+              $prueba=$day+"/"+$month+"/"+$year
+              $time=Get-Date -Format HH:mm:ss
+        
+              $dataGridView2.Rows.Add($Computer,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+
+              #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+              "No se pudo conectar(IP) en $Computer" + " - " + $hora >> "$ruta\logsRed\log.txt"
+                # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+                $Message="No se pudo conectar(IP) en $Computer"+ " - " + $hora;   
+                  $textbox8.AppendText("`r`n$Message");
+                     $textbox8.Refresh()
+                 $textbox8.ScrollToCaret()
+                 }
+
+            else{
+             #Invocando comandos
+             $Job = Invoke-Command -Session $Session  -ScriptBlock $eliminarRutas -ArgumentList ($Computer,$ip_N1,$ip_N2,$ip_N3) -AsJob 
+             $Null = Wait-Job -Job $Job
+            Remove-PSSession -Session $Session
+            $a = get-date
+
+            $month =$a.tostring("MM")
+            
+            $day = $a.tostring("dd")
+            
+            $year = $a.tostring("yyyy")
+            $prueba=$day+"/"+$month+"/"+$year
+            $time=Get-Date -Format HH:mm:ss
+            $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","3 RUTAS ELIMINADAS","-----","-----",$prueba,$time,"-----");
+            
+            "Eliminar 3 Rutas (IP) - Inicio exitoso en $Computer" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+            #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+         $Message="Eliminar 3 Rutas (IP) - Inicio exitoso en $Computer";   
+         $textbox8.AppendText("`r`n$Message");
+         $textbox8.Refresh()
+        $textbox8.ScrollToCaret()
+
+
+            }
+    
+    }
+    elseif ($comboBox5.SelectedItem -eq 4) {
+        $Username = "Administrador"
+        $Password = "R3c542016C4ll"
+    
+        $Computer=$textbox1.Text; 
+        $ip_N1=$TextBox100.Text;
+    
+        $ip_N2=$TextBox129.Text;
+      
+        $ip_N3=$TextBox125.Text;
+      
+        $ip_N4=$TextBox121.Text;
+   
+       
+          $eliminarRutas={
+             
+                Param($Computer,$ip_N1,$ip_N2,$ip_N3,$ip_N4)    
+    
+           
+                route delete $ip_N1
+                route delete $ip_N2
+                route delete $ip_N3
+                route delete $ip_N4
+        
+    
+        }  
+        $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+        $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+            $Session = New-PSSession -ComputerName $Computer -Credential $Cred
+            $hora=Get-Date -DisplayHint DateTime
+            if($Session -eq $Null){
+              $a = get-date
+
+              $month =$a.tostring("MM")
+             
+              $day = $a.tostring("dd")
+             
+              $year = $a.tostring("yyyy")
+              $prueba=$day+"/"+$month+"/"+$year
+              $time=Get-Date -Format HH:mm:ss
+        
+              $dataGridView2.Rows.Add($Computer,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+              #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+              "No se pudo conectar(IP) en $Computer" + " - " + $hora >> "$ruta\logsRed\log.txt"
+                # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+                $Message="No se pudo conectar(IP) en $Computer"+ " - " + $hora;   
+                  $textbox8.AppendText("`r`n$Message");
+                     $textbox8.Refresh()
+                 $textbox8.ScrollToCaret()
+                 }
+            
+
+
+            else{
+             #Invocando comandos
+             $Job = Invoke-Command -Session $Session  -ScriptBlock $eliminarRutas -ArgumentList ($Computer,$ip_N1,$ip_N2,$ip_N3,$ip_N4) -AsJob 
+             $Null = Wait-Job -Job $Job
+            Remove-PSSession -Session $Session
+            $a = get-date
+
+            $month =$a.tostring("MM")
+            
+            $day = $a.tostring("dd")
+            
+            $year = $a.tostring("yyyy")
+            $prueba=$day+"/"+$month+"/"+$year
+            $time=Get-Date -Format HH:mm:ss
+            $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","4 RUTAS ElIMINADAS","-----","-----",$prueba,$time,"-----");
+            
+
+            "Eliminar 4 Rutas (IP) - Inicio exitoso en $Computer" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+            #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+         $Message="Eliminar 4 Rutas (IP) - Inicio exitoso en $Computer";   
+         $textbox8.AppendText("`r`n$Message");
+         $textbox8.Refresh()
+        $textbox8.ScrollToCaret()
+
+
+
+
+
+
+            }
+        
+    }
+    elseif ($comboBox5.SelectedItem -eq 5) {
+        $Username = "Administrador"
+        $Password = "R3c542016C4ll"
+    
+        $Computer=$textbox1.Text; 
+        $ip_N1=$TextBox100.Text;
+     
+        $ip_N2=$TextBox129.Text;
+     
+        $ip_N3=$TextBox125.Text;
+        
+        $ip_N4=$TextBox121.Text;
+     
+        $ip_N5=$TextBox117.Text;
+       
+    
+    
+    
+       
+          $eliminarRutas={
+             
+                Param($Computer,$ip_N1,$ip_N2,$ip_N3,$ip_N4,$ip_N5)    
+    
+           
+                route delete $ip_N1
+                route delete $ip_N2
+                route delete $ip_N3
+                route delete $ip_N4
+                route delete $ip_N5
+        
+    
+        }  
+        $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+        $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+            $Session = New-PSSession -ComputerName $Computer -Credential $Cred
+            $hora=Get-Date -DisplayHint DateTime
+            if($Session -eq $Null){
+              
+
+  $a = get-date
+
+  $month =$a.tostring("MM")
+ 
+  $day = $a.tostring("dd")
+ 
+  $year = $a.tostring("yyyy")
+  $prueba=$day+"/"+$month+"/"+$year
+  $time=Get-Date -Format HH:mm:ss
+
+  $dataGridView2.Rows.Add($Computer,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+              #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+              "No se pudo conectar(IP) en $Computer" + " - " + $hora >> "$ruta\logsRed\log.txt"
+                # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+                $Message="No se pudo conectar(IP) en $Computer"+ " - " + $hora;   
+                  $textbox8.AppendText("`r`n$Message");
+                     $textbox8.Refresh()
+                 $textbox8.ScrollToCaret()
+                 }
+
+            else{
+             #Invocando comandos
+             $Job = Invoke-Command -Session $Session  -ScriptBlock $eliminarRutas -ArgumentList ($Computer,$ip_N1,$ip_N2,$ip_N3,$ip_N4,$ip_N5) -AsJob 
+             $Null = Wait-Job -Job $Job
+            Remove-PSSession -Session $Session
+            $a = get-date
+
+$month =$a.tostring("MM")
+
+$day = $a.tostring("dd")
+
+$year = $a.tostring("yyyy")
+$prueba=$day+"/"+$month+"/"+$year
+$time=Get-Date -Format HH:mm:ss
+$dataGridView2.Rows.Add($Computer,"CONECTADO","-----","5 RUTAS ELIMINADAS","-----","-----",$prueba,$time,"-----");
+            "Eliminar 5 Rutas (IP) - Inicio exitoso en $Computer" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+            #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+         $Message="Eliminar 5 Rutas (IP) - Inicio exitoso en $Computer";   
+         $textbox8.AppendText("`r`n$Message");
+         $textbox8.Refresh()
+        $textbox8.ScrollToCaret()
+
+            }
+    }
+    elseif ($comboBox5.SelectedItem -eq 6) {
+        $Username = "Administrador"
+        $Password = "R3c542016C4ll"
+    
+        $Computer=$textbox1.Text; 
+        $ip_N1=$TextBox100.Text;
+     
+        $ip_N2=$TextBox129.Text;
+      
+        $ip_N3=$TextBox125.Text;
+    
+        $ip_N4=$TextBox121.Text;
+       
+        $ip_N5=$TextBox117.Text;
+   
+        $ip_N6=$TextBox113.Text;
+      
+    
+    
+       
+          $eliminarRutas={
+             
+                Param($Computer,$ip_N1,$ip_N2,$ip_N3,$ip_N4,$ip_N5,$ip_N6)    
+    
+           
+                route delete $ip_N1
+                route delete $ip_N2
+                route delete $ip_N3
+                route delete $ip_N4
+                route delete $ip_N5
+                route delete $ip_N6
+    
+        }  
+        $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+        $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+            $Session = New-PSSession -ComputerName $Computer -Credential $Cred
+            $hora=Get-Date -DisplayHint DateTime
+            if($Session -eq $Null){
+              
+  $a = get-date
+
+  $month =$a.tostring("MM")
+ 
+  $day = $a.tostring("dd")
+ 
+  $year = $a.tostring("yyyy")
+  $prueba=$day+"/"+$month+"/"+$year
+  $time=Get-Date -Format HH:mm:ss
+
+  $dataGridView2.Rows.Add($Computer,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+              #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+              "No se pudo conectar(IP) en $Computer" + " - " + $hora >> "$ruta\logsRed\log.txt"
+                # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+                $Message="No se pudo conectar(IP) en $Computer"+ " - " + $hora;   
+                  $textbox8.AppendText("`r`n$Message");
+                     $textbox8.Refresh()
+                 $textbox8.ScrollToCaret()
+                 }
+
+            else{
+             #Invocando comandos
+             $Job = Invoke-Command -Session $Session  -ScriptBlock $eliminarRutas -ArgumentList ($Computer,$ip_N1,$ip_N2,$ip_N3,$ip_N4,$ip_N5,$ip_N6) -AsJob 
+             $Null = Wait-Job -Job $Job
+            Remove-PSSession -Session $Session
+            $a = get-date
+
+$month =$a.tostring("MM")
+
+$day = $a.tostring("dd")
+
+$year = $a.tostring("yyyy")
+$prueba=$day+"/"+$month+"/"+$year
+$time=Get-Date -Format HH:mm:ss
+$dataGridView2.Rows.Add($Computer,"CONECTADO","-----","6 RUTAS ELIMINADAS","-----","-----",$prueba,$time,"-----");
+   "Eliminar 6 Rutas (IP) - Inicio exitoso en $Computer" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+   #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+$Message="Eliminar 6 Rutas (IP) - Inicio exitoso en $Computer";   
+$textbox8.AppendText("`r`n$Message");
+$textbox8.Refresh()
+$textbox8.ScrollToCaret()
+            }
+    }
+    elseif ($comboBox5.SelectedItem -eq 7) {
+        $Username = "Administrador"
+        $Password = "R3c542016C4ll"
+    
+        $Computer=$textbox1.Text; 
+        $ip_N1=$TextBox100.Text;
+      
+        $ip_N2=$TextBox129.Text;
+   
+        $ip_N3=$TextBox125.Text;
+
+        $ip_N4=$TextBox121.Text;
+      
+        $ip_N5=$TextBox117.Text;
+ 
+        $ip_N6=$TextBox113.Text;
+ 
+        $ip_N7=$TextBox190.Text;
+
+    
+       
+          $eliminarRutas={
+             
+                Param($Computer,$ip_N1,$ip_N2,$ip_N3,$ip_N4,$ip_N5,$ip_N6,$ip_N7)    
+    
+           
+                route delete $ip_N1
+                route delete $ip_N2
+                route delete $ip_N3
+                route delete $ip_N4
+                route delete $ip_N5
+                route delete $ip_N6
+                route delete $ip_N7
+        }  
+        $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+        $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+            $Session = New-PSSession -ComputerName $Computer -Credential $Cred
+            $hora=Get-Date -DisplayHint DateTime
+            if($Session -eq $Null){
+              
+
+  $a = get-date
+
+  $month =$a.tostring("MM")
+ 
+  $day = $a.tostring("dd")
+ 
+  $year = $a.tostring("yyyy")
+  $prueba=$day+"/"+$month+"/"+$year
+  $time=Get-Date -Format HH:mm:ss
+
+  $dataGridView2.Rows.Add($Computer,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+              #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+              "No se pudo conectar(IP) en $Computer" + " - " + $hora >> "$ruta\logsRed\log.txt"
+                # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+                $Message="No se pudo conectar(IP) en $Computer"+ " - " + $hora;   
+                  $textbox8.AppendText("`r`n$Message");
+                     $textbox8.Refresh()
+                 $textbox8.ScrollToCaret()
+                 }
+
+            else{
+             #Invocando comandos
+             $Job = Invoke-Command -Session $Session  -ScriptBlock $eliminarRutas -ArgumentList ($Computer,$ip_N1,$ip_N2,$ip_N3,$ip_N4,$ip_N5,$ip_N6,$ip_N7) -AsJob 
+             $Null = Wait-Job -Job $Job
+            Remove-PSSession -Session $Session
+            $a = get-date
+
+$month =$a.tostring("MM")
+
+$day = $a.tostring("dd")
+
+$year = $a.tostring("yyyy")
+$prueba=$day+"/"+$month+"/"+$year
+$time=Get-Date -Format HH:mm:ss
+$dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS ELIMINADAS","-----","-----",$prueba,$time,"-----");
+            "Eliminar 7 Rutas (IP) - Inicio exitoso en $Computer" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+            #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+         $Message="Eliminar 7 Rutas (IP) - Inicio exitoso en $Computer";   
+         $textbox8.AppendText("`r`n$Message");
+         $textbox8.Refresh()
+         $textbox8.ScrollToCaret()
+
+
+            }
+    }
+    else{
+        $Username = "Administrador"
+        $Password = "R3c542016C4ll"
+    
+        $Computer=$textbox1.Text; 
+        $ip_N1=$TextBox100.Text;
+       
+        $ip_N2=$TextBox129.Text;
+       
+        $ip_N3=$TextBox125.Text;
+        
+        $ip_N4=$TextBox121.Text;
+    
+        $ip_N5=$TextBox117.Text;
+ 
+        $ip_N6=$TextBox113.Text;
+   
+        $ip_N7=$TextBox190.Text;
+  
+        $ip_N8=$TextBox150.Text;
+    
+       
+          $eliminarRutas={
+             
+                Param($Computer,$ip_N1,$ip_N2,$ip_N3,$ip_N4,$ip_N5,$ip_N6,$ip_N7,$ip_N8)    
+    
+           
+                route delete $ip_N1
+                route delete $ip_N2
+                route delete $ip_N3
+                route delete $ip_N4
+                route delete $ip_N5
+                route delete $ip_N6
+                route delete $ip_N7
+                route delete $ip_N8
+        }  
+        $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+        $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+            $Session = New-PSSession -ComputerName $Computer -Credential $Cred
+            if($Session -eq $Null){
+              $a = get-date
+
+              $month =$a.tostring("MM")
+             
+              $day = $a.tostring("dd")
+             
+              $year = $a.tostring("yyyy")
+              $prueba=$day+"/"+$month+"/"+$year
+              $time=Get-Date -Format HH:mm:ss
+        
+              $dataGridView2.Rows.Add($Computer,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+              
+              #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+              "No se pudo conectar(IP) en $Computer" + " - " + $hora >> "$ruta\logsRed\log.txt"
+                # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+                $Message="No se pudo conectar(IP) en $Computer"+ " - " + $hora;   
+                  $textbox8.AppendText("`r`n$Message");
+                     $textbox8.Refresh()
+                 $textbox8.ScrollToCaret()
+                 }
+
+            else{
+             #Invocando comandos
+             $Job = Invoke-Command -Session $Session  -ScriptBlock $eliminarRutas -ArgumentList ($Computer,$ip_N1,$ip_N2,$ip_N3,$ip_N4,$ip_N5,$ip_N6,$ip_N7,$ip_N8) -AsJob 
+             $Null = Wait-Job -Job $Job
+            Remove-PSSession -Session $Session
+            $a = get-date
+
+            $month =$a.tostring("MM")
+            
+            $day = $a.tostring("dd")
+            
+            $year = $a.tostring("yyyy")
+            $prueba=$day+"/"+$month+"/"+$year
+            $time=Get-Date -Format HH:mm:ss
+            $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","8 RUTAS ELIMINADAS","-----","-----",$prueba,$time,"-----");
+            "Eliminar 8 Rutas (IP) - Inicio exitoso en $Computer" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+            #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+         $Message="Eliminar 8 Rutas (IP) - Inicio exitoso en $Computer";   
+         $textbox8.AppendText("`r`n$Message");
+         $textbox8.Refresh()
+         $textbox8.ScrollToCaret()
+
+
+
+            }
+    }
+         
+    
+  }
+  elseif($comboBox1.SelectedItem -eq 'ARCHIVO TXT'){
+    if($comboBox5.SelectedItem -eq 1){
+
+      $Username = "Administrador"
+      $Password = "R3c542016C4ll"
+      $prueba2= Get-Content $OpenFileDialog.FileName
+    
+      $ip_N1=$TextBox100.Text;
+     
+      $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+      $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+      foreach($newPc in $prueba2){
+        $eliminarRutas={
+           
+              Param($newPc,$ip_N1)    
+  
+         
+              route delete $ip_N1
+     
+          
+      
+  
+      }  
+      
+          $Session = New-PSSession -ComputerName $newPc -Credential $Cred
+          $hora=Get-Date -DisplayHint DateTime
+          if($Session -eq $Null){
+            $a = get-date
+  
+            $month =$a.tostring("MM")
+           
+            $day = $a.tostring("dd")
+           
+            $year = $a.tostring("yyyy")
+            $prueba=$day+"/"+$month+"/"+$year
+            $time=Get-Date -Format HH:mm:ss
+      
+            $dataGridView2.Rows.Add($newPc,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+            foreach ($Row in $dataGridView2.Rows) {
+              if ($Row.Cells[1].Value  -eq 'NO CONECTADO') {
+                  $row.defaultcellstyle.backcolor = "Yellow"
+              }
+            }
+    
+            #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+            "No se pudo conectar(ARCHIVO TXT) en $newPc" + " - " + $hora >> "$ruta\logsRed\log.txt"
+              # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+              $Message="No se pudo conectar(ARCHIVO TXT) en $newPc"+ " - " + $hora;   
+                $textbox8.AppendText("`r`n$Message");
+                   $textbox8.Refresh()
+               $textbox8.ScrollToCaret()
+               }
+           #Invocando comandos
+  
+  else{
+  
+           $Job = Invoke-Command -Session $Session  -ScriptBlock $eliminarRutas -ArgumentList ($newPc,$ip_N1) -AsJob 
+           $Null = Wait-Job -Job $Job
+          Remove-PSSession -Session $Session
+          
+  $a = get-date
+  
+  $month =$a.tostring("MM")
+  
+  $day = $a.tostring("dd")
+  
+  $year = $a.tostring("yyyy")
+  $prueba=$day+"/"+$month+"/"+$year
+  $time=Get-Date -Format HH:mm:ss
+  $dataGridView2.Rows.Add($newPc,"CONECTADO","-----","1 RUTA ELIMINADA","-----","-----",$prueba,$time,"-----");
+  
+          "Eliminar 1 Ruta (ARCHIVO TXT) - Inicio exitoso en $newPc" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+          #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+       $Message="Eliminar 1 Ruta (ARCHIVO TXT) - Inicio exitoso en $newPc";   
+       $textbox8.AppendText("`r`n$Message");
+       $textbox8.Refresh()
+      $textbox8.ScrollToCaret()
+  
+  
+  
+  
+  
+  }
+  }
+  }
+  elseif ($comboBox5.SelectedItem -eq 2) {
+      $Username = "Administrador"
+      $Password = "R3c542016C4ll"
+      $prueba2= Get-Content $OpenFileDialog.FileName
+    
+    $ip_N1=$TextBox100.Text;
+     
+      $ip_N2=$TextBox129.Text;
+    
+      $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+      $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+      foreach($newPc in $prueba2){
+      
+        $eliminarRutas={
+           
+              Param($newPc,$ip_N1,$ip_N2)    
+  
+         
+              route delete $ip_N1
+              route delete $ip_N2
+          
+      
+  
+      }  
+      
+          $Session = New-PSSession -ComputerName $newPc -Credential $Cred
+          $hora=Get-Date -DisplayHint DateTime
+          if($Session -eq $Null){
+            $a = get-date
+  
+            $month =$a.tostring("MM")
+           
+            $day = $a.tostring("dd")
+           
+            $year = $a.tostring("yyyy")
+            $prueba=$day+"/"+$month+"/"+$year
+            $time=Get-Date -Format HH:mm:ss
+      
+            $dataGridView2.Rows.Add($newPc,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+            foreach ($Row in $dataGridView2.Rows) {
+              if ($Row.Cells[1].Value  -eq 'NO CONECTADO') {
+                  $row.defaultcellstyle.backcolor = "Yellow"
+              }
+            }
+    
+            #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+            "No se pudo conectar(ARCHIVO TXT) en $newPc" + " - " + $hora >> "$ruta\logsRed\log.txt"
+              # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+              $Message="No se pudo conectar(ARCHIVO TXT) en $newPc"+ " - " + $hora;   
+                $textbox8.AppendText("`r`n$Message");
+                   $textbox8.Refresh()
+               $textbox8.ScrollToCaret()
+               }
+           #Invocando comandos
+  
+  else{
+  
+           $Job = Invoke-Command -Session $Session  -ScriptBlock $eliminarRutas -ArgumentList ($newPc,$ip_N1,$ip_N2) -AsJob 
+           $Null = Wait-Job -Job $Job
+          Remove-PSSession -Session $Session
+          
+  $a = get-date
+  
+  $month =$a.tostring("MM")
+  
+  $day = $a.tostring("dd")
+  
+  $year = $a.tostring("yyyy")
+  $prueba=$day+"/"+$month+"/"+$year
+  $time=Get-Date -Format HH:mm:ss
+  $dataGridView2.Rows.Add($newPc,"CONECTADO","-----","2 RUTAS ELIMINADAS","-----","-----",$prueba,$time,"-----");
+  
+          "Eliminar 2 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+          #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+       $Message="Eliminar 2 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc";   
+       $textbox8.AppendText("`r`n$Message");
+       $textbox8.Refresh()
+      $textbox8.ScrollToCaret()
+  
+  
+  
+  
+  
+  }
+  }
+  
+  }
+  elseif ($comboBox5.SelectedItem -eq 3) {
+      $Username = "Administrador"
+      $Password = "R3c542016C4ll"
+      $prueba2= Get-Content $OpenFileDialog.FileName
+    
+     $ip_N1=$TextBox100.Text;
+
+      $ip_N2=$TextBox129.Text;
+    
+      $ip_N3=$TextBox125.Text;
+
+      $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+      $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+      foreach($newPc in $prueba2){
+      
+     
+        $eliminarRutas={
+           
+              Param($newPc,$ip_N1,$ip_N2,$ip_N3)    
+  
+         
+              route delete $ip_N1
+              route delete $ip_N2
+              route delete $ip_N3
+      
+  
+      }  
+      
+          $Session = New-PSSession -ComputerName $newPc -Credential $Cred
+          $hora=Get-Date -DisplayHint DateTime
+          if($Session -eq $Null){
+            $a = get-date
+  
+            $month =$a.tostring("MM")
+           
+            $day = $a.tostring("dd")
+           
+            $year = $a.tostring("yyyy")
+            $prueba=$day+"/"+$month+"/"+$year
+            $time=Get-Date -Format HH:mm:ss
+      
+            $dataGridView2.Rows.Add($newPc,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+            foreach ($Row in $dataGridView2.Rows) {
+              if ($Row.Cells[1].Value  -eq 'NO CONECTADO') {
+                  $row.defaultcellstyle.backcolor = "Yellow"
+              }
+            }
+    
+            #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+            "No se pudo conectar(ARCHIVO TXT) en $newPc" + " - " + $hora >> "$ruta\logsRed\log.txt"
+              # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+              $Message="No se pudo conectar(ARCHIVO TXT) en $newPc"+ " - " + $hora;   
+                $textbox8.AppendText("`r`n$Message");
+                   $textbox8.Refresh()
+               $textbox8.ScrollToCaret()
+               }
+           #Invocando comandos
+  
+  else{
+  
+           $Job = Invoke-Command -Session $Session  -ScriptBlock $eliminarRutas -ArgumentList ($newPc,$ip_N1,$ip_N2,$ip_N3) -AsJob 
+           $Null = Wait-Job -Job $Job
+          Remove-PSSession -Session $Session
+          
+  $a = get-date
+  
+  $month =$a.tostring("MM")
+  
+  $day = $a.tostring("dd")
+  
+  $year = $a.tostring("yyyy")
+  $prueba=$day+"/"+$month+"/"+$year
+  $time=Get-Date -Format HH:mm:ss
+  $dataGridView2.Rows.Add($newPc,"CONECTADO","-----","3 RUTAS ELIMINADAS","-----","-----",$prueba,$time,"-----");
+  
+          "Eliminar 3 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+          #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+       $Message="Eliminar 3 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc";   
+       $textbox8.AppendText("`r`n$Message");
+       $textbox8.Refresh()
+      $textbox8.ScrollToCaret()
+  
+  
+  
+  
+  
+  }
+  }
+  
+  }
+  elseif ($comboBox5.SelectedItem -eq 4) {
+      $Username = "Administrador"
+      $Password = "R3c542016C4ll"
+      $prueba2= Get-Content $OpenFileDialog.FileName
+    
+   $ip_N1=$TextBox100.Text;
+   
+      $ip_N2=$TextBox129.Text;
+   
+      $ip_N3=$TextBox125.Text;
+   
+      $ip_N4=$TextBox121.Text;
+     
+      $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+      $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+      foreach($newPc in $prueba2){
+      
+     
+     
+        $eliminarRutas={
+           
+              Param($newPc,$ip_N1,$ip_N2,$ip_N3,$ip_N4)    
+  
+         
+              route delete $ip_N1
+              route delete $ip_N2
+              route delete $ip_N3
+              route delete $ip_N4
+      
+  
+      }  
+      
+          $Session = New-PSSession -ComputerName $newPc -Credential $Cred
+          $hora=Get-Date -DisplayHint DateTime
+          if($Session -eq $Null){
+            $a = get-date
+  
+            $month =$a.tostring("MM")
+           
+            $day = $a.tostring("dd")
+           
+            $year = $a.tostring("yyyy")
+            $prueba=$day+"/"+$month+"/"+$year
+            $time=Get-Date -Format HH:mm:ss
+      
+            $dataGridView2.Rows.Add($newPc,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+            foreach ($Row in $dataGridView2.Rows) {
+              if ($Row.Cells[1].Value  -eq 'NO CONECTADO') {
+                  $row.defaultcellstyle.backcolor = "Yellow"
+              }
+            }
+    
+            #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+            "No se pudo conectar(ARCHIVO TXT) en $newPc" + " - " + $hora >> "$ruta\logsRed\log.txt"
+              # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+              $Message="No se pudo conectar(ARCHIVO TXT) en $newPc"+ " - " + $hora;   
+                $textbox8.AppendText("`r`n$Message");
+                   $textbox8.Refresh()
+               $textbox8.ScrollToCaret()
+               }
+           #Invocando comandos
+  
+  else{
+  
+           $Job = Invoke-Command -Session $Session  -ScriptBlock $eliminarRutas -ArgumentList ($newPc,$ip_N1,$ip_N2,$ip_N3,$ip_N4) -AsJob 
+           $Null = Wait-Job -Job $Job
+          Remove-PSSession -Session $Session
+          
+  $a = get-date
+  
+  $month =$a.tostring("MM")
+  
+  $day = $a.tostring("dd")
+  
+  $year = $a.tostring("yyyy")
+  $prueba=$day+"/"+$month+"/"+$year
+  $time=Get-Date -Format HH:mm:ss
+  $dataGridView2.Rows.Add($newPc,"CONECTADO","-----","4 RUTAS ELIMINADAS","-----","-----",$prueba,$time,"-----");
+  
+          "Eliminar 4 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+          #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+       $Message="Eliminar 4 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc";   
+       $textbox8.AppendText("`r`n$Message");
+       $textbox8.Refresh()
+      $textbox8.ScrollToCaret()
+  
+  
+  
+  
+  
+  }
+  }
+      
+  }
+  elseif ($comboBox5.SelectedItem -eq 5) {
+      $Username = "Administrador"
+      $Password = "R3c542016C4ll"
+      $prueba2= Get-Content $OpenFileDialog.FileName
+    
+  
+      $ip_N1=$TextBox100.Text;
+     
+      $ip_N2=$TextBox129.Text;
+  
+      $ip_N3=$TextBox125.Text;
+
+      $ip_N4=$TextBox121.Text;
+   
+      $ip_N5=$TextBox117.Text;
+    
+      $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+      $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+      foreach($newPc in $prueba2){
+      
+     
+     
+        $eliminarRutas={
+           
+              Param($newPc,$ip_N1,$ip_N2,$ip_N3,$ip_N4,$ip_N5)    
+  
+         
+              route delete $ip_N1
+              route delete $ip_N2
+              route delete $ip_N3
+              route delete $ip_N4
+              route delete $ip_N5
+  
+      }  
+      
+          $Session = New-PSSession -ComputerName $newPc -Credential $Cred
+          $hora=Get-Date -DisplayHint DateTime
+          if($Session -eq $Null){
+            $a = get-date
+  
+            $month =$a.tostring("MM")
+           
+            $day = $a.tostring("dd")
+           
+            $year = $a.tostring("yyyy")
+            $prueba=$day+"/"+$month+"/"+$year
+            $time=Get-Date -Format HH:mm:ss
+      
+            $dataGridView2.Rows.Add($newPc,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+            foreach ($Row in $dataGridView2.Rows) {
+              if ($Row.Cells[1].Value  -eq 'NO CONECTADO') {
+                  $row.defaultcellstyle.backcolor = "Yellow"
+              }
+            }
+    
+            #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+            "No se pudo conectar(ARCHIVO TXT) en $newPc" + " - " + $hora >> "$ruta\logsRed\log.txt"
+              # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+              $Message="No se pudo conectar(ARCHIVO TXT) en $newPc"+ " - " + $hora;   
+                $textbox8.AppendText("`r`n$Message");
+                   $textbox8.Refresh()
+               $textbox8.ScrollToCaret()
+               }
+           #Invocando comandos
+  
+  else{
+  
+           $Job = Invoke-Command -Session $Session  -ScriptBlock $eliminarRutas -ArgumentList ($newPc,$ip_N1,$ip_N2,$ip_N3,$ip_N4,$ip_N5) -AsJob 
+           $Null = Wait-Job -Job $Job
+          Remove-PSSession -Session $Session
+          
+  $a = get-date
+  
+  $month =$a.tostring("MM")
+  
+  $day = $a.tostring("dd")
+  
+  $year = $a.tostring("yyyy")
+  $prueba=$day+"/"+$month+"/"+$year
+  $time=Get-Date -Format HH:mm:ss
+  $dataGridView2.Rows.Add($newPc,"CONECTADO","-----","5 RUTAS ELIMINADAS","-----","-----",$prueba,$time,"-----");
+  
+          "Eliminar 5 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+          #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+       $Message="Eliminar 5 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc";   
+       $textbox8.AppendText("`r`n$Message");
+       $textbox8.Refresh()
+      $textbox8.ScrollToCaret()
+  
+  
+  
+  
+  
+  }
+  }
+  }
+  elseif ($comboBox5.SelectedItem -eq 6) {
+      $Username = "Administrador"
+      $Password = "R3c542016C4ll"
+      $prueba2= Get-Content $OpenFileDialog.FileName
+  
+        $ip_N1=$TextBox100.Text;
+ 
+      $ip_N2=$TextBox129.Text;
+   
+      $ip_N3=$TextBox125.Text;
+  
+      $ip_N4=$TextBox121.Text;
+   
+      $ip_N5=$TextBox117.Text;
+  
+      $ip_N6=$TextBox113.Text;
+    
+      $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+      $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+      foreach($newPc in $prueba2){
+      
+     
+     
+        $eliminarRutas={
+           
+              Param($newPc,$ip_N1,$ip_N2,$ip_N3,$ip_N4,$ip_N5,$ip_N6)    
+  
+         
+              route delete $ip_N1
+              route delete $ip_N2
+              route delete $ip_N3
+              route delete $ip_N4
+              route delete $ip_N5
+              route delete $ip_N6
+  
+      }  
+      
+          $Session = New-PSSession -ComputerName $newPc -Credential $Cred
+          $hora=Get-Date -DisplayHint DateTime
+          if($Session -eq $Null){
+            $a = get-date
+  
+            $month =$a.tostring("MM")
+           
+            $day = $a.tostring("dd")
+           
+            $year = $a.tostring("yyyy")
+            $prueba=$day+"/"+$month+"/"+$year
+            $time=Get-Date -Format HH:mm:ss
+      
+            $dataGridView2.Rows.Add($newPc,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+            foreach ($Row in $dataGridView2.Rows) {
+              if ($Row.Cells[1].Value  -eq 'NO CONECTADO') {
+                  $row.defaultcellstyle.backcolor = "Yellow"
+              }
+            }
+    
+            #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+            "No se pudo conectar(ARCHIVO TXT) en $newPc" + " - " + $hora >> "$ruta\logsRed\log.txt"
+              # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+              $Message="No se pudo conectar(ARCHIVO TXT) en $newPc"+ " - " + $hora;   
+                $textbox8.AppendText("`r`n$Message");
+                   $textbox8.Refresh()
+               $textbox8.ScrollToCaret()
+               }
+           #Invocando comandos
+  
+  else{
+  
+           $Job = Invoke-Command -Session $Session  -ScriptBlock $eliminarRutas -ArgumentList ($newPc,$ip_N1,$ip_N2,$ip_N3,$ip_N4,$ip_N5,$ip_N6) -AsJob 
+           $Null = Wait-Job -Job $Job
+          Remove-PSSession -Session $Session
+          
+  $a = get-date
+  
+  $month =$a.tostring("MM")
+  
+  $day = $a.tostring("dd")
+  
+  $year = $a.tostring("yyyy")
+  $prueba=$day+"/"+$month+"/"+$year
+  $time=Get-Date -Format HH:mm:ss
+  $dataGridView2.Rows.Add($newPc,"CONECTADO","-----","6 RUTAS ELIMINADAS","-----","-----",$prueba,$time,"-----");
+  
+          "Eliminar 6 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+          #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+       $Message="Eliminar 6 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc";   
+       $textbox8.AppendText("`r`n$Message");
+       $textbox8.Refresh()
+      $textbox8.ScrollToCaret()
+  
+  
+  
+  
+  
+  }
+  }
+  }
+  elseif ($comboBox5.SelectedItem -eq 7) {
+      $Username = "Administrador"
+      $Password = "R3c542016C4ll"
+      $prueba2= Get-Content $OpenFileDialog.FileName
+  
+         $ip_N1=$TextBox100.Text;
+
+      $ip_N2=$TextBox129.Text;
+     
+      $ip_N3=$TextBox125.Text;
+   
+      $ip_N4=$TextBox121.Text;
+
+      $ip_N5=$TextBox117.Text;
+
+      $ip_N6=$TextBox113.Text;
+
+      $ip_N7=$TextBox190.Text;
+
+  
+      $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+      $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+      foreach($newPc in $prueba2){
+      
+     
+     
+        $eliminarRutas={
+           
+              Param($newPc,$ip_N1,$ip_N2,$ip_N3,$ip_N4,$ip_N5,$ip_N6,$ip_N7)    
+  
+         
+              route delete $ip_N1
+              route delete $ip_N2
+              route delete $ip_N3
+              route delete $ip_N4
+              route delete $ip_N5
+              route delete $ip_N6
+              route delete $ip_N7
+  
+      }  
+      
+          $Session = New-PSSession -ComputerName $newPc -Credential $Cred
+          $hora=Get-Date -DisplayHint DateTime
+          if($Session -eq $Null){
+            $a = get-date
+  
+            $month =$a.tostring("MM")
+           
+            $day = $a.tostring("dd")
+           
+            $year = $a.tostring("yyyy")
+            $prueba=$day+"/"+$month+"/"+$year
+            $time=Get-Date -Format HH:mm:ss
+      
+            $dataGridView2.Rows.Add($newPc,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+            foreach ($Row in $dataGridView2.Rows) {
+              if ($Row.Cells[1].Value  -eq 'NO CONECTADO') {
+                  $row.defaultcellstyle.backcolor = "Yellow"
+              }
+            }
+    
+            #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+            "No se pudo conectar(ARCHIVO TXT) en $newPc" + " - " + $hora >> "$ruta\logsRed\log.txt"
+              # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+              $Message="No se pudo conectar(ARCHIVO TXT) en $newPc"+ " - " + $hora;   
+                $textbox8.AppendText("`r`n$Message");
+                   $textbox8.Refresh()
+               $textbox8.ScrollToCaret()
+               }
+           #Invocando comandos
+  
+  else{
+  
+           $Job = Invoke-Command -Session $Session  -ScriptBlock $eliminarRutas -ArgumentList ($newPc,$ip_N1,$ip_N2,$ip_N3,$ip_N4,$ip_N5,$ip_N6,$ip_N7) -AsJob 
+           $Null = Wait-Job -Job $Job
+          Remove-PSSession -Session $Session
+          
+  $a = get-date
+  
+  $month =$a.tostring("MM")
+  
+  $day = $a.tostring("dd")
+  
+  $year = $a.tostring("yyyy")
+  $prueba=$day+"/"+$month+"/"+$year
+  $time=Get-Date -Format HH:mm:ss
+  $dataGridView2.Rows.Add($newPc,"CONECTADO","-----","7 RUTAS ELIMINADAS","-----","-----",$prueba,$time,"-----");
+  
+          "Eliminar 7 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+          #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+       $Message="Eliminar 7 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc";   
+       $textbox8.AppendText("`r`n$Message");
+       $textbox8.Refresh()
+      $textbox8.ScrollToCaret()
+  
+  
+  
+  
+  
+  }
+  }
+  }
+  else{
+      $Username = "Administrador"
+      $Password = "R3c542016C4ll"
+      $prueba2= Get-Content $OpenFileDialog.FileName
+  
+           $ip_N1=$TextBox100.Text;
+
+
+      $ip_N2=$TextBox129.Text;
+   
+      $ip_N3=$TextBox125.Text;
+     
+      $ip_N4=$TextBox121.Text;
+
+      $ip_N5=$TextBox117.Text;
+
+      $ip_N6=$TextBox113.Text;
+
+      $ip_N7=$TextBox190.Text;
+     
+      $ip_N8=$TextBox150.Text;
+
+  
+      $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+      $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+      foreach($newPc in $prueba2){
+      
+     
+     
+        $eliminarRutas={
+           
+              Param($newPc,$ip_N1,$ip_N2,$ip_N3,$ip_N4,$ip_N5,$ip_N6,$ip_N7,$ip_N8)    
+  
+         
+              route delete $ip_N1
+              route delete $ip_N2
+              route delete $ip_N3
+              route delete $ip_N4
+              route delete $ip_N5
+              route delete $ip_N6
+              route delete $ip_N7
+              route delete $ip_N8
+  
+      }  
+      
+          $Session = New-PSSession -ComputerName $newPc -Credential $Cred
+          $hora=Get-Date -DisplayHint DateTime
+          if($Session -eq $Null){
+            $a = get-date
+  
+            $month =$a.tostring("MM")
+           
+            $day = $a.tostring("dd")
+           
+            $year = $a.tostring("yyyy")
+            $prueba=$day+"/"+$month+"/"+$year
+            $time=Get-Date -Format HH:mm:ss
+      
+            $dataGridView2.Rows.Add($newPc,"NO CONECTADO","-----","-----","-----","-----",$prueba,$time,"-----");
+            foreach ($Row in $dataGridView2.Rows) {
+              if ($Row.Cells[1].Value  -eq 'NO CONECTADO') {
+                  $row.defaultcellstyle.backcolor = "Yellow"
+              }
+            }
+    
+            #Write-Host "No se puede conectar" -ForegroundColor Blue -Background White
+            "No se pudo conectar(ARCHIVO TXT) en $newPc" + " - " + $hora >> "$ruta\logsRed\log.txt"
+              # $outputBox1.text= "No se pudo conectar en $ipAntiguaInicial"+ " - " + $hora;   
+              $Message="No se pudo conectar(ARCHIVO TXT) en $newPc"+ " - " + $hora;   
+                $textbox8.AppendText("`r`n$Message");
+                   $textbox8.Refresh()
+               $textbox8.ScrollToCaret()
+               }
+           #Invocando comandos
+  
+  else{
+  
+           $Job = Invoke-Command -Session $Session  -ScriptBlock $eliminarRutas -ArgumentList ($newPc,$ip_N1,$ip_N2,$ip_N3,$ip_N4,$ip_N5,$ip_N6,$ip_N7,$ip_N8) -AsJob 
+           $Null = Wait-Job -Job $Job
+          Remove-PSSession -Session $Session
+          
+  $a = get-date
+  
+  $month =$a.tostring("MM")
+  
+  $day = $a.tostring("dd")
+  
+  $year = $a.tostring("yyyy")
+  $prueba=$day+"/"+$month+"/"+$year
+  $time=Get-Date -Format HH:mm:ss
+  $dataGridView2.Rows.Add($newPc,"CONECTADO","-----","8 RUTAS ELIMINADAS","-----","-----",$prueba,$time,"-----");
+  
+          "Eliminar 8 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc" + " - " + $hora >>  "$ruta\logsRed\log.txt"
+          #$outputBox1.text= "Inicio exitoso en $ipNewInicial"
+       $Message="Eliminar 8 Rutas (ARCHIVO TXT) - Inicio exitoso en $newPc";   
+       $textbox8.AppendText("`r`n$Message");
+       $textbox8.Refresh()
+      $textbox8.ScrollToCaret()
+  
+  
+  
+  
+  
+  }
+  }
+  }
+      
+  }
+
 }
 function ejecutarRutas{
   $ruta=[Environment]::GetFolderPath("Desktop")
@@ -7440,7 +10303,7 @@ function ejecutarPrincipal{
   }
 elseif($comboBox2.Text -eq 'DESHABILITAR PROXY'  -and $comboBox4.Text -eq 'ELIMINAR RUTA' -and ($comboBox5.Text -eq 1 -Or $comboBox5.Text -eq 2 -Or $comboBox5.Text -eq 3 -Or $comboBox5.Text -eq 4 -Or $comboBox5.Text -eq 5 -Or $comboBox5.Text -eq 6 -Or $comboBox5.Text -eq 7 -Or $comboBox5.Text -eq 8 )  -and  $textbox4.Text -ne ' '  -and $textbox5.Text -ne ' ' -and $textbox6.Text -ne ' ' -and $textbox7.Text -ne ' '-and $textbox9.Text -ne ' '   ){
     deshabilitarRutas;
-    ejecutarRutas;
+    eliminarRutas;
     changeGateway;
     setDomain;
   }
@@ -7453,25 +10316,25 @@ elseif($comboBox2.Text -eq 'DESHABILITAR PROXY'  -and $comboBox4.Text -eq 'AGREG
   }
 elseif($comboBox2.Text -eq 'HABILITAR PROXY' -and $comboBox3.Text -eq 'Predeterminado' -and $comboBox4.Text -eq 'ELIMINAR RUTA' -and ($comboBox5.Text -eq 1 -Or $comboBox5.Text -eq 2 -Or $comboBox5.Text -eq 3 -Or $comboBox5.Text -eq 4 -Or $comboBox5.Text -eq 5 -Or $comboBox5.Text -eq 6 -Or $comboBox5.Text -eq 7 -Or $comboBox5.Text -eq 8 )  -and  $textbox4.Text -ne ' '  -and $textbox5.Text -ne ' ' -and $textbox6.Text -ne ' ' -and $textbox7.Text -ne ' '-and $textbox9.Text -ne ' '   ){
     ejecutarTareas;
-    ejecutarRutas;
+   eliminarRutas;
     changeGateway;
     setDomain;
   }
 
 elseif($comboBox2.Text -eq 'HABILITAR PROXY' -and $comboBox3.Text -eq 'Predeterminado' -and $comboBox4.Text -eq 'ELIMINAR RUTA' -and ($comboBox5.Text -eq 1 -Or $comboBox5.Text -eq 2 -Or $comboBox5.Text -eq 3 -Or $comboBox5.Text -eq 4 -Or $comboBox5.Text -eq 5 -Or $comboBox5.Text -eq 6 -Or $comboBox5.Text -eq 7 -Or $comboBox5.Text -eq 8 )  -and  $textbox4.Text -ne ' ' ){
     ejecutarTareas;
-    ejecutarRutas;
+   eliminarRutas;
     changeGateway;
   }
 elseif($comboBox2.Text -eq 'HABILITAR PROXY' -and $comboBox3.Text -eq 'Predeterminado' -and  $comboBox4.Text -eq 'ELIMINAR RUTA' -and ($comboBox5.Text -eq 1 -Or $comboBox5.Text -eq 2 -Or $comboBox5.Text -eq 3 -Or $comboBox5.Text -eq 4 -Or $comboBox5.Text -eq 5 -Or $comboBox5.Text -eq 6 -Or $comboBox5.Text -eq 7 -Or $comboBox5.Text -eq 8 ) -and $textbox5.Text -ne ' ' -and $textbox6.Text -ne ' ' -and $textbox7.Text -ne ' '-and $textbox9.Text -ne ' '  ){
     ejecutarTareas;
-    ejecutarRutas;
+ eliminarRutas;
     setDomain;
     }
 
 elseif($comboBox2.Text -eq 'DESHABILITAR PROXY'  -and $comboBox4.Text -eq 'ELIMINAR RUTA' -and ($comboBox5.Text -eq 1 -Or $comboBox5.Text -eq 2 -Or $comboBox5.Text -eq 3 -Or $comboBox5.Text -eq 4 -Or $comboBox5.Text -eq 5 -Or $comboBox5.Text -eq 6 -Or $comboBox5.Text -eq 7 -Or $comboBox5.Text -eq 8 )  -and  $textbox4.Text -ne ' ' ){
     deshabilitarRutas;
-    ejecutarRutas;
+eliminarRutas;
     changeGateway;
   }
 elseif($comboBox2.Text -eq 'HABILITAR PROXY' -and $comboBox3.Text -eq 'Predeterminado' -and $comboBox4.Text -eq 'AGREGAR RUTA' -and ($comboBox5.Text -eq 1 -Or $comboBox5.Text -eq 2 -Or $comboBox5.Text -eq 3 -Or $comboBox5.Text -eq 4 -Or $comboBox5.Text -eq 5 -Or $comboBox5.Text -eq 6 -Or $comboBox5.Text -eq 7 -Or $comboBox5.Text -eq 8 )  -and  $textbox4.Text -ne ' ' ){
@@ -7481,7 +10344,7 @@ elseif($comboBox2.Text -eq 'HABILITAR PROXY' -and $comboBox3.Text -eq 'Predeterm
   }
 elseif($comboBox2.Text -eq 'HABILITAR PROXY' -and $comboBox3.Text -eq 'Predeterminado' -and $comboBox4.Text -eq 'ELIMINAR RUTA' -and ($comboBox5.Text -eq 1 -Or $comboBox5.Text -eq 2 -Or $comboBox5.Text -eq 3 -Or $comboBox5.Text -eq 4 -Or $comboBox5.Text -eq 5 -Or $comboBox5.Text -eq 6 -Or $comboBox5.Text -eq 7 -Or $comboBox5.Text -eq 8 )){
     ejecutarTareas;
-    ejecutarRutas;
+    eliminarRutas;
   }
 elseif($comboBox2.Text -eq 'HABILITAR PROXY' -and $comboBox3.Text -eq 'Predeterminado' -and $textbox4.Text -ne ' ' -and $textbox5.Text -ne ' ' -and $textbox6.Text -ne ' ' -and $textbox7.Text -ne ' '-and $textbox9.Text -ne ' '  ){
     ejecutarTareas;
@@ -7511,21 +10374,21 @@ setDomain;
 }
 elseif($comboBox2.Text -eq 'DESHABILITAR PROXY'  -and  $comboBox4.Text -eq 'ELIMINAR RUTA' -and ($comboBox5.Text -eq 1 -Or $comboBox5.Text -eq 2 -Or $comboBox5.Text -eq 3 -Or $comboBox5.Text -eq 4 -Or $comboBox5.Text -eq 5 -Or $comboBox5.Text -eq 6 -Or $comboBox5.Text -eq 7 -Or $comboBox5.Text -eq 8 ) -and $textbox5.Text -ne ' ' -and $textbox6.Text -ne ' ' -and $textbox7.Text -ne ' '-and $textbox9.Text -ne ' '  ){
 deshabilitarRutas;
-ejecutarRutas;
+eliminarRutas;
 setDomain;
 }
 elseif($comboBox4.Text -eq 'ELIMINAR RUTA' -and ($comboBox5.Text -eq 1 -Or $comboBox5.Text -eq 2 -Or $comboBox5.Text -eq 3 -Or $comboBox5.Text -eq 4 -Or $comboBox5.Text -eq 5 -Or $comboBox5.Text -eq 6 -Or $comboBox5.Text -eq 7 -Or $comboBox5.Text -eq 8 )  -and $textbox5.Text -ne ' ' -and $textbox6.Text -ne ' ' -and $textbox7.Text -ne ' '-and $textbox9.Text -ne ' ' -and $textbox4.Text -ne ' '  ){
   ejecutarRutas;
-  changeGateway;
+ eliminarRutas;
   setDomain;
 }
 elseif($comboBox4.Text -eq 'ELIMINAR RUTA' -and ($comboBox5.Text -eq 1 -Or $comboBox5.Text -eq 2 -Or $comboBox5.Text -eq 3 -Or $comboBox5.Text -eq 4 -Or $comboBox5.Text -eq 5 -Or $comboBox5.Text -eq 6 -Or $comboBox5.Text -eq 7 -Or $comboBox5.Text -eq 8 )  -and  $textbox4.Text -ne ' ' ){
-  ejecutarRutas;
+  eliminarRutas;
   changeGateway;
 }
 elseif($comboBox2.Text -eq 'DESHABILITAR PROXY'  -and $comboBox4.Text -eq 'ELIMINAR RUTA' -and ($comboBox5.Text -eq 1 -Or $comboBox5.Text -eq 2 -Or $comboBox5.Text -eq 3 -Or $comboBox5.Text -eq 4 -Or $comboBox5.Text -eq 5 -Or $comboBox5.Text -eq 6 -Or $comboBox5.Text -eq 7 -Or $comboBox5.Text -eq 8 )){
   deshabilitarRutas;
-  ejecutarRutas;
+ eliminarRutas;
 }
 elseif($comboBox2.Text -eq 'DESHABILITAR PROXY'  -and $comboBox4.Text -eq 'AGREGAR RUTA' -and ($comboBox5.Text -eq 1 -Or $comboBox5.Text -eq 2 -Or $comboBox5.Text -eq 3 -Or $comboBox5.Text -eq 4 -Or $comboBox5.Text -eq 5 -Or $comboBox5.Text -eq 6 -Or $comboBox5.Text -eq 7 -Or $comboBox5.Text -eq 8 )){
 deshabilitarRutas;
@@ -7563,7 +10426,7 @@ elseif($comboBox2.Text -eq 'HABILITAR PROXY' -and $comboBox3.Text -eq 'Predeterm
     setDomain;
   }
 elseif($comboBox4.Text -eq 'ELIMINAR RUTA' -and ($comboBox5.Text -eq 1 -Or $comboBox5.Text -eq 2 -Or $comboBox5.Text -eq 3 -Or $comboBox5.Text -eq 4 -Or $comboBox5.Text -eq 5 -Or $comboBox5.Text -eq 6 -Or $comboBox5.Text -eq 7 -Or $comboBox5.Text -eq 8 )  -and $textbox5.Text -ne ' ' -and $textbox6.Text -ne ' ' -and $textbox7.Text -ne ' '-and $textbox9.Text -ne ' '  ){
-    ejecutarRutas;
+    eliminarRutas;
     setDomain;
           }
 elseif($comboBox4.Text -eq 'AGREGAR RUTA' -and ($comboBox5.Text -eq 1 -Or $comboBox5.Text -eq 2 -Or $comboBox5.Text -eq 3 -Or $comboBox5.Text -eq 4 -Or $comboBox5.Text -eq 5 -Or $comboBox5.Text -eq 6 -Or $comboBox5.Text -eq 7 -Or $comboBox5.Text -eq 8 )  -and $textbox5.Text -ne ' ' -and $textbox6.Text -ne ' ' -and $textbox7.Text -ne ' '-and $textbox9.Text -ne ' '  ){
@@ -8110,10 +10973,10 @@ function selection2{
         
         'AGREGAR RUTA'
         {
-       
+          $comboBox5.Text="";
             $Groupbox2.Controls.Add($comboBox5)
             $Groupbox2.Controls.Remove($Button7)
-    
+            $Groupbox2.Controls.Remove($Button16)
             $comboBox5.add_SelectedIndexChanged({
                   $Groupbox2.Controls.Add($Button15)
                 $Groupbox2.Controls.Add($Button5)
@@ -8124,12 +10987,18 @@ function selection2{
         }
 
         'ELIMINAR RUTA'
-        {
+        {         
                     $Groupbox2.Controls.Remove($Button15)
-            $Groupbox2.Controls.Remove($comboBox5)	
+                    $Groupbox2.Controls.Add($comboBox5)	
+                    $comboBox5.add_SelectedIndexChanged({
+                      $Groupbox2.Controls.Add($Button7)	
+                      $Groupbox2.Controls.Add($Button16)	
+                      $Groupbox2.Controls.Remove($Button5)	
+                      $Groupbox2.Controls.Remove($Button15)	
+                })
             $Groupbox2.Controls.Remove($Button5)	
             $comboBox5.Text="";
-            $Groupbox2.Controls.Add($Button7)	
+  
         }
       
     }
@@ -8319,6 +11188,10 @@ $comboBox1.add_SelectedIndexChanged({
         $Form.Controls.Add($Groupbox3)
         $Form.Controls.Add($Groupbox4)
         $Form.Controls.Add($label8)
+        $Form.Controls.Add($label15)
+        $Form.Controls.Add($label16)
+        $Form.Controls.Remove($label13)
+        $Form.Controls.Remove($label14)
         $Groupbox1.Controls.Add($comboBox2)
         $Groupbox2.Controls.Add($comboBox4)
         $Form.Controls.Remove($label2)
@@ -8352,12 +11225,15 @@ $textbox9.Text=" ";
  $Groupbox1.Controls.Remove($Button1)	
  $Groupbox1.Controls.Remove($Button4)
  $Groupbox2.Controls.Remove($Button7)	
+ $Groupbox2.Controls.Remove($Button16)	
  $Groupbox2.Controls.Remove($comboBox5)	
  $Groupbox2.Controls.Remove($Button5)	
   $Groupbox2.Controls.Remove($Button15)	
     $Groupbox1.Controls.Remove($Button14)	
  $textbox8.Size = '419, 454'
  $textbox8.Location = '247,79'
+ $label15.location                  = New-Object System.Drawing.Point(244,59)
+
 
     }
     else{
@@ -8374,6 +11250,10 @@ $textbox9.Text=" ";
             $Form.Controls.Remove($textbox1)
             $Form.Controls.Remove($Button)
             $Form.Controls.Remove($label8)
+            $Form.Controls.Add($label15)
+            $Form.Controls.Add($label16)
+            $Form.Controls.Add($label14)
+            $Form.Controls.Add($label13)
             $Form.Controls.Add($label2)	
             $Form.Controls.Add($label3) 
             $Form.Controls.Add($textbox2)
@@ -8419,13 +11299,15 @@ $textbox9.Text=" ";
 $Groupbox1.Controls.Remove($comboBox3)
 $Groupbox1.Controls.Remove($Button1)	
 $Groupbox1.Controls.Remove($Button4)
-$Groupbox2.Controls.Remove($Button7)	
+$Groupbox2.Controls.Remove($Button7)
+$Groupbox2.Controls.Remove($Button16)		
 $Groupbox2.Controls.Remove($comboBox5)	
 $Groupbox2.Controls.Remove($Button5)	
   $Groupbox2.Controls.Remove($Button15)	
     $Groupbox1.Controls.Remove($Button14)	
 $textbox8.Size = '419, 208'
 $textbox8.Location = '247,325'
+$label15.location                  = New-Object System.Drawing.Point(244,309)
 
 #################################################################
 
@@ -8454,6 +11336,10 @@ $textbox8.Location = '247,325'
                 $Form.Controls.Remove($Button6)
                 $Form.Controls.Add($Button6)
                 $Form.Controls.Remove($label8)
+                $Form.Controls.Add($label15)
+                $Form.Controls.Add($label16)
+                $Form.Controls.Add($label14)
+                $Form.Controls.Add($label13)
                 $Form.Controls.Add($Button9)
                 $Form.Controls.Add($Button10)
                 $Form.Controls.Add($Button11)
@@ -8497,12 +11383,15 @@ $textbox9.Text=" ";
           $Groupbox1.Controls.Remove($Button1)	
           $Groupbox1.Controls.Remove($Button4)
           $Groupbox2.Controls.Remove($Button7)	
+          $Groupbox2.Controls.Remove($Button16)	
           $Groupbox2.Controls.Remove($comboBox5)	
           $Groupbox2.Controls.Remove($Button5)
             $Groupbox2.Controls.Remove($Button15)	
     $Groupbox1.Controls.Remove($Button14)		
           $textbox8.Size = '419, 208'
           $textbox8.Location = '247,325'
+          $label15.location                  = New-Object System.Drawing.Point(244,309)
+
             }
         }
     }
@@ -8607,6 +11496,12 @@ $textbox1.add_TextChanged($textbox1_TextChanged)
     $Button15.BackColor = [System.Drawing.Color]::LightBlue
     $Button15.Add_Click( {ejecutarRutas}) 
 
+    $Button16.Location = New-Object System.Drawing.Size(122, 94) 
+    $Button16.Size = New-Object System.Drawing.Size(75, 23) 
+    $Button16.Text = "Eliminar" 
+    $Button16.UseVisualStyleBackColor = $True
+    $Button16.BackColor = [System.Drawing.Color]::LightBlue
+    $Button16.Add_Click( {eliminarRutas}) 
 
 
 
@@ -8795,8 +11690,38 @@ $textbox9.Size = '181, 20'
 $textbox9.Enabled=$True
 
 
+############################################
+$label13.text                      = "Detalle de Registros"
+$label13.AutoSize                  = $true
+$label13.width                     = 78
+$label13.height                    = 13
+$label13.location                  = New-Object System.Drawing.Point(244,63)
+$label13.Font                      = 'Microsoft Sans Serif, 8.25pt'
 
 
+
+$label14.text                      = "Registros"
+$label14.AutoSize                  = $true
+$label14.width                     = 78
+$label14.height                    = 13
+$label14.location                  = New-Object System.Drawing.Point(490,63)
+$label14.Font                      = 'Microsoft Sans Serif, 8.25pt'
+
+
+$label15.text                      = "Conectividad"
+$label15.AutoSize                  = $true
+$label15.width                     = 64
+$label15.height                    = 10
+
+$label15.Font                      = 'Microsoft Sans Serif, 8pt'
+
+
+$label16.text                      = "Registro Detallado"
+$label16.AutoSize                  = $true
+$label16.width                     = 78
+$label16.height                    = 13
+$label16.location                  = New-Object System.Drawing.Point(683,59)
+$label16.Font                      = 'Microsoft Sans Serif, 8.25pt'
 
 
 
@@ -8881,12 +11806,12 @@ $textbox3.Font = 'Microsoft Sans Serif, 8.25pt'
     $Button5.BackColor = [System.Drawing.Color]::LightBlue
     $Button5.Add_Click({routesForm}) 
     
-    $Button7.Location = New-Object System.Drawing.Size(122,94) 
+    $Button7.Location = New-Object System.Drawing.Size(41,94) 
     $Button7.Size = New-Object System.Drawing.Size(75,23) 
     $Button7.Text = "DELETE" 
     $Button7.UseVisualStyleBackColor = $True
     $Button7.BackColor = [System.Drawing.Color]::LightBlue
-    $Button7.Add_Click({routesForm}) 
+    $Button7.Add_Click({deleteForm}) 
     
     
     
