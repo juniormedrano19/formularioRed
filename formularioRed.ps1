@@ -69,9 +69,9 @@ $textbox333.Font = 'Microsoft Sans Serif, 10pt'
 
 
 function functionPrincipal{
-
-if(($textbox222.Text -eq 'Administrador' -Or $textbox222.Text -eq 'administrador' -Or $textbox222.Text -eq 'admin') -And $textbox333.Text -eq "123456"){
   $Form111.Close();
+if(($textbox222.Text -eq 'Administrador' -Or $textbox222.Text -eq 'administrador' -Or $textbox222.Text -eq 'admin') -And $textbox333.Text -eq "123456"){
+ 
     Write-Host "Acceso Exitoso"
  
     [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
@@ -10946,7 +10946,9 @@ function ejecutarTareas{
 
 
 
-
+function Salir{
+  $Form.Close();
+}
 
 
 
@@ -11164,6 +11166,7 @@ foreach($computer in $computerNames)
 $comboBox1.add_SelectedIndexChanged({
 
     if($comboBox1.SelectedItem -eq 'IP'){
+     
         $dataGridView.Rows.Clear()
         $dataGridView.DataSource = $null
         $dataGridView1.Rows.Clear()
@@ -11455,7 +11458,7 @@ $textbox1.add_TextChanged($textbox1_TextChanged)
     $Button11.Text = "Salir" 
     $Button11.UseVisualStyleBackColor = $True
     $Button11.BackColor = [System.Drawing.Color]::LightBlue
-    $Button11.Add_Click( { ejecutarRutas }) 
+    $Button11.Add_Click( { Salir }) 
 
     
     $Button12.Location = New-Object System.Drawing.Size(122, 223) 
@@ -11893,6 +11896,8 @@ else{
 
 
 }
+
+
 
 
 $Form111.Add_Shown({$Form111.Activate()})
