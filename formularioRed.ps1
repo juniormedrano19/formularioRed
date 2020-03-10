@@ -272,8 +272,434 @@ $Form.Controls.Add($label)
 ###################
 
 #####################
+function abrirReporte{
+  
+}
+function abrirInventario{
+  [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
+[void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")  
+$textbox1 = New-Object 'System.Windows.Forms.TextBox'
+$textbox3 = New-Object 'System.Windows.Forms.TextBox'
+$Button = New-Object 'System.Windows.Forms.Button'
+	$Button2 = New-Object 'System.Windows.Forms.Button'
+	$Button1 = New-Object 'System.Windows.Forms.Button'
+    $Button3 = New-Object 'System.Windows.Forms.Button'
+    $Button4 = New-Object 'System.Windows.Forms.Button'
+$Form = New-Object System.Windows.Forms.Form    
 
 
+function inventarioPcs{
+
+	$Username = "Administrador"
+    $Password = "R3c542016C4ll"
+$ipInicio=$textbox1.text;
+$ipFinal=$textbox3.text;
+$Inicial=$ipInicio.Split(".")
+$inicio0=$Inicial[0];
+$inicio1=$Inicial[1];
+$inicio2=$Inicial[2];
+[int]$inicio3=$Inicial[3];
+$primeraIP=$inicio0+"."+$inicio1+"."+$inicio2+"." ;
+
+$Final=$ipFinal.Split(".")
+$ultima0=$Final[0];
+$ultima1=$Final[1];
+$ultima2=$Final[2];
+[int]$ultima3=$Final[3];
+
+
+if(($inicio3 -ge 255) -Or ($ultima3 -ge 255)){
+	 [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
+	  $oReturn=[System.Windows.Forms.Messagebox]::Show("Ingrese el último término entre 0 y 255")
+}
+else{
+$datosInventario={
+	$Memory = Get-WmiObject  Win32_ComputerSystem | Select-Object @{Name="Installed Memory (RAM)";Expression={[math]::Round($_.TotalPhysicalMemory / 1GB)}}
+$Class = Get-WmiObject Win32_OperatingSystem
+$Pc=Get-WmiObject  Win32_ComputerSystem 
+$Processor=Get-WmiObject Win32_Processor
+[string]$Cores=Get-WmiObject -Class Win32_Processor | Select-Object NumberOfCores;
+$disco= Get-WmiObject Win32_DiskDrive 
+$discoSize= [math]::Round($disco.Size / 1GB);
+$versionSip=Get-ItemProperty -Path "C:\Program Files (x86)\SipRecsa\SipRecsa.exe" | Select VersionInfo |Format-List -Property *
+[string]$sipVersion=($versionSip | findstr "FileVersion").Split()[-1]
+  $localIpAddress=((ipconfig | findstr [0-9].\.)[0]).Split()[-1];
+  [string]$peru = (Get-WmiObject Win32_PnPEntity | ? {$_.Service -eq 'usbaudio'} | Select * | Format-List| findstr Caption)
+  $vida = $peru.Split(":")
+  $auricular=$vida[1].Trim()
+  $jabra= $auricular.Replace("Properties","")
+
+  $rutaSip= Get-Content C:\SipRecsa\Log\GenesysCTI_WebSocket.log
+  $arreglo=$rutaSip[0].Split("-");
+  $arregloPrimero=$arreglo[3].Trim();
+  $arreglo1=$rutaSip[3].Split("-");
+  $arregloDos=$arreglo1[3].Trim();
+
+  if($arregloPrimero -eq $arregloDos){
+  
+	  $call=$rutaSip[74].Split(":");
+	  $extension=$call[3]
+	  
+	  $nombre=$rutaSip[75].Split(":");
+	  $usuario=$nombre[3];
+	  $dato=$rutaSip[77].Split("|");
+	  $fullname=$dato[3]
+
+  
+  }else{
+  
+ 
+
+  $call=$rutaSip[71].Split(":");
+  $extension=$call[3]
+  
+  $nombre=$rutaSip[72].Split(":");
+  $usuario=$nombre[3];
+  $dato=$rutaSip[74].Split("|");
+  $fullname=$dato[3]
+  
+  }
+
+
+	$office= Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate| where-object{$_.DisplayName -match "Microsoft Office *"}
+$instaladoOffice=""
+	if($office){
+ $instaladoOffice = $office.DisplayName;
+	}else{
+	$instaladoOffice= "No tiene office"
+	}
+
+	$antivirus=Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate| where-object{$_.DisplayName -match "Forticlient *"}
+	$instaladoForti=""
+	if($antivirus){
+		$instaladoForti = $antivirus.DisplayName;
+	}else{
+		$instaladoForti= "No tiene Forticlient"
+	}
+$core1=$Cores.Split("=");
+$core2=$core1[1].Split("}");
+$core3=$core2[0]
+
+
+	$win32os = Get-WmiObject Win32_OperatingSystem
+	$WindowsEdition = $win32os.Caption 
+				 $BuildNumber = $win32os.BuildNumber 
+				 $RegisteredTo = $win32os.RegisteredUser 
+				 $ProductID = $win32os.SerialNumber 
+$oem=(Get-WmiObject -query ‘select * from SoftwareLicensingService’).OA3xOriginalProductKey
+
+
+  
+    $serie= Get-WmiObject win32_bios;
+
+     $texto="" +$localIpAddress+","+$Pc.model+","+$Pc.Manufacturer+","+$serie.SerialNumber+","+$Processor.Name+","+$core3+","+$discoSize+","+$Class.Caption+","+$env:computerName.ToUpper()+","+$Class.OSArchitecture+","+$Class.ServicePackMajorVersion+","+$Memory.'Installed Memory (RAM)'+","+$sipVersion+","+$jabra+","+$extension+","+$usuario+","+$fullname+","+$instaladoOffice+","+$instaladoForti+","+$WindowsEdition+","+$BuildNumber+","+$RegisteredTo+","+$ProductID+","+$oem
+                                     #Modelo       #Marca                                        #Procesador         #Cores    tama�o Disco      #Sistema Operativo   #Hostname                      #Arquitectura            #ServicePAck                        #Memoria                          #Version del Sip                          
+$texto | out-string
+ 
+	}
+
+$SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
+$Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
+
+
+for($inicio3;$inicio3 -le $ultima3;$inicio3++){
+    $Computer=$primeraIP+$inicio3;
+    echo $Computer;
+   
+
+  	$Session1 = New-PSSession -ComputerName $Computer -Credential $Cred 
+
+if($Session1 -eq $Null){
+	$dataGridView.Rows.Add($Computer,"","","","","","","","","","","","","","","","","","","","","","","")
+}
+
+
+else{
+
+
+$a = Invoke-Command -Session $Session1 -ScriptBlock $datosInventario
+#$a >> C:\Users\jmedrano\Desktop\consolidado.txt
+Get-PSSession | Remove-PSSession
+  
+
+$row1=$a.split(",");
+
+  
+$dataGridView.Rows.Add($row1[0],$row1[1],$row1[2],$row1[3],$row1[4],$row1[5],$row1[6],$row1[7],$row1[8],$row1[9],$row1[10],$row1[11],$row1[12],$row1[13],$row1[14],$row1[15],$row1[16],$row1[17],$row1[18],$row1[19],$row1[20],$row1[21],$row1[22],$row1[23])}
+
+
+}
+
+
+
+}
+}
+	
+
+
+
+function segundo{
+$ruta=[Environment]::GetFolderPath("Desktop")
+
+	$Excel = New-Object -ComObject Excel.Application
+$WorkBook = $Excel.Workbooks.Add()
+$WorkSheet = $WorkBook.Worksheets.Item(1)
+$WorkSheet.Name = 'REPORTE'
+$i=1;
+$WorkSheet.Cells.Item($i,1) = "IP"
+$WorkSheet.Cells.Item($i,2) = "MODELO"
+$WorkSheet.Cells.Item($i,3) = "MARCA"
+$WorkSheet.Cells.Item($i,4) = "NUMERO DE SERIE"
+$WorkSheet.Cells.Item($i,5) = "PROCESADOR"
+$WorkSheet.Cells.Item($i,6) = "CORES"
+$WorkSheet.Cells.Item($i,7) = "TAMAÑO DISCO"
+$WorkSheet.Cells.Item($i,8) = "SISTEMA OPERATIVO"
+$WorkSheet.Cells.Item($i,9) = "HOSTNAME"
+$WorkSheet.Cells.Item($i,10) = "ARQUITECTURA"
+$WorkSheet.Cells.Item($i,11) = "SERVICE PACK"
+$WorkSheet.Cells.Item($i,12) = "MEMORIA"
+$WorkSheet.Cells.Item($i,13) = "VERSION DEL SIP"
+$WorkSheet.Cells.Item($i,14) = "JABRA"
+$WorkSheet.Cells.Item($i,15) = "EXTENSION"
+$WorkSheet.Cells.Item($i,16) = "USUARIO"
+$WorkSheet.Cells.Item($i,17) = "NOMBRE COMPLETO"
+$WorkSheet.Cells.Item($i,18) = "MICROSOFT OFFICE"
+$WorkSheet.Cells.Item($i,19) = "ANTIVIRUS"
+$WorkSheet.Cells.Item($i,20) = "EDICION DE WINDOWS"
+$WorkSheet.Cells.Item($i,21) = "BUILD NUMBER"
+$WorkSheet.Cells.Item($i,22) = "USER REGISTRADO"
+$WorkSheet.Cells.Item($i,23) = "ID DEL PRODUCTO"
+$WorkSheet.Cells.Item($i,24) = "PRODUCT KEY"
+
+
+
+
+
+
+$WorkSheet.Cells.Item($i,1).Font.Bold = $True
+$WorkSheet.Cells.Item($i,2).Font.Bold = $True
+$WorkSheet.Cells.Item($i,3).Font.Bold = $True
+$WorkSheet.Cells.Item($i,4).Font.Bold = $True
+$WorkSheet.Cells.Item($i,5).Font.Bold = $True
+$WorkSheet.Cells.Item($i,6).Font.Bold = $True
+$WorkSheet.Cells.Item($i,7).Font.Bold = $True
+$WorkSheet.Cells.Item($i,8).Font.Bold = $True
+$WorkSheet.Cells.Item($i,9).Font.Bold = $True
+$WorkSheet.Cells.Item($i,10).Font.Bold = $True
+$WorkSheet.Cells.Item($i,11).Font.Bold = $True
+$WorkSheet.Cells.Item($i,12).Font.Bold = $True
+$WorkSheet.Cells.Item($i,13).Font.Bold = $True
+$WorkSheet.Cells.Item($i,14).Font.Bold = $True
+$WorkSheet.Cells.Item($i,15).Font.Bold = $True
+$WorkSheet.Cells.Item($i,16).Font.Bold = $True
+$WorkSheet.Cells.Item($i,17).Font.Bold = $True
+$WorkSheet.Cells.Item($i,18).Font.Bold = $True
+$WorkSheet.Cells.Item($i,19).Font.Bold = $True
+$WorkSheet.Cells.Item($i,20).Font.Bold = $True
+$WorkSheet.Cells.Item($i,21).Font.Bold = $True
+$WorkSheet.Cells.Item($i,22).Font.Bold = $True
+$WorkSheet.Cells.Item($i,23).Font.Bold = $True
+$WorkSheet.Cells.Item($i,24).Font.Bold = $True
+
+
+
+
+
+
+
+for($i=1;$i -le ($dataGridView.Rows.Count); $i++){
+	for($j=0; $j -le ($dataGridView.Columns.Count) ; $j++){
+$WorkSheet.Cells.Item(($i+1),($j+1)) = $dataGridView.Rows[$i-1].Cells[$j].value
+
+	}
+
+}
+
+Add-Type -AssemblyName System.Windows.Forms
+    $dlg = New-Object System.Windows.Forms.SaveFileDialog
+    $dlg.Filter = "Excel Files|*.xlsx"
+    $dlg.SupportMultiDottedExtensions = $true;
+    $dlg.InitialDirectory = "$ruta"
+
+
+if($dlg.ShowDialog() -eq 'Ok'){
+  echo "you chose to create $($dlg.filename)"
+}
+$WorkBook.SaveAs($dlg.filename)
+$Excel.Quit()
+}
+
+$cancelarButton1={
+      $Form.Close()
+}
+function limpiarDatos{
+$textbox1.Text="";
+$textbox3.Text="";
+$dataGridView.Rows.Clear()
+$dataGridView.DataSource = $null
+
+}
+$textbox1_TextChanged={
+		
+		$Button.Enabled = $false
+		if ($textbox1.Text -ne '') {
+			$Button.Enabled = $true
+		}
+			$Button2.Enabled = $false
+		if ($textbox1.Text -ne '') {
+			$Button2.Enabled = $true
+		}
+			$Button1.Enabled = $false
+		if ($textbox1.Text -ne '') {
+			$Button1.Enabled = $true
+		}
+
+	
+	}
+
+
+
+$Form.Size = New-Object System.Drawing.Size(1100,750)  
+$Form.StartPosition = "CenterScreen" 
+$Form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedToolWindow 
+$Form.Text = "CAMBIOS DE IP" 
+$Form.Controls.Add($textbox1)
+$Form.Controls.Add($textbox3)
+
+
+
+$label                           = New-Object system.Windows.Forms.Label
+$label.text                      = "IP INICIAL"
+$label.AutoSize                  = $true
+$label.width                     = 40
+$label.height                    = 30
+$label.location                  = New-Object System.Drawing.Point(55,30)
+$label.Font                      = 'Comic Sans MS,10'
+$Form.Controls.Add($label) 
+
+$label2                           = New-Object system.Windows.Forms.Label
+$label2.text                      = "IP FINAL"
+$label2.AutoSize                  = $true
+$label2.width                     = 40
+$label2.height                    = 30
+$label2.location                  = New-Object System.Drawing.Point(55,120)
+$label2.Font                      = 'Comic Sans MS,10'
+$Form.Controls.Add($label2) 
+############ip inicial
+	$textbox1.Font = 'Segoe UI, 12pt'
+	$textbox1.Location = '40, 60'
+	$textbox1.Margin = '5, 5, 5, 5'
+	$textbox1.Multiline = $True
+	$textbox1.Name = 'textbox5'
+	$textbox1.Size = '200, 30'
+	$textbox1.TabIndex = 1
+	$textbox1.add_TextChanged($textbox1_TextChanged)
+############ip final
+    	$textbox3.Font = 'Segoe UI, 12pt'
+	$textbox3.Location = '40, 150'
+	$textbox3.Margin = '5, 5, 5, 5'
+	$textbox3.Multiline = $True
+	$textbox3.Name = 'textbox5'
+	$textbox3.Size = '200, 30'
+	$textbox3.TabIndex = 1
+	$textbox3.add_TextChanged($textbox1_TextChanged)
+############ip caja de inventario
+   #  $textbox2.Font = 'Segoe UI, 12pt'
+#	$textbox2.Location = '340,25'
+#	$textbox2.Margin = '5, 5, 5, 5'
+#	$textbox2.Multiline = $True
+#	$textbox2.Name = 'textbox9'
+#	$textbox2.Size = '700, 650'
+#	$textbox2.TextAlign = 'Center'
+#	$textbox2.TabIndex = 2
+ #   $textbox2.Enabled=$false
+#	$textbox2.ReadOnly=$true
+ #   $textbox2.Scrollbars = 'Vertical'
+	# $textbox2.Scrollbars = 'Horizontal'
+
+
+	$dataGridView = New-Object System.Windows.Forms.DataGridView
+$dataGridView.Size=New-Object System.Drawing.Size(700,650)
+$dataGridView.Location= New-Object System.Drawing.Point(340,25)
+$Form.Controls.Add($dataGridView)
+$dataGridView.ColumnCount = 24
+$dataGridView.ColumnHeadersVisible = $true
+$dataGridView.Columns[0].Name = "IP"
+$dataGridView.Columns[1].Name = "MODELO"
+$dataGridView.Columns[2].Name = "MARCA"
+$dataGridView.Columns[3].Name = "NUMERO DE SERIE"
+$dataGridView.Columns[4].Name = "PROCESADOR"
+$dataGridView.Columns[5].Name = "CORES"
+$dataGridView.Columns[6].Name = "TAMAÑO DISCO"
+$dataGridView.Columns[7].Name = "SISTEMA OPERATIVO"
+$dataGridView.Columns[8].Name = "HOSTNAME"
+$dataGridView.Columns[9].Name = "ARQUITECTURA"
+$dataGridView.Columns[10].Name = "SERVICE PACK"
+$dataGridView.Columns[11].Name = "MEMORIA"
+$dataGridView.Columns[12].Name = "VERSION DEL SIP"
+$dataGridView.Columns[13].Name = "JABRA"
+$dataGridView.Columns[14].Name = "EXTENSION"
+$dataGridView.Columns[15].Name = "USUARIO"
+$dataGridView.Columns[16].Name = "NOMBRE COMPLETO"
+$dataGridView.Columns[17].Name = "MICROSOFT OFFICE"
+$dataGridView.Columns[18].Name = "ANTIVIRUS"
+$dataGridView.Columns[19].Name = "EDICION DE WINDOWS"
+$dataGridView.Columns[20].Name = "BUILD NUMBER"
+$dataGridView.Columns[21].Name = "USER REGISTRADO"
+$dataGridView.Columns[22].Name = "ID DEL PRODUCTO"
+$dataGridView.Columns[23].Name = "PRODUCT KEY"
+
+
+
+$Button.Location = New-Object System.Drawing.Size(62,270) 
+$Button.Size = New-Object System.Drawing.Size(150,50) 
+$Button.Text = "CANCELAR" 
+$Button.UseVisualStyleBackColor = $True
+$Button.BackColor = [System.Drawing.Color]::LightBlue
+$Button.DialogResult= "Cancel"
+$Button.Add_Click($cancelarButton1) 
+$Form.Controls.Add($Button)	
+
+    ##########################################
+
+$Button1.Location = New-Object System.Drawing.Size(62,350) 
+$Button1.Size = New-Object System.Drawing.Size(150,50) 
+$Button1.Text = "LIMPIAR DATOS" 
+$Button1.UseVisualStyleBackColor = $True
+$Button1.BackColor = [System.Drawing.Color]::LightBlue
+$Button1.Add_Click({limpiarDatos}) 
+$Form.Controls.Add($Button1)	
+########################################
+$Button2.Location = New-Object System.Drawing.Size(62,430) 
+$Button2.Size = New-Object System.Drawing.Size(150,50) 
+$Button2.Text = "OBTENER INVENTARIO" 
+$Button2.UseVisualStyleBackColor = $True
+$Button2.BackColor = [System.Drawing.Color]::LightBlue
+$Button2.Add_Click({inventarioPcs}) 
+$Form.Controls.Add($Button2)	
+
+##########################################
+$Button3.Location = New-Object System.Drawing.Size(62,510) 
+$Button3.Size = New-Object System.Drawing.Size(150,50) 
+$Button3.Text = "GENERAR REPORTE" 
+$Button3.UseVisualStyleBackColor = $True
+$Button3.BackColor = [System.Drawing.Color]::LightBlue
+$Button3.Add_Click({segundo}) 
+$Form.Controls.Add($Button3)	
+
+$Button4.Location = New-Object System.Drawing.Size(62,590) 
+$Button4.Size = New-Object System.Drawing.Size(150,50) 
+$Button4.Text = "SALIR" 
+$Button4.UseVisualStyleBackColor = $True
+$Button4.BackColor = [System.Drawing.Color]::LightBlue
+$Button4.Add_Click($cancelarButton1) 
+$Form.Controls.Add($Button4)	
+
+
+$Form.Add_Shown({$Form.Activate()})
+[void] $Form.ShowDialog();
+
+}
 
 
 
@@ -5241,7 +5667,433 @@ $ip2=$Computer2.Split(".");
       [void] $Form1.ShowDialog();
   
   }
+  
+
+elseif($comboBox1.SelectedItem -eq 'ARCHIVO TXT'  )
+{
+    $prueba2= Get-Content $OpenFileDialog.FileName
+  
+    foreach($newPc in $prueba2){
+[void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
+[void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")  
+############### CREACION DEL ELEMENTO ############
+$Form1 = New-Object System.Windows.Forms.Form 
+
+
+$Button10 = New-Object 'System.Windows.Forms.Button'
+$textbox19 = New-Object 'System.Windows.Forms.TextBox'
+$textbox20 = New-Object 'System.Windows.Forms.TextBox'
+$Button11 = New-Object 'System.Windows.Forms.Button'
+$label11  = New-Object 'system.Windows.Forms.Label'
+$label12 = New-Object 'system.Windows.Forms.Label'
+$label13= New-Object 'system.Windows.Forms.Label'
+$label14= New-Object 'system.Windows.Forms.Label'
+$label15= New-Object 'system.Windows.Forms.Label'
+
+#Etiqueta de Ruta de Ubicación
+
+
+$label11.text                      = "Servidor Proxy"
+$label11.AutoSize                  = $true
+$label11.width                     = 40
+$label11.height                    = 30
+$label11.location                  = New-Object System.Drawing.Point(55,25)
+$label11.Font                      = 'Comic Sans MS,10'
+$Form1.Controls.Add($label11) 
+
+
+$label12.text                      = "Excepción 1:"
+$label12.AutoSize                  = $true
+$label12.width                     = 40
+$label12.height                    = 30
+$label12.location                  = New-Object System.Drawing.Point(55,80)
+$label12.Font                      = 'Comic Sans MS,10'
+$Form1.Controls.Add($label12) 
+
+
+$label13.text                      = "Excepción 2:"
+$label13.AutoSize                  = $true
+$label13.width                     = 40
+$label13.height                    = 30
+$label13.location                  = New-Object System.Drawing.Point(55,130)
+$label13.Font                      = 'Comic Sans MS,10'
+$Form1.Controls.Add($label13) 
+
+$label14.text                      = "Excepción 3:"
+$label14.AutoSize                  = $true
+$label14.width                     = 40
+$label14.height                    = 30
+$label14.location                  = New-Object System.Drawing.Point(55,180)
+$label14.Font                      = 'Comic Sans MS,10'
+$Form1.Controls.Add($label14) 
+
+$label15.text                      = "Excepción 4:"
+$label15.AutoSize                  = $true
+$label15.width                     = 40
+$label15.height                    = 30
+$label15.location                  = New-Object System.Drawing.Point(55,230)
+$label15.Font                      = 'Comic Sans MS,10'
+$Form1.Controls.Add($label15) 
+
+
+############TextBox Ruta de Ubicación
+$textbox11.Font = 'Comic Sans MS,10'
+$textbox11.Location = '200,25'
+$textbox11.Margin = '5, 5, 5, 5'
+$textbox11.Multiline = $True
+$textbox11.Name = 'textbox5'
+$textbox11.Size = '300, 30'
+$textbox11.TabIndex = 1
+$textbox11.Enabled=$false
+$textbox11.add_TextChanged($textbox1_TextChanged)
+
+
+$Form1.Controls.Add($textbox11)
+$peru =  $newPc
+$arreglo = $peru.Split(".");
+
+if($arreglo[2] -eq '60'){
+    $array = $arreglo[0] + "." + $arreglo[1] + "." + $arreglo[2] + "." + "102"+":3128"
+    $textbox11.Text = $array
+}
+elseif ($arreglo[2] -eq '61' -or $arreglo[2] -eq '62' -or $arreglo[2] -eq '63' -or $arreglo[2] -eq '64' -or $arreglo[2] -eq '65' ) {
+$array = $arreglo[0] + "." + $arreglo[1] + "." + $arreglo[2] + "." + "7"+":3128"
+$textbox11.Text = $array  
+}else{
+
+$textbox11.Text = " "
+}
+
+
+$Form1.Size = New-Object System.Drawing.Size(1100,750)  
+$Form1.StartPosition = "CenterScreen" 
+$Form1.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::Sizable
+$Form1.MaximizeBox = $false
+$Form1.Text = "FORMULARIO DE RED" 
+
+
+$textbox12.Font = 'Comic Sans MS,10'
+$textbox12.Location = '200,80'
+$textbox12.Margin = '5, 5, 5, 5'
+$textbox12.Multiline = $True
+$textbox12.Name = 'textbox5'
+$textbox12.Size = '300, 30'
+$textbox12.TabIndex = 1
+$textbox12.Enabled = $false
+$textbox12.add_TextChanged($textbox1_TextChanged)
+$Form1.Controls.Add($textbox12)
+
+
+$textbox13.Font = 'Comic Sans MS,10'
+$textbox13.Location = '200,130'
+$textbox13.Margin = '5, 5, 5, 5'
+$textbox13.Multiline = $True
+$textbox13.Name = 'textbox5'
+$textbox13.Size = '300, 30'
+$textbox13.TabIndex = 1
+$textbox13.Enabled = $false
+$textbox13.add_TextChanged($textbox1_TextChanged)
+$Form1.Controls.Add($textbox13)
+
+$textbox14.Font = 'Comic Sans MS,10'
+$textbox14.Location = '200,180'
+$textbox14.Margin = '5, 5, 5, 5'
+$textbox14.Multiline = $True
+$textbox14.Name = 'textbox5'
+$textbox14.Size = '300, 30'
+$textbox14.TabIndex = 1
+$textbox14.Enabled = $false
+$textbox14.add_TextChanged($textbox1_TextChanged)
+$Form1.Controls.Add($textbox14)
+
+$textbox15.Font = 'Comic Sans MS,10'
+$textbox15.Location = '200,230'
+$textbox15.Margin = '5, 5, 5, 5'
+$textbox15.Multiline = $True
+$textbox15.Name = 'textbox5'
+$textbox15.Size = '300, 30'
+$textbox15.TabIndex = 1
+$textbox15.Enabled = $false
+$textbox15.add_TextChanged($textbox1_TextChanged)
+$Form1.Controls.Add($textbox15)
+if($arreglo[2] -eq '60' -or $arreglo[2] -eq '61' -or $arreglo[2] -eq '62' -or $arreglo[2] -eq '63' -or $arreglo[2] -eq '64' -or $arreglo[2] -eq '65' ){
+$textbox12.Text = "192.9.100.*"
+$textbox13.Text = "10.10.10.*"
+$array = $arreglo[0] + "." + $arreglo[1] + "." + $arreglo[2] + "." + "*"
+$textbox14.Text = $array
+$textbox15.Text = "<local>"
+}
 else{
+$textbox12.Text = " "
+$textbox13.Text = " "
+
+$textbox14.Text = " "
+$textbox15.Text = " "
+}
+
+
+
+
+  $Form1.Controls.Add($Button10)
+$Button10.Location = New-Object System.Drawing.Size(520,600) 
+$Button10.Size = New-Object System.Drawing.Size(150, 50) 
+$Button10.Text = "12345" 
+$Button10.UseVisualStyleBackColor = $True
+$Button10.BackColor = [System.Drawing.Color]::LightBlue
+$Button10.Add_Click( { 
+        $textbox11.Enabled = $true
+        $textbox12.Enabled = $true
+        $textbox13.Enabled = $true
+        $textbox14.Enabled = $true
+        $textbox15.Enabled = $true
+    if ($arreglo[2] -eq '64') {
+       
+        $textbox16.Enabled = $true
+        $textbox17.Enabled = $true
+         $textbox18.Enabled=$true}
+
+ }) 
+  
+
+ $textbox19.Font = 'Comic Sans MS,10'
+ $textbox19.Location = '600,50'
+ $textbox19.Margin = '5, 5, 5, 5'
+ $textbox19.Multiline = $True
+ $textbox19.Name = 'textbox5'
+ $textbox19.Size = '300, 30'
+ $textbox19.TabIndex = 1
+ $textbox19.Enabled = $false
+ $textbox19.add_TextChanged($textbox1_TextChanged)
+$Form1.Controls.Add($textbox19)
+
+$textbox20.Font = 'Comic Sans MS,10'
+$textbox20.Location = '600,150'
+$textbox20.Margin = '5, 5, 5, 5'
+$textbox20.Multiline = $True
+$textbox20.Name = 'textbox5'
+$textbox20.Size = '300, 30'
+$textbox20.TabIndex = 1
+$textbox20.Enabled = $false
+$textbox20.add_TextChanged($textbox1_TextChanged)
+$Form1.Controls.Add($textbox20)
+
+
+$matikard="192.9.62.64/26"
+$movistarChile="192.9.64.0/25"
+$financieroChileJuanJo="192.9.62.128/26"
+$financieroChilePatricia="192.9.62.192/26"
+$Oncosalud="192.9.64.128/26"
+$cajaArequipa="192.9.64.0/26"
+$carteraPropia="192.9.65.128/25"
+$mesaDigital="192.9.61.100/32"
+$bbva="192.9.64.192/26"
+
+[int]$arregloModificado=$arreglo[3]
+#Mascara25
+$movistarMask=($arregloModificado -ge 0 -and $arregloModificado -le 127)
+$carteraMask=($arregloModificado -ge 128 -and $arregloModificado -le 255)
+#Mascara26
+$matikardMask=($arregloModificado -ge 64 -and $arregloModificado -le 127)
+
+$financieroMaskJuanJo=($arregloModificado -ge 128 -and $arregloModificado -le 191)
+$financieroMaskPatricia=($arregloModificado -ge 192 -and $arregloModificado -le 255)
+$OncosaludMask=($arregloModificado -ge 128 -and $arregloModificado -le 191)
+$cajaArequipaMask=($arregloModificado -ge 0 -and $arregloModificado -le 63)
+$bbvaMask=($arregloModificado -ge 192 -and $arregloModificado -le 255)
+#
+
+
+
+
+if($arreglo[2] -eq '64'){
+
+if( $movistarMask){
+
+    $label16                           = New-Object system.Windows.Forms.Label
+    $label17                           = New-Object system.Windows.Forms.Label
+    $label16.text                      = "Excepción 5:"
+    $label16.AutoSize                  = $true
+    $label16.width                     = 40
+    $label16.height                    = 30
+    $label16.location                  = New-Object System.Drawing.Point(55,270)
+    $label16.Font                      = 'Comic Sans MS,10'
+    $Form1.Controls.Add($label16) 
+
+   
+$label17.text                      = "Excepción 6:"
+$label17.AutoSize                  = $true
+$label17.width                     = 40
+$label17.height                    = 30
+$label17.location                  = New-Object System.Drawing.Point(55,310)
+$label17.Font                      = 'Comic Sans MS,10'
+$Form1.Controls.Add($label17) 
+
+$label18                           = New-Object system.Windows.Forms.Label
+$label18.text                      = "Excepción 7:"
+$label18.AutoSize                  = $true
+$label18.width                     = 40
+$label18.height                    = 30
+$label18.location                  = New-Object System.Drawing.Point(55,350)
+$label18.Font                      = 'Comic Sans MS,10'
+$Form1.Controls.Add($label18) 
+
+
+
+
+
+
+
+    $textbox16 = New-Object 'System.Windows.Forms.TextBox'
+    $textbox16.Font = 'Comic Sans MS,10'
+     $textbox16.Location = '200,270'
+     $textbox16.Margin = '5, 5, 5, 5'
+     $textbox16.Multiline = $True
+    $textbox16.Name = 'textbox5'
+  $textbox16.Size = '300, 30'
+    $textbox16.TabIndex = 1
+    $textbox16.Enabled = $false
+  $textbox16.add_TextChanged($textbox1_TextChanged)
+  $Form1.Controls.Add($textbox16)
+
+
+  $textbox17 = New-Object 'System.Windows.Forms.TextBox'
+  $textbox17.Font = 'Comic Sans MS,10'
+  $textbox17.Location = '200,310'
+  $textbox17.Margin = '5, 5, 5, 5'
+  $textbox17.Multiline = $True
+  $textbox17.Name = 'textbox5'
+  $textbox17.Size = '300, 30'
+  $textbox17.TabIndex = 1
+  $textbox17.Enabled = $false
+  $textbox17.add_TextChanged($textbox1_TextChanged)
+  $Form1.Controls.Add($textbox17)
+
+  $textbox18 = New-Object 'System.Windows.Forms.TextBox'
+    $textbox18.Font = 'Comic Sans MS,10'
+    $textbox18.Location = '200,350'
+    $textbox18.Margin = '5, 5, 5, 5'
+    $textbox18.Multiline = $True
+    $textbox18.Name = 'textbox5'
+    $textbox18.Size = '300, 30'
+    $textbox18.TabIndex = 1
+    $textbox18.Enabled = $false
+    $textbox18.add_TextChanged($textbox1_TextChanged)
+  $Form1.Controls.Add($textbox18)
+
+  $textbox16.Text = "192.9.104.*"
+  $textbox17.Text = "192.9.106.*"
+  $textbox18.Text = "*.telefonicachile.cl"
+    $textbox19.Text=$movistarChile
+    $textbox20.Text="Movistar Chile"
+}
+else{
+    if($OncosaludMask){
+        $Form1.Controls.Remove($textbox16)
+        $Form1.Controls.Remove($textbox17)
+        $Form1.Controls.Remove($textbox18)
+        $Form1.Controls.Remove($label16 )
+        $Form1.Controls.Remove($label17 )
+        $Form1.Controls.Remove($label18 )
+        $textbox19.Text=$Oncosalud
+        $textbox20.Text="Oncosalud Cobranzas"
+    }
+    else{
+        if($bbvaMask){
+            $Form1.Controls.Remove($textbox16)
+            $Form1.Controls.Remove($textbox17)
+            $Form1.Controls.Remove($textbox18)
+            $Form1.Controls.Remove($label16 )
+            $Form1.Controls.Remove($label17 )
+            $Form1.Controls.Remove($label18 )
+            $textbox19.Text=$bbva
+            $textbox20.Text="BBVA"
+        }
+        else{
+            $Form1.Controls.Remove($textbox16)
+            $Form1.Controls.Remove($textbox17)
+            $Form1.Controls.Remove($textbox18)
+            $Form1.Controls.Remove($label16 )
+            $Form1.Controls.Remove($label17 )
+            $Form1.Controls.Remove($label18 )
+            $textbox19.Text="Error"
+            $textbox20.Text="Error"
+            $textbox11.Text = " "
+            $textbox12.Text = " "
+            $textbox13.Text = " "
+            $textbox14.Text = " "
+            $textbox15.Text = " "
+        }
+    }
+}
+}
+
+
+if($arreglo[2] -eq '62'){
+if($financieroMaskJuanJo){
+    $textbox19.Text=$financieroChileJuanJo
+    $textbox20.Text="Financiero Chile-Juan José"
+}
+else{
+    if($financieroMaskPatricia){
+        $textbox19.Text=$financieroChilePatricia
+        $textbox20.Text="Financiero Chile-Patricia"
+    }
+    else{
+        if($cajaArequipaMask){
+            $textbox19.Text=$cajaArequipa
+            $textbox20.Text="Caja Arequipa"
+        }
+        else{
+            if($matikardMask){
+                $textbox19.Text=$matikard
+                $textbox20.Text="Matikard/Entel/Claro"
+            }else{
+                $textbox19.Text="Error"
+                $textbox20.Text="Error"
+                $textbox11.Text = " "
+                $textbox12.Text = " "
+                $textbox13.Text = " "
+                $textbox14.Text = " "
+                $textbox15.Text = " "
+            }
+           
+        }
+    }
+}
+}
+if($arreglo[2] -eq '65'){
+if($carteraMask){
+    $textbox19.Text=$carteraPropia
+    $textbox20.Text="Cartera Propia"
+}
+else{
+    $textbox19.Text="Error"
+    $textbox20.Text="Error"
+    $textbox11.Text = " "
+    $textbox12.Text = " "
+    $textbox13.Text = " "
+    $textbox14.Text = " "
+    $textbox15.Text = " "
+}
+}
+
+
+$Button11.Location = New-Object System.Drawing.Size(720,600) 
+$Button11.Size = New-Object System.Drawing.Size(150, 50) 
+$Button11.Text = "ACEPTAR" 
+$Button11.UseVisualStyleBackColor = $True
+$Button11.BackColor = [System.Drawing.Color]::LightBlue
+$Button11.DialogResult = [System.Windows.Forms.DialogResult]::OK
+$Form1.AcceptButton = $Button11
+$Form1.Controls.Add($Button11)
+
+
+
+
+$Form1.Add_Shown({$Form.Activate()})
+[void] $Form1.ShowDialog();
+}
+}else{
   Add-Type -AssemblyName System.Windows.Forms
 $errorMsg = "No puede quedar en blanco la dirección ip o una de las direcciones ips es errónea
 Vuelva a intentarlo nuevamente. Recuerde que la ip inicial y final deben ser de una misma red"
@@ -11430,10 +12282,10 @@ $textbox1.add_TextChanged($textbox1_TextChanged)
 
     $Button6.Location = New-Object System.Drawing.Size(566, 557) 
     $Button6.Size = New-Object System.Drawing.Size(100, 43) 
-    $Button6.Text = "RUTAS" 
+    $Button6.Text = "Inventario" 
     $Button6.UseVisualStyleBackColor = $True
     $Button6.BackColor = [System.Drawing.Color]::LightBlue
-    $Button6.Add_Click( { ejecutarRutas }) 
+    $Button6.Add_Click( { abrirInventario }) 
 
 
 
@@ -11442,7 +12294,7 @@ $textbox1.add_TextChanged($textbox1_TextChanged)
     $Button9.Text = "Reporte" 
     $Button9.UseVisualStyleBackColor = $True
     $Button9.BackColor = [System.Drawing.Color]::LightBlue
-    $Button9.Add_Click( { ejecutarRutas }) 
+    $Button9.Add_Click( { abrirReporte }) 
 
     $Button10.Location = New-Object System.Drawing.Size(414, 641) 
     $Button10.Size = New-Object System.Drawing.Size(100, 43) 
