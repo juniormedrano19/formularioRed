@@ -273,7 +273,75 @@ $Form.Controls.Add($label)
 
 #####################
 function abrirReporte{
-  
+ 
+    $ruta=[Environment]::GetFolderPath("Desktop")
+    
+      $Excel = New-Object -ComObject Excel.Application
+    $WorkBook = $Excel.Workbooks.Add()
+    $WorkSheet = $WorkBook.Worksheets.Item(1)
+    $WorkSheet.Name = 'REPORTE'
+    $i=1;
+    $WorkSheet.Cells.Item($i,1).Interior.ColorIndex=49;
+    $WorkSheet.Cells.Item($i,2).Interior.ColorIndex=49;
+    $WorkSheet.Cells.Item($i,3).Interior.ColorIndex=49;
+    $WorkSheet.Cells.Item($i,4).Interior.ColorIndex=49;
+    $WorkSheet.Cells.Item($i,5).Interior.ColorIndex=49;
+    $WorkSheet.Cells.Item($i,6).Interior.ColorIndex=49;
+    $WorkSheet.Cells.Item($i,7).Interior.ColorIndex=49;
+    $WorkSheet.Cells.Item($i,8).Interior.ColorIndex=49;
+    
+    $WorkSheet.Cells.Item($i,1).Font.ColorIndex=2;
+    $WorkSheet.Cells.Item($i,2).Font.ColorIndex=2;
+    $WorkSheet.Cells.Item($i,3).Font.ColorIndex=2;
+    $WorkSheet.Cells.Item($i,4).Font.ColorIndex=2;
+    $WorkSheet.Cells.Item($i,5).Font.ColorIndex=2;
+    $WorkSheet.Cells.Item($i,6).Font.ColorIndex=2;
+    $WorkSheet.Cells.Item($i,7).Font.ColorIndex=2;
+    $WorkSheet.Cells.Item($i,8).Font.ColorIndex=2;
+    
+    
+    $WorkSheet.Cells.Item($i,1) = "Direccion IP"
+    $WorkSheet.Cells.Item($i,2) = "ESTADO"
+    $WorkSheet.Cells.Item($i,3) = "PROXY"
+    $WorkSheet.Cells.Item($i,4) = "RUTAS"
+    $WorkSheet.Cells.Item($i,5) = "GATEWAY"
+    $WorkSheet.Cells.Item($i,6) = "DOMINIO"
+    $WorkSheet.Cells.Item($i,7) = "FECHA"
+    $WorkSheet.Cells.Item($i,8) = "HORA"
+    
+    
+    $WorkSheet.Cells.Item($i,1).Font.Bold = $True
+    $WorkSheet.Cells.Item($i,2).Font.Bold = $True
+    $WorkSheet.Cells.Item($i,3).Font.Bold = $True
+    $WorkSheet.Cells.Item($i,4).Font.Bold = $True
+    $WorkSheet.Cells.Item($i,5).Font.Bold = $True
+    $WorkSheet.Cells.Item($i,6).Font.Bold = $True
+    $WorkSheet.Cells.Item($i,7).Font.Bold = $True
+    $WorkSheet.Cells.Item($i,8).Font.Bold = $True
+    
+    
+    
+    for($i=1;$i -le ($dataGridView2.Rows.Count); $i++){
+      for($j=0; $j -le ($dataGridView2.Columns.Count) ; $j++){
+    $WorkSheet.Cells.Item(($i+1),($j+1)) = $dataGridView2.Rows[$i-1].Cells[$j].value
+    
+      }
+    
+    }
+    
+    Add-Type -AssemblyName System.Windows.Forms
+    $dlg = New-Object System.Windows.Forms.SaveFileDialog
+    $dlg.Filter = "Excel Files|*.xlsx"
+    $dlg.SupportMultiDottedExtensions = $true;
+    $dlg.InitialDirectory = "$ruta"
+    
+    
+    if($dlg.ShowDialog() -eq 'Ok'){
+      echo "you chose to create $($dlg.filename)"
+    }
+    $WorkBook.SaveAs($dlg.filename)
+    $Excel.Quit()
+    
 }
 function abrirInventario{
   [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
@@ -446,7 +514,56 @@ $WorkBook = $Excel.Workbooks.Add()
 $WorkSheet = $WorkBook.Worksheets.Item(1)
 $WorkSheet.Name = 'REPORTE'
 $i=1;
-$WorkSheet.Cells.Item($i,1).Interior.ColorIndex=6;
+$WorkSheet.Cells.Item($i,1).Interior.ColorIndex=49;
+$WorkSheet.Cells.Item($i,2).Interior.ColorIndex=49;
+$WorkSheet.Cells.Item($i,3).Interior.ColorIndex=49;
+$WorkSheet.Cells.Item($i,4).Interior.ColorIndex=49;
+$WorkSheet.Cells.Item($i,5).Interior.ColorIndex=49;
+$WorkSheet.Cells.Item($i,6).Interior.ColorIndex=49;
+$WorkSheet.Cells.Item($i,7).Interior.ColorIndex=49;
+$WorkSheet.Cells.Item($i,8).Interior.ColorIndex=49;
+$WorkSheet.Cells.Item($i,9).Interior.ColorIndex=49;
+$WorkSheet.Cells.Item($i,10).Interior.ColorIndex=49;
+$WorkSheet.Cells.Item($i,11).Interior.ColorIndex=49;
+$WorkSheet.Cells.Item($i,12).Interior.ColorIndex=49;
+$WorkSheet.Cells.Item($i,13).Interior.ColorIndex=49;
+$WorkSheet.Cells.Item($i,14).Interior.ColorIndex=49;
+$WorkSheet.Cells.Item($i,15).Interior.ColorIndex=49;
+$WorkSheet.Cells.Item($i,16).Interior.ColorIndex=49;
+$WorkSheet.Cells.Item($i,17).Interior.ColorIndex=49;
+$WorkSheet.Cells.Item($i,18).Interior.ColorIndex=49;
+$WorkSheet.Cells.Item($i,19).Interior.ColorIndex=49;
+$WorkSheet.Cells.Item($i,20).Interior.ColorIndex=49;
+$WorkSheet.Cells.Item($i,21).Interior.ColorIndex=49;
+$WorkSheet.Cells.Item($i,22).Interior.ColorIndex=49;
+$WorkSheet.Cells.Item($i,23).Interior.ColorIndex=49;
+$WorkSheet.Cells.Item($i,24).Interior.ColorIndex=49;
+
+$WorkSheet.Cells.Item($i,1).Font.ColorIndex=2;
+$WorkSheet.Cells.Item($i,2).Font.ColorIndex=2;
+$WorkSheet.Cells.Item($i,3).Font.ColorIndex=2;
+$WorkSheet.Cells.Item($i,4).Font.ColorIndex=2;
+$WorkSheet.Cells.Item($i,5).Font.ColorIndex=2;
+$WorkSheet.Cells.Item($i,6).Font.ColorIndex=2;
+$WorkSheet.Cells.Item($i,7).Font.ColorIndex=2;
+$WorkSheet.Cells.Item($i,8).Font.ColorIndex=2;
+$WorkSheet.Cells.Item($i,9).Font.ColorIndex=2;
+$WorkSheet.Cells.Item($i,10).Font.ColorIndex=2;
+$WorkSheet.Cells.Item($i,11).Font.ColorIndex=2;
+$WorkSheet.Cells.Item($i,12).Font.ColorIndex=2;
+$WorkSheet.Cells.Item($i,13).Font.ColorIndex=2;
+$WorkSheet.Cells.Item($i,14).Font.ColorIndex=2;
+$WorkSheet.Cells.Item($i,15).Font.ColorIndex=2;
+$WorkSheet.Cells.Item($i,16).Font.ColorIndex=2;
+$WorkSheet.Cells.Item($i,17).Font.ColorIndex=2;
+$WorkSheet.Cells.Item($i,18).Font.ColorIndex=2;
+$WorkSheet.Cells.Item($i,19).Font.ColorIndex=2;
+$WorkSheet.Cells.Item($i,20).Font.ColorIndex=2;
+$WorkSheet.Cells.Item($i,21).Font.ColorIndex=2;
+$WorkSheet.Cells.Item($i,22).Font.ColorIndex=2;
+$WorkSheet.Cells.Item($i,23).Font.ColorIndex=2;
+$WorkSheet.Cells.Item($i,24).Font.ColorIndex=2;
+
 
 $WorkSheet.Cells.Item($i,1) = "IP"
 $WorkSheet.Cells.Item($i,2) = "MODELO"
@@ -1422,6 +1539,9 @@ $servidor=$textbox9.Text.Trim();
     $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
       
     foreach($newPc in $prueba2){
+      $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+      $validacion1 = $newPc -match $regip
+      if($validacion1 -eq $true){
         $agregarDominio={
          
             Param($newPc,$nombre,$servidor,$usuario,$contra)    
@@ -1507,7 +1627,7 @@ $servidor=$textbox9.Text.Trim();
             }
     }
 
-
+  }
   }  
   
     
