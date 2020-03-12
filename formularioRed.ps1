@@ -70,7 +70,7 @@ $textbox333.Font = 'Microsoft Sans Serif, 10pt'
 
 function functionPrincipal{
   $Form111.Close();
-if(($textbox222.Text -eq 'Administrador' -Or $textbox222.Text -eq 'administrador' -Or $textbox222.Text -eq 'admin') -And $textbox333.Text -eq "123456"){
+if(($textbox222.Text -eq '.\Administrador' -Or $textbox222.Text -eq '.\Administrador' -Or $textbox222.Text -eq 'admin') -And $textbox333.Text -eq "123456"){
  
     Write-Host "Acceso Exitoso"
  
@@ -290,7 +290,7 @@ $Form = New-Object System.Windows.Forms.Form
 
 function inventarioPcs{
 
-	$Username = "Administrador"
+	$Username = ".\Administrador"
     $Password = "R3c542016C4ll"
 $ipInicio=$textbox1.text;
 $ipFinal=$textbox3.text;
@@ -446,6 +446,8 @@ $WorkBook = $Excel.Workbooks.Add()
 $WorkSheet = $WorkBook.Worksheets.Item(1)
 $WorkSheet.Name = 'REPORTE'
 $i=1;
+$WorkSheet.Cells.Item($i,1).Interior.ColorIndex=6;
+
 $WorkSheet.Cells.Item($i,1) = "IP"
 $WorkSheet.Cells.Item($i,2) = "MODELO"
 $WorkSheet.Cells.Item($i,3) = "MARCA"
@@ -470,7 +472,6 @@ $WorkSheet.Cells.Item($i,21) = "BUILD NUMBER"
 $WorkSheet.Cells.Item($i,22) = "USER REGISTRADO"
 $WorkSheet.Cells.Item($i,23) = "ID DEL PRODUCTO"
 $WorkSheet.Cells.Item($i,24) = "PRODUCT KEY"
-
 
 
 
@@ -836,7 +837,7 @@ function changeGateway{
   if($comboBox1.SelectedItem -eq 'RANGO DE IPS')
   {
  
-  $Username = "Administrador"
+  $Username = ".\Administrador"
   $Password = "R3c542016C4ll"
   
   $Computer1=$textbox2.Text.Trim(); 
@@ -970,7 +971,7 @@ $textbox8.ScrollToCaret()
   }
 
   elseif($comboBox1.SelectedItem -eq 'IP'){
-      $Username = "Administrador"
+      $Username = ".\Administrador"
       $Password = "R3c542016C4ll"
     
       $Computer=$textbox1.Text; 
@@ -1059,7 +1060,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","-----",$texto4,"-----",$p
   }
   elseif ($comboBox1.SelectedItem -eq 'ARCHIVO TXT'){
 
-    $Username = "Administrador"
+    $Username = ".\Administrador"
     $Password = "R3c542016C4ll"
     $texto4=$textbox4.Text.Trim();
     $prueba2= Get-Content $OpenFileDialog.FileName
@@ -1162,7 +1163,7 @@ function setDomain{
   if($comboBox1.SelectedItem -eq 'RANGO DE IPS')
   {
   
-  $Username = "Administrador"
+  $Username = ".\Administrador"
   $Password = "R3c542016C4ll"
   
   $Computer1=$textbox2.Text.Trim(); 
@@ -1310,7 +1311,7 @@ $servidor=$textbox9.Text.Trim();
   
   }
   elseif($comboBox1.SelectedItem -eq 'IP'){
-      $Username = "Administrador"
+      $Username = ".\Administrador"
       $Password = "R3c542016C4ll"
   
       $Computer = $textbox1.Text.Trim(); 
@@ -1406,7 +1407,7 @@ $servidor=$textbox9.Text.Trim();
  }
   }
   elseif($comboBox1.SelectedItem -eq 'ARCHIVO TXT'){
-    $Username = "Administrador"
+    $Username = ".\Administrador"
     $Password = "R3c542016C4ll"
  
     $nombre = $textbox5.Text.Trim();
@@ -6108,7 +6109,7 @@ function deshabilitarRutas{
   mkdir  $ruta\logsRed
   }
   if($comboBox1.SelectedItem -eq 'RANGO DE IPS'){
-    $Username = "Administrador"
+    $Username = ".\Administrador"
     $Password = "R3c542016C4ll"
     
     $Computer1=$textbox2.Text.Trim(); 
@@ -6246,7 +6247,7 @@ elseif(($validacion1 -eq $false) -Or ($validacion2 -eq $false)){
   
   elseif($comboBox1.SelectedItem -eq 'IP'){
   
-  $Username = "Administrador"
+  $Username = ".\Administrador"
     $Password = "R3c542016C4ll"
 
     $Computer=$textbox1.Text; 
@@ -6328,7 +6329,7 @@ if($Session -eq $Null){
 }
   }
   elseif ($comboBox1.SelectedItem -eq 'ARCHIVO TXT'){
-    $Username = "Administrador"
+    $Username = ".\Administrador"
     $Password = "R3c542016C4ll"
     $prueba2= Get-Content $OpenFileDialog.FileName
   
@@ -6490,7 +6491,7 @@ function eliminarRutas{
 
 if($comboBox5.SelectedItem -eq 1){
 
-    $Username = "Administrador"
+    $Username = ".\Administrador"
     $Password = "R3c542016C4ll"
     $Computer1=$textbox2.Text.Trim(); 
     $Computer2=$textbox3.Text.Trim(); 
@@ -6578,7 +6579,7 @@ Vuelva a intentarlo nuevamente."
 }
 }
 elseif ($comboBox5.SelectedItem -eq 2) {
-    $Username = "Administrador"
+    $Username = ".\Administrador"
     $Password = "R3c542016C4ll"
     $Computer1=$textbox2.Text.Trim(); 
     $Computer2=$textbox3.Text.Trim(); 
@@ -6680,7 +6681,7 @@ Vuelva a intentarlo nuevamente."
 }
 }
 elseif ($comboBox5.SelectedItem -eq 3) {
-    $Username = "Administrador"
+    $Username = ".\Administrador"
     $Password = "R3c542016C4ll"
 
 
@@ -6776,7 +6777,7 @@ elseif ($comboBox5.SelectedItem -eq 3) {
     }
 }
 elseif ($comboBox5.SelectedItem -eq 4) {
-    $Username = "Administrador"
+    $Username = ".\Administrador"
     $Password = "R3c542016C4ll"
 
 
@@ -6885,7 +6886,7 @@ Vuelva a intentarlo nuevamente."
 }
 }
 elseif ($comboBox5.SelectedItem -eq 5) {
-    $Username = "Administrador"
+    $Username = ".\Administrador"
     $Password = "R3c542016C4ll"
 
     $Computer1=$textbox2.Text.Trim(); 
@@ -7001,7 +7002,7 @@ Vuelva a intentarlo nuevamente."
 }
 }
 elseif ($comboBox5.SelectedItem -eq 6) {
-    $Username = "Administrador"
+    $Username = ".\Administrador"
     $Password = "R3c542016C4ll"
 
     $Computer1=$textbox2.Text.Trim(); 
@@ -7112,7 +7113,7 @@ Vuelva a intentarlo nuevamente."
 }
 }
 elseif ($comboBox5.SelectedItem -eq 7) {
-    $Username = "Administrador"
+    $Username = ".\Administrador"
     $Password = "R3c542016C4ll"
 
     $Computer1=$textbox2.Text.Trim(); 
@@ -7217,7 +7218,7 @@ Vuelva a intentarlo nuevamente."
 }
 }
 else{
-    $Username = "Administrador"
+    $Username = ".\Administrador"
     $Password = "R3c542016C4ll"
     $Computer1=$textbox2.Text.Trim(); 
     $Computer2=$textbox3.Text.Trim(); 
@@ -7329,7 +7330,7 @@ Vuelva a intentarlo nuevamente."
   elseif($comboBox1.SelectedItem -eq 'IP'){
     if($comboBox5.SelectedItem -eq 1){
 
-        $Username = "Administrador"
+        $Username = ".\Administrador"
         $Password = "R3c542016C4ll"
     
         $Computer=$textbox1.Text; 
@@ -7406,7 +7407,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","1 RUTA ELIMINADA","-----"
     
     }
     elseif ($comboBox5.SelectedItem -eq 2) {
-        $Username = "Administrador"
+        $Username = ".\Administrador"
         $Password = "R3c542016C4ll"
     
         $Computer=$textbox1.Text; 
@@ -7492,7 +7493,7 @@ else{
     
     }
     elseif ($comboBox5.SelectedItem -eq 3) {
-        $Username = "Administrador"
+        $Username = ".\Administrador"
         $Password = "R3c542016C4ll"
     
         $Computer=$textbox1.Text; 
@@ -7571,7 +7572,7 @@ else{
     
     }
     elseif ($comboBox5.SelectedItem -eq 4) {
-        $Username = "Administrador"
+        $Username = ".\Administrador"
         $Password = "R3c542016C4ll"
     
         $Computer=$textbox1.Text; 
@@ -7656,7 +7657,7 @@ else{
         
     }
     elseif ($comboBox5.SelectedItem -eq 5) {
-        $Username = "Administrador"
+        $Username = ".\Administrador"
         $Password = "R3c542016C4ll"
     
         $Computer=$textbox1.Text; 
@@ -7739,7 +7740,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","5 RUTAS ELIMINADAS","----
             }
     }
     elseif ($comboBox5.SelectedItem -eq 6) {
-        $Username = "Administrador"
+        $Username = ".\Administrador"
         $Password = "R3c542016C4ll"
     
         $Computer=$textbox1.Text; 
@@ -7821,7 +7822,7 @@ $textbox8.ScrollToCaret()
             }
     }
     elseif ($comboBox5.SelectedItem -eq 7) {
-        $Username = "Administrador"
+        $Username = ".\Administrador"
         $Password = "R3c542016C4ll"
     
         $Computer=$textbox1.Text; 
@@ -7907,7 +7908,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS ELIMINADAS","----
             }
     }
     else{
-        $Username = "Administrador"
+        $Username = ".\Administrador"
         $Password = "R3c542016C4ll"
     
         $Computer=$textbox1.Text; 
@@ -7999,7 +8000,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS ELIMINADAS","----
   elseif($comboBox1.SelectedItem -eq 'ARCHIVO TXT'){
     if($comboBox5.SelectedItem -eq 1){
 
-      $Username = "Administrador"
+      $Username = ".\Administrador"
       $Password = "R3c542016C4ll"
       $prueba2= Get-Content $OpenFileDialog.FileName
     
@@ -8082,7 +8083,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS ELIMINADAS","----
   }
   }
   elseif ($comboBox5.SelectedItem -eq 2) {
-      $Username = "Administrador"
+      $Username = ".\Administrador"
       $Password = "R3c542016C4ll"
       $prueba2= Get-Content $OpenFileDialog.FileName
     
@@ -8169,7 +8170,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS ELIMINADAS","----
   
   }
   elseif ($comboBox5.SelectedItem -eq 3) {
-      $Username = "Administrador"
+      $Username = ".\Administrador"
       $Password = "R3c542016C4ll"
       $prueba2= Get-Content $OpenFileDialog.FileName
     
@@ -8259,7 +8260,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS ELIMINADAS","----
   
   }
   elseif ($comboBox5.SelectedItem -eq 4) {
-      $Username = "Administrador"
+      $Username = ".\Administrador"
       $Password = "R3c542016C4ll"
       $prueba2= Get-Content $OpenFileDialog.FileName
     
@@ -8353,7 +8354,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS ELIMINADAS","----
       
   }
   elseif ($comboBox5.SelectedItem -eq 5) {
-      $Username = "Administrador"
+      $Username = ".\Administrador"
       $Password = "R3c542016C4ll"
       $prueba2= Get-Content $OpenFileDialog.FileName
     
@@ -8449,7 +8450,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS ELIMINADAS","----
   }
   }
   elseif ($comboBox5.SelectedItem -eq 6) {
-      $Username = "Administrador"
+      $Username = ".\Administrador"
       $Password = "R3c542016C4ll"
       $prueba2= Get-Content $OpenFileDialog.FileName
   
@@ -8547,7 +8548,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS ELIMINADAS","----
   }
   }
   elseif ($comboBox5.SelectedItem -eq 7) {
-      $Username = "Administrador"
+      $Username = ".\Administrador"
       $Password = "R3c542016C4ll"
       $prueba2= Get-Content $OpenFileDialog.FileName
   
@@ -8649,7 +8650,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS ELIMINADAS","----
   }
   }
   else{
-      $Username = "Administrador"
+      $Username = ".\Administrador"
       $Password = "R3c542016C4ll"
       $prueba2= Get-Content $OpenFileDialog.FileName
   
@@ -8771,7 +8772,7 @@ function ejecutarRutas{
 
 if($comboBox5.SelectedItem -eq 1){
 
-    $Username = "Administrador"
+    $Username = ".\Administrador"
     $Password = "R3c542016C4ll"
     $Computer1=$textbox2.Text.Trim(); 
     $Computer2=$textbox3.Text.Trim(); 
@@ -8860,7 +8861,7 @@ Vuelva a intentarlo nuevamente."
 }
 }
 elseif ($comboBox5.SelectedItem -eq 2) {
-    $Username = "Administrador"
+    $Username = ".\Administrador"
     $Password = "R3c542016C4ll"
     $Computer1=$textbox2.Text.Trim(); 
     $Computer2=$textbox3.Text.Trim(); 
@@ -8965,7 +8966,7 @@ Vuelva a intentarlo nuevamente."
 }
 }
 elseif ($comboBox5.SelectedItem -eq 3) {
-    $Username = "Administrador"
+    $Username = ".\Administrador"
     $Password = "R3c542016C4ll"
 
 
@@ -9063,7 +9064,7 @@ elseif ($comboBox5.SelectedItem -eq 3) {
     }
 }
 elseif ($comboBox5.SelectedItem -eq 4) {
-    $Username = "Administrador"
+    $Username = ".\Administrador"
     $Password = "R3c542016C4ll"
 
 
@@ -9176,7 +9177,7 @@ Vuelva a intentarlo nuevamente."
 }
 }
 elseif ($comboBox5.SelectedItem -eq 5) {
-    $Username = "Administrador"
+    $Username = ".\Administrador"
     $Password = "R3c542016C4ll"
 
     $Computer1=$textbox2.Text.Trim(); 
@@ -9297,7 +9298,7 @@ Vuelva a intentarlo nuevamente."
 }
 }
 elseif ($comboBox5.SelectedItem -eq 6) {
-    $Username = "Administrador"
+    $Username = ".\Administrador"
     $Password = "R3c542016C4ll"
 
     $Computer1=$textbox2.Text.Trim(); 
@@ -9414,7 +9415,7 @@ Vuelva a intentarlo nuevamente."
 }
 }
 elseif ($comboBox5.SelectedItem -eq 7) {
-    $Username = "Administrador"
+    $Username = ".\Administrador"
     $Password = "R3c542016C4ll"
 
     $Computer1=$textbox2.Text.Trim(); 
@@ -9526,7 +9527,7 @@ Vuelva a intentarlo nuevamente."
 }
 }
 else{
-    $Username = "Administrador"
+    $Username = ".\Administrador"
     $Password = "R3c542016C4ll"
     $Computer1=$textbox2.Text.Trim(); 
     $Computer2=$textbox3.Text.Trim(); 
@@ -9646,7 +9647,7 @@ Vuelva a intentarlo nuevamente."
   elseif($comboBox1.SelectedItem -eq 'IP'){
     if($comboBox5.SelectedItem -eq 1){
 
-        $Username = "Administrador"
+        $Username = ".\Administrador"
         $Password = "R3c542016C4ll"
     
         $Computer=$textbox1.Text; 
@@ -9724,7 +9725,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","1 RUTA AGREGADA","-----",
     
     }
     elseif ($comboBox5.SelectedItem -eq 2) {
-        $Username = "Administrador"
+        $Username = ".\Administrador"
         $Password = "R3c542016C4ll"
     
         $Computer=$textbox1.Text; 
@@ -9811,7 +9812,7 @@ else{
     
     }
     elseif ($comboBox5.SelectedItem -eq 3) {
-        $Username = "Administrador"
+        $Username = ".\Administrador"
         $Password = "R3c542016C4ll"
     
         $Computer=$textbox1.Text; 
@@ -9893,7 +9894,7 @@ else{
     
     }
     elseif ($comboBox5.SelectedItem -eq 4) {
-        $Username = "Administrador"
+        $Username = ".\Administrador"
         $Password = "R3c542016C4ll"
     
         $Computer=$textbox1.Text; 
@@ -9982,7 +9983,7 @@ else{
         
     }
     elseif ($comboBox5.SelectedItem -eq 5) {
-        $Username = "Administrador"
+        $Username = ".\Administrador"
         $Password = "R3c542016C4ll"
     
         $Computer=$textbox1.Text; 
@@ -10070,7 +10071,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","5 RUTAS AGREGADAS","-----
             }
     }
     elseif ($comboBox5.SelectedItem -eq 6) {
-        $Username = "Administrador"
+        $Username = ".\Administrador"
         $Password = "R3c542016C4ll"
     
         $Computer=$textbox1.Text; 
@@ -10158,7 +10159,7 @@ $textbox8.ScrollToCaret()
             }
     }
     elseif ($comboBox5.SelectedItem -eq 7) {
-        $Username = "Administrador"
+        $Username = ".\Administrador"
         $Password = "R3c542016C4ll"
     
         $Computer=$textbox1.Text; 
@@ -10251,7 +10252,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
             }
     }
     else{
-        $Username = "Administrador"
+        $Username = ".\Administrador"
         $Password = "R3c542016C4ll"
     
         $Computer=$textbox1.Text; 
@@ -10351,7 +10352,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
   elseif($comboBox1.SelectedItem -eq 'ARCHIVO TXT'){
     if($comboBox5.SelectedItem -eq 1){
 
-      $Username = "Administrador"
+      $Username = ".\Administrador"
       $Password = "R3c542016C4ll"
       $prueba2= Get-Content $OpenFileDialog.FileName
     
@@ -10435,7 +10436,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
   }
   }
   elseif ($comboBox5.SelectedItem -eq 2) {
-      $Username = "Administrador"
+      $Username = ".\Administrador"
       $Password = "R3c542016C4ll"
       $prueba2= Get-Content $OpenFileDialog.FileName
     
@@ -10524,7 +10525,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
   
   }
   elseif ($comboBox5.SelectedItem -eq 3) {
-      $Username = "Administrador"
+      $Username = ".\Administrador"
       $Password = "R3c542016C4ll"
       $prueba2= Get-Content $OpenFileDialog.FileName
     
@@ -10617,7 +10618,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
   
   }
   elseif ($comboBox5.SelectedItem -eq 4) {
-      $Username = "Administrador"
+      $Username = ".\Administrador"
       $Password = "R3c542016C4ll"
       $prueba2= Get-Content $OpenFileDialog.FileName
     
@@ -10715,7 +10716,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
       
   }
   elseif ($comboBox5.SelectedItem -eq 5) {
-      $Username = "Administrador"
+      $Username = ".\Administrador"
       $Password = "R3c542016C4ll"
       $prueba2= Get-Content $OpenFileDialog.FileName
     
@@ -10816,7 +10817,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
   }
   }
   elseif ($comboBox5.SelectedItem -eq 6) {
-      $Username = "Administrador"
+      $Username = ".\Administrador"
       $Password = "R3c542016C4ll"
       $prueba2= Get-Content $OpenFileDialog.FileName
   
@@ -10920,7 +10921,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
   }
   }
   elseif ($comboBox5.SelectedItem -eq 7) {
-      $Username = "Administrador"
+      $Username = ".\Administrador"
       $Password = "R3c542016C4ll"
       $prueba2= Get-Content $OpenFileDialog.FileName
   
@@ -11029,7 +11030,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
   }
   }
   else{
-      $Username = "Administrador"
+      $Username = ".\Administrador"
       $Password = "R3c542016C4ll"
       $prueba2= Get-Content $OpenFileDialog.FileName
   
@@ -11313,7 +11314,7 @@ function ejecutarTareas{
   if($comboBox1.SelectedItem -eq 'RANGO DE IPS')
   {
   
-  $Username = "Administrador"
+  $Username = ".\Administrador"
   $Password = "R3c542016C4ll"
   
   $Computer1=$textbox2.Text.Trim(); 
@@ -11500,7 +11501,7 @@ function ejecutarTareas{
   
   }
   elseif($comboBox1.SelectedItem -eq 'IP'){
-      $Username = "Administrador"
+      $Username = ".\Administrador"
       $Password = "R3c542016C4ll"
   
       $Computer=$textbox1.Text; 
@@ -11646,7 +11647,7 @@ function ejecutarTareas{
 
   elseif ($comboBox1.SelectedItem -eq 'ARCHIVO TXT'){
 
-    $Username = "Administrador"
+    $Username = ".\Administrador"
     $Password = "R3c542016C4ll"
     $serverProxy=$textbox11.Text;
     $excepcion1=$textbox12.Text;
@@ -12455,7 +12456,7 @@ $label5.Font                      = 'Microsoft Sans Serif, 8.25pt'
 ####################################
 
 
-$label6.text                      = "Usuario Administrador del dominio"
+$label6.text                      = "Usuario .\Administrador del dominio"
 $label6.AutoSize                  = $true
 $label6.width                     = 100
 $label6.height                    = 13
