@@ -1190,6 +1190,9 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","-----",$texto4,"-----",$p
     
     
     foreach($newPc in $prueba2){
+      $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+      $validacion1 = $newPc -match $regip
+      if($validacion1 -eq $true){
         $cambio={
          
             Param($newPc,$texto4)    
@@ -1265,6 +1268,7 @@ $dataGridView2.Rows.Add($newPc,"CONECTADO","-----","-----",$texto4,"-----",$prue
          $textbox8.Refresh()
       $textbox8.ScrollToCaret()
             }
+          }
     }
   
 
@@ -10482,6 +10486,11 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
       $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
       $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
       foreach($newPc in $prueba2){
+        
+      $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+      $validacion1 = $newPc -match $regip
+      if($validacion1 -eq $true){
+
         $agregarRutas={
            
               Param($newPc,$ip_N1,$mask_N1,$gateway_N1)    
@@ -10522,6 +10531,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
                    $textbox8.Refresh()
                $textbox8.ScrollToCaret()
                }
+              
            #Invocando comandos
   
   else{
@@ -10553,6 +10563,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
   
   
   }
+}
   }
   }
   elseif ($comboBox5.SelectedItem -eq 2) {
@@ -10570,6 +10581,10 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
       $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
       foreach($newPc in $prueba2){
       
+        $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+        $validacion1 = $newPc -match $regip
+        if($validacion1 -eq $true){
+  
         $agregarRutas={
            
               Param($newPc,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2)    
@@ -10610,6 +10625,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
                    $textbox8.Refresh()
                $textbox8.ScrollToCaret()
                }
+
            #Invocando comandos
   
   else{
@@ -10641,6 +10657,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
   
   
   }
+}
   }
   
   }
@@ -10663,6 +10680,10 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
       foreach($newPc in $prueba2){
       
      
+        $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+        $validacion1 = $newPc -match $regip
+        if($validacion1 -eq $true){
+  
         $agregarRutas={
            
               Param($newPc,$ip_N1,$mask_N1,$gateway_N1,$ip_N2,$mask_N2,$gateway_N2,$ip_N3,$mask_N3,$gateway_N3)    
@@ -10734,6 +10755,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
   
   
   }
+}
   }
   
   }
@@ -10758,6 +10780,10 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
       $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
       foreach($newPc in $prueba2){
       
+        $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+        $validacion1 = $newPc -match $regip
+        if($validacion1 -eq $true){
+  
      
      
         $agregarRutas={
@@ -10832,6 +10858,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
   
   
   }
+}
   }
       
   }
@@ -10859,7 +10886,9 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
       $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
       $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
       foreach($newPc in $prueba2){
-      
+        $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+        $validacion1 = $newPc -match $regip
+        if($validacion1 -eq $true){
      
      
         $agregarRutas={
@@ -10934,6 +10963,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
   
   
   }
+}
   }
   }
   elseif ($comboBox5.SelectedItem -eq 6) {
@@ -10962,7 +10992,9 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
       $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
       $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
       foreach($newPc in $prueba2){
-      
+        $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+        $validacion1 = $newPc -match $regip
+        if($validacion1 -eq $true){
      
      
         $agregarRutas={
@@ -11038,6 +11070,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
   
   
   }
+}
   }
   }
   elseif ($comboBox5.SelectedItem -eq 7) {
@@ -11070,7 +11103,9 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
       $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
       $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
       foreach($newPc in $prueba2){
-      
+        $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+        $validacion1 = $newPc -match $regip
+        if($validacion1 -eq $true){
      
      
         $agregarRutas={
@@ -11147,6 +11182,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
   
   
   }
+}
   }
   }
   else{
@@ -11182,7 +11218,9 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
       $SecurePassword = ConvertTo-SecureString -AsPlainText $Password -Force
       $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $Username, $SecurePassword
       foreach($newPc in $prueba2){
-      
+        $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+        $validacion1 = $newPc -match $regip
+        if($validacion1 -eq $true){
      
      
         $agregarRutas={
@@ -11261,6 +11299,7 @@ $dataGridView2.Rows.Add($Computer,"CONECTADO","-----","7 RUTAS AGREGADAS","-----
   
   }
   }
+}
   }
       
   }
@@ -11787,6 +11826,9 @@ function ejecutarTareas{
     
     
     foreach($newPc in $prueba2){
+      $regip = [regex]"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+      $validacion1 = $newPc -match $regip
+      if($validacion1 -eq $true){
         $habilitarProxy={
          
             Param($newPc,$serverProxy,$excepcion1,$excepcion2,$excepcion3,$excepcion4,$excepcion5,$excepcion6,$excepcion7)    
@@ -11908,6 +11950,7 @@ function ejecutarTareas{
          $textbox8.Refresh()
       $textbox8.ScrollToCaret()
             }
+          }
     }
   
 
